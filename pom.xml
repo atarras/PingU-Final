@@ -129,11 +129,14 @@
 			<version>${spring-version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-search -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-search-orm</artifactId>
-			<version>5.8.2.Final</version>
+			<artifactId>hibernate-search</artifactId>
+			<version>5.11.1.Final</version>
+			<type>pom</type>
 		</dependency>
+
 
 		<dependency>
 			<groupId>com.h2database</groupId>
