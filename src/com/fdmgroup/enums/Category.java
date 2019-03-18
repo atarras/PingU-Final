@@ -1,5 +1,5 @@
 package com.fdmgroup.enums;
 
 public enum Category {
-	BANKING, INSURANCE, GOVERNMENT, RETAIL;
+	BANKING, INSURANCE, GOVERNMENT, RETAIL, HEALTHCARE;
 }
