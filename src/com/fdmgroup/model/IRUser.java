@@ -42,11 +42,6 @@ public class IRUser extends IUser {
 	@Column(columnDefinition = "Number(1)")
 	private boolean visibility = true;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "groupId")
-	private Group group;
-
-
 	public IRUser() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -177,19 +172,11 @@ public class IRUser extends IUser {
 		this.description = description;
 	}
 
-	public Group getGroup() {
-		return group;
-	}
-
-	public void setGroup(Group group) {
-		this.group = group;
-	}
-
 	@Override
 	public String toString() {
 		return "IRUser [description=" + description + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
 				+ email + ", phoneNumber=" + phoneNumber + ", city=" + city + ", country=" + country + ", linkedInUrl="
-				+ linkedInUrl + ", visibility=" + visibility + ", group=" + group + "]";
+				+ linkedInUrl + ", visibility=" + visibility + "]";
 	}
 
 }

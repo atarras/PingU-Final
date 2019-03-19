@@ -4,11 +4,14 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -20,8 +23,10 @@ import javax.validation.constraints.NotNull;
 @Table(name = "USERS")
 @DiscriminatorColumn(name="userType", discriminatorType=DiscriminatorType.STRING)
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-@NamedQueries({ @NamedQuery(name = "user.findAllUser", query = "select u FROM IUser u"),
-	@NamedQuery(name = "user.findAllByType", query = "select u FROM IUser u where TYPE(u) = :type")})
+@NamedQueries({ @NamedQuery(name = "iuser.findAllUser", query = "select u FROM IUser u"),
+	@NamedQuery(name = "iuser.findAllByType", query = "select u FROM IUser u where TYPE(u) = :type"),
+	@NamedQuery(name = "iuser.findAllRegularUsers", query = "select u FROM IUser u where TYPE(u) = :traineeType or Type(u) = :consultantType"),
+	@NamedQuery(name = "iuser.loginUser", query = "select u FROM IUser u where u.username = :username AND u.password = :password")})
 
 public class IUser {
 	
@@ -43,6 +48,10 @@ public class IUser {
 	@Column(columnDefinition = "Number(1)")
 	private boolean status = false;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "groupId")
+	private Group group;
+	
 	public IUser() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -94,10 +103,18 @@ public class IUser {
 		this.status = status;
 	}
 
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
 	@Override
 	public String toString() {
 		return "IUser [userId=" + userId + ", username=" + username + ", password=" + password + ", status=" + status
-				+ "]";
+				+ ", group=" + group + "]";
 	}
 	
 	
