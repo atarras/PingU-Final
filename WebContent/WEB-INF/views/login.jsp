@@ -72,26 +72,47 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col col-md-6">
-                    <input type="text" id="signup-firstname-field" class="form-control login-form-field" name="firstname" placeholder="First Name" required="required">
+                    <input type="text" id="signup-firstname-field" class="form-control signup-form-field" name="firstname" placeholder="First Name" required="required">
                   </div>
                   <div class="col col-md-6">
-                    <input type="text" id="signup-lastname-field" class="form-control login-form-field" name="lastname" placeholder="Last Name" required="required">
+                    <input type="text" id="signup-lastname-field" class="form-control signup-form-field" name="lastname" placeholder="Last Name" required="required">
                   </div>
                 </div>
               </div>
               
               <div class="form-group">
-                <input type="text" id="signup-username-field" class="form-control login-form-field" name="username" placeholder="Username" required="required">
+                <input type="text" id="signup-username-field" class="form-control signup-form-field" name="username" placeholder="Username" required="required">
                 <div id="username-exists-section" class="error-message"></div>
               </div>
               
               <div class="form-group">
-                <input type="password" id="signup-password-field" class="form-control login-form-field" name="password" placeholder="Password" required="required">  
+                <input type="password" id="signup-password-field" class="form-control signup-form-field" name="password" placeholder="Password" required="required">  
               </div>
               
               <div class="form-group">
-                <input type="password" id="signup-confirm-password-field" class="form-control login-form-field" name="confirm-password" placeholder="Confirm Password" required="required">  
+                <input type="password" id="signup-confirm-password-field" class="form-control signup-form-field" name="confirm-password" placeholder="Confirm Password" required="required">  
                 <div id="password-does-not-match-section" class="error-message"></div>
+              </div>
+              
+              <div class="form-group">
+                <input type="text" id="signup-email-field" class="form-control signup-form-field" name="email" placeholder="Email" required="required">  
+                <div id="malformed-email" class="error-message"></div>
+              </div>
+              
+              <div class="form-group">
+                <div class="row">
+                  <div class="col col-md-6">
+                    <input type="text" id="signup-city-field" class="form-control signup-form-field" name="city" placeholder="City" required="required">
+                  </div>
+                  <div class="col col-md-6">
+                    <input type="text" id="signup-country-field" class="form-control signup-form-field" name="country" placeholder="Country" required="required">
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <input type="text" id="signup-linkedin-field" class="form-control signup-form-field" name="linkedin" placeholder="Linkedin" required="required">  
+                <div id="malformed-email" class="error-message"></div>
               </div>
               
               <div class="form-group">
