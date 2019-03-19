@@ -19,5 +19,8 @@ public interface IUserDAO {
 	void updatePassword(Long userId, String newPassword);
 	IUser loginUser(String username, String password);
 	void updateGroup(Long userId, Group group);
+	void updateEmployer(Long userId, String newEmployer);
+	void updateJobTitle(Long userId, String newTitle);
+	void updateDescription(Long userId, String newDesc);
 
 }

@@ -47,6 +47,45 @@ public class IRUser extends IUser {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
+	public IRUser(String username, String password) {
+		super(username, password);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public IRUser(String username, String password, String description, String firstName, String lastName, String email,
+			String phoneNumber, String city, String country) {
+		super(username, password);
+		this.description = description;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.city = city;
+		this.country = country;
+	}
+
+
+
+	public IRUser(String username, String password, String description, String firstName, String lastName, String email,
+			String phoneNumber, String city, String country, String linkedInUrl, boolean visibility) {
+		super(username, password);
+		this.description = description;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.city = city;
+		this.country = country;
+		this.linkedInUrl = linkedInUrl;
+		this.visibility = visibility;
+	}
+
+
+
 	public IRUser(String firstName, String lastName, String email, String phoneNumber, String city, String country,
 			String linkedInUrl, boolean visibility) {
 		super();

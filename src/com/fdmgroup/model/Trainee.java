@@ -10,13 +10,29 @@ import javax.validation.constraints.NotNull;
 public class Trainee extends IRUser {
 
 	@Column(name = "stream", length = 30)
-	@NotNull(message = "stream can not be null")
 	private String stream;
 
 	public Trainee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Trainee(String username, String password, String stream) {
+		super(username, password);
+		this.stream = stream;
+	}
+
+
+
+	public Trainee(String username, String password, String description, String firstName, String lastName,
+			String email, String phoneNumber, String city, String country, String stream) {
+		super(username, password, description, firstName, lastName, email, phoneNumber, city, country);
+		this.stream = stream;
+	}
+
+
 
 	public Trainee(String firstName, String lastName, String email, String phoneNumber, String city, String country,
 			boolean visibility) {

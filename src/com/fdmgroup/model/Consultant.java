@@ -12,21 +12,40 @@ import javax.validation.constraints.NotNull;
 public class Consultant extends IRUser{
 
 	@Column(name = "currentTitle", length = 30)
-	@NotNull(message = "current title can not be null")
 	private String currentTitle;
 	
 	@Column(name = "employer")
-	@NotNull(message = "employer can not be null")
 	private String employer;
 	
 	@Column(name = "placementDate")
-	@NotNull(message = "placement date can not be null")
 	private Date pDate;
 
 	public Consultant() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Consultant(String username, String password, String currentTitle, String employer, Date pDate) {
+		super(username, password);
+		this.currentTitle = currentTitle;
+		this.employer = employer;
+		this.pDate = pDate;
+	}
+
+
+
+	public Consultant(String username, String password, String description, String firstName, String lastName,
+			String email, String phoneNumber, String city, String country, String currentTitle, String employer,
+			Date pDate) {
+		super(username, password, description, firstName, lastName, email, phoneNumber, city, country);
+		this.currentTitle = currentTitle;
+		this.employer = employer;
+		this.pDate = pDate;
+	}
+
+
 
 	public Consultant(String firstName, String lastName, String email, String phoneNumber, String city, String country,
 			boolean visibility) {

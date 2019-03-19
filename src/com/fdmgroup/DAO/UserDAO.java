@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
@@ -136,7 +137,7 @@ public class UserDAO implements IUserDAO {
 		EntityManager em = connection.getEntityManager();
 		IRUser foundUser = em.find(IRUser.class, userId);
 		em.getTransaction().begin();
-		foundUser.setGroup(group);;
+		foundUser.setGroup(group);
 		em.getTransaction().commit();
 		em.close();
 		
@@ -155,6 +156,35 @@ public class UserDAO implements IUserDAO {
 		}
 		return null;
 	}
+
+	@Override
+	public void updateEmployer(Long userId, String newEmployer) {
+		EntityManager em = connection.getEntityManager();
+		Consultant foundUser = em.find(Consultant.class, userId);
+		em.getTransaction().begin();
+		foundUser.setEmployer(newEmployer);
+		em.getTransaction().commit();
+		em.close();
+		
+	}
+
+	@Override
+	public void updateJobTitle(Long userId, String newTitle) {
+		EntityManager em = connection.getEntityManager();
+		Consultant foundUser = em.find(Consultant.class, userId);
+		em.getTransaction().begin();
+		foundUser.setCurrentTitle(newTitle);
+		em.getTransaction().commit();
+		em.close();
+		
+	}
+
+	@Override
+	public void updateDescription(Long userId, String newDesc) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 }
