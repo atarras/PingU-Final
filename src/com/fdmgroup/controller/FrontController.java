@@ -8,7 +8,7 @@ public class FrontController {
 	
 	@RequestMapping("/")
 	public String showIndex() {
-		return "index";
+		return "home";
 	}
-
+	
 }
