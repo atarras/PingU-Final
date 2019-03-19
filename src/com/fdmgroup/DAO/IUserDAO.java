@@ -9,6 +9,7 @@ public interface IUserDAO {
 	
 	IUser create(IUser user);
 	void delete(IUser user);
+	IUser activateUser(Long userId);
 	IUser findUserById(Long userId);
 	List<IUser> getAllUsers();
 	List<IUser> getAllRegularUsers();

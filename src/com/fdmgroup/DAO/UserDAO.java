@@ -123,7 +123,7 @@ public class UserDAO implements IUserDAO {
 		query.setParameter("username", username);
 		query.setParameter("password", password);
 		List<IUser> resultList = query.getResultList();
-
+		em.close();
 		if (resultList != null && resultList.size() >= 1)
 			if (resultList.get(0).isStatus())
 				return resultList.get(0);
@@ -140,6 +140,20 @@ public class UserDAO implements IUserDAO {
 		em.getTransaction().commit();
 		em.close();
 		
+	}
+
+	@Override
+	public IUser activateUser(Long userId) {
+		EntityManager em = connection.getEntityManager();
+		IUser foundUser = em.find(IUser.class, userId);
+		if(foundUser!=null){
+		em.getTransaction().begin();
+		foundUser.setStatus(true);
+		em.getTransaction().commit();
+		em.close();
+		return foundUser;
+		}
+		return null;
 	}
 
 
