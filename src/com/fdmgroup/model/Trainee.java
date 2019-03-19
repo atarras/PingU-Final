@@ -3,12 +3,14 @@ package com.fdmgroup.model;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @DiscriminatorValue(value = "Trainee")
 public class Trainee extends IRUser {
 
 	@Column(name = "stream", length = 30, nullable = false)
+	@NotNull(message = "stream can not be null")
 	private String stream;
 
 	public Trainee() {

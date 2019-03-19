@@ -5,18 +5,22 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @DiscriminatorValue(value="Consultant")
 public class Consultant extends IRUser{
 
 	@Column(name = "currentTitle", length = 30, nullable = false)
+	@NotNull(message = "current title can not be null")
 	private String currentTitle;
 	
 	@Column(name = "employer", nullable = false)
+	@NotNull(message = "employer can not be null")
 	private String employer;
 	
 	@Column(name = "placementDate", nullable = false)
+	@NotNull(message = "placement date can not be null")
 	private Date pDate;
 
 	public Consultant() {

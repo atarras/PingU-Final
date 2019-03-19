@@ -9,7 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -20,13 +22,17 @@ public abstract class IUser {
 	
 	@Id
 	@Column(name = "userId")
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "userSequence", sequenceName = "USER_ID_SEQ", initialValue = 100000, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSequence")
+
 	private long userId;
 	
 	@Column(name="username", length = 30, nullable = false, unique = true)
+	@NotNull(message = "user name can not be null")
 	private String username;
 	
 	@Column(name = "password", length = 30, nullable = false)
+	@NotNull(message = "password can not be null")
 	private String password;
 	
 	@Column(columnDefinition = "Number(1) default '0'")

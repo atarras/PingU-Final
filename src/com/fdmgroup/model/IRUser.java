@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -13,21 +14,27 @@ import javax.persistence.Table;
 public abstract class IRUser extends IUser {
 
 	@Column(name = "firstName", length = 30, nullable = false)
+	@NotNull(message = "firstname can not be null")
 	private String firstName;
 
 	@Column(name = "lastName", length = 30, nullable = false)
+	@NotNull(message = "lastname can not be null")
 	private String lastName;
 
 	@Column(name = "email", length = 30, nullable = false)
+	@NotNull(message = "email can not be null")
 	private String email;
 
 	@Column(name = "phoneNumber", length = 15, nullable = false)
+	@NotNull(message = "phone number can not be null")
 	private String phoneNumber;
 
 	@Column(name = "city", length = 30, nullable = false)
+	@NotNull(message = "city can not be null")
 	private String city;
 
 	@Column(name = "country", length = 20, nullable = false)
+	@NotNull(message = "country can not be null")
 	private String country;
 
 	@Column(name = "linkedIn")
