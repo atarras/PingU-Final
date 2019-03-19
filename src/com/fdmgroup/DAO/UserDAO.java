@@ -122,7 +122,7 @@ public class UserDAO implements IUserDAO {
 		EntityManager em = connection.getEntityManager();
 		TypedQuery<IUser> query = em.createNamedQuery("iuser.loginUser", IUser.class);
 		query.setParameter("username", username);
-		query.setParameter("password", password);
+//		query.setParameter("password", password);
 		List<IUser> resultList = query.getResultList();
 		em.close();
 		if (resultList != null && resultList.size() >= 1)
@@ -181,7 +181,12 @@ public class UserDAO implements IUserDAO {
 
 	@Override
 	public void updateDescription(Long userId, String newDesc) {
-		// TODO Auto-generated method stub
+		EntityManager em = connection.getEntityManager();
+		Consultant foundUser = em.find(Consultant.class, userId);
+		em.getTransaction().begin();
+		foundUser.setDescription(newDesc);
+		em.getTransaction().commit();
+		em.close();
 		
 	}
 

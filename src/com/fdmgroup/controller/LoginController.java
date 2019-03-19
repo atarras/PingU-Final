@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fdmgroup.DAO.UserDAO;
+import com.fdmgroup.model.IUser;
+
 @Controller
 public class LoginController {
 	
@@ -37,11 +40,19 @@ public class LoginController {
 		HttpSession session = req.getSession();
 		removeErrorAttributes(session);
 		
-		// TODO: Remove placeholder
-		if (!username.equals("admin")) {
+		UserDAO userDAO = new UserDAO();
+		IUser loginUser = userDAO.loginUser(username, password);
+//		if(loginUser==null)
+//		{
+//			session.setAttribute("usernameIncorrect", true);
+//			session.setAttribute("passwordIncorrect", true);
+//			return "login";
+//		}
+		
+		if (loginUser==null) {
 			session.setAttribute("usernameIncorrect", true);
 			return "login";
-		} else if (!password.equals("123")) {
+		} else if (!password.equals(loginUser.getPassword())) {
 			session.setAttribute("passwordIncorrect", true);
 			return "login";
 		}

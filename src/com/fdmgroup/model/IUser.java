@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({ @NamedQuery(name = "iuser.findAllUser", query = "select u FROM IUser u"),
 	@NamedQuery(name = "iuser.findAllByType", query = "select u FROM IUser u where TYPE(u) = :type"),
 	@NamedQuery(name = "iuser.findAllRegularUsers", query = "select u FROM IUser u where TYPE(u) = :traineeType or Type(u) = :consultantType"),
-	@NamedQuery(name = "iuser.loginUser", query = "select u FROM IUser u where u.username = :username AND u.password = :password")})
+	@NamedQuery(name = "iuser.loginUser", query = "select u FROM IUser u where u.username = :username")})
 
 public class IUser {
 	
