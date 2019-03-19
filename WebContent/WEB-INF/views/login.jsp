@@ -111,8 +111,15 @@
               </div>
               
               <div class="form-group">
-                <input type="text" id="signup-linkedin-field" class="form-control signup-form-field" name="linkedin" placeholder="Linkedin" required="required">  
-                <div id="malformed-email" class="error-message"></div>
+                <input type="text" id="signup-linkedin-field" class="form-control signup-form-field" name="linkedin" placeholder="Linkedin">  
+              </div>
+              
+              <div class="form-group">
+                <label>User Type</label>
+                <select class="form-control" name="usertype">
+                  <option>Trainee</option>
+                  <option>Consultant</option>
+                </select>
               </div>
               
               <div class="form-group">

@@ -59,13 +59,23 @@ public class LoginController {
 			@RequestParam("firstname") String firstName,
 			@RequestParam("lastname") String lastName,
 			@RequestParam("username") String username,
-			@RequestParam("password") String password
+			@RequestParam("password") String password,
+			@RequestParam("email") String email,
+			@RequestParam("city") String city,
+			@RequestParam("country") String country,
+			@RequestParam("linkedin") String linkedin,
+			@RequestParam("usertype") String userType
 			) {
 		
 		System.out.println("/signup/POST?firstname=" + firstName +
 				"&lastname=" + lastName +
 				"&username=" + username +
-				"&password=" + password);
+				"&password=" + password +
+				"&email=" + email +
+				"&city=" + city +
+				"&country=" + country +
+				"&linkedin=" + linkedin +
+				"&usertype=" + userType);
 		
 		return "login";
 	}
