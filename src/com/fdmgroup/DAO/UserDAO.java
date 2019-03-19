@@ -54,4 +54,16 @@ public class UserDAO implements IUserDAO {
 		return null;
 	}
 
+	@Override
+	public List<IUser> getAllUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IUser> getAllRegularUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

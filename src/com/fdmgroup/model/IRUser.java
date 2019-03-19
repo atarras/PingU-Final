@@ -2,23 +2,22 @@ package com.fdmgroup.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 
 @Entity
 @Table(name = "RUSERS")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
-public abstract class IRUser extends IUser {
+public class IRUser extends IUser {
 	
 	@Column(name="description", length = 200)
 	private String description;
 	
-	@Column(name="groupId")
-	private Long groupId;
-
 	@Column(name = "firstName", length = 30)
 	private String firstName;
 
@@ -42,6 +41,11 @@ public abstract class IRUser extends IUser {
 
 	@Column(columnDefinition = "Number(1)")
 	private boolean visibility = true;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "groupId")
+	private Group group;
+
 
 	public IRUser() {
 		super();
@@ -163,11 +167,29 @@ public abstract class IRUser extends IUser {
 		this.visibility = visibility;
 	}
 
+	
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
 	@Override
 	public String toString() {
-		return "IRUser [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", phoneNumber="
-				+ phoneNumber + ", city=" + city + ", country=" + country + ", linkedInUrl=" + linkedInUrl
-				+ ", visibility=" + visibility + "]";
+		return "IRUser [description=" + description + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
+				+ email + ", phoneNumber=" + phoneNumber + ", city=" + city + ", country=" + country + ", linkedInUrl="
+				+ linkedInUrl + ", visibility=" + visibility + ", group=" + group + "]";
 	}
 
 }

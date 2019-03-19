@@ -11,5 +11,7 @@ public interface IUserDAO {
 	List<IUser> getAllTrainees();
 	List<IUser> getAllConsultants();
 	List<IUser> getAllAdmins();
+	List<IUser> getAllUsers();
+	List<IUser> getAllRegularUsers();
 
 }
