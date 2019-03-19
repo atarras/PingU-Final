@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue(value = "Trainee")
 public class Trainee extends IRUser {
 
-	@Column(name = "stream", length = 30, nullable = false)
+	@Column(name = "stream", length = 30)
 	@NotNull(message = "stream can not be null")
 	private String stream;
 
@@ -32,6 +32,14 @@ public class Trainee extends IRUser {
 
 	public Trainee(String firstName, String lastName, String email, String phoneNumber, String city, String country) {
 		super(firstName, lastName, email, phoneNumber, city, country);
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+	public Trainee(String description, String firstName, String lastName, String email, String phoneNumber, String city,
+			String country, String linkedInUrl, boolean visibility) {
+		super(description, firstName, lastName, email, phoneNumber, city, country, linkedInUrl, visibility);
 		// TODO Auto-generated constructor stub
 	}
 

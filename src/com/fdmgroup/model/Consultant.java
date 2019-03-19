@@ -11,15 +11,15 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorValue(value="Consultant")
 public class Consultant extends IRUser{
 
-	@Column(name = "currentTitle", length = 30, nullable = false)
+	@Column(name = "currentTitle", length = 30)
 	@NotNull(message = "current title can not be null")
 	private String currentTitle;
 	
-	@Column(name = "employer", nullable = false)
+	@Column(name = "employer")
 	@NotNull(message = "employer can not be null")
 	private String employer;
 	
-	@Column(name = "placementDate", nullable = false)
+	@Column(name = "placementDate")
 	@NotNull(message = "placement date can not be null")
 	private Date pDate;
 

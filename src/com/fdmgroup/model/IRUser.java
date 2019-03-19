@@ -12,36 +12,36 @@ import javax.validation.constraints.NotNull;
 @Table(name = "RUSERS")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class IRUser extends IUser {
+	
+	@Column(name="description", length = 200)
+	private String description;
+	
+	@Column(name="groupId")
+	private Long groupId;
 
-	@Column(name = "firstName", length = 30, nullable = false)
-	@NotNull(message = "firstname can not be null")
+	@Column(name = "firstName", length = 30)
 	private String firstName;
 
-	@Column(name = "lastName", length = 30, nullable = false)
-	@NotNull(message = "lastname can not be null")
+	@Column(name = "lastName", length = 30)
 	private String lastName;
 
-	@Column(name = "email", length = 30, nullable = false)
-	@NotNull(message = "email can not be null")
+	@Column(name = "email",  unique = true)
 	private String email;
 
-	@Column(name = "phoneNumber", length = 15, nullable = false)
-	@NotNull(message = "phone number can not be null")
+	@Column(name = "phoneNumber", length = 15)
 	private String phoneNumber;
 
-	@Column(name = "city", length = 30, nullable = false)
-	@NotNull(message = "city can not be null")
+	@Column(name = "city", length = 30)
 	private String city;
 
-	@Column(name = "country", length = 20, nullable = false)
-	@NotNull(message = "country can not be null")
+	@Column(name = "country", length = 20)
 	private String country;
 
 	@Column(name = "linkedIn")
 	private String linkedInUrl;
 
-	@Column(columnDefinition = "Number(1) default '1'")
-	private boolean visibility;
+	@Column(columnDefinition = "Number(1)")
+	private boolean visibility = true;
 
 	public IRUser() {
 		super();
@@ -80,6 +80,22 @@ public abstract class IRUser extends IUser {
 		this.phoneNumber = phoneNumber;
 		this.city = city;
 		this.country = country;
+		this.visibility = visibility;
+	}
+	
+	
+
+	public IRUser(String description, String firstName, String lastName, String email, String phoneNumber, String city,
+			String country, String linkedInUrl, boolean visibility) {
+		super();
+		this.description = description;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.city = city;
+		this.country = country;
+		this.linkedInUrl = linkedInUrl;
 		this.visibility = visibility;
 	}
 
