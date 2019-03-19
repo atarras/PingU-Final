@@ -12,7 +12,6 @@ import javax.persistence.Table;
 
 import com.fdmgroup.enums.Category;
 
-//TODO: Check if group can get created in oracle.
 /**
  * Group is the model class that holds the information of the groups that users can join. 
  *
@@ -62,7 +61,7 @@ public class Group {
 	 */
 	//@OneToMany(mappedBy="group")
 	//@Column(name=GROUP_MEMBERS)
-	//private List<IRUser> groupMembers;
+	//private List<IUser> groupMembers;
 	
 	public Group() {
 		super();

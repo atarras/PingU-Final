@@ -15,7 +15,7 @@ import com.fdmgroup.model.Group;
 public class GroupDAO {
 	
 	/**
-	 * Single instance of the DBConnection
+	 * Single instance of the DBConnection class
 	 */
 	private DBConnection conn;
 
