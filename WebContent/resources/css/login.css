@@ -1,0 +1,18 @@
+#login-signup {
+    width: 50%;
+}
+
+#login, #signup {
+    border-top: none;
+    border-radius: 0px;
+}
+
+.nav-tabs>li>a {
+    margin-right: 0;
+    border-radius: 0px;
+}
+
+.error-message {
+    color: red;
+}
+
