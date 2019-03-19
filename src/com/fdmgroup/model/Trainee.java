@@ -58,6 +58,18 @@ public class Trainee extends IRUser {
 		super(description, firstName, lastName, email, phoneNumber, city, country, linkedInUrl, visibility);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Trainee(String description, @NotNull(message = "user name can not be null") String username,
+			@NotNull(message = "password can not be null") String password,
+			@NotNull(message = "answer can not be null") String securityAnswer, String firstName, String lastName,
+			String email, String phoneNumber, String city, String country, String stream) {
+		super(description, username, password, securityAnswer, firstName, lastName, email, phoneNumber, city, country);
+		this.stream = stream;
+	}
+
+
 
 	public Trainee(String stream) {
 		super();

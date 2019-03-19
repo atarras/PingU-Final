@@ -22,4 +22,6 @@ public class Admin extends IUser {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+	
 }

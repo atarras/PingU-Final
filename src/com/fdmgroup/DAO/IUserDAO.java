@@ -22,5 +22,6 @@ public interface IUserDAO {
 	void updateEmployer(Long userId, String newEmployer);
 	void updateJobTitle(Long userId, String newTitle);
 	void updateDescription(Long userId, String newDesc);
+	String recoverPassword(String username, String answer);
 
 }

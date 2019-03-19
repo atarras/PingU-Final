@@ -64,6 +64,21 @@ public class Consultant extends IRUser{
 		super(firstName, lastName, email, phoneNumber, city, country);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Consultant(String description, @NotNull(message = "user name can not be null") String username,
+			@NotNull(message = "password can not be null") String password,
+			@NotNull(message = "answer can not be null") String securityAnswer, String firstName, String lastName,
+			String email, String phoneNumber, String city, String country, String currentTitle, String employer,
+			Date pDate) {
+		super(description, username, password, securityAnswer, firstName, lastName, email, phoneNumber, city, country);
+		this.currentTitle = currentTitle;
+		this.employer = employer;
+		this.pDate = pDate;
+	}
+
+
 
 	public String getCurrentTitle() {
 		return currentTitle;

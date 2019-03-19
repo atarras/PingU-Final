@@ -1,3 +1,17 @@
 #n {
     color: red;
 }
+
+.navbar{
+	padding: 0.5% 15% 0.5% 15%;
+	position:fixed;
+	height: 50px;
+}
+
+.nav-link:hover{
+	color: gray;
+}
+
+.modal{
+	top:30vh;
+}

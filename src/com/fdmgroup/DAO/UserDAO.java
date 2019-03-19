@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IRUser;
@@ -12,13 +14,10 @@ import com.fdmgroup.model.IUser;
 
 public class UserDAO implements IUserDAO {
 
-	private DBConnection connection = null;
+	@Autowired
+	private DBConnection connection;
 
-	public UserDAO() {
-		super();
-		this.connection = DBConnection.getInstance();
-	}
-
+	
 	@Override
 	public IUser create(IUser user) {
 		EntityManager em = connection.getEntityManager();
@@ -80,7 +79,7 @@ public class UserDAO implements IUserDAO {
 		EntityManager em = connection.getEntityManager();
 		IUser foundUser = em.find(IUser.class, userId);
 		em.close();
-		if(foundUser!=null)
+		if (foundUser != null)
 			return foundUser;
 		return null;
 	}
@@ -120,9 +119,8 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public IUser loginUser(String username, String password) {
 		EntityManager em = connection.getEntityManager();
-		TypedQuery<IUser> query = em.createNamedQuery("iuser.loginUser", IUser.class);
+		TypedQuery<IUser> query = em.createNamedQuery("iuser.findByUsername", IUser.class);
 		query.setParameter("username", username);
-//		query.setParameter("password", password);
 		List<IUser> resultList = query.getResultList();
 		em.close();
 		if (resultList != null && resultList.size() >= 1)
@@ -133,7 +131,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public void updateGroup(Long userId,Group group) {
+	public void updateGroup(Long userId, Group group) {
 		EntityManager em = connection.getEntityManager();
 		IRUser foundUser = em.find(IRUser.class, userId);
 		em.getTransaction().begin();
@@ -147,12 +145,12 @@ public class UserDAO implements IUserDAO {
 	public IUser activateUser(Long userId) {
 		EntityManager em = connection.getEntityManager();
 		IUser foundUser = em.find(IUser.class, userId);
-		if(foundUser!=null){
-		em.getTransaction().begin();
-		foundUser.setStatus(true);
-		em.getTransaction().commit();
-		em.close();
-		return foundUser;
+		if (foundUser != null) {
+			em.getTransaction().begin();
+			foundUser.setStatus(true);
+			em.getTransaction().commit();
+			em.close();
+			return foundUser;
 		}
 		return null;
 	}
@@ -190,6 +188,17 @@ public class UserDAO implements IUserDAO {
 		
 	}
 
+	@Override
+	public String recoverPassword(String username, String answer) {
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<IUser> query = em.createNamedQuery("iuser.findByUsername", IUser.class);
+		query.setParameter("username", username);
+		List<IUser> resultList = query.getResultList();
+		em.close();
+		if (resultList != null && resultList.size() >= 1)
+			if (resultList.get(0).isStatus() && resultList.get(0).getSecurityAnswer().equals(answer))
+				return resultList.get(0).getPassword();
+		return null;
 
-
+	}
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IUser;
 
@@ -16,14 +18,11 @@ import com.fdmgroup.model.IUser;
 public class GroupDAO {
 	
 	/**
-	 * Single instance of the DBConnection class
+	 * Single instance of the DBconnectionection class
 	 */
-	private DBConnection conn;
+	@Autowired
+	private DBConnection connection;
 
-	public GroupDAO() {
-		super();
-		conn = DBConnection.getInstance();
-	}
 	
 	/**
 	 * 
@@ -33,7 +32,7 @@ public class GroupDAO {
 	 * @return Group that was saved.
 	 */
 	public Group create(Group g){
-		EntityManager em = conn.getEntityManager();
+		EntityManager em = connection.getEntityManager();
 		
 		em.getTransaction().begin();
 		em.persist(g);
@@ -50,7 +49,7 @@ public class GroupDAO {
 	 * @return Group with the corresponding id.
 	 */
 	public Group findByGroupId(long id){
-		EntityManager em = conn.getEntityManager();
+		EntityManager em = connection.getEntityManager();
 		TypedQuery<Group> query = em.createNamedQuery("group.findByGroupId", Group.class);
 		query.setParameter("gId", id);
 		
@@ -69,7 +68,7 @@ public class GroupDAO {
 	 * @return Group with the corresponding name.
 	 */
 	public Group findByGroupName(String name){
-		EntityManager em = conn.getEntityManager();
+		EntityManager em = connection.getEntityManager();
 		TypedQuery<Group> query = em.createNamedQuery("group.findByGroupName", Group.class);
 		query.setParameter("gName", name);
 		
@@ -88,7 +87,7 @@ public class GroupDAO {
 	 * @param group: The group with updates to it.
 	 */
 	public void update(Group group){
-		EntityManager em = conn.getEntityManager();
+		EntityManager em = connection.getEntityManager();
 		Group foundGroup = em.find(Group.class, group.getGroupId());
 		
 		em.getTransaction().begin();
@@ -109,7 +108,7 @@ public class GroupDAO {
 	 * @param group: The group we want to update the list of group members
 	 */
 	public void updateGroupMembers(Group group){
-		EntityManager em = conn.getEntityManager();
+		EntityManager em = connection.getEntityManager();
 		Group foundGroup = em.find(Group.class, group.getGroupId());
 		List<IUser> newMembers = group.getGroupMembers();
 		

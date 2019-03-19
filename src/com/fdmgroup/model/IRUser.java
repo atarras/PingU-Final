@@ -8,6 +8,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -136,6 +137,25 @@ public class IRUser extends IUser {
 		this.linkedInUrl = linkedInUrl;
 		this.visibility = visibility;
 	}
+
+	
+	
+	public IRUser(String description,@NotNull(message = "user name can not be null") String username,
+			@NotNull(message = "password can not be null") String password,
+			@NotNull(message = "answer can not be null") String securityAnswer, String firstName, String lastName,
+			String email, String phoneNumber, String city, String country) {
+		
+		super(username, password, securityAnswer);
+		this.description = description;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.city = city;
+		this.country = country;
+	}
+
+
 
 	public String getFirstName() {
 		return firstName;
