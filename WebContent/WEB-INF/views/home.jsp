@@ -9,15 +9,24 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-  <!-- <link rel="stylesheet" href="../css/main.css" /> -->
-  <!-- <script src="./js/main.js"></script> -->
+  <link rel="stylesheet" href="<c:url value="resources/css/main.css" />" />
+  <script src="<c:url value="resources/js/main.js" />"></script>
   
   <link rel="stylesheet" href="<c:url value="resources/css/home.css" />" />
   <script src="<c:url value="resources/js/home.js" />"></script>
 </head>
 <body>
-    <%-- <jsp:include page="../css/home.css"/> --%>
+  <jsp:include page="nav.jsp" />
+  
+  <div class="flex-wrapper">
 
-    <h1>Hello World</h1>
+    <div id="main-body" class="container">
+      <h1>Hello World</h1>
+    </div>
+      
+      
+    <jsp:include page="footer.jsp" />
+  </div>
+  
 </body>
 </html>
