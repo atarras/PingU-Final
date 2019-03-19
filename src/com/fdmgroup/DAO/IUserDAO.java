@@ -1,5 +1,6 @@
 package com.fdmgroup.DAO;
 
+
 import java.util.List;
 
 import com.fdmgroup.model.Group;
@@ -25,3 +26,4 @@ public interface IUserDAO {
 	String recoverPassword(String username, String answer);
 
 }
+

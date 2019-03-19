@@ -28,7 +28,7 @@ import javax.validation.constraints.NotNull;
 		@NamedQuery(name = "iuser.findByUsername", query = "select u FROM IUser u where u.username = :username") })
 
 public class IUser {
-	
+
 	@Id
 	@Column(name = "userId")
 	@SequenceGenerator(name = "userSequence", sequenceName = "USER_ID_SEQ", initialValue = 100000, allocationSize = 1)
@@ -54,7 +54,7 @@ public class IUser {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "groupId")
 	private Group group;
-	
+
 	public IUser() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -158,6 +158,6 @@ public class IUser {
 		return "IUser [userId=" + userId + ", username=" + username + ", password=" + password + ", securityAnswer="
 				+ securityAnswer + ", status=" + status + ", group=" + group + "]";
 	}
-	
-	
+
 }
+

@@ -1,3 +1,4 @@
+
 package com.fdmgroup.DAO;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class UserDAO implements IUserDAO {
 	@Autowired
 	private DBConnection connection;
 
+	
 	
 	@Override
 	public IUser create(IUser user) {
@@ -102,7 +104,7 @@ public class UserDAO implements IUserDAO {
 		foundUser.setPhoneNumber(newPhone);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
@@ -113,7 +115,7 @@ public class UserDAO implements IUserDAO {
 		foundUser.setPassword(newPassword);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
@@ -138,7 +140,7 @@ public class UserDAO implements IUserDAO {
 		foundUser.setGroup(group);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
@@ -163,7 +165,7 @@ public class UserDAO implements IUserDAO {
 		foundUser.setEmployer(newEmployer);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
@@ -174,7 +176,7 @@ public class UserDAO implements IUserDAO {
 		foundUser.setCurrentTitle(newTitle);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
@@ -185,7 +187,7 @@ public class UserDAO implements IUserDAO {
 		foundUser.setDescription(newDesc);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
@@ -201,4 +203,6 @@ public class UserDAO implements IUserDAO {
 		return null;
 
 	}
+
 }
+
