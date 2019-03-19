@@ -17,6 +17,6 @@ public interface IUserDAO {
 	void updatePhoneNumber(Long userId, String newPhone);
 	void updatePassword(Long userId, String newPassword);
 	IUser loginUser(String username, String password);
-	void setGroup(Long userId, Group group);
+	void updateGroup(Long userId, Group group);
 
 }

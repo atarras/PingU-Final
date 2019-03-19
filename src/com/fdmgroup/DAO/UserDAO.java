@@ -132,7 +132,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public void setGroup(Long userId,Group group) {
+	public void updateGroup(Long userId,Group group) {
 		EntityManager em = connection.getEntityManager();
 		IRUser foundUser = em.find(IRUser.class, userId);
 		em.getTransaction().begin();
