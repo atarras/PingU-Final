@@ -11,4 +11,9 @@ public class FrontController {
 		return "home";
 	}
 	
+	@RequestMapping("/login")
+	public String getLogin() {
+		return "login";
+	}
+	
 }
