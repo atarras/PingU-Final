@@ -80,7 +80,7 @@ public class UserDAO implements IUserDAO {
 		EntityManager em = connection.getEntityManager();
 		IUser foundUser = em.find(IUser.class, userId);
 		em.close();
-		if(foundUser!=null)
+		if (foundUser != null)
 			return foundUser;
 		return null;
 	}
@@ -103,7 +103,7 @@ public class UserDAO implements IUserDAO {
 		foundUser.setPhoneNumber(newPhone);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
@@ -114,15 +114,14 @@ public class UserDAO implements IUserDAO {
 		foundUser.setPassword(newPassword);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
 	public IUser loginUser(String username, String password) {
 		EntityManager em = connection.getEntityManager();
-		TypedQuery<IUser> query = em.createNamedQuery("iuser.loginUser", IUser.class);
+		TypedQuery<IUser> query = em.createNamedQuery("iuser.findByUsername", IUser.class);
 		query.setParameter("username", username);
-//		query.setParameter("password", password);
 		List<IUser> resultList = query.getResultList();
 		em.close();
 		if (resultList != null && resultList.size() >= 1)
@@ -133,26 +132,26 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public void updateGroup(Long userId,Group group) {
+	public void updateGroup(Long userId, Group group) {
 		EntityManager em = connection.getEntityManager();
 		IRUser foundUser = em.find(IRUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setGroup(group);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
 	public IUser activateUser(Long userId) {
 		EntityManager em = connection.getEntityManager();
 		IUser foundUser = em.find(IUser.class, userId);
-		if(foundUser!=null){
-		em.getTransaction().begin();
-		foundUser.setStatus(true);
-		em.getTransaction().commit();
-		em.close();
-		return foundUser;
+		if (foundUser != null) {
+			em.getTransaction().begin();
+			foundUser.setStatus(true);
+			em.getTransaction().commit();
+			em.close();
+			return foundUser;
 		}
 		return null;
 	}
@@ -165,7 +164,7 @@ public class UserDAO implements IUserDAO {
 		foundUser.setEmployer(newEmployer);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
@@ -176,7 +175,7 @@ public class UserDAO implements IUserDAO {
 		foundUser.setCurrentTitle(newTitle);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
 	@Override
@@ -187,9 +186,21 @@ public class UserDAO implements IUserDAO {
 		foundUser.setDescription(newDesc);
 		em.getTransaction().commit();
 		em.close();
-		
+
 	}
 
+	@Override
+	public String recoverPassword(String username, String answer) {
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<IUser> query = em.createNamedQuery("iuser.findByUsername", IUser.class);
+		query.setParameter("username", username);
+		List<IUser> resultList = query.getResultList();
+		em.close();
+		if (resultList != null && resultList.size() >= 1)
+			if (resultList.get(0).isStatus() && resultList.get(0).getSecurityAnswer().equals(answer))
+				return resultList.get(0).getPassword();
+		return null;
 
+	}
 
 }
