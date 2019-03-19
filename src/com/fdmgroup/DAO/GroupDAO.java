@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.fdmgroup.model.Group;
+import com.fdmgroup.model.IUser;
 
 
 /**
@@ -101,6 +102,23 @@ public class GroupDAO {
 	}
 	
 	
+	/**
+	 * 
+	 * Updates the list of group members for specified group in the database.
+	 * 
+	 * @param group: The group we want to update the list of group members
+	 */
+	public void updateGroupMembers(Group group){
+		EntityManager em = conn.getEntityManager();
+		Group foundGroup = em.find(Group.class, group.getGroupId());
+		List<IUser> newMembers = group.getGroupMembers();
+		
+		em.getTransaction().begin();
+		foundGroup.setGroupMembers(newMembers);
+		em.getTransaction().commit();
+		
+		em.close();
+	}
 	
 	
 	

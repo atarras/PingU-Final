@@ -1,5 +1,8 @@
 package com.fdmgroup.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -59,9 +63,9 @@ public class Group {
 	/**
 	 * List of Users currently in the group.
 	 */
-	//@OneToMany(mappedBy="group")
-	//@Column(name=GROUP_MEMBERS)
-	//private List<IUser> groupMembers;
+	@OneToMany(mappedBy="group")
+	@Column(name="GROUP_MEMBERS")
+	private List<IUser> groupMembers;
 	
 	public Group() {
 		super();
@@ -73,7 +77,7 @@ public class Group {
 		this.groupCategory = groupCategory;
 		this.groupDescription = groupDescription;
 		this.isActive = true;
-		// this.groupMembers = new ArrayList<>();
+		 this.groupMembers = new ArrayList<>();
 	}
 	
 	public String getGroupName() {
@@ -114,6 +118,26 @@ public class Group {
 
 	public void setGroupId(long groupId) {
 		this.groupId = groupId;
+	}
+	
+	public void addUserToGroup(IUser user){
+		this.groupMembers.add(user);
+	}
+	
+	public void removeUserFromGroup(IUser user){
+		this.groupMembers.remove(user);
+	}
+	
+	public void removeAllUsersFromGroup(){
+		this.groupMembers.clear();
+	}
+	
+	public List<IUser> getGroupMembers() {
+		return groupMembers;
+	}
+
+	public void setGroupMembers(List<IUser> groupMembers) {
+		this.groupMembers = groupMembers;
 	}
 
 	@Override
