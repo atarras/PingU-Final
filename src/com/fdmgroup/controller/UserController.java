@@ -11,7 +11,7 @@ import com.fdmgroup.DAO.UserDAO;
 public class UserController {
 	UserDAO userDAO = new UserDAO();
 	
-	@RequestMapping(value="/deactivateUser", method=RequestMethod.POST)
+//	@RequestMapping(value="/deactivateUser", method=RequestMethod.POST)
 	public String deactivateUser(@RequestParam("userID") Long userID){
 		
 		userDAO.delete(userID);
@@ -19,7 +19,7 @@ public class UserController {
 		return null;				//add the correct view string
 	}
 	
-	@RequestMapping(value="/activateUser", method=RequestMethod.POST)
+//	@RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String activateUser(@RequestParam("userID") Long userID){
 		userDAO.activateUser(userID);
 		
@@ -27,7 +27,7 @@ public class UserController {
 	}
 
 	
-	@RequestMapping(value="/activateUser", method=RequestMethod.POST)
+//	@RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String get(@RequestParam("userID") Long userID){
 		userDAO.activateUser(userID);
 		

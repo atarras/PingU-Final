@@ -32,13 +32,14 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public void delete(Long userId) {
+	public IUser delete(Long userId) {
 		EntityManager em = connection.getEntityManager();
 		IUser foundUser = em.find(IUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setStatus(false);
 		em.getTransaction().commit();
 		em.close();
+		return foundUser;
 	}
 
 	@Override
@@ -87,34 +88,37 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public void changeVissibility(Long userId, Boolean newVissibility) {
+	public IRUser changeVissibility(Long userId, Boolean newVissibility) {
 		EntityManager em = connection.getEntityManager();
 		IRUser foundUser = em.find(IRUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setVisibility(newVissibility);
 		em.getTransaction().commit();
 		em.close();
+		return foundUser;
 	}
 
 	@Override
-	public void updatePhoneNumber(Long userId, String newPhone) {
+	public IRUser updatePhoneNumber(Long userId, String newPhone) {
 		EntityManager em = connection.getEntityManager();
 		IRUser foundUser = em.find(IRUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setPhoneNumber(newPhone);
 		em.getTransaction().commit();
 		em.close();
+		return foundUser;
 
 	}
 
 	@Override
-	public void updatePassword(Long userId, String newPassword) {
+	public IUser updatePassword(Long userId, String newPassword) {
 		EntityManager em = connection.getEntityManager();
 		IUser foundUser = em.find(IUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setPassword(newPassword);
 		em.getTransaction().commit();
 		em.close();
+		return foundUser;
 
 	}
 
@@ -133,13 +137,14 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public void updateGroup(Long userId, Group group) {
+	public IRUser updateGroup(Long userId, Group group) {
 		EntityManager em = connection.getEntityManager();
 		IRUser foundUser = em.find(IRUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setGroup(group);
 		em.getTransaction().commit();
 		em.close();
+		return foundUser;
 
 	}
 
@@ -158,35 +163,38 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public void updateEmployer(Long userId, String newEmployer) {
+	public Consultant updateEmployer(Long userId, String newEmployer) {
 		EntityManager em = connection.getEntityManager();
 		Consultant foundUser = em.find(Consultant.class, userId);
 		em.getTransaction().begin();
 		foundUser.setEmployer(newEmployer);
 		em.getTransaction().commit();
 		em.close();
+		return foundUser;
 
 	}
 
 	@Override
-	public void updateJobTitle(Long userId, String newTitle) {
+	public Consultant updateJobTitle(Long userId, String newTitle) {
 		EntityManager em = connection.getEntityManager();
 		Consultant foundUser = em.find(Consultant.class, userId);
 		em.getTransaction().begin();
 		foundUser.setCurrentTitle(newTitle);
 		em.getTransaction().commit();
 		em.close();
+		return foundUser;
 
 	}
 
 	@Override
-	public void updateDescription(Long userId, String newDesc) {
+	public Consultant updateDescription(Long userId, String newDesc) {
 		EntityManager em = connection.getEntityManager();
 		Consultant foundUser = em.find(Consultant.class, userId);
 		em.getTransaction().begin();
 		foundUser.setDescription(newDesc);
 		em.getTransaction().commit();
 		em.close();
+		return foundUser;
 
 	}
 
@@ -202,6 +210,18 @@ public class UserDAO implements IUserDAO {
 				return resultList.get(0).getPassword();
 		return null;
 
+	}
+
+	@Override
+	public IRUser removeFromGroup(Long userId) {
+		EntityManager em = connection.getEntityManager();
+		IRUser foundUser = em.find(IRUser.class, userId);
+		em.getTransaction().begin();
+		foundUser.setGroup(null);
+		em.getTransaction().commit();
+		em.close();
+		return foundUser;
+		
 	}
 
 }
