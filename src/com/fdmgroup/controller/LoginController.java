@@ -126,6 +126,13 @@ public class LoginController {
 		return "login";
 	}
 	
+	// TODO: move this to appropriate controller
+	@RequestMapping(value="/users", method=RequestMethod.GET)
+	public String getUsersPage() {
+		
+		return "users";
+	}
+	
 	/*@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public String signup(
 			@RequestParam("firstname") String firstName,

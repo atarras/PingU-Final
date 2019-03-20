@@ -58,7 +58,7 @@
             </form>
           </div>
           <div class="panel-footer">
-            <p><a href="#">Forgot Password?</a></p>
+            <p><a id="forgot-password" data-toggle="modal" data-target="#forgot-password-modal">Forgot Password?</a></p>
           </div>
         </div>
         
@@ -70,7 +70,6 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col col-md-6">
-                    <label style="display:none;">First Name</label>
                     <sf:input type="text" id="signup-firstname-field" class="form-control signup-form-field" path="firstName" placeholder="First Name" required="required" />
                   </div>
                   <div class="col col-md-6">
@@ -109,6 +108,23 @@
                 </div>
               </div>
                   
+              <!-- This is only used as a prompt, we won't save the selected question. Thus they have to select a question again when they try to recover their password. -->
+              <div id="security-question">
+              <div class="form-group">
+                <label>Security Question</label>
+                <select class="form-control" name="security-question">
+                  <option>What high school did you attend?</option>
+                  <option>What is your mother's maiden name?</option>
+                  <option>What was the name of your first pet?</option>
+                  <option>Who is your childhood superhero?</option>
+                </select>
+              </div>
+              </div>
+                  
+              <div class="form-group">
+                <sf:input type="text" id="signup-security-answer-field" class="form-control signup-form-field" path="securityAnswer" placeholder="Security Question Answer" required="required" />  
+              </div>
+              
               <div class="form-group">
                 <sf:input type="text" id="signup-linkedin-field" class="form-control signup-form-field" path="linkedInUrl" placeholder="Linkedin" />  
               </div>
@@ -116,7 +132,7 @@
               <!-- This field is only for front-end control, we won't need to access this in the backend -->
               <div class="form-group">
                 <label>User Type</label>
-                <select id="sign-up-usertype-field" class="form-control" name="usertype">
+                <select id="signup-usertype-field" class="form-control" name="usertype">
                   <option>Trainee</option>
                   <option>Consultant</option>
                 </select>
@@ -146,6 +162,57 @@
         </div>
       </div>
     </div>
+    
+    <!-- Recover Password Modal -->
+    <div class="modal fade" id="forgot-password-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h5 class="modal-title" id="exampleModalLongTitle">Recover Password</h5>
+          </div>
+          <div class="modal-body">
+          
+            <form>
+            
+                <div class="form-group">
+                  <input type="text" class="form-control" name="username" placeholder="Username" required="required" />
+                </div>
+            
+                <div id="recover-password-security-question"></div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="securityAnswer" placeholder="Security Question Answer" required="required" />  
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" name="new-password" placeholder="New Password" required="required" />  
+                </div>
+                
+                <div class="form-group">
+                  <input type="password" class="form-control" name="confirm-new-password" placeholder="Confirm New Password" required="required" />  
+                  <!-- <div id="password-does-not-match-section" class="error-message"></div> -->
+                </div>
+                
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                </div>
+            
+            </form>
+            
+            
+            <script>
+            $(document).ready(function() {
+            	$("#recover-password-security-question").append($("#security-question").html());
+            });
+            </script>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
     </div>
       
     <jsp:include page="footer.jsp" />

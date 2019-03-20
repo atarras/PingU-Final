@@ -16,3 +16,6 @@
     color: red;
 }
 
+#forgot-password:hover {
+    cursor: pointer;
+}

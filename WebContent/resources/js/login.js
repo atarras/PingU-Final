@@ -35,15 +35,23 @@ $(document).ready(function() {
 	 * are typing in after placeholder is written over by their input.
 	 * When the input field is empty, hide the label again.
 	 */
-	$("input").keyup(function() {
+	/*$("input").keyup(function() {
 		
 		var id = $(this).attr("id");
+		console.log($("#" + id));
+		console.log($($("#" + id).prev()));
 		
 		if ($(this).val().length > 0) {
-			
-			console.log($("#" + id + " ~ label"));
+			$($("#" + id).prev()).css("display", "");
+		} else {
+			$($("#" + id).prev()).css("display", "none");
 		}
-		console.log($(this).attr("id"));
+		
+	});*/
+	
+	$("#forgot-password").click(function() {
+		console.log("clicked");
+		//$("forgot-password-modal").modal("show");
 	});
 	
 });
