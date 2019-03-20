@@ -57,7 +57,7 @@ public class LoginController {
 		HttpSession session = req.getSession();
 		removeErrorAttributes(session);
 		
-		UserDAO userDAO = new UserDAO();
+//		UserDAO userDAO = new UserDAO();
 		IUser loginUser = userDAO.loginUser(username, password);
 //		if(loginUser==null)
 //		{
@@ -100,6 +100,7 @@ public class LoginController {
 		
 		String email = user.getEmail().toLowerCase();
 		if(!pattern.matcher(email).find()){
+			System.out.println("invalid email");
 			/* TODO: add error messageInvalid EMAIL */
 			return null; // add the correct view string
 		}
@@ -134,6 +135,7 @@ public class LoginController {
 		
 		String email = user.getEmail().toLowerCase();
 		if(!pattern.matcher(email).find()){
+			System.out.println("invalid email");
 			/* TODO: add error messageInvalid EMAIL */
 			return null; // add the correct view string
 		}
