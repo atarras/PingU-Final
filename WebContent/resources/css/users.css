@@ -1,0 +1,13 @@
+/* Tables */
+.table > thead > tr > th {
+    border: none;
+}
+
+.table > tbody > tr > td {
+    vertical-align: middle;
+    border: none;
+}
+
+.table > tbody > tr:hover {
+    border-bottom: 1px solid #dee2e6;
+}

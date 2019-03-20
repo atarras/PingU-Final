@@ -254,7 +254,14 @@ public class UserController {
 	
 	// TODO: move this to appropriate controller
 	@RequestMapping(value="/users", method=RequestMethod.GET)
-	public String getUsersPage() {
+	public String getUsersPage(HttpServletRequest req) {
+		
+		/*UserDAO uDAO = new UserDAO();
+		List<IUser> users = uDAO.getAllUsers();
+		System.out.println(users);
+		req.getSession().setAttribute("users", users);*/
+		getAllUsers(req);
+		/*System.out.println(req.getSession().getAttribute("users"));*/
 		
 		return "users";
 	}
