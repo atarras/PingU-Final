@@ -155,8 +155,7 @@ public class IUser {
 
 	@Override
 	public String toString() {
-		return "IUser [userId=" + userId + ", username=" + username + ", password=" + password + ", securityAnswer="
-				+ securityAnswer + ", status=" + status + ", group=" + group + "]";
+		return "IUser [userId=" + userId + ", username=" + username + ", password=" + password + ", status=" + status + ", group=" + group + "]";
 	}
 
 }

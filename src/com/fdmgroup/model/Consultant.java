@@ -8,15 +8,15 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@DiscriminatorValue(value="Consultant")
-public class Consultant extends IRUser{
+@DiscriminatorValue(value = "Consultant")
+public class Consultant extends IRUser {
 
 	@Column(name = "currentTitle", length = 30)
 	private String currentTitle;
-	
+
 	@Column(name = "employer")
 	private String employer;
-	
+
 	@Column(name = "placementDate")
 	private Date pDate;
 
@@ -24,8 +24,6 @@ public class Consultant extends IRUser{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public Consultant(String username, String password, String currentTitle, String employer, Date pDate) {
 		super(username, password);
@@ -33,8 +31,6 @@ public class Consultant extends IRUser{
 		this.employer = employer;
 		this.pDate = pDate;
 	}
-
-
 
 	public Consultant(String username, String password, String description, String firstName, String lastName,
 			String email, String phoneNumber, String city, String country, String currentTitle, String employer,
@@ -44,8 +40,6 @@ public class Consultant extends IRUser{
 		this.employer = employer;
 		this.pDate = pDate;
 	}
-
-
 
 	public Consultant(String firstName, String lastName, String email, String phoneNumber, String city, String country,
 			boolean visibility) {
@@ -64,8 +58,6 @@ public class Consultant extends IRUser{
 		super(firstName, lastName, email, phoneNumber, city, country);
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public Consultant(String description, @NotNull(message = "user name can not be null") String username,
 			@NotNull(message = "password can not be null") String password,
@@ -77,8 +69,6 @@ public class Consultant extends IRUser{
 		this.employer = employer;
 		this.pDate = pDate;
 	}
-
-
 
 	public String getCurrentTitle() {
 		return currentTitle;
@@ -106,10 +96,12 @@ public class Consultant extends IRUser{
 
 	@Override
 	public String toString() {
-		return "Consultant [currentTitle=" + currentTitle + ", employer=" + employer + ", pDate=" + pDate + "]";
+		return "Consultant [Title=" + currentTitle + ", employer=" + employer + ", Placement Date=" + pDate
+				+ ", First Name=" + getFirstName() + ",Last Name=" + getLastName() + ", Email=" + getEmail()
+				+ ", Phone Number=" + getPhoneNumber() + ", City=" + getCity() + ", Country=" + getCountry()
+				+ ", LinkedInUrl=" + getLinkedInUrl() + ", Visibility=" + isVisibility() + ", Description="
+				+ getDescription() + ", UserId=" + getUserId() + ", Username=" + getUsername() + ", Status()="
+				+ isStatus() + ", Group=" + getGroup().getGroupName() + "]";
 	}
-	
-	
-	
-}
 
+}

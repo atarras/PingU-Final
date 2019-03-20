@@ -17,6 +17,11 @@ public class Admin extends IUser {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
+	public String toString() {
+		return "Admin [UserId = " + getUserId() + ", Username = " + getUsername() + ", Status=" + isStatus() + ", Group=" + getGroup().getGroupName() + "]";
+	}
+
 	public Admin(String username, String password) {
 		super(username, password);
 		// TODO Auto-generated constructor stub

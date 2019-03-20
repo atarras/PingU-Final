@@ -10,22 +10,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
 @Table(name = "RUSERS")
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class IRUser extends IUser {
-	
-	@Column(name="description", length = 200)
+
+	@Column(name = "description", length = 200)
 	private String description;
-	
+
 	@Column(name = "firstName", length = 30)
 	private String firstName;
 
 	@Column(name = "lastName", length = 30)
 	private String lastName;
 
-	@Column(name = "email",  unique = true)
+	@Column(name = "email", unique = true)
 	private String email;
 
 	@Column(name = "phoneNumber", length = 15)
@@ -42,20 +41,16 @@ public class IRUser extends IUser {
 
 	@Column(columnDefinition = "Number(1)")
 	private boolean visibility = true;
-	
+
 	public IRUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
 	public IRUser(String username, String password) {
 		super(username, password);
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 	public IRUser(String username, String password, String description, String firstName, String lastName, String email,
 			String phoneNumber, String city, String country) {
@@ -68,8 +63,6 @@ public class IRUser extends IUser {
 		this.city = city;
 		this.country = country;
 	}
-
-
 
 	public IRUser(String username, String password, String description, String firstName, String lastName, String email,
 			String phoneNumber, String city, String country, String linkedInUrl, boolean visibility) {
@@ -84,8 +77,6 @@ public class IRUser extends IUser {
 		this.linkedInUrl = linkedInUrl;
 		this.visibility = visibility;
 	}
-
-
 
 	public IRUser(String firstName, String lastName, String email, String phoneNumber, String city, String country,
 			String linkedInUrl, boolean visibility) {
@@ -121,8 +112,6 @@ public class IRUser extends IUser {
 		this.country = country;
 		this.visibility = visibility;
 	}
-	
-	
 
 	public IRUser(String description, String firstName, String lastName, String email, String phoneNumber, String city,
 			String country, String linkedInUrl, boolean visibility) {
@@ -138,13 +127,11 @@ public class IRUser extends IUser {
 		this.visibility = visibility;
 	}
 
-	
-	
-	public IRUser(String description,@NotNull(message = "user name can not be null") String username,
+	public IRUser(String description, @NotNull(message = "user name can not be null") String username,
 			@NotNull(message = "password can not be null") String password,
 			@NotNull(message = "answer can not be null") String securityAnswer, String firstName, String lastName,
 			String email, String phoneNumber, String city, String country) {
-		
+
 		super(username, password, securityAnswer);
 		this.description = description;
 		this.firstName = firstName;
@@ -154,8 +141,6 @@ public class IRUser extends IUser {
 		this.city = city;
 		this.country = country;
 	}
-
-
 
 	public String getFirstName() {
 		return firstName;
@@ -221,8 +206,6 @@ public class IRUser extends IUser {
 		this.visibility = visibility;
 	}
 
-	
-	
 	public String getDescription() {
 		return description;
 	}
@@ -235,8 +218,8 @@ public class IRUser extends IUser {
 	public String toString() {
 		return "IRUser [description=" + description + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
 				+ email + ", phoneNumber=" + phoneNumber + ", city=" + city + ", country=" + country + ", linkedInUrl="
-				+ linkedInUrl + ", visibility=" + visibility + "]";
+				+ linkedInUrl + ", visibility=" + visibility + ", UserId=" + getUserId() + ", Username=" + getUsername()
+				+ ", Status=" + isStatus() + ", Group=" + getGroup().getGroupName() + super.toString() + "]";
 	}
 
 }
-

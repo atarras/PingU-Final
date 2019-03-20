@@ -32,9 +32,9 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public IUser delete(Long userId) {
+	public IRUser delete(Long userId) {
 		EntityManager em = connection.getEntityManager();
-		IUser foundUser = em.find(IUser.class, userId);
+		IRUser foundUser = em.find(IRUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setStatus(false);
 		em.getTransaction().commit();

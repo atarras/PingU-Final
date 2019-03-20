@@ -16,23 +16,17 @@ public class Trainee extends IRUser {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public Trainee(String username, String password, String stream) {
 		super(username, password);
 		this.stream = stream;
 	}
 
-
-
 	public Trainee(String username, String password, String description, String firstName, String lastName,
 			String email, String phoneNumber, String city, String country, String stream) {
 		super(username, password, description, firstName, lastName, email, phoneNumber, city, country);
 		this.stream = stream;
 	}
-
-
 
 	public Trainee(String firstName, String lastName, String email, String phoneNumber, String city, String country,
 			boolean visibility) {
@@ -50,16 +44,12 @@ public class Trainee extends IRUser {
 		super(firstName, lastName, email, phoneNumber, city, country);
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public Trainee(String description, String firstName, String lastName, String email, String phoneNumber, String city,
 			String country, String linkedInUrl, boolean visibility) {
 		super(description, firstName, lastName, email, phoneNumber, city, country, linkedInUrl, visibility);
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 	public Trainee(String description, @NotNull(message = "user name can not be null") String username,
 			@NotNull(message = "password can not be null") String password,
@@ -68,8 +58,6 @@ public class Trainee extends IRUser {
 		super(description, username, password, securityAnswer, firstName, lastName, email, phoneNumber, city, country);
 		this.stream = stream;
 	}
-
-
 
 	public Trainee(String stream) {
 		super();
@@ -86,8 +74,11 @@ public class Trainee extends IRUser {
 
 	@Override
 	public String toString() {
-		return "Trainee [stream=" + stream + "]";
+		return "Trainee [Stream=" + stream + ", First Name=" + getFirstName() + ", Last Name=" + getLastName()
+				+ ", Email=" + getEmail() + ", Phone Number=" + getPhoneNumber() + ", City=" + getCity() + ", Country="
+				+ getCountry() + ", LinkedInUrl=" + getLinkedInUrl() + ", Visibility=" + isVisibility()
+				+ ", Description=" + getDescription() + ", UserId=" + getUserId() + ", Username=" + getUsername()
+				+ ", Status=" + isStatus() + ", Group=" + getGroup().getGroupName() + "]";
 	}
 
 }
-
