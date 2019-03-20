@@ -21,7 +21,7 @@ import com.fdmgroup.enums.Category;
  *
  */
 @Entity
-@Table(name="USER_GROUP")
+@Table(name="PINGU_GROUP")
 @NamedQueries({
 	@NamedQuery(name="group.findByGroupId", query="SELECT g FROM Group g WHERE g.groupId = :gId"),
 	@NamedQuery(name="group.findByGroupName", query="SELECT g FROM Group g WHERE g.groupName = :gName")

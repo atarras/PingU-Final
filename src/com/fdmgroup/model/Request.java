@@ -20,7 +20,7 @@ import com.fdmgroup.enums.RequestType;
  */
 
 @Entity
-@Table(name="USER_REQUESTS")
+@Table(name="PINGU_USER_REQUESTS")
 @NamedQueries({
 	@NamedQuery(name="request.findByRequestId", query="SELECT r FROM Request r WHERE r.requestId = :rId")
 })
