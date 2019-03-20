@@ -3,6 +3,7 @@ package com.fdmgroup.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.DAO.UserDAO;
 import com.fdmgroup.model.Consultant;
@@ -19,6 +21,9 @@ import com.fdmgroup.model.Trainee;
 
 @Controller
 public class LoginController {
+	
+	@Autowired
+	private UserDAO userDAO;
 	
 	@RequestMapping("/")
 	public String showIndex() {
@@ -83,7 +88,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value="/signup-c", method=RequestMethod.POST)
-	public String signup(Model model, @ModelAttribute(value="newUser") Consultant user, BindingResult br,
+	public ModelAndView signup(HttpServletRequest req,Model model, @ModelAttribute(value="newUser") Consultant user, BindingResult br,
 			@RequestParam("title") String jobTitle,
 			@RequestParam("employer") String employer) {
 		
@@ -94,11 +99,13 @@ public class LoginController {
 			user.setEmployer(employer);
 			System.out.println(user);
 			
+			IUser newUser = userDAO.create(user);
+			req.setAttribute("userId", newUser.getUserId());
 			/* TODO: write Consultant to DB */
 			
 		}
 		
-		return "login";
+		return new ModelAndView("redirect:/signUpRequest");
 	}
 	
 	/**
@@ -110,7 +117,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value="/signup-t", method=RequestMethod.POST)
-	public String signup(Model model, @ModelAttribute(value="newUser") Trainee user, BindingResult br,
+	public ModelAndView signup(HttpServletRequest req,Model model, @ModelAttribute(value="newUser") Trainee user, BindingResult br,
 			@RequestParam("stream") String stream) {
 		
 		System.out.println("POST Trainee");
@@ -120,10 +127,11 @@ public class LoginController {
 			System.out.println(user);
 			
 			/* TODO: write Trainee to DB */
-			
+			IUser newUser = userDAO.create(user);
+			req.setAttribute("userId", newUser.getUserId());
 		}
 		
-		return "login";
+		return new ModelAndView("redirect:/signUpRequest");
 	}
 	
 	// TODO: move this to appropriate controller
