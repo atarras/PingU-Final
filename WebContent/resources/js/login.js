@@ -1,8 +1,8 @@
 $(document).ready(function() {
 	
-	$("#sign-up-usertype-field").on("change", function() {
+	$("#signup-usertype-field").on("change", function() {
 		
-		if ($("#sign-up-usertype-field :selected").text() == "Trainee") {
+		if ($("#signup-usertype-field :selected").text() == "Trainee") {
 			/* Hide fields for consultant and make them not required */
 			$("#consultant-additional-fields").css("display", "none");
 			$("#signup-title-field").prop("required", false);
