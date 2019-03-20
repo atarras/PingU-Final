@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fdmgroup.model.Request;
 
 //TODO: Finish the methods of RequestDAO
@@ -17,12 +19,9 @@ public class RequestDAO {
 	/**
 	 * Single instance of the DBConnection class
 	 */
-	private DBConnection conn;
+	@Autowired
+	private DBConnection connection;
 
-	public RequestDAO() {
-		super();
-		conn = DBConnection.getInstance();
-	}
 	
 	/**
 	 * 
@@ -32,7 +31,7 @@ public class RequestDAO {
 	 * @return The Request that was saved.
 	 */
 	public Request create(Request r){
-		EntityManager em = conn.getEntityManager();
+		EntityManager em = connection.getEntityManager();
 		
 		em.getTransaction().begin();
 		em.persist(r);
@@ -50,7 +49,7 @@ public class RequestDAO {
 	 * @return Request with the corresponding id.
 	 */
 	public Request findByRequestId(long id){
-		EntityManager em = conn.getEntityManager();
+		EntityManager em = connection.getEntityManager();
 		TypedQuery<Request> query = em.createNamedQuery("request.findByRequestId", Request.class);
 		query.setParameter("rId", id);
 		
@@ -70,7 +69,7 @@ public class RequestDAO {
 	 */
 	
 	public void update(Request r){
-		EntityManager em = conn.getEntityManager();
+		EntityManager em = connection.getEntityManager();
 		Request foundRequest = em.find(Request.class, r.getRequestId());
 		
 		em.getTransaction().begin();

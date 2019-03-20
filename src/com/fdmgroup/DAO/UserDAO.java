@@ -1,9 +1,12 @@
+
 package com.fdmgroup.DAO;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.Group;
@@ -12,13 +15,11 @@ import com.fdmgroup.model.IUser;
 
 public class UserDAO implements IUserDAO {
 
-	private DBConnection connection = null;
+	@Autowired
+	private DBConnection connection;
 
-	public UserDAO() {
-		super();
-		this.connection = DBConnection.getInstance();
-	}
-
+	
+	
 	@Override
 	public IUser create(IUser user) {
 		EntityManager em = connection.getEntityManager();
@@ -204,3 +205,4 @@ public class UserDAO implements IUserDAO {
 	}
 
 }
+
