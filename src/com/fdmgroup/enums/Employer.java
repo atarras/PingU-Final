@@ -1,6 +1,6 @@
 package com.fdmgroup.enums;
 
-public enum Company {
+public enum Employer {
 	AVIVA,
 	BMO,
 	CIBC,
@@ -20,10 +20,12 @@ public enum Company {
 	NATIONAL_BANK,
 	NEXJ, 
 	OTPP,
-	PSP_INVESTMENT,  TMX, THOMSON_REUTERS, 
+	PSP_INVESTMENT,
 	RBC,
 	SIMCORP,
 	SCOTIABANK,
 	STAPLES,  
-	TD;
+	TD,
+	THOMSON_REUTERS,
+	TMX;
 }
