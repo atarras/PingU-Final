@@ -28,6 +28,8 @@ public interface IUserDAO {
 	Consultant updateDescription(Long userId, String newDesc);
 	String recoverPassword(String username, String answer);
 	IRUser removeFromGroup(Long userId);
+	IRUser changeCity(Long userId, String newCity);
+	IRUser changeCountry(Long userId, String newCountry);
 
 }
 

@@ -224,6 +224,28 @@ public class UserDAO implements IUserDAO {
 		
 	}
 
+	@Override
+	public IRUser changeCity(Long userId, String newCity) {
+		EntityManager em = connection.getEntityManager();
+		IRUser foundUser = em.find(IRUser.class, userId);
+		em.getTransaction().begin();
+		foundUser.setCity(newCity);
+		em.getTransaction().commit();
+		em.close();
+		return foundUser;
+	}
+
+	@Override
+	public IRUser changeCountry(Long userId, String newCountry) {
+		EntityManager em = connection.getEntityManager();
+		IRUser foundUser = em.find(IRUser.class, userId);
+		em.getTransaction().begin();
+		foundUser.setCountry(newCountry);
+		em.getTransaction().commit();
+		em.close();
+		return foundUser;
+	}
+
 }
 
 
