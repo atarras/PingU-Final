@@ -15,6 +15,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fdmgroup.enums.Category;
+import com.fdmgroup.enums.Company;
 
 /**
  * Group is the model class that holds the information of the groups that users can join. 
@@ -37,10 +38,10 @@ public class Group {
 	private long groupId;
 	
 	/**
-	 * The name the group is called in the application.
+	 * The name the group is called. Restricted to Enum.
 	 */
 	@Column(name="GROUP_NAME")
-	private String groupName;
+	private Company groupName;
 	
 	/**
 	 * The category the group is part of.
@@ -71,20 +72,20 @@ public class Group {
 		super();
 	}
 	
-	public Group(String groupName, Category groupCategory, String groupDescription) {
+	public Group(Company groupName, Category groupCategory, String groupDescription) {
 		super();
 		this.groupName = groupName;
 		this.groupCategory = groupCategory;
 		this.groupDescription = groupDescription;
 		this.isActive = true;
-		 this.groupMembers = new ArrayList<>();
+		this.groupMembers = new ArrayList<>();
 	}
 	
-	public String getGroupName() {
+	public Company getGroupName() {
 		return groupName;
 	}
 	
-	public void setGroupName(String groupName) {
+	public void setGroupName(Company groupName) {
 		this.groupName = groupName;
 	}
 	
