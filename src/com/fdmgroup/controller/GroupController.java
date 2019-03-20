@@ -21,7 +21,8 @@ import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IUser;
 import com.fdmgroup.model.Trainee;
 
-//TODO: Add proper RequestMappings for controller methods and return proper JSP files
+//TODO: Add proper RequestMappings for controller methods and return proper JSP files. Figure how 
+// information is being passed to controller to update REquest param with front end.
 
 
 /**
@@ -66,10 +67,8 @@ public class GroupController {
 	 * @param g: The group user wants to persist.
 	 */
 	//@RequestMapping("/testSubmit")
-	public String createGroup(@ModelAttribute(value="newGroup") Group group, HttpServletRequest request){
+	public String createGroup(@ModelAttribute(value="newGroup") Group group){
 		groupDao.create(group);
-		HttpSession session = request.getSession();
-		session.setAttribute("groupID", group.getGroupId());
 		return null;
 	}
 	
