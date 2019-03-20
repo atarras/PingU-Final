@@ -15,6 +15,7 @@ import com.fdmgroup.DAO.UserDAO;
 import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
+import com.fdmgroup.model.Trainee;
 
 @Controller
 public class UserController {
@@ -85,7 +86,7 @@ public class UserController {
 	}
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String getUserByType(HttpServletRequest req, @RequestParam("type") String type) {
+	public String getUserByType(HttpServletRequest req, @RequestParam("type") Class type) {
 		List<IUser> allUsers = userDAO.getUserByType(type);
 		session = req.getSession();
 		if (allUsers == null || allUsers.size() < 1) {
@@ -260,8 +261,18 @@ public class UserController {
 		List<IUser> users = uDAO.getAllUsers();
 		System.out.println(users);
 		req.getSession().setAttribute("users", users);*/
-		getAllUsers(req);
+		//getAllUsers(req);
 		/*System.out.println(req.getSession().getAttribute("users"));*/
+		
+		
+		/* Set session attribute for all Trainees */
+		getUserByType(req, Trainee.class);
+		
+		/* Set session attribute for all Consultants */
+		
+		
+		/* Set session attribute for all Admins */
+		
 		
 		return "users";
 	}

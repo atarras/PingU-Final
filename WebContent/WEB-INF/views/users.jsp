@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
   <link rel="stylesheet" href="<c:url value="resources/css/main.css" />" />
   <script src="<c:url value="resources/js/main.js" />"></script>
   
@@ -22,12 +23,10 @@
   <div id="action-buttons-template" style="display:none">
     <div class="default-actions">
       <button type="button" class="btn btn-primary edit-exam-button">
-        <span class="glyphicon glyphicon-edit"></span>
-        Edit
+        <i class="fas fa-edit"></i>
       </button>
       <button type="button" class="btn btn-danger delete-exam-button">
-        <span class="glyphicon glyphicon-trash"></span>
-        Delete
+        <i class="fas fa-trash-alt"></i>
       </button>
     </div>
     <div class="edit-actions" style="display: none">

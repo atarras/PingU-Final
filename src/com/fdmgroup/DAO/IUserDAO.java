@@ -17,7 +17,7 @@ public interface IUserDAO {
 	IUser findUserById(Long userId);
 	List<IUser> getAllUsers();
 	List<IUser> getAllRegularUsers();
-	List<IUser> getUserByType(String type);
+	List<IUser> getUserByType(Class type);
 	IRUser changeVissibility(Long userId, Boolean newVissibility);
 	IRUser updatePhoneNumber(Long userId, String newPhone);
 	IUser updatePassword(Long userId, String newPassword);

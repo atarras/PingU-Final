@@ -67,7 +67,7 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public List<IUser> getUserByType(String type) {
+	public List<IUser> getUserByType(Class type) {
 		EntityManager em = connection.getEntityManager();
 		TypedQuery<IUser> query = em.createNamedQuery("iuser.findAllByType", IUser.class);
 		query.setParameter("type", type);
