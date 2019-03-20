@@ -69,7 +69,7 @@ public class LoginController {
 			session.setAttribute("passwordIncorrect", true);
 			return "login";
 		}
-		
+		session.setAttribute("newUser", loginUser);
 		return "home";
 	}
 	
@@ -132,6 +132,17 @@ public class LoginController {
 		}
 		
 		return new ModelAndView("redirect:/signUpRequest");
+	}
+	
+	@RequestMapping(value="/logOut", method=RequestMethod.POST)
+	public String logOut(HttpServletRequest req){
+		HttpSession session = req.getSession();
+		session.removeAttribute("newUser");
+		session.invalidate();
+		req.setAttribute("infoMsg", "logged out");
+		/* TODO: add the correct view string*/
+		return null;
+
 	}
 	
 
