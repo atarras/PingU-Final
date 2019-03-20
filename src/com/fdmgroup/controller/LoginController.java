@@ -1,5 +1,7 @@
 package com.fdmgroup.controller;
 
+import java.util.regex.Pattern;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -24,6 +26,8 @@ public class LoginController {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	Pattern pattern = Pattern.compile("^[a-zA-Z0-9]+\\.[a-zA-Z0-9]+@fdmgroup.com$");
 	
 	@RequestMapping("/")
 	public String showIndex() {
@@ -53,7 +57,7 @@ public class LoginController {
 		HttpSession session = req.getSession();
 		removeErrorAttributes(session);
 		
-		UserDAO userDAO = new UserDAO();
+//		UserDAO userDAO = new UserDAO();
 		IUser loginUser = userDAO.loginUser(username, password);
 //		if(loginUser==null)
 //		{
@@ -94,6 +98,13 @@ public class LoginController {
 		
 		System.out.println("POST Consultant");
 		
+		String email = user.getEmail().toLowerCase();
+		if(!pattern.matcher(email).find()){
+			System.out.println("invalid email");
+			/* TODO: add error messageInvalid EMAIL */
+			return null; // add the correct view string
+		}
+		
 		if (!br.hasErrors()) {
 			user.setCurrentTitle(jobTitle);
 			user.setEmployer(employer);
@@ -121,6 +132,13 @@ public class LoginController {
 			@RequestParam("stream") String stream) {
 		
 		System.out.println("POST Trainee");
+		
+		String email = user.getEmail().toLowerCase();
+		if(!pattern.matcher(email).find()){
+			System.out.println("invalid email");
+			/* TODO: add error messageInvalid EMAIL */
+			return null; // add the correct view string
+		}
 		
 		if (!br.hasErrors()) {
 			user.setStream(stream);

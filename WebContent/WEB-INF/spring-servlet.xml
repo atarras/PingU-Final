@@ -30,7 +30,7 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:annotation-driven />
 	
-	<bean id="userDao" class="com.fdmgroup.DAO.UserDAO" />
+	<bean id="userDAO" class="com.fdmgroup.DAO.UserDAO" />
 	<bean id="requestDao" class="com.fdmgroup.DAO.RequestDAO" />
 	<bean id="groupDao" class="com.fdmgroup.DAO.GroupDAO" />
 

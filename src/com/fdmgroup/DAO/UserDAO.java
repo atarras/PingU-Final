@@ -45,6 +45,7 @@ public class UserDAO implements IUserDAO {
 	@Override
 	public List<IUser> getAllUsers() {
 		EntityManager em = connection.getEntityManager();
+		System.out.println("done");
 		TypedQuery<IUser> query = em.createNamedQuery("iuser.findAllUser", IUser.class);
 		List<IUser> resultList = query.getResultList();
 		em.close();
