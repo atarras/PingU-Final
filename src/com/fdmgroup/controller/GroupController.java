@@ -2,6 +2,7 @@ package com.fdmgroup.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import com.fdmgroup.DAO.GroupDAO;
@@ -18,20 +19,18 @@ import com.fdmgroup.model.IUser;
  *	Includes creating a group, adding users to a group, and showing all users in a group.
  *
  */
-//@Controller
+@Controller
 public class GroupController {
 	/**
 	 * Data Access Object to interact with the Group table.
 	 */
-	private GroupDAO groupdao = new GroupDAO();
+	@Autowired
+	private GroupDAO groupDao ;
 	/**
 	 * Data Access Object to interact with the User table.
 	 */
-	private UserDAO userdao = new UserDAO();
-
-	public GroupController() {
-		super();
-	}
+	@Autowired
+	private UserDAO userDao;
 	
 	/**
 	 * 
@@ -40,7 +39,7 @@ public class GroupController {
 	 * @param g: The group user wants to persist.
 	 */
 	public void createGroup(Group g){
-		groupdao.create(g);
+		groupDao.create(g);
 	}
 	
 	/**
@@ -52,9 +51,9 @@ public class GroupController {
 	 */
 	
 	public void addUser(Group currGroup, IUser user){
-		userdao.updateGroup(user.getUserId(), currGroup);
+		userDao.updateGroup(user.getUserId(), currGroup);
 		currGroup.addUserToGroup(user);
-		groupdao.updateGroupMembers(currGroup);		
+		groupDao.updateGroupMembers(currGroup);		
 	}
 	
 	

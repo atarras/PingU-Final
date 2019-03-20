@@ -14,7 +14,8 @@ public class DBConnection {
 	/**
 	 * The only DBConnection instance
 	 */
-	private static DBConnection conn;
+	private String persistenceName;
+	
 	/**
 	 * The EntityManagerFactory that creates EntityManager
 	 */
@@ -24,29 +25,17 @@ public class DBConnection {
 		init();
 	}
 	
-	/**
-	 * 
-	 * The method used to obtain an instance of the DBConnection.
-	 * If it does not exist, creates the only instance of DBConnection.
-	 * 
-	 * @return DBConnection
-	 */
-	public static DBConnection getInstance(){
-		if(conn == null){
-			conn = new DBConnection();
-		} 
-		return conn;
-	}
 	
 	/**
 	 * 
 	 * Initialises the Entity Manager Factory when DBConnection is first created.
 	 * 
 	 */
-	private void init(){
-		if(emf == null || !emf.isOpen()){
-			emf = Persistence.createEntityManagerFactory("PingU");
+	private EntityManagerFactory init() {
+		if (emf == null || !emf.isOpen()) {
+			emf = Persistence.createEntityManagerFactory(persistenceName);
 		}
+		return emf;
 	}
 	
 	/**
@@ -55,9 +44,27 @@ public class DBConnection {
 	 * 
 	 * @return EntityManager
 	 */
-	public EntityManager getEntityManager(){
+	public EntityManager getEntityManager() {
+		init();
 		return emf.createEntityManager();
 	}
+
+	
+	public String getPersistenceName() {
+		return persistenceName;
+	}
+
+	public void setPersistenceName(String persistenceName) {
+		this.persistenceName = persistenceName;
+	}
+	public EntityManagerFactory getEmf() {
+		return emf;
+	}
+
+	public void setEmf(EntityManagerFactory emf) {
+		this.emf = emf;
+	}
+
 	
 	/**
 	 * Closes the Entity Manager Factory when application closes.

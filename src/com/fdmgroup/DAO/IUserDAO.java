@@ -1,4 +1,6 @@
+
 package com.fdmgroup.DAO;
+
 
 import java.util.List;
 
@@ -8,7 +10,7 @@ import com.fdmgroup.model.IUser;
 public interface IUserDAO {
 	
 	IUser create(IUser user);
-	void delete(Long userId);
+	void delete(IUser user);
 	IUser activateUser(Long userId);
 	IUser findUserById(Long userId);
 	List<IUser> getAllUsers();
@@ -25,3 +27,4 @@ public interface IUserDAO {
 	String recoverPassword(String username, String answer);
 
 }
+
