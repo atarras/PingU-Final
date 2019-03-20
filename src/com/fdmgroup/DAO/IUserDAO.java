@@ -10,7 +10,7 @@ import com.fdmgroup.model.IUser;
 public interface IUserDAO {
 	
 	IUser create(IUser user);
-	void delete(IUser user);
+	void delete(Long userId);
 	IUser activateUser(Long userId);
 	IUser findUserById(Long userId);
 	List<IUser> getAllUsers();
