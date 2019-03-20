@@ -30,4 +30,20 @@ $(document).ready(function() {
 		
 	});
 	
+	/**
+	 * When you start typing into an input field, display its label so the user can still tell what field they
+	 * are typing in after placeholder is written over by their input.
+	 * When the input field is empty, hide the label again.
+	 */
+	$("input").keyup(function() {
+		
+		var id = $(this).attr("id");
+		
+		if ($(this).val().length > 0) {
+			
+			console.log($("#" + id + " ~ label"));
+		}
+		console.log($(this).attr("id"));
+	});
+	
 });

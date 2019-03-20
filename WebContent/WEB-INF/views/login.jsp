@@ -70,6 +70,7 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col col-md-6">
+                    <label style="display:none;">First Name</label>
                     <sf:input type="text" id="signup-firstname-field" class="form-control signup-form-field" path="firstName" placeholder="First Name" required="required" />
                   </div>
                   <div class="col col-md-6">
