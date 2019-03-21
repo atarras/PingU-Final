@@ -55,7 +55,7 @@ public class RequestController {
 	public String createSignUpRequest(HttpServletRequest request, Model model, @ModelAttribute("newUser")IRUser user) {
 		Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
 		long userId = (Long) flashMap.get("userId");
-		System.out.println("Creating request");
+
 		Request signUpRequest = new Request(userId, RequestType.CREATE_USER, "Create the user");
 		requestDao.create(signUpRequest);
 		return "login";
@@ -77,21 +77,21 @@ public class RequestController {
 		requestDao.create(joinGroupRequest);
 		return null; // Return to the necessary jsp
 	}
-//	
-//	/**
-//	 * 
-//	 * Creates the change employer request to be approved by the admin.
-//	 * 
-//	 * @param userId: long sent from the front end jsp to represent the user.
-//	 * @param employerName: string send from the front end jsp to represent the employer (the exact enum string)
-//	 * @return the .jsp file to redirect to
-//	 */
-//	@RequestMapping(value="/changeEmployerRequest")
-//	public String createChangeCompanyRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
-//		Request changeCompanyRequest = new Request(userId, RequestType.CHANGE_EMPLOYER, employerName);
-//		requestDao.create(changeCompanyRequest);
-//		return null; // Return to the necessary jsp
-//	}
+	
+	/**
+	 * 
+	 * Creates the change employer request to be approved by the admin.
+	 * 
+	 * @param userId: long sent from the front end jsp to represent the user.
+	 * @param employerName: string send from the front end jsp to represent the employer (the exact enum string)
+	 * @return the .jsp file to redirect to
+	 */
+	@RequestMapping(value="/changeEmployerRequest")
+	public String createChangeCompanyRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
+		Request changeCompanyRequest = new Request(userId, RequestType.CHANGE_EMPLOYER, employerName);
+		requestDao.create(changeCompanyRequest);
+		return null; // Return to the necessary jsp
+	}
 //	
 //	/**
 //	 * 
