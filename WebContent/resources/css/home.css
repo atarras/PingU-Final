@@ -1,3 +1,63 @@
-h1 {
-    color: blue;
+.main-body{
+	position:relative;
+	display:flex;
+	top:50px;
+	width:100%;
+	max-width:100%;
+	margin:0;
+	padding:0;
+}
+
+.container .content{
+	position:relative;
+	margin:0;
+	padding:0;
+	left:15vw;
+	width:70vw;
+	min-height:80vh;
+}
+
+.welcome-header{
+	position:relative;
+	display:inline;
+	margin:0;
+	padding:0;
+	left:5vw;
+	top:15vh;
+	font-size:5vh;
+}
+
+.nav {
+	position:relative;
+	top: 10vh!important;
+	margin: 0 5vw 0 0;
+	float:right;
+	padding:0;
+	border-bottom:none;
+
+}
+
+.media{
+	min-height: 20%;
+	max-height: 20%;
+	overflow:hidden;
+}
+
+.media:hover{
+	max-height: 100%;
+}
+
+
+.container .messages{
+	position:relative;
+	margin:0;
+	padding:0;
+	top: 10vh;
+	left: 5vw;
+	width: 60vw;
+	min-height:80vh;
+	height: 80vh;
+	padding-bottom:50px;
+	overflow-y: auto;
+	background-color: lightgray;
 }

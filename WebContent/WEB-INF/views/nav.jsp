@@ -23,29 +23,46 @@
 <body>
 	<!-- Navigation bar static throughout all our pages, the search bar will probably be made bigger,
 	need to add potentially bigger buttons, a hover effect, dynamic pill icon for notifications -->
-	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">PingU</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item pr-2 active">
-					<a class="nav-link" href="#"><i class="fas fa-home"></i></a>
-				</li>
-				<li class="nav-item pr-2 active">
-					<a class="nav-link" href="#"><i class="fas fa-user"></i></a>
-				</li>
-				<li class="nav-item active">
-					<a class="nav-link" href="#"><i class="fas fa-users"></i></a>
-				</li>
-			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+	<header class="container m-0 p-0">
+		<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+			<a class="navbar-brand" href="#">PingU</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item pr-2 active">
+						<a class="nav-link" href="#"><i class="fas fa-home"></i></a>
+					</li>
+					<li class="nav-item pr-2 active">
+						<a class="nav-link" href="#"><i class="fas fa-user"></i></a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="#"><i class="fas fa-users"></i></a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="#"><i class="far fa-envelope"></i></a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i></a>
+					</li>
+				</ul>
+				<form class="form-inline my-2 my-lg-0">
+				<div class="input-group mr-2">
+					<input class="form-control" type="search" placeholder="Search" aria-label="Search">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User Search</button>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" href="#">User Search</a>
+							<a class="dropdown-item" href="#">Group Search</a>
+						</div>
+					</div>
+				</div>
 				<button class="btn btn-outline-success my-2	 my-sm-0" type="submit">Search</button>
-			</form>
-		</div>
-	</nav>
+				</form>
+			</div>
+		</nav>
+	</header>
 </body>
 </html>

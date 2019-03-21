@@ -1,5 +1,12 @@
-#n {
-    color: red;
+header .container{
+	height:50px;
+	width:100%;
+	padding:0;
+}
+
+body{
+	height:100%;
+	overflow:hidden;
 }
 
 .navbar{
@@ -9,7 +16,26 @@
 }
 
 .nav-link:hover{
-	color: gray;
+	color: gray!important;
+}
+
+.main-body{
+	position:relative;
+	display:flex;
+	top:50px;
+	width:100%;
+	max-width:100%;
+	margin:0;
+	padding:0;
+}
+
+.input-group-append{
+	border-radius: .25rem;
+	background-color:white!important;
+}
+
+.btn-outline-success{
+		background-color:white!important;
 }
 
 .modal{
