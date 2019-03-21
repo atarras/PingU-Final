@@ -76,7 +76,7 @@ public class TempUserController {
 	}
 	
 	@RequestMapping(value="/user", method=RequestMethod.POST)
-	public String postUser() {
+	public ModelAndView postUser() {
 		System.out.println("/user/POST");
 		
 		/* If we are passed in an id, update that user */
@@ -87,7 +87,7 @@ public class TempUserController {
 		/* We can determine the type of user to create passed on whether certain parameters are empty */
 		
 		
-		return "users";
+		return new ModelAndView("redirect:/users");
 	}
 	
 
