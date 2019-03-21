@@ -109,10 +109,11 @@ public class LoginController {
 		if (!br.hasErrors()) {
 			user.setCurrentTitle(jobTitle);
 			user.setEmployer(employer);
-			System.out.println(user);
+			//System.out.println(user);
 			
 			IUser newUser = userDAO.create(user);
 			req.setAttribute("userId", newUser.getUserId());
+			model.addAttribute("newUser", user);
 			redirectAttributes.addFlashAttribute("userId", newUser.getUserId());
 			/* TODO: write Consultant to DB */
 			
@@ -152,7 +153,6 @@ public class LoginController {
 			model.addAttribute("newUser", user);
 			redirectAttributes.addFlashAttribute("userId", newUser.getUserId());
 		}
-		System.out.println("Sending to signupRequest");
 		
 		return "redirect:/signUpRequest";
 	}
