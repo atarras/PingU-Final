@@ -63,7 +63,7 @@
             <i class="fas fa-plus"></i>
             Add Trainee
           </button>
-          <button type="button" id="trainee-options" class="btn btn-secondary">
+          <button type="button" id="trainee-options" class="btn btn-secondary" data-toggle="modal" data-target="#trainee-options-modal">
             <i class="fas fa-cog"></i>
           </button>
           
@@ -71,9 +71,9 @@
           <table id="users" class="table">
             <thead>
               <tr>
-                <th>ID</th>
+                <th class="trainee-id">ID</th>
                 <th>Username</th>
-                <th>First Name</th>
+                <th class="trainee-firstname">First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Phone</th>
@@ -86,19 +86,24 @@
             </thead>
             <tbody>
                 <c:forEach items="${sessionScope.trainees}" var="user">
-              <tr>
-                <td>${user.getUserId()}</td>
-                <td>${user.getUsername()}</td>
-                <td>${user.getFirstName()}</td>
-                <td>${user.getLastName()}</td>
-                <td>${user.getEmail()}</td>
-                <td>${user.getPhoneNumber()}</td>
-                <td>${user.getCity()}</td>
-                <td>${user.getCountry()}</td>
-                <td>${user.getStream()}</td>
-                <td>${user.getLinkedInUrl()}</td>
-                <td id="actions-${user.getUserId()}" align="center">
-                  <i class="fas fa-ellipsis-v"></i>
+              <tr id="${user.getUserId()}">
+                <td class="trainee-id">${user.getUserId()}</td>
+                <td class="trainee-username">${user.getUsername()}</td>
+                <td class="trainee-password">${user.getPassword()}</td>
+                <td class="trainee-firstname">${user.getFirstName()}</td>
+                <td class="trainee-lastname">${user.getLastName()}</td>
+                <td class="trainee-email">${user.getEmail()}</td>
+                <td class="trainee-phone">${user.getPhoneNumber()}</td>
+                <td class="trainee-city">${user.getCity()}</td>
+                <td class="trainee-country">${user.getCountry()}</td>
+                <td class="trainee-description">${user.getDescription()}</td>
+                <td class="trainee-stream">${user.getStream()}</td>
+                <td class="trainee-linkedin">${user.getLinkedInUrl()}</td>
+                <td class="trainee-security-answer">${user.getSecurityAnswer()}</td>
+                <td class="trainee-status">${user.isStatus()}</td>
+                <td class="trainee-visibility">${user.isVisibility()}</td>
+                <td id="actions-${user.getUserId()}" class="" align="center">
+                  <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-trainee-modal"></i>
                   <!-- <script>
                   $(document).ready(function() {
                 	  $("#actions-${user.getUserId()}").append($("#action-buttons-template").html());
@@ -138,6 +143,69 @@
       </div>
     
     </div>
+    
+    <!-- Trainee Options Modal -->
+    <div class="modal fade" id="trainee-options-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Edit Trainee</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="edit-trainee-body" class="modal-body">
+          
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-id" checked>
+              <label class="form-check-label" for="show-trainee-id">
+                ID
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-firstname" checked>
+              <label class="form-check-label" for="show-trainee-firstname">
+                First Name
+              </label>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Edit Trainee Modal -->
+    <div class="modal fade" id="edit-trainee-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Edit Trainee</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="edit-trainee-body" class="modal-body">
+          
+            <form action="user" method="post">
+            
+              <div class="form-group">
+                <div class="row">
+                  <div class="col col-md-6">
+                    <input type="text" id="edit-firstname-field" class="form-control" name="firstName" />
+                  </div>
+                  <div class="col col-md-6">
+                    <input type="text" id="edit-lastname-field" class="form-control" name="lastName" />
+                  </div>
+                </div>
+              </div>
+            
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
     </div>
     <jsp:include page="footer.jsp" />
   </div>

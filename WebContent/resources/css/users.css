@@ -11,3 +11,8 @@
 .table > tbody > tr:hover {
     border-bottom: 1px solid #dee2e6;
 }
+
+
+.action-button:hover {
+    cursor: pointer;
+}
