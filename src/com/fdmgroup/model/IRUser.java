@@ -7,12 +7,18 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "RUSERS")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@NamedQueries({
+	@NamedQuery(name="user.findByFullName", query="SELECT u FROM IRUser u WHERE u.firstName LIKE :fname OR u.lastName LIKE :lname"
+			+ "OR u.firstName LIKE :lname OR u.lastName LIKE :fname" )
+})
 public class IRUser extends IUser {
 
 	@Column(name = "description", length = 200)

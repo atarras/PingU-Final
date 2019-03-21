@@ -1,5 +1,6 @@
 package com.fdmgroup.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,21 +19,23 @@ import com.fdmgroup.model.IUser;
 import com.fdmgroup.model.Trainee;
 
 @Controller
-public class UserController {
-	
+public class UserController
+{
+
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	HttpSession session = null;
-	
-	
-//	#########################Admin Operations######################################
+
+	// #########################Admin Operations######################################
 
 	// @RequestMapping(value="/deactivateUser", method=RequestMethod.POST)
-	public String deactivateUser(@RequestParam("userID") Long userID) {
+	public String deactivateUser(@RequestParam("userID") Long userID)
+	{
 
 		IUser deletedUser = userDAO.delete(userID);
-		if (deletedUser.isStatus()) {
+		if (deletedUser.isStatus())
+		{
 			/* TODO: add error message USER NOT DEACTIVATED */
 			return null; // add the correct view string
 		}
@@ -42,9 +45,11 @@ public class UserController {
 	}
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String activateUser(@RequestParam("userID") Long userID) {
+	public String activateUser(@RequestParam("userID") Long userID)
+	{
 		IUser activateUser = userDAO.activateUser(userID);
-		if (!activateUser.isStatus()) {
+		if (!activateUser.isStatus())
+		{
 
 			/* TODO: add error message USER COULD NOT BE ACTIVATED */
 			return null; // add the correct view string
@@ -59,10 +64,12 @@ public class UserController {
 	}
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String getAllUsers(HttpServletRequest req) {
+	public String getAllUsers(HttpServletRequest req)
+	{
 		List<IUser> allUsers = userDAO.getAllUsers();
 		session = req.getSession();
-		if (allUsers == null || allUsers.size() < 1) {
+		if (allUsers == null || allUsers.size() < 1)
+		{
 			/* TODO: add nothing found message NO USERS FOUND */
 			return null; // add the correct view string
 		}
@@ -73,10 +80,12 @@ public class UserController {
 	}
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String getRgularUsers(HttpServletRequest req) {
+	public String getRgularUsers(HttpServletRequest req)
+	{
 		List<IUser> allUsers = userDAO.getAllRegularUsers();
 		session = req.getSession();
-		if (allUsers == null || allUsers.size() < 1) {
+		if (allUsers == null || allUsers.size() < 1)
+		{
 			/* TODO: add nothing found message NO USERS FOUND */
 			return null; // add the correct view string
 		}
@@ -86,10 +95,12 @@ public class UserController {
 	}
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String getUserByType(HttpServletRequest req, @RequestParam("type") Class type) {
+	public String getUserByType(HttpServletRequest req, @RequestParam("type") Class type)
+	{
 		List<IUser> allUsers = userDAO.getUserByType(type);
 		session = req.getSession();
-		if (allUsers == null || allUsers.size() < 1) {
+		if (allUsers == null || allUsers.size() < 1)
+		{
 			/* TODO: add nothing found message NO USERS FOUND */
 			return null; // add the correct view string
 		}
@@ -97,13 +108,15 @@ public class UserController {
 		/* TODO: add success message and list of users to request attribute */
 		return null; // add the correct view string
 	}
-	
+
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String updateCompany(HttpServletRequest req, @RequestParam("userID") Long userID,
-			@RequestParam("newCompany") String newCompany) {
+			@RequestParam("newCompany") String newCompany)
+	{
 		session = req.getSession();
 		Consultant user = userDAO.updateEmployer(userID, newCompany);
-		if (!user.getEmployer().equals(newCompany)) {
+		if (!user.getEmployer().equals(newCompany))
+		{
 			/* TODO: add error message COMPANY NOT CHANGED */
 			return null; // add the correct view string
 		}
@@ -111,30 +124,66 @@ public class UserController {
 		/* TODO: add success message COMPANY CHANGED */
 		return null; // add the correct view string
 	}
-	
+
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-		public String updateJob(HttpServletRequest req, @RequestParam("userID") Long userID,
-				@RequestParam("newJob") String newJob) {
-			session = req.getSession();
-			Consultant user = userDAO.updateJobTitle(userID, newJob);
-			if (!user.getCurrentTitle().equals(newJob)) {
-				/* TODO: add error message JOB TITLE NOT CHANGED */
-				return null; // add the correct view string
-			}
-			session.setAttribute("user", user);
-			/* TODO: add success message JOB TITLE CHANGED */
+	public String updateJob(HttpServletRequest req, @RequestParam("userID") Long userID,
+			@RequestParam("newJob") String newJob)
+	{
+		session = req.getSession();
+		Consultant user = userDAO.updateJobTitle(userID, newJob);
+		if (!user.getCurrentTitle().equals(newJob))
+		{
+			/* TODO: add error message JOB TITLE NOT CHANGED */
 			return null; // add the correct view string
 		}
+		session.setAttribute("user", user);
+		/* TODO: add success message JOB TITLE CHANGED */
+		return null; // add the correct view string
+	}
 
-//		#########################User Operations######################################
+	// #########################User  Operations######################################
+
+	//To find users from search bar using name
+	public List<IRUser> findUsersByName(String searchNames)
+	{
+		List<IRUser> foundUsers = null;
 		
+		String NamesWithoutComma = searchNames.replace(",", " ");
+		String NamesWithoutSpaces = NamesWithoutComma.replace("\\s+", " ");
+		String[] splitNames = NamesWithoutSpaces.split(" ");
+		if(splitNames.length <= 0)
+		{
+			System.out.println("Found 0 strings");
+			return null;
+		}
+		if(splitNames.length == 1)
+		{
+			System.out.println("Found 1 strings");
+			splitNames[0] = "%"+splitNames[0] +"%";
+			foundUsers = userDAO.findUsersByFullName(splitNames[0], "");
+			//splitNames[1] = "";
+		}
+		if(splitNames.length >= 2)
+		{
+			splitNames[1] = "%"+splitNames[1] +"%";
+			System.out.println("Found 2+ strings" + splitNames.length);
+			foundUsers = userDAO.findUsersByFullName(splitNames[0], splitNames[1]);
+		}
+
+		//foundUsers = userDAO.findUsersByFullName(splitNames[0], splitNames[1]);
+		session.setAttribute("foundUsers", foundUsers);
+		return foundUsers;
+	}
+
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String changeContact(HttpServletRequest req, @RequestParam("userID") Long userID,
-			@RequestParam("newContact") String contact) {
+			@RequestParam("newContact") String contact)
+	{
 		session = req.getSession();
 		IRUser user = userDAO.updatePhoneNumber(userID, contact);
 
-		if (!user.getPhoneNumber().equals(contact)) {
+		if (!user.getPhoneNumber().equals(contact))
+		{
 			/* TODO: add error message PHONE NUMBER NOT CHANGED */
 			return null; // add the correct view string
 		}
@@ -146,16 +195,19 @@ public class UserController {
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String changePassword(HttpServletRequest req, @RequestParam("userID") Long userID,
-			@RequestParam("currentPassword") String currentPassword, @RequestParam("newPassword") String newPassword) {
+			@RequestParam("currentPassword") String currentPassword, @RequestParam("newPassword") String newPassword)
+	{
 		session = req.getSession();
 		IUser user = (IUser) session.getAttribute("newUser");
-		if (!user.getPassword().equals(currentPassword)) {
+		if (!user.getPassword().equals(currentPassword))
+		{
 			/* TODO: add error message Inorrect curret password */
 			return null; // add the correct view string
 		}
 
 		IUser founduser = userDAO.updatePassword(userID, newPassword);
-		if (!founduser.getPassword().equals(newPassword)) {
+		if (!founduser.getPassword().equals(newPassword))
+		{
 			/* TODO: add error message PASSWORD NOT CHANGED */
 			return null; // add the correct view string
 		}
@@ -167,10 +219,12 @@ public class UserController {
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String updateDescription(HttpServletRequest req, @RequestParam("userID") Long userID,
-			@RequestParam("newDesc") String newDesc) {
+			@RequestParam("newDesc") String newDesc)
+	{
 		session = req.getSession();
 		Consultant user = userDAO.updateDescription(userID, newDesc);
-		if (!user.getDescription().equals(newDesc)) {
+		if (!user.getDescription().equals(newDesc))
+		{
 			/* TODO: add error message Description NOT CHANGED */
 			return null; // add the correct view string
 		}
@@ -181,10 +235,12 @@ public class UserController {
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String updateCity(HttpServletRequest req, @RequestParam("userID") Long userID,
-			@RequestParam("newCity") String newCity) {
+			@RequestParam("newCity") String newCity)
+	{
 		session = req.getSession();
 		IRUser user = userDAO.changeCity(userID, newCity);
-		if (!user.getCity().equals(newCity)) {
+		if (!user.getCity().equals(newCity))
+		{
 			/* TODO: add error message CITY NOT CHANGED */
 			return null; // add the correct view string
 		}
@@ -195,10 +251,12 @@ public class UserController {
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String updateCountry(HttpServletRequest req, @RequestParam("userID") Long userID,
-			@RequestParam("newCountry") String newCountry) {
+			@RequestParam("newCountry") String newCountry)
+	{
 		session = req.getSession();
 		IRUser user = userDAO.changeCountry(userID, newCountry);
-		if (!user.getCountry().equals(newCountry)) {
+		if (!user.getCountry().equals(newCountry))
+		{
 			/* TODO: add error message COUNTRY NOT CHANGED */
 			return null; // add the correct view string
 		}
@@ -206,29 +264,33 @@ public class UserController {
 		/* TODO: add success message COUNTRY CHANGED */
 		return null; // add the correct view string
 	}
-	
+
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-		public String changeVissibility(HttpServletRequest req, @RequestParam("userID") Long userID,
-				@RequestParam("vissibility") Boolean vissibility) {
-			session = req.getSession();
-			IRUser user = userDAO.changeVissibility(userID, vissibility);
+	public String changeVissibility(HttpServletRequest req, @RequestParam("userID") Long userID,
+			@RequestParam("vissibility") Boolean vissibility)
+	{
+		session = req.getSession();
+		IRUser user = userDAO.changeVissibility(userID, vissibility);
 
-			if (user.isVisibility() != vissibility) {
-				/* TODO: add error message Vissibility not changed */
-				return null; // add the correct view string
-			}
-
-			session.setAttribute("newUser", user);
-			/* TODO: add success message VISSIBILITY CHANGED */
+		if (user.isVisibility() != vissibility)
+		{
+			/* TODO: add error message Vissibility not changed */
 			return null; // add the correct view string
-
 		}
-	
+
+		session.setAttribute("newUser", user);
+		/* TODO: add success message VISSIBILITY CHANGED */
+		return null; // add the correct view string
+
+	}
+
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String getUserById(HttpServletRequest req, @RequestParam("userID") Long userID) {
+	public String getUserById(HttpServletRequest req, @RequestParam("userID") Long userID)
+	{
 		session = req.getSession();
 		IUser foundUser = userDAO.findUserById(userID);
-		if (foundUser == null) {
+		if (foundUser == null)
+		{
 			/* TODO: add nothing found message NO USER FOUND */
 			return null; // add the correct view string
 		}
@@ -236,14 +298,16 @@ public class UserController {
 		/* TODO: add success message and add the user to request attribute */
 		return null; // add the correct view string
 	}
-	
+
 	public String getPassword(HttpServletRequest req, @RequestParam("username") String username,
-			@RequestParam("sequrityAnswer") String sequrityAnswer) {
+			@RequestParam("sequrityAnswer") String sequrityAnswer)
+	{
 		session = req.getSession();
 		String password = userDAO.recoverPassword(username, sequrityAnswer);
 
-		if (password == null) {
-			/* TODO: add error message INCORRECT INFORAMTION PROVIDED*/
+		if (password == null)
+		{
+			/* TODO: add error message INCORRECT INFORAMTION PROVIDED */
 			return null; // add the correct view string
 		}
 
@@ -252,30 +316,28 @@ public class UserController {
 		return null; // add the correct view string
 
 	}
-	
+
 	// TODO: move this to appropriate controller
-	@RequestMapping(value="/users", method=RequestMethod.GET)
-	public String getUsersPage(HttpServletRequest req) {
-		
-		/*UserDAO uDAO = new UserDAO();
-		List<IUser> users = uDAO.getAllUsers();
-		System.out.println(users);
-		req.getSession().setAttribute("users", users);*/
-		//getAllUsers(req);
-		/*System.out.println(req.getSession().getAttribute("users"));*/
-		
-		
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
+	public String getUsersPage(HttpServletRequest req)
+	{
+
+		/*
+		 * UserDAO uDAO = new UserDAO(); List<IUser> users = uDAO.getAllUsers();
+		 * System.out.println(users); req.getSession().setAttribute("users",
+		 * users);
+		 */
+		// getAllUsers(req);
+		/* System.out.println(req.getSession().getAttribute("users")); */
+
 		/* Set session attribute for all Trainees */
 		getUserByType(req, Trainee.class);
-		
+
 		/* Set session attribute for all Consultants */
-		
-		
+
 		/* Set session attribute for all Admins */
-		
-		
+
 		return "users";
 	}
-	
 
 }
