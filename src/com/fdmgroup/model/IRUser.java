@@ -16,7 +16,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "RUSERS")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @NamedQueries({
-	@NamedQuery(name="user.findByFullName", query="SELECT u FROM IRUser u WHERE u.firstName LIKE :fname OR u.lastName LIKE :lname"
+	@NamedQuery(name="user.findByFullName", query="SELECT u FROM IRUser u WHERE u.firstName LIKE :fname OR u.lastName LIKE :lname "
 			+ "OR u.firstName LIKE :lname OR u.lastName LIKE :fname" )
 })
 public class IRUser extends IUser {
