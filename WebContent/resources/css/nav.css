@@ -1,12 +1,7 @@
 header .container{
 	height:50px;
 	width:100%;
-	padding:0;
-}
-
-body{
-	height:100%;
-	overflow:hidden;
+	margin:0;
 }
 
 .navbar{
@@ -16,26 +11,16 @@ body{
 }
 
 .nav-link:hover{
-	color: gray!important;
-}
-
-.main-body{
-	position:relative;
-	display:flex;
-	top:50px;
-	width:100%;
-	max-width:100%;
-	margin:0;
-	padding:0;
+	color: gray;
 }
 
 .input-group-append{
 	border-radius: .25rem;
-	background-color:white!important;
+	background-color:white;
 }
 
 .btn-outline-success{
-		background-color:white!important;
+		background-color:white;
 }
 
 .modal{

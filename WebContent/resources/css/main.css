@@ -1,0 +1,24 @@
+.main-body{
+	position:relative;
+	display:flex;
+	top:50px;
+	width:100%;
+	max-width:100%;
+	margin:0;
+	padding:0;
+}
+
+
+body{
+	height:100%;
+	overflow:hidden;
+}
+
+.container .content{
+	position:relative;
+	margin:0;
+	padding:0;
+	left:15vw;
+	width:70vw;
+	min-height:80vh;
+}
