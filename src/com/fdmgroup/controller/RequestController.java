@@ -60,23 +60,23 @@ public class RequestController {
 		requestDao.create(signUpRequest);
 		return "login";
 	}
-//	
-//	/**
-//	 * 
-//	 * Creates the join group request to be approved by the admin.
-//	 * Sent to RequestController after button was pressed on group page.
-//	 * Send through URL parameter.
-//	 * 
-//	 * @param userId: long sent from the front end jsp to represent the user.
-//	 * @param groupId: long sent from the front end jsp to represent the group to join.
-//	 * @return the .jsp file to redirect to
-//	 */
-//	@RequestMapping(value="/joinGroupRequest")
-//	public String createJoinGroupRequest(@RequestParam(value="userID")long userId, @RequestParam(value="groupID")long groupId){
-//		Request joinGroupRequest = new Request(userId, groupId, RequestType.JOIN_GROUP, "Join the group");
-//		requestDao.create(joinGroupRequest);
-//		return null; // Return to the necessary jsp
-//	}
+	
+	/**
+	 * 
+	 * Creates the join group request to be approved by the admin.
+	 * Sent to RequestController after button was pressed on group page.
+	 * Send through URL parameter.
+	 * 
+	 * @param userId: long sent from the front end jsp to represent the user.
+	 * @param groupId: long sent from the front end jsp to represent the group to join.
+	 * @return the .jsp file to redirect to
+	 */
+	@RequestMapping(value="/joinGroupRequest")
+	public String createJoinGroupRequest(@RequestParam(value="userID")long userId, @RequestParam(value="groupID")long groupId){
+		Request joinGroupRequest = new Request(userId, groupId, RequestType.JOIN_GROUP, "Join the group");
+		requestDao.create(joinGroupRequest);
+		return null; // Return to the necessary jsp
+	}
 //	
 //	/**
 //	 * 
