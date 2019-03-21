@@ -29,18 +29,22 @@
 	</bean>
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:annotation-driven />
-	
+
 	<bean id="userDAO" class="com.fdmgroup.DAO.UserDAO" />
 	<bean id="requestDao" class="com.fdmgroup.DAO.RequestDAO" />
 	<bean id="groupDao" class="com.fdmgroup.DAO.GroupDAO" />
 
-	
+
 	<bean id="connection" class="com.fdmgroup.DAO.DBConnection">
 		<property name="persistenceName" value="PingU" />
 	</bean>
 	<bean id="EntityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 	</bean>
+	<bean id="passwordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	</bean>
+
 </beans>
 
 
