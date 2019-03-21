@@ -87,28 +87,28 @@ public class RequestController {
 	 * @return the .jsp file to redirect to
 	 */
 	@RequestMapping(value="/changeEmployerRequest")
-	public String createChangeCompanyRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
-		Request changeCompanyRequest = new Request(userId, RequestType.CHANGE_EMPLOYER, employerName);
-		requestDao.create(changeCompanyRequest);
+	public String createChangeEmployerRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
+		Request changeEmployerRequest = new Request(userId, RequestType.CHANGE_EMPLOYER, employerName);
+		requestDao.create(changeEmployerRequest);
 		return null; // Return to the necessary jsp
 	}
-//	
-//	/**
-//	 * 
-//	 * Creates the change job title request to be approved by the admin.
-//	 * 
-//	 * @param request
-//	 * @param jobTitle
-//	 * @return the .jsp file to redirect to
-//	 */
-//	@RequestMapping(value="/changeJobTitleRequest")
-//	public String createChangeJobTitleRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newJobTitle")String jobTitle){
-//		Request changeJobTitleRequest = new Request(userId, RequestType.CHANGE_JOB_TITLE, jobTitle);
-//		requestDao.create(changeJobTitleRequest);
-//		return null; // Return to the necessary jsp
-//	}
-//	
-//	
+	
+	/**
+	 * 
+	 * Creates the change job title request to be approved by the admin.
+	 * 
+	 * @param request
+	 * @param jobTitle
+	 * @return the .jsp file to redirect to
+	 */
+	@RequestMapping(value="/changeJobTitleRequest")
+	public String createChangeJobTitleRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newJobTitle")String jobTitle){
+		Request changeJobTitleRequest = new Request(userId, RequestType.CHANGE_JOB_TITLE, jobTitle);
+		requestDao.create(changeJobTitleRequest);
+		return null; // Return to the necessary jsp
+	}
+	
+	
 //	/**
 //	 * 
 //	 * If admin approves a request, make the necessary changes to the database to fulfil the request.
