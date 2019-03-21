@@ -145,16 +145,17 @@ public class UserController
 
 	//To find users from search bar using name 
 		@RequestMapping(value="/searchUsers", method=RequestMethod.POST)
-		public void findUsersByName(HttpServletRequest req, @RequestParam("searchName") String searchNames)
+		public void findUsersByName(HttpServletRequest req, @RequestParam("searchName") String searchName)
 		{
 			//System.out.println("Inside UC findUsersByName method");
 			
-			if(searchNames == null)
+			if(searchName == null)
 			{
 				//System.out.println("searchName did not come thru to UC");
 				return;
 			}
 			List<IRUser> foundUsers = null;
+			String searchNames = searchName.toLowerCase();
 			System.out.println("String name entered: " + searchNames);
 			String NamesWithoutComma = searchNames.replace(",", " ");
 			String NamesWithoutSpaces = NamesWithoutComma.replace("\\s+", " ");

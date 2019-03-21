@@ -267,6 +267,27 @@ public class UserDAO implements IUserDAO {
 		em.close();
 		return null;
 	}
+	
+	public List<Consultant> findUsersByFuzzyName(String fname, String lname)
+	{
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<Consultant> query = em.createNamedQuery("consultant.findByFullName", Consultant.class);
+		query.setParameter("fname", fname);
+		query.setParameter("lname", lname);
+		
+		List<Consultant> users = query.getResultList();
+		
+		
+		if(users != null)
+		{
+			System.out.println("Users in DAO " + users.size());
+			return users;
+			
+		}
+		System.out.println("No Users in DAO");
+		em.close();
+		return null;
+	}
 
 	@Override
 	public IRUser updateToConsultant(Long traineeId, String jobTitle, String employer) {
