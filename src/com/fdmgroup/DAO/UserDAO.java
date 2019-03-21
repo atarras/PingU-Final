@@ -268,6 +268,26 @@ public class UserDAO implements IUserDAO {
 		return null;
 	}
 
+	@Override
+	public IRUser updateToConsultant(Long traineeId, String jobTitle, String employer) {
+		EntityManager em = connection.getEntityManager();
+		IRUser foundUser = em.find(IRUser.class, traineeId);
+		
+		if(foundUser==null){
+			return null;
+		}
+		
+		Consultant newConsultant = (Consultant)foundUser;
+		newConsultant.setCurrentTitle(jobTitle);
+		newConsultant.setEmployer(jobTitle);
+		newConsultant.setStatus(true);
+		IUser createdConsultant = create(newConsultant);
+		if(createdConsultant == null)
+			return null;
+		return (IRUser)createdConsultant;
+		
+	}
+
 	
 
 }

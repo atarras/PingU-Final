@@ -317,27 +317,17 @@ public class UserController
 
 	}
 
-	// TODO: move this to appropriate controller
-	@RequestMapping(value = "/users", method = RequestMethod.GET)
-	public String getUsersPage(HttpServletRequest req)
-	{
-
-		/*
-		 * UserDAO uDAO = new UserDAO(); List<IUser> users = uDAO.getAllUsers();
-		 * System.out.println(users); req.getSession().setAttribute("users",
-		 * users);
-		 */
-		// getAllUsers(req);
-		/* System.out.println(req.getSession().getAttribute("users")); */
-
-		/* Set session attribute for all Trainees */
-		getUserByType(req, Trainee.class);
-
-		/* Set session attribute for all Consultants */
-
-		/* Set session attribute for all Admins */
-
-		return "users";
+	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
+	public String changeToConsultant(HttpServletRequest req,@RequestParam("traineeId") Long traineeId,
+			@RequestParam("jobTitle") String jobTitle, @RequestParam("employer") String employer){
+		
+		IRUser updateToConsultant = userDAO.updateToConsultant(traineeId, jobTitle, employer);
+		if(updateToConsultant== null){
+			/* TODO: add error message Could not convert*/
+			return null; // add the correct view string
+		}
+		/* TODO: add success message Consultant updated */
+		return null; // add the correct view string
 	}
 
 }
