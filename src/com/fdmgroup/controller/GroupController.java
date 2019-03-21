@@ -21,7 +21,8 @@ import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IUser;
 import com.fdmgroup.model.Trainee;
 
-//TODO: Add proper RequestMappings for controller methods and return proper JSP files
+//TODO: Add proper RequestMappings for controller methods and return proper JSP files. Figure how 
+// information is being passed to controller to update REquest param with front end.
 
 
 /**
@@ -52,7 +53,7 @@ public class GroupController {
 	 * @param model: To add the group attribute to be linked to the form to be sent.
 	 * @return The name of the .jsp file to redirect to.
 	 */
-	//@RequestMapping("/test")
+	//@RequestMapping("/")
 	public String goToCreateGroupPage(Model model){
 		model.addAttribute("newGroup", new Group());
 		//TODO: Returns the .jsp file that has the form to create the group.
@@ -99,6 +100,7 @@ public class GroupController {
 		Group currGroup = groupDao.findByGroupId(groupID);
 		currGroup.setActive(true);
 		groupDao.update(currGroup);
+		System.out.println(currGroup);
 		//TODO Return proper jsp file
 		return null;
 	}
@@ -111,12 +113,13 @@ public class GroupController {
 	//@RequestMapping("/deactivate")
 	public String deactivateGroup(@RequestParam("groupID") Long groupID){
 		Group currGroup = groupDao.findByGroupId(groupID);
-		List<IUser> currMembers = currGroup.getGroupMembers();
-		for (IUser currUser : currMembers) {
-			userDao.removeFromGroup(currUser.getUserId());
-		}
+//		List<IUser> currMembers = currGroup.getGroupMembers();
+//		for (IUser currUser : currMembers) {
+//			userDao.removeFromGroup(currUser.getUserId());
+//		}
 		currGroup.setActive(false);
 		groupDao.update(currGroup);
+		System.out.println(currGroup);
 		//TODO Return proper jsp file
 		return null;
 	}
