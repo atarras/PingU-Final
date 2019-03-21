@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fdmgroup.DAO.UserDAO;
 import com.fdmgroup.model.Consultant;
@@ -92,7 +92,8 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value="/signup-c", method=RequestMethod.POST)
-	public ModelAndView signup(HttpServletRequest req,Model model, @ModelAttribute(value="newUser") Consultant user, BindingResult br,
+	public String signup(HttpServletRequest req,Model model, @ModelAttribute(value="newUser") Consultant user, BindingResult br,
+			RedirectAttributes redirectAttributes,
 			@RequestParam("title") String jobTitle,
 			@RequestParam("employer") String employer) {
 		
@@ -112,11 +113,12 @@ public class LoginController {
 			
 			IUser newUser = userDAO.create(user);
 			req.setAttribute("userId", newUser.getUserId());
+			redirectAttributes.addFlashAttribute("userId", newUser.getUserId());
 			/* TODO: write Consultant to DB */
 			
 		}
 		
-		return new ModelAndView("redirect:/signUpRequest");
+		return "redirect:/signUpRequest";
 	}
 	
 	/**
@@ -128,7 +130,8 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value="/signup-t", method=RequestMethod.POST)
-	public ModelAndView signup(HttpServletRequest req,Model model, @ModelAttribute(value="newUser") Trainee user, BindingResult br,
+	public String signup(HttpServletRequest req,Model model, @ModelAttribute(value="newUser") Trainee user, BindingResult br,
+			RedirectAttributes redirectAttributes,
 			@RequestParam("stream") String stream) {
 		
 		System.out.println("POST Trainee");
@@ -142,14 +145,16 @@ public class LoginController {
 		
 		if (!br.hasErrors()) {
 			user.setStream(stream);
-			System.out.println(user);
+			//System.out.println(user);
 			
 			/* TODO: write Trainee to DB */
 			IUser newUser = userDAO.create(user);
-			req.setAttribute("userId", newUser.getUserId());
+			model.addAttribute("newUser", user);
+			redirectAttributes.addFlashAttribute("userId", newUser.getUserId());
 		}
+		System.out.println("Sending to signupRequest");
 		
-		return new ModelAndView("redirect:/signUpRequest");
+		return "redirect:/signUpRequest";
 	}
 	
 	@RequestMapping(value="/logOut", method=RequestMethod.POST)
