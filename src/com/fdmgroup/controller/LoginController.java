@@ -202,4 +202,9 @@ public class LoginController {
 		return "login";
 	}*/
 	
+	@RequestMapping(value="/search", method=RequestMethod.GET)
+	public String showSearch() {
+		return "searchFile";
+	}	
+	
 }
