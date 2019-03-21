@@ -5,7 +5,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <title>Insert title here</title>
+  <title>Users | PingU</title>
   <!-- Include in every page -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -58,6 +58,16 @@
       <div class="tab-content">
       
         <div id="trainee" class="tab-pane fade active show">
+        
+          <button type="button" id="add-trainee-button" class="btn btn-success">
+            <i class="fas fa-plus"></i>
+            Add Trainee
+          </button>
+          <button type="button" id="trainee-options" class="btn btn-secondary">
+            <i class="fas fa-cog"></i>
+          </button>
+          
+        
           <table id="users" class="table">
             <thead>
               <tr>
@@ -71,28 +81,29 @@
                 <th>Country</th>
                 <th>Stream</th>
                 <th>LinkedIn</th>
-                <th></th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-                <c:forEach items="${sessionScope.users}" var="user">
+                <c:forEach items="${sessionScope.trainees}" var="user">
               <tr>
                 <td>${user.getUserId()}</td>
                 <td>${user.getUsername()}</td>
-                <td>John</td>
-                <td>Smith</td>
-                <td>jsmith@gmail.com</td>
-                <td>16478889999</td>
-                <td>Toronto</td>
-                <td>Canada</td>
-                <td>Java</td>
-                <td>linkedin/user/12</td>
-                <td id="actions-${user.getUserId()}" align="right">
-                  <script>
+                <td>${user.getFirstName()}</td>
+                <td>${user.getLastName()}</td>
+                <td>${user.getEmail()}</td>
+                <td>${user.getPhoneNumber()}</td>
+                <td>${user.getCity()}</td>
+                <td>${user.getCountry()}</td>
+                <td>${user.getStream()}</td>
+                <td>${user.getLinkedInUrl()}</td>
+                <td id="actions-${user.getUserId()}" align="center">
+                  <i class="fas fa-ellipsis-v"></i>
+                  <!-- <script>
                   $(document).ready(function() {
                 	  $("#actions-${user.getUserId()}").append($("#action-buttons-template").html());
                   })
-                  </script>
+                  </script> -->
                 </td>
               </tr>
               </c:forEach>
