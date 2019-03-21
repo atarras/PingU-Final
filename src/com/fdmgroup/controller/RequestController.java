@@ -55,60 +55,60 @@ public class RequestController {
 	public String createSignUpRequest(HttpServletRequest request, Model model, @ModelAttribute("newUser")IRUser user) {
 		Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
 		long userId = (Long) flashMap.get("userId");
-		System.out.println("Creating request");
+
 		Request signUpRequest = new Request(userId, RequestType.CREATE_USER, "Create the user");
 		requestDao.create(signUpRequest);
 		return "login";
 	}
-//	
-//	/**
-//	 * 
-//	 * Creates the join group request to be approved by the admin.
-//	 * Sent to RequestController after button was pressed on group page.
-//	 * Send through URL parameter.
-//	 * 
-//	 * @param userId: long sent from the front end jsp to represent the user.
-//	 * @param groupId: long sent from the front end jsp to represent the group to join.
-//	 * @return the .jsp file to redirect to
-//	 */
-//	@RequestMapping(value="/joinGroupRequest")
-//	public String createJoinGroupRequest(@RequestParam(value="userID")long userId, @RequestParam(value="groupID")long groupId){
-//		Request joinGroupRequest = new Request(userId, groupId, RequestType.JOIN_GROUP, "Join the group");
-//		requestDao.create(joinGroupRequest);
-//		return null; // Return to the necessary jsp
-//	}
-//	
-//	/**
-//	 * 
-//	 * Creates the change employer request to be approved by the admin.
-//	 * 
-//	 * @param userId: long sent from the front end jsp to represent the user.
-//	 * @param employerName: string send from the front end jsp to represent the employer (the exact enum string)
-//	 * @return the .jsp file to redirect to
-//	 */
-//	@RequestMapping(value="/changeEmployerRequest")
-//	public String createChangeCompanyRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
-//		Request changeCompanyRequest = new Request(userId, RequestType.CHANGE_EMPLOYER, employerName);
-//		requestDao.create(changeCompanyRequest);
-//		return null; // Return to the necessary jsp
-//	}
-//	
-//	/**
-//	 * 
-//	 * Creates the change job title request to be approved by the admin.
-//	 * 
-//	 * @param request
-//	 * @param jobTitle
-//	 * @return the .jsp file to redirect to
-//	 */
-//	@RequestMapping(value="/changeJobTitleRequest")
-//	public String createChangeJobTitleRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newJobTitle")String jobTitle){
-//		Request changeJobTitleRequest = new Request(userId, RequestType.CHANGE_JOB_TITLE, jobTitle);
-//		requestDao.create(changeJobTitleRequest);
-//		return null; // Return to the necessary jsp
-//	}
-//	
-//	
+	
+	/**
+	 * 
+	 * Creates the join group request to be approved by the admin.
+	 * Sent to RequestController after button was pressed on group page.
+	 * Send through URL parameter.
+	 * 
+	 * @param userId: long sent from the front end jsp to represent the user.
+	 * @param groupId: long sent from the front end jsp to represent the group to join.
+	 * @return the .jsp file to redirect to
+	 */
+	@RequestMapping(value="/joinGroupRequest")
+	public String createJoinGroupRequest(@RequestParam(value="userID")long userId, @RequestParam(value="groupID")long groupId){
+		Request joinGroupRequest = new Request(userId, groupId, RequestType.JOIN_GROUP, "Join the group");
+		requestDao.create(joinGroupRequest);
+		return null; // Return to the necessary jsp
+	}
+	
+	/**
+	 * 
+	 * Creates the change employer request to be approved by the admin.
+	 * 
+	 * @param userId: long sent from the front end jsp to represent the user.
+	 * @param employerName: string send from the front end jsp to represent the employer (the exact enum string)
+	 * @return the .jsp file to redirect to
+	 */
+	@RequestMapping(value="/changeEmployerRequest")
+	public String createChangeEmployerRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
+		Request changeEmployerRequest = new Request(userId, RequestType.CHANGE_EMPLOYER, employerName);
+		requestDao.create(changeEmployerRequest);
+		return null; // Return to the necessary jsp
+	}
+	
+	/**
+	 * 
+	 * Creates the change job title request to be approved by the admin.
+	 * 
+	 * @param request
+	 * @param jobTitle
+	 * @return the .jsp file to redirect to
+	 */
+	@RequestMapping(value="/changeJobTitleRequest")
+	public String createChangeJobTitleRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newJobTitle")String jobTitle){
+		Request changeJobTitleRequest = new Request(userId, RequestType.CHANGE_JOB_TITLE, jobTitle);
+		requestDao.create(changeJobTitleRequest);
+		return null; // Return to the necessary jsp
+	}
+	
+	
 //	/**
 //	 * 
 //	 * If admin approves a request, make the necessary changes to the database to fulfil the request.

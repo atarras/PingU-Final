@@ -16,3 +16,11 @@
 .action-button:hover {
     cursor: pointer;
 }
+
+.delete-user {
+    color:red;
+}
+
+.delete-user:hover {
+    cursor:pointer;
+}
