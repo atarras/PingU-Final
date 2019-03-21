@@ -247,6 +247,29 @@ public class UserDAO implements IUserDAO {
 		return foundUser;
 	}
 
+	@Override
+	public List<IRUser> findUsersByFullName(String fname, String lname)
+	{
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<IRUser> query = em.createNamedQuery("user.findByFullName", IRUser.class);
+		query.setParameter("fname", fname);
+		query.setParameter("lname", lname);
+		
+		List<IRUser> users = query.getResultList();
+		
+		if(users != null)
+		{
+			System.out.println("Users in DAO " + users.size());
+			return users;
+			
+		}
+		System.out.println("No Users in DAO");
+		em.close();
+		return null;
+	}
+
+	
+
 }
 
 

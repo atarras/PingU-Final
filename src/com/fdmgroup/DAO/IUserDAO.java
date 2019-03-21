@@ -30,6 +30,7 @@ public interface IUserDAO {
 	IRUser removeFromGroup(Long userId);
 	IRUser changeCity(Long userId, String newCity);
 	IRUser changeCountry(Long userId, String newCountry);
+	List<IRUser> findUsersByFullName(String fname, String lname);
 
 }
 
