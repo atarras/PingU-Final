@@ -20,27 +20,6 @@
 </head>
 <body>
 
-  <div id="action-buttons-template" style="display:none">
-    <div class="default-actions">
-      <button type="button" class="btn btn-primary edit-exam-button">
-        <i class="fas fa-edit"></i>
-      </button>
-      <button type="button" class="btn btn-danger delete-exam-button">
-        <i class="fas fa-trash-alt"></i>
-      </button>
-    </div>
-    <div class="edit-actions" style="display: none">
-      <button type='button' class='btn btn-success confirm-edit-exam-button'>
-        <span class="glyphicon glyphicon-edit"></span>
-        Confirm
-      </button>
-      <button type='button' class='btn btn-info undo-edit-exam-button'>
-        <span class="glyphicon glyphicon-share-alt"></span>
-        Undo
-      </button>
-    </div>
-  </div>
-
   <%-- <jsp:include page="nav.jsp" /> --%>
 
   <div class="flex-wrapper">
@@ -72,16 +51,20 @@
             <thead>
               <tr>
                 <th class="trainee-id">ID</th>
-                <th>Username</th>
+                <th class="trainee-username">Username</th>
+                <th class="trainee-password">Password</th>
                 <th class="trainee-firstname">First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>City</th>
-                <th>Country</th>
-                <th>Stream</th>
-                <th>LinkedIn</th>
-                <th>Actions</th>
+                <th class="trainee-lastname">Last Name</th>
+                <th class="trainee-email">Email</th>
+                <th class="trainee-phone">Phone</th>
+                <th class="trainee-city">City</th>
+                <th class="trainee-country">Country</th>
+                <th class="trainee-stream">Stream</th>
+                <th class="trainee-linkedin">LinkedIn</th>
+                <th class="trainee-security-answer">Security Answer</th>
+                <th class="trainee-status">Status</th>
+                <th class="trainee-visibility">Visibility</th>
+                <th class="trainee-actions">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -102,13 +85,8 @@
                 <td class="trainee-security-answer">${user.getSecurityAnswer()}</td>
                 <td class="trainee-status">${user.isStatus()}</td>
                 <td class="trainee-visibility">${user.isVisibility()}</td>
-                <td id="actions-${user.getUserId()}" class="" align="center">
+                <td class="trainee-actions" align="center">
                   <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-trainee-modal"></i>
-                  <!-- <script>
-                  $(document).ready(function() {
-                	  $("#actions-${user.getUserId()}").append($("#action-buttons-template").html());
-                  })
-                  </script> -->
                 </td>
               </tr>
               </c:forEach>
@@ -163,9 +141,81 @@
               </label>
             </div>
             <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-username" checked>
+              <label class="form-check-label" for="show-trainee-username">
+                Username
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-password" checked>
+              <label class="form-check-label" for="show-trainee-password">
+                Password
+              </label>
+            </div>
+            <div class="form-check">
               <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-firstname" checked>
               <label class="form-check-label" for="show-trainee-firstname">
                 First Name
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-lastname" checked>
+              <label class="form-check-label" for="show-trainee-lastname">
+                Last Name
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-email" checked>
+              <label class="form-check-label" for="show-trainee-email">
+                Email
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-phone" checked>
+              <label class="form-check-label" for="show-trainee-phone">
+                Phone
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-city" checked>
+              <label class="form-check-label" for="show-trainee-city">
+                City
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-stream" checked>
+              <label class="form-check-label" for="show-trainee-stream">
+                Stream
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-linkedin" checked>
+              <label class="form-check-label" for="show-trainee-linkedin">
+                Linkedin
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-security-answer" checked>
+              <label class="form-check-label" for="show-trainee-security-answer">
+                Security Answer
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-status" checked>
+              <label class="form-check-label" for="show-trainee-status">
+                Status
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-visibility" checked>
+              <label class="form-check-label" for="show-trainee-visibility">
+                Visibility
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-actions" checked>
+              <label class="form-check-label" for="show-trainee-actions">
+                Actions
               </label>
             </div>
             
