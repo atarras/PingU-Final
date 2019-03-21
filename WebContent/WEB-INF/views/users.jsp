@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="sf" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +39,7 @@
       
         <div id="trainee" class="tab-pane fade active show">
         
-          <button type="button" id="add-trainee-button" class="btn btn-success">
+          <button type="button" id="add-trainee-button" class="btn btn-success" data-toggle="modal" data-target="#add-trainee-modal">
             <i class="fas fa-plus"></i>
             Add Trainee
           </button>
@@ -59,6 +60,7 @@
                 <th class="trainee-phone">Phone</th>
                 <th class="trainee-city">City</th>
                 <th class="trainee-country">Country</th>
+                <th class="trainee-description">Description</th>
                 <th class="trainee-stream">Stream</th>
                 <th class="trainee-linkedin">LinkedIn</th>
                 <th class="trainee-security-answer">Security Answer</th>
@@ -147,7 +149,7 @@
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-password" checked>
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-password">
               <label class="form-check-label" for="show-trainee-password">
                 Password
               </label>
@@ -165,13 +167,13 @@
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-email" checked>
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-email">
               <label class="form-check-label" for="show-trainee-email">
                 Email
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-phone" checked>
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-phone">
               <label class="form-check-label" for="show-trainee-phone">
                 Phone
               </label>
@@ -183,19 +185,31 @@
               </label>
             </div>
             <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-country" checked>
+              <label class="form-check-label" for="show-trainee-country">
+                Country
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-description">
+              <label class="form-check-label" for="show-trainee-description">
+                Description
+              </label>
+            </div>
+            <div class="form-check">
               <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-stream" checked>
               <label class="form-check-label" for="show-trainee-stream">
                 Stream
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-linkedin" checked>
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-linkedin">
               <label class="form-check-label" for="show-trainee-linkedin">
-                Linkedin
+                LinkedIn
               </label>
             </div>
             <div class="form-check">
-              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-security-answer" checked>
+              <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-security-answer">
               <label class="form-check-label" for="show-trainee-security-answer">
                 Security Answer
               </label>
@@ -224,6 +238,60 @@
       </div>
     </div>
     
+    <!-- Add Trainee Modal -->
+    <div class="modal fade" id="add-trainee-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Add Trainee</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div id="edit-trainee-body" class="modal-body">
+          
+            <sf:form action="trainee" method="post" modelAttribute="newTrainee">
+            
+              <div class="form-group">
+                <div class="row">
+                  <div class="col col-md-6">
+                    <sf:input type="text" id="signup-firstname-field" class="form-control" path="firstName" placeholder="First Name" required="required" />
+                  </div>
+                  <div class="col col-md-6">
+                    <sf:input type="text" id="signup-lastname-field" class="form-control" path="lastName" placeholder="Last Name" required="required" />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <sf:input type="text" id="signup-username-field" class="form-control" path="username" placeholder="Username" required="required" />
+                <div id="username-exists-section" class="error-message"></div>
+              </div>
+              
+              <div class="form-group">
+                <sf:input type="password" id="signup-password-field" class="form-control" path="password" placeholder="Password" required="required" />  
+              </div>
+              
+              <div class="form-group">
+                <input type="password" id="signup-confirm-password-field" class="form-control" name="confirm-password" placeholder="Confirm Password" required="required" />  
+                <div id="password-does-not-match-section" class="error-message"></div>
+              </div>
+              
+              <div class="form-group">
+                <sf:input type="password" id="s" class="form-control" path="securityAnswer" placeholder="Security Answer" required="required" />  
+              </div>
+              
+              <div class="form-group">
+                <button type="submit" id="sign-up-button" class="btn btn-primary btn-lg btn-block login-btn">Create Trainee</button>
+              </div>
+            
+            </sf:form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <!-- Edit Trainee Modal -->
     <div class="modal fade" id="edit-trainee-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -241,15 +309,55 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col col-md-6">
-                    <input type="text" id="edit-firstname-field" class="form-control" name="firstName" />
+                    <input type="text" id="edit-trainee-firstname" class="form-control" name="firstName" />
                   </div>
                   <div class="col col-md-6">
-                    <input type="text" id="edit-lastname-field" class="form-control" name="lastName" />
+                    <input type="text" id="edit-trainee-lastname" class="form-control" name="lastName" />
                   </div>
                 </div>
               </div>
+              
+              <div class="form-group">
+                <input type="text" id="edit-trainee-username" class="form-control" name="username" />
+              </div>
+              <div class="form-group">
+                <input type="password" id="edit-trainee-password" class="form-control" name="password" />
+              </div>
+              <div class="form-group">
+                <input type="text" id="edit-trainee-email" class="form-control" name="email" />
+              </div>
+              <div class="form-group">
+                <input type="text" id="edit-trainee-phone" class="form-control" name="phone" />
+              </div>
+              <div class="form-group">
+                <input type="text" id="edit-trainee-city" class="form-control" name="city" />
+              </div>
+              <div class="form-group">
+                <input type="text" id="edit-trainee-country" class="form-control" name="country" />
+              </div>
+              <div class="form-group">
+                <input type="text" id="edit-trainee-description" class="form-control" name="description" />
+              </div>
+              <div class="form-group">
+                <input type="text" id="edit-trainee-stream" class="form-control" name="stream" />
+              </div>
+              <div class="form-group">
+                <input type="text" id="edit-trainee-linkedin" class="form-control" name="linkedin" />
+              </div>
+              <div class="form-group">
+                <input type="text" id="edit-trainee-security-answer" class="form-control" name="security-answer" />
+              </div>
+              
+              <!-- Place status and visibility toggles here -->
+              
+              
+              <div class="form-group">
+                <button type="submit" id="sign-up-button" class="btn btn-primary btn-lg btn-block login-btn">Confirm</button>
+              </div>
             
             </form>
+            
+            
             
           </div>
         </div>

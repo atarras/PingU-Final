@@ -5,11 +5,12 @@ $(document).ready(function() {
 		console.log("editing user...");
 		
 		/* Populate our edit trainee modal's input with this user's data */
-		var id = $(this).closest("tr").attr("id");
-		console.log(id);
-		console.log($($(this).closest("tr").find(".trainee-firstname")[0]).text());
-		$("#edit-firstname-field").val($($(this).closest("tr").find(".trainee-firstname")[0]).text());
-		$("#edit-lastname-field").val($($(this).closest("tr").find(".trainee-lastname")[0]).text());
+		
+		/* Get the text of each td in the row and use it as default value of our edit form */
+		$(this).closest("tr").find("td").each(function() {
+			var columnClass = $(this).attr("class");
+			$("#edit-" + columnClass).val($(this).text());
+		});
 		
 	});
 	
@@ -25,6 +26,19 @@ $(document).ready(function() {
 //		}
 //	});
 	
+	/**
+	 * When document loads, make sure to hide any unchecked option by default 
+	 */
+	$(".column-toggle").each(function() {
+		if (!$(this).is(":checked")) {
+			var columnClass = $(this).attr("id").replace("show-", "");
+			$("." + columnClass).css("display", "none");
+		}
+	});
+	
+	/**
+	 * Clicking on a checkbox in trainee options will toggle a column on/off
+	 */
 	$(".column-toggle").on("click", function() {
 		
 		/* Our toggles have an id of show-{corresponding class name} */
