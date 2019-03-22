@@ -10,6 +10,7 @@ $(document).ready(function() {
 		$(this).closest("tr").find("td").each(function() {
 			var columnClass = $(this).attr("class");
 			$("#edit-" + columnClass).val($(this).text());
+			$("#edit-" + columnClass).text($(this).text());
 		});
 		
 	});
@@ -52,14 +53,67 @@ $(document).ready(function() {
 		}
 	});
 	
-	/**
-	 * Prompts whether you want to delete a user
-	 */
-	$(".delete-user").on("click", function() {
-		console.log("prompt user deletion");
-		$("#edit-trainee-body").css("display", "none");
-		$("#delete-trainee-body").css("display", "");
+	$("#confirm-edit-trainee").on("click", function(e) {
+		e.preventDefault();
+		
+		var id = $("#edit-trainee-id").text();
+		console.log($("#edit-trainee").serialize());
+		
+		$.ajax({
+			type: "POST",
+			url: "user?id=" + id + "&" + $("#edit-trainee").serialize(),
+			success: function(data) {
+				/* Redirect page since ajax calls seems to prevent our server from redirecting */
+				window.location.replace(data);
+			}
+		});
+		
 	});
+	
+	
+//	/**
+//	 * Prompts whether you want to delete a user.
+//	 * Switch out the edit form for a confirm delete form
+//	 */
+//	$("#delete-trainee").on("click", function() {
+//		$("#edit-trainee-body").css("display", "none");
+//		$("#delete-trainee-body").css("display", "");
+//	});
+//	
+//	/**
+//	 * Closing the edit trainee modal should switch back to original edit form
+//	 */
+//	$("#edit-trainee-modal").on("hidden.bs.modal", function () {
+//		$("#edit-trainee-body").css("display", "");
+//		$("#delete-trainee-body").css("display", "none");
+//	});
+//	
+//	/**
+//	 * Revert back to edit form
+//	 */
+//	$("#cancel-delete-trainee").on("click", function() {
+//		$("#edit-trainee-body").css("display", "");
+//		$("#delete-trainee-body").css("display", "none");
+//	});
+//	
+//	/**
+//	 * Delete the trainee in the database
+//	 */
+//	$("#confirm-delete-trainee").on("click", function() {
+//		console.log("deleting traine...");
+//		
+//		var id = $("#edit-trainee-id").text();
+//		console.log(id);
+//		
+//		$.ajax({
+//			type: "DELETE",
+//			url: "user?id=" + id,
+//			success: function() {
+//				console.log("deleted " + id);
+//			}
+//			
+//		});
+//	});
 	
 	
 });

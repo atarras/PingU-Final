@@ -8,8 +8,14 @@
     border: none;
 }
 
+.table > tbody > tr {
+    border-bottom: 1px solid rgba(222, 226, 230, 0);
+}
+
 .table > tbody > tr:hover {
-    border-bottom: 1px solid #dee2e6;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(222, 226, 230, 1);
+    //border-bottom: 1px solid #dee2e6;
 }
 
 
@@ -17,10 +23,10 @@
     cursor: pointer;
 }
 
-.delete-user {
+/* #delete-trainee {
     color:red;
 }
 
-.delete-user:hover {
+#delete-trainee:hover {
     cursor:pointer;
-}
+} */
