@@ -38,15 +38,15 @@
               
               <div class="form-group">
                 <input type="text" id="login-username-field" class="form-control login-form-field" title="Enter your username" name="username" placeholder="Username" required="required">
-                <c:if test="${sessionScope.usernameIncorrect}">
-                    <div class="error-message">Username incorrect</div>
-                </c:if>
+<%--                 <c:if test="${sessionScope.usernameIncorrect}"> --%>
+<!--                     <div class="error-message">Username incorrect</div> -->
+<%--                 </c:if> --%>
               </div>
               
               <div class="form-group">
                 <input type="password" class="form-control login-form-field" title="Enter your password" name="password" placeholder="Password" required="required">  
                 <c:if test="${sessionScope.passwordIncorrect}">
-                    <div class="error-message">Password incorrect</div>
+                    <div class="error-message">Incorrect Username or Password! Please try again.</div>
                 </c:if>
               </div>
               

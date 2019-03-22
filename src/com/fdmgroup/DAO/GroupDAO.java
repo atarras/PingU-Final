@@ -148,12 +148,33 @@ public class GroupDAO {
 	 * @param name: Name of the group you would like to find.
 	 * @return Group(s) with the corresponding name.
 	 */
-	public List<Group> findByPartialName(String name){
+	public List<Group> findGroupByPartialName(String name){
 		EntityManager em = connection.getEntityManager();
 		TypedQuery<Group> query = em.createNamedQuery("group.findByPartialName", Group.class);
 		query.setParameter("gName", name);
 		
 		List<Group> groups = query.getResultList();
+		if(groups != null && !groups.isEmpty()){
+			return groups;
+		} 
+		else 
+		{
+			return null;
+		}
+	}
+
+	/**
+	 * getAllGroups uses the named query to find the group with partial group name, case insensitive.
+	 * @param: None
+	 * @return All Groups from groups Database that are active 
+	 */
+	public List<Group> getAllgroups()
+	{
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<Group> query = em.createNamedQuery("group.getAllgroups", Group.class);
+		
+		List<Group> groups = null;
+		groups = query.getResultList();
 		if(groups != null && !groups.isEmpty()){
 			return groups;
 		} 

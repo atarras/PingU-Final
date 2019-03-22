@@ -26,7 +26,8 @@ import com.fdmgroup.enums.Employer;
 @NamedQueries({
 	@NamedQuery(name="group.findByGroupId", query="SELECT g FROM Group g WHERE g.groupId = :gId"),
 	@NamedQuery(name="group.findByGroupName", query="SELECT g FROM Group g WHERE g.groupName = :gName"),
-	@NamedQuery(name="group.findByPartialName", query="SELECT g FROM Group g WHERE g.groupName LIKE :gName")
+	@NamedQuery(name="group.findByPartialName", query="SELECT g FROM Group g WHERE g.isActive = TRUE AND g.groupName LIKE :gName"),
+	@NamedQuery(name="group.getAllgroups", query="SELECT g FROM Group g WHERE g.isActive = TRUE")
 })
 public class Group {
 	/**
