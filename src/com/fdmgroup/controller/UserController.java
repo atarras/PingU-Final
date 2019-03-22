@@ -146,7 +146,7 @@ public class UserController
 	//To find users from search bar using name 
 	@RequestMapping(value = "/searchUsers", method = RequestMethod.POST)
 	public String findUsersByName(HttpServletRequest req, @RequestParam("searchName") String searchName)
-	{
+	{	
 		// System.out.println("Inside UC findUsersByName method");
 		List<IRUser> foundUsers = null;
 		if (searchName == null || searchName == "")
@@ -184,6 +184,12 @@ public class UserController
 		{
 			session = req.getSession();
 			session.setAttribute("foundUsers", foundUsers);
+			
+			
+			/*Hacked out previous search result retained, remove if better new implementation */
+			session.setAttribute("previousSearch", searchName);
+			
+			
 			for (IRUser user : foundUsers)
 			{
 				System.out.println(user.getUsername());
@@ -195,7 +201,7 @@ public class UserController
 
 		session.setAttribute("errorMsg", "Oops, no user found!");
 		
-		return "searchFile";
+		return "search";
 		
 	}
 

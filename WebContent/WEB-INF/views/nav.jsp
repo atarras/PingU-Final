@@ -35,11 +35,20 @@
 						<a class="nav-link" href="logOut"><i class="fas fa-sign-out-alt"></i></a>
 					</li>
 				</ul>
-				<form class="form-inline my-2 my-lg-0" action="search" method="GET">
+				<form class="form-inline my-2 my-lg-0" action="searchUsers" method="POST">
 				<div class="input-group mr-2">
-					<input class="form-control" type="search" placeholder="Search" aria-label="Search">
+					<c:choose>
+						<c:when test="${not empty previousSearch}">
+							<input class="form-control" type="search" placeholder="${previousSearch}" aria-label="Search" name="searchName">
+						</c:when>
+						<c:otherwise>
+							<input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searchName">
+						</c:otherwise>
+					</c:choose>
 					<div class="input-group-append">
-						<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User Search</button>
+					
+						<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+						
 						<div class="dropdown-menu dropdown-menu-right">
 							<a class="dropdown-item" href="#">User Search</a>
 							<a class="dropdown-item" href="#">Group Search</a>
