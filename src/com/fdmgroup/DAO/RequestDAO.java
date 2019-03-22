@@ -82,6 +82,63 @@ public class RequestDAO {
 	}
 	
 	/**
+	 * findAllPendingRequests uses the named query to find the request with the specified id.
+	 * 
+	 * @param id: ID of the request you want to find.
+	 * @return Request with the corresponding id.
+	 */
+	public List<Request> findAllRequests(){
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<Request> query = em.createNamedQuery("request.findAllRequests", Request.class);
+		
+		List<Request> requests = query.getResultList();
+		em.close();
+		if(requests != null && !requests.isEmpty()){
+			return requests;
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * findAllPendingRequests uses the named query to find the request with the specified id.
+	 * 
+	 * @param id: ID of the request you want to find.
+	 * @return Request with the corresponding id.
+	 */
+	public List<Request> findAllApprovedRequests(){
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<Request> query = em.createNamedQuery("request.findAllApprovedRequests", Request.class);
+		
+		List<Request> requests = query.getResultList();
+		em.close();
+		if(requests != null && !requests.isEmpty()){
+			return requests;
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * findAllPendingRequests uses the named query to find the request with the specified id.
+	 * 
+	 * @param id: ID of the request you want to find.
+	 * @return Request with the corresponding id.
+	 */
+	public List<Request> findAllDeniedRequests(){
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<Request> query = em.createNamedQuery("request.findAllDeniedRequests", Request.class);
+		
+		List<Request> requests = query.getResultList();
+		em.close();
+		if(requests != null && !requests.isEmpty()){
+			return requests;
+		} else {
+			return null;
+		}
+	}
+	
+	/**
 	 * 
 	 * Update is called when user wants to update a request comment, type or status.
 	 * 
@@ -95,7 +152,6 @@ public class RequestDAO {
 		em.getTransaction().begin();
 		foundRequest.setComment(r.getComment());
 		foundRequest.setGroupId(r.getGroupId());
-		foundRequest.setUserId(r.getUserId());
 		foundRequest.setRequestStatus(r.getRequestStatus());
 		foundRequest.setRequestType(r.getRequestType());
 		em.getTransaction().commit();

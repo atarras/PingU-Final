@@ -14,6 +14,7 @@ import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
+import com.fdmgroup.model.Request;
 
 public class UserDAO implements IUserDAO {
 
@@ -307,6 +308,28 @@ public class UserDAO implements IUserDAO {
 			return null;
 		return (IRUser) createdConsultant;
 
+	}
+	
+	public IRUser addRequestToUser(long userId, Request request){
+		EntityManager em = connection.getEntityManager();
+		IRUser foundUser = em.find(IRUser.class, userId);
+		
+		em.getTransaction().begin();
+		foundUser.addRequestToUser(request);
+		em.getTransaction().commit();
+		
+		return foundUser;
+	}
+	
+	public IRUser removeRequestFromUser(long userId, Request request){
+		EntityManager em = connection.getEntityManager();
+		IRUser foundUser = em.find(IRUser.class, userId);
+		
+		em.getTransaction().begin();
+		foundUser.removeRequestFromUser(request);
+		em.getTransaction().commit();
+		
+		return foundUser;
 	}
 
 }

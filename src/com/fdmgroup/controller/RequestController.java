@@ -56,9 +56,10 @@ public class RequestController {
 	public String createSignUpRequest(HttpServletRequest request, Model model, @ModelAttribute("newUser")IRUser user) {
 		Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
 		long userId = (Long) flashMap.get("userId");
-
-		Request signUpRequest = new Request(userId, RequestType.CREATE_USER, "Create the user");
+		IRUser currUser = (IRUser) userDAO.findUserById(userId);
+		Request signUpRequest = new Request(currUser, RequestType.CREATE_USER, "Create the user");
 		requestDao.create(signUpRequest);
+		userDAO.addRequestToUser(userId, signUpRequest);
 		return "login";
 	}
 	
@@ -74,8 +75,10 @@ public class RequestController {
 	 */
 	@RequestMapping(value="/joinGroupRequest")
 	public String createJoinGroupRequest(HttpServletRequest request,@RequestParam(value="userID")long userId, @RequestParam(value="groupID")long groupId){
-		Request joinGroupRequest = new Request(userId, groupId, RequestType.JOIN_GROUP, "Join the group");
+		IRUser currUser = (IRUser) userDAO.findUserById(userId);
+		Request joinGroupRequest = new Request(currUser, groupId, RequestType.JOIN_GROUP, "Join the group");
 		requestDao.create(joinGroupRequest);
+		userDAO.addRequestToUser(userId, joinGroupRequest);
 		return "test"; // Return to the necessary jsp
 	}
 	
@@ -89,8 +92,10 @@ public class RequestController {
 	 */
 	@RequestMapping(value="/changeEmployerRequest")
 	public String createChangeEmployerRequest(HttpServletRequest request, @RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
-		Request changeEmployerRequest = new Request(userId, RequestType.CHANGE_EMPLOYER, employerName);
+		IRUser currUser = (IRUser) userDAO.findUserById(userId);
+		Request changeEmployerRequest = new Request(currUser, RequestType.CHANGE_EMPLOYER, employerName);
 		requestDao.create(changeEmployerRequest);
+		userDAO.addRequestToUser(userId, changeEmployerRequest);
 		return "test"; // Return to the necessary jsp
 	}
 	
@@ -104,8 +109,10 @@ public class RequestController {
 	 */
 	@RequestMapping(value="/changeJobTitleRequest")
 	public String createChangeJobTitleRequest(HttpServletRequest request,@RequestParam(value="userID")long userId, @RequestParam(value="newJobTitle")String jobTitle){
-		Request changeJobTitleRequest = new Request(userId, RequestType.CHANGE_JOB_TITLE, jobTitle);
+		IRUser currUser = (IRUser) userDAO.findUserById(userId);
+		Request changeJobTitleRequest = new Request(currUser, RequestType.CHANGE_JOB_TITLE, jobTitle);
 		requestDao.create(changeJobTitleRequest);
+		userDAO.addRequestToUser(userId, changeJobTitleRequest);
 		return "test"; // Return to the necessary jsp
 	}
 	
@@ -121,14 +128,15 @@ public class RequestController {
 	public String approveRequest(HttpServletRequest request,@RequestParam(value="requestID") long requestId){
 		String approvedComment = "Approved";
 		Request currRequest = requestDao.findByRequestId(requestId);
+		IRUser user = currRequest.getRequestUser();
 		boolean failedRequest = false;
+		
 		switch(currRequest.getRequestType()){
 			case CREATE_USER: 
-				userDAO.activateUser(currRequest.getUserId());
+				userDAO.activateUser(user.getUserId());
 				break;
 			case JOIN_GROUP:
 				Group currGroup = groupDao.findByGroupId(currRequest.getGroupId());
-				IUser user = userDAO.findUserById(currRequest.getUserId());
 			
 				if(user instanceof Consultant){
 					Employer consultantEmployer = Employer.valueOf(Employer.class, ((Consultant) user).getEmployer());
@@ -156,10 +164,10 @@ public class RequestController {
 				}
 				
 			case CHANGE_EMPLOYER:
-				userDAO.updateEmployer(currRequest.getUserId(), currRequest.getComment());
+				userDAO.updateEmployer(user.getUserId(), currRequest.getComment());
 				break;
 			case CHANGE_JOB_TITLE:
-				userDAO.updateJobTitle(currRequest.getUserId(), currRequest.getComment());
+				userDAO.updateJobTitle(user.getUserId(), currRequest.getComment());
 				break;
 		}
 		if(!failedRequest){
@@ -194,5 +202,4 @@ public class RequestController {
 		requestDao.update(currRequest);
 		return "test"; // Return to the necessary jsp.
 	}
-	
 }

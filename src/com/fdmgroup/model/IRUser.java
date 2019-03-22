@@ -1,11 +1,15 @@
 package com.fdmgroup.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -45,15 +49,19 @@ public class IRUser extends IUser {
 
 	@Column(columnDefinition = "Number(1)")
 	private boolean visibility = true;
+	
+	@OneToMany(mappedBy="requestUser")
+    @Column(name="request")
+    private List<Request> requests;
 
 	public IRUser() {
 		super();
-		// TODO Auto-generated constructor stub
+		this.requests = new ArrayList<>();
 	}
 
 	public IRUser(String username, String password) {
 		super(username, password);
-		// TODO Auto-generated constructor stub
+		this.requests = new ArrayList<>();
 	}
 
 	public IRUser(String username, String password, String description, String firstName, String lastName, String email,
@@ -66,6 +74,7 @@ public class IRUser extends IUser {
 		this.phoneNumber = phoneNumber;
 		this.city = city;
 		this.country = country;
+		this.requests = new ArrayList<>();
 	}
 
 	public IRUser(String username, String password, String description, String firstName, String lastName, String email,
@@ -80,6 +89,7 @@ public class IRUser extends IUser {
 		this.country = country;
 		this.linkedInUrl = linkedInUrl;
 		this.visibility = visibility;
+		this.requests = new ArrayList<>();
 	}
 
 	public IRUser(String firstName, String lastName, String email, String phoneNumber, String city, String country,
@@ -93,6 +103,7 @@ public class IRUser extends IUser {
 		this.country = country;
 		this.linkedInUrl = linkedInUrl;
 		this.visibility = visibility;
+		this.requests = new ArrayList<>();
 	}
 
 	public IRUser(String firstName, String lastName, String email, String phoneNumber, String city, String country) {
@@ -103,6 +114,7 @@ public class IRUser extends IUser {
 		this.phoneNumber = phoneNumber;
 		this.city = city;
 		this.country = country;
+		this.requests = new ArrayList<>();
 	}
 
 	public IRUser(String firstName, String lastName, String email, String phoneNumber, String city, String country,
@@ -115,6 +127,7 @@ public class IRUser extends IUser {
 		this.city = city;
 		this.country = country;
 		this.visibility = visibility;
+		this.requests = new ArrayList<>();
 	}
 
 	public IRUser(String description, String firstName, String lastName, String email, String phoneNumber, String city,
@@ -129,6 +142,7 @@ public class IRUser extends IUser {
 		this.country = country;
 		this.linkedInUrl = linkedInUrl;
 		this.visibility = visibility;
+		this.requests = new ArrayList<>();
 	}
 
 	public IRUser(String description, @NotNull(message = "user name can not be null") String username,
@@ -144,6 +158,7 @@ public class IRUser extends IUser {
 		this.phoneNumber = phoneNumber;
 		this.city = city;
 		this.country = country;
+		this.requests = new ArrayList<>();
 	}
 
 	public String getFirstName() {
@@ -216,6 +231,22 @@ public class IRUser extends IUser {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Request> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<Request> requests) {
+		this.requests = requests;
+	}
+	
+	public void addRequestToUser(Request request){
+		this.requests.add(request);
+	}
+	
+	public void  removeRequestFromUser(Request request){
+		this.requests.remove(request);
 	}
 
 	@Override
