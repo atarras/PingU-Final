@@ -1,6 +1,25 @@
 $(document).ready(function() {
 	
 	/**
+	 * When document loads, add each column in trainee to options
+	 */
+	$("#trainee thead > tr > th").each(function() {
+		console.log();
+		
+		var id = "show-" + $(this).attr("class");
+		var label = $(this).text();
+		
+		$("#trainee-column-toggles").append(
+				'<div class="form-check">' +
+		          '<input class="form-check-input column-toggle" type="checkbox" id="' + id + '" checked>' +
+		          '<label class="form-check-label" for="' + id + '">' +
+		          	label +
+		          '</label>' +
+            	'</div>');
+		
+	});
+	
+	/**
 	 * When document loads, make sure to hide any unchecked option by default 
 	 */
 	$(".column-toggle").each(function() {
@@ -45,12 +64,15 @@ $(document).ready(function() {
 	$(".action-button").on("click", function() {
 		console.log("editing user...");
 		
+		var userType = $(this).closest("div").attr("id");
+		
 		/* Populate our edit trainee modal's input with this user's data */
 		
 		/* Get the text of each td in the row and use it as default value of our edit form */
 		$(this).closest("tr").find("td").each(function() {
 			var columnClass = $(this).attr("class");
-			var value = $(this).text().trim()
+			var value = $(this).text().trim();
+			
 			$("#edit-" + columnClass).val(value);
 			$("#edit-" + columnClass).text(value);
 			
@@ -58,36 +80,32 @@ $(document).ready(function() {
 			
 		});
 		
-		/* Set the starting version of trainee status toggle */
-		if ($("#edit-trainee-status").val() == "true") {
+		/* Set the starting version of status toggle */
+		if ($("#edit-" + userType + "-status").val() == "true") {
 			console.log("status true");
 			
-			$("#trainee-status-open").css("display", "");
-			$("#trainee-status-close").css("display", "none");
+			$("#" +userType + "-status-open").css("display", "");
+			$("#" +userType + "-status-close").css("display", "none");
 			
 		} else {
 			console.log("status false");
 			
-			$("#trainee-status-open").css("display", "none");
-			$("#trainee-status-close").css("display", "");
+			$("#" +userType + "-status-open").css("display", "none");
+			$("#" +userType + "-status-close").css("display", "");
 
 		}
 		
-		/* Set starting version of trainee visibility toggle */
-		if ($("#edit-trainee-visibility").val() == "true") {
+		/* Set starting version of visibility toggle */
+		if ($("#edit-" + userType + "-visibility").val() == "true") {
 			console.log("visibility true");
-			$("#trainee-set-visible").css("display", "");
-			$("#trainee-set-invisible").css("display", "none");
+			$("#" +userType + "-set-visible").css("display", "");
+			$("#" +userType + "-set-invisible").css("display", "none");
 			
 		} else {
 			console.log("visibility false");
-			$("#trainee-set-visible").css("display", "none");
-			$("#trainee-set-invisible").css("display", "");
+			$("#" +userType + "-set-visible").css("display", "none");
+			$("#" +userType + "-set-invisible").css("display", "");
 		}
-		
-		
-		
-		
 		
 	});
 	

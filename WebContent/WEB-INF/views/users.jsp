@@ -48,7 +48,7 @@
           </button>
           
         
-          <table id="users" class="table table-responsive">
+          <table class="table table-responsive">
             <thead>
               <tr>
                 <th class="trainee-id">ID</th>
@@ -100,17 +100,71 @@
             </tbody>
           </table>
         </div>
-        <div id="consultant" class="panel panel-default tab-pane fade">
-          <div class="panel-body">
-            <table>
+        <div id="consultant" class="tab-pane fade">
+          <button type="button" id="add-consultant-button" class="btn btn-success" data-toggle="modal" data-target="#add-consultant-modal">
+            <i class="fas fa-plus"></i>
+            Add Consultant
+          </button>
+          <button type="button" id="consultant-options" class="btn btn-secondary" data-toggle="modal" data-target="#consultant-options-modal">
+            <i class="fas fa-cog"></i>
+          </button>
+          
+        
+          <table class="table table-responsive">
             <thead>
-            
+              <tr>
+                <th class="consultant-id">ID</th>
+                <th class="consultant-username">Username</th>
+                <th class="consultant-password">Password</th>
+                <th class="consultant-firstname">First Name</th>
+                <th class="consultant-lastname">Last Name</th>
+                <th class="consultant-email">Email</th>
+                <th class="consultant-phone">Phone</th>
+                <th class="consultant-city">City</th>
+                <th class="consultant-country">Country</th>
+                <th class="consultant-description">Description</th>
+                <th class="consultant-title">Title</th>
+                <th class="consultant-employer">Employer</th>
+                <th class="consultant-pdate">Placement Date</th>
+                <th class="consultant-linkedin">LinkedIn</th>
+                <th class="consultant-security-answer">Security Answer</th>
+                <th class="consultant-status">Status</th>
+                <th class="consultant-visibility">Visibility</th>
+                <th class="consultant-actions">Actions</th>
+              </tr>
             </thead>
             <tbody>
-            
+                <c:forEach items="${sessionScope.consultants}" var="user">
+              <tr id="${user.getUserId()}">
+                <td class="consultant-id">${user.getUserId()}</td>
+                <td class="consultant-username">${user.getUsername()}</td>
+                <td class="consultant-password">${user.getPassword()}</td>
+                <td class="consultant-firstname">${user.getFirstName()}</td>
+                <td class="consultant-lastname">${user.getLastName()}</td>
+                <td class="consultant-email">${user.getEmail()}</td>
+                <td class="consultant-phone">${user.getPhoneNumber()}</td>
+                <td class="consultant-city">${user.getCity()}</td>
+                <td class="consultant-country">${user.getCountry()}</td>
+                <td class="consultant-description">${user.getDescription()}</td>
+                <td class="consultant-title">${user.getCurrentTitle()}</td>
+                <td class=consultant-employer>${user.getEmployer()}</td>
+                <td class="consultant-pdate">${user.getpDate()}</td>
+                <td class="consultant-linkedin">${user.getLinkedInUrl()}</td>
+                <td class="consultant-security-answer">${user.getSecurityAnswer()}</td>
+                <td class="consultant-status">
+                  <p style="display:none;">${user.isStatus()}</p>
+                </td>
+                <td class="consultant-visibility">
+                  <p style="display:none;">${user.isVisibility()}</p>
+                </td>
+                <td class="consultant-actions" align="center">
+                  <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-consultant-modal"></i>
+                </td>
+              </tr>
+              </c:forEach>
+
             </tbody>
-            </table>
-          </div>
+          </table>
         </div>
         <div id="admin" class="panel panel-default tab-pane fade">
           <div class="panel-body">
@@ -138,9 +192,9 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
+          <div id="trainee-column-toggles" class="modal-body">
           
-            <div class="form-check">
+            <!-- <div class="form-check">
               <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-id" checked>
               <label class="form-check-label" for="show-trainee-id">
                 ID
@@ -235,7 +289,7 @@
               <label class="form-check-label" for="show-trainee-actions">
                 Actions
               </label>
-            </div>
+            </div> -->
             
           </div>
         </div>
