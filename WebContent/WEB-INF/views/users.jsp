@@ -342,43 +342,43 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col col-md-6">
-                    <input type="text" id="edit-trainee-firstname" class="form-control" name="firstName" />
+                    <input type="text" id="edit-trainee-firstname" class="form-control" name="firstName" placeholder="First Name" />
                   </div>
                   <div class="col col-md-6">
-                    <input type="text" id="edit-trainee-lastname" class="form-control" name="lastName" />
+                    <input type="text" id="edit-trainee-lastname" class="form-control" name="lastName" placeholder="Last Name" />
                   </div>
                 </div>
               </div>
               
               <div class="form-group">
-                <input type="text" id="edit-trainee-username" class="form-control" name="username" />
+                <input type="text" id="edit-trainee-username" class="form-control" name="username" placeholder="Username" />
               </div>
               <div class="form-group">
-                <input type="password" id="edit-trainee-password" class="form-control" name="password" />
+                <input type="password" id="edit-trainee-password" class="form-control" name="password" placeholder="Password" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-email" class="form-control" name="email" />
+                <input type="text" id="edit-trainee-email" class="form-control" name="email" placeholder="Email" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-phone" class="form-control" name="phone" />
+                <input type="text" id="edit-trainee-phone" class="form-control" name="phone" placeholder="Phone Number" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-city" class="form-control" name="city" />
+                <input type="text" id="edit-trainee-city" class="form-control" name="city" placeholder="City" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-country" class="form-control" name="country" />
+                <input type="text" id="edit-trainee-country" class="form-control" name="country" placeholder="Country" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-description" class="form-control" name="description" />
+                <input type="text" id="edit-trainee-description" class="form-control" name="description" placeholder="Description" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-stream" class="form-control" name="stream" />
+                <input type="text" id="edit-trainee-stream" class="form-control" name="stream" placeholder="Stream" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-linkedin" class="form-control" name="linkedin" />
+                <input type="text" id="edit-trainee-linkedin" class="form-control" name="linkedin" placeholder="LinkedIn" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-security-answer" class="form-control" name="security-answer" />
+                <input type="text" id="edit-trainee-security-answer" class="form-control" name="security-answer" placeholder="Security Answer" />
               </div>
               
               <!-- Place status and visibility toggles here -->
