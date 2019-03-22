@@ -161,46 +161,50 @@ public class GroupController {
 		
 		List<Group> foundGroups = null;
 		
-		String searchNameLower = gSearchName.toLowerCase();
-		System.out.println("String name entered: " + searchNameLower);
-		String NamesWithoutComma = searchNameLower.replace(",", " ");
-		String NamesWithoutUnderscore = NamesWithoutComma.replace("_", " ");
-		String NamesWithoutSpaces = NamesWithoutUnderscore.replace("\\s+", " ");
-		String[] splitNames = NamesWithoutSpaces.split(" ");
-		
-		System.out.println("String name after filters: " + NamesWithoutSpaces);
-		
-		String gName = "";
-		
-		if(splitNames.length <= 0)
+		if(gSearchName == null || gSearchName == "")
 		{
-			System.out.println("Found 0 strings");
-			//return;
-		}
-		else if(splitNames.length >= 1)
-		{
-			System.out.println("Found 1+ string");
-			
-			for(int i=0; i < splitNames.length -1; i++)
-			{
-				gName = "%" + splitNames[i];
-			}
-			gName = gName + "%";
-			
-			foundGroups = groupDao.findByPartialName(gName);
-			
-			if(foundGroups != null)
-			{
-				session.setAttribute("foundGroups", foundGroups);
-			}
-			else
-			{
-				session.setAttribute("errorMsg", "No Groups found based on search parameters!");
-			}
+			foundGroups = groupDao.getAllgroups();
 		}
 		else
 		{
-			session.setAttribute("errorMsg", "Invalid search parameters!");
+			String searchNameLower = gSearchName.toLowerCase();
+			System.out.println("String name entered: " + searchNameLower);
+			String NamesWithoutComma = searchNameLower.replace(",", " ");
+			String NamesWithoutUnderscore = NamesWithoutComma.replace("_", " ");
+			String NamesWithoutSpaces = NamesWithoutUnderscore.replace("\\s+", " ");
+			String[] splitNames = NamesWithoutSpaces.split(" ");
+			
+			System.out.println("String name after filters: " + NamesWithoutSpaces);
+			
+			String gName = "";
+			
+			if(splitNames.length <= 0)
+			{
+				System.out.println("Found 0 strings");
+				foundGroups = groupDao.getAllgroups();
+			}
+			else if(splitNames.length >= 1)
+			{
+				System.out.println("Found 1+ string");
+				
+				for(int i=0; i < splitNames.length -1; i++)
+				{
+					gName = "%" + splitNames[i];
+				}
+				gName = gName + "%";
+				
+				foundGroups = groupDao.findGroupByPartialName(gName);
+				
+				
+			}
+		}
+		if(foundGroups != null)
+		{
+			session.setAttribute("foundGroups", foundGroups);
+		}
+		else
+		{
+			session.setAttribute("errorMsg", "No Groups found based on search parameters!");
 		}
 		
 		
