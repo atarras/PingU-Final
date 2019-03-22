@@ -11,7 +11,7 @@
 	<div class="sidebar left-sidebar">
 		<div class="container sidebar-header">
 			<i class="fas fa-user-circle fa-7x"></i>
-			<h6>FIRST LAST</h6>	
+			<h6>${newUser.getFirstName() } ${newUser.getLastName() }</h6>	
 			<h6>GROUP</h6>
 		</div>
 	</div>
