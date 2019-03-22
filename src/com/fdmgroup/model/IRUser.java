@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 					+ "OR LOWER(u.firstName) LIKE :lname OR LOWER(u.lastName) LIKE :fname ")
 })
 public class IRUser extends IUser {
-	@Column(name = "description", length = 200)
+	@Column(name = "description")
 	private String description;
 
 	@Column(name = "firstName", length = 30)
