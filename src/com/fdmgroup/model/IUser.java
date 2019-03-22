@@ -20,7 +20,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "PINGU_USERS")
 @DiscriminatorColumn(name = "userType", discriminatorType = DiscriminatorType.STRING)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @NamedQueries({ @NamedQuery(name = "iuser.findAllUser", query = "select u FROM IUser u"),
