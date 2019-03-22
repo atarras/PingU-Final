@@ -48,7 +48,7 @@
           </button>
           
         
-          <table id="users" class="table">
+          <table id="users" class="table table-responsive">
             <thead>
               <tr>
                 <th class="trainee-id">ID</th>
@@ -85,8 +85,18 @@
                 <td class="trainee-stream">${user.getStream()}</td>
                 <td class="trainee-linkedin">${user.getLinkedInUrl()}</td>
                 <td class="trainee-security-answer">${user.getSecurityAnswer()}</td>
-                <td class="trainee-status">${user.isStatus()}</td>
-                <td class="trainee-visibility">${user.isVisibility()}</td>
+                <td class="trainee-status">
+                ${user.isStatus()}
+                    <!-- <button type="button" class="btn btn-primary">r</button>
+                    <button type="button" class="btn btn-danger">y</button> -->
+                  
+                </td>
+                <td class="trainee-visibility">
+                ${user.isVisibility()}
+                <!-- <button type="button" class="btn btn-primary"><i class="fas fa-eye"></i></button> -->
+                
+                <!-- <i class="fas fa-eye-slash"></i> -->
+                </td>
                 <td class="trainee-actions" align="center">
                   <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-trainee-modal"></i>
                 </td>
@@ -129,7 +139,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Edit Trainee</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Display Trainee Fields</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -248,7 +258,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div id="edit-trainee-body" class="modal-body">
+          <div class="modal-body">
           
             <sf:form action="trainee" method="post" modelAttribute="newTrainee">
             
@@ -322,7 +332,10 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Edit Trainee</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">
+            Edit Trainee
+            <span id="edit-trainee-id"></span>
+            </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -330,7 +343,7 @@
           <div class="modal-body">
           
             <div id="edit-trainee-body">
-            <form action="user" method="post">
+            <form id="edit-trainee" action="user" method="post">
             
               <div class="form-group">
                 <div class="row">
@@ -379,22 +392,24 @@
               
               <div class="form-group">
                 <button type="submit" id="confirm-edit-trainee" class="btn btn-primary">Confirm Edit</button>
-                <a class="delete-user">Delete Trainee</a>
-                
+                <!-- <a id="delete-trainee">Delete Trainee</a> -->
               </div>
             
             </form>
             </div>
             
-            <div id="delete-trainee-body" style="display:none">
-                Delete user?
-            
-            </div>
-            
+            <!-- <div id="delete-trainee-body" style="display:none">
+              <h5>Delete trainee?</h5>
+              <div class="form-group">
+                <button type="button" id="confirm-delete-trainee" class="btn btn-danger">Delete Trainee</button>
+                <button type="button" id="cancel-delete-trainee" class="btn btn-secondary">Undo</button>
+              </div>
+            </div> -->
             
           </div>
         </div>
       </div>
+    </div>
     </div>
 
     <jsp:include page="footer.jsp" />

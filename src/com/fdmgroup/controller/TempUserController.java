@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.DAO.UserDAO;
@@ -76,8 +77,64 @@ public class TempUserController {
 	}
 	
 	@RequestMapping(value="/user", method=RequestMethod.POST)
-	public ModelAndView postUser() {
-		System.out.println("/user/POST");
+	public void postUser(HttpServletResponse res,
+			@RequestParam("id") String stringID,
+			@RequestParam("firstName") String firstName,
+			@RequestParam("lastName") String lastName,
+			@RequestParam("username") String username,
+			@RequestParam("password") String password,
+			@RequestParam("email") String email,
+			@RequestParam("phone") String phone,
+			@RequestParam("city") String city,
+			@RequestParam("country") String country,
+			@RequestParam("description") String description,
+			@RequestParam("stream") String stream,
+			@RequestParam("security-answer") String securityAnswer,
+			@RequestParam(value="title", required=false) String jobTitle
+			) {
+		System.out.println("/user/POST?id=" + stringID +
+				"&firstName=" + firstName +
+				"&lastName=" + lastName +
+				"&username=" + username +
+				"&password=" + password +
+				"&email=" + email +
+				"&phone=" + phone +
+				"&city=" + city +
+				"&country=" + country +
+				"&description=" + description +
+				"&stream=" + stream +
+				"&security-answer=" + securityAnswer +
+				"&title=" + jobTitle
+				);
+		
+		long id = Long.parseLong(stringID);
+		
+		IUser foundUser = userDAO.findUserById(id);
+		if (foundUser != null) {
+			System.out.println("Found");
+		}
+		
+		if (foundUser instanceof IRUser) {
+			/* TODO: update first name */
+			
+			/* TODO: update last name */
+			
+			/* TODO: update email */
+			
+			/* TODO: update phone */
+			
+			userDAO.changeCity(id, city);
+			userDAO.changeCountry(id, country);
+			//userDAO.updateDescription(id, description);
+		}
+		
+		if (foundUser instanceof Trainee) {
+			/* update stream */
+		}
+		
+		if (foundUser instanceof Consultant) {
+			//userDAO.updateJobTitle(id, jobTitle);
+		}
 		
 		/* If we are passed in an id, update that user */
 		
@@ -85,10 +142,26 @@ public class TempUserController {
 		/* Otherwise create a new user with the given parameters */
 		
 		/* We can determine the type of user to create passed on whether certain parameters are empty */
+		res.setContentType("text/html;charset=UTF-8");
+        try {
+			res.getWriter().write("/PingU/users");  // TODO: make this not hardcoded
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//return new ModelAndView("redirect:/users");
+	}
+	
+	// We don't need to delete in our app
+	/*@RequestMapping(value="/user", method=RequestMethod.DELETE)
+	public ModelAndView deleteUser(@RequestParam("id") String id) {
+		System.out.println("/user/DELETE?id=" + id);
+		
 		
 		
 		return new ModelAndView("redirect:/users");
-	}
+	}*/
 	
 
 }
