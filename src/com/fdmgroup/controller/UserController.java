@@ -144,62 +144,60 @@ public class UserController
 	// #########################User  Operations######################################
 
 	//To find users from search bar using name 
-		@RequestMapping(value="/searchUsers", method=RequestMethod.POST)
-		public void findUsersByName(HttpServletRequest req, @RequestParam("searchName") String searchName)
+	@RequestMapping(value = "/searchUsers", method = RequestMethod.POST)
+	public String findUsersByName(HttpServletRequest req, @RequestParam("searchName") String searchName)
+	{
+		// System.out.println("Inside UC findUsersByName method");
+		List<IRUser> foundUsers = null;
+		if (searchName == null || searchName == "")
 		{
-			//System.out.println("Inside UC findUsersByName method");
-			
-			if(searchName == null)
-			{
-				//System.out.println("searchName did not come thru to UC");
-				return;
-			}
-			List<IRUser> foundUsers = null;
+			foundUsers = userDAO.findAllUsers();
+		} else
+		{
 			String searchNames = searchName.toLowerCase();
 			System.out.println("String name entered: " + searchNames);
 			String NamesWithoutComma = searchNames.replace(",", " ");
 			String NamesWithoutSpaces = NamesWithoutComma.replace("\\s+", " ");
 			String[] splitNames = NamesWithoutSpaces.split(" ");
 			System.out.println("String name after filter: " + NamesWithoutSpaces);
-			if(splitNames.length <= 0)
+			if (splitNames.length <= 0)
 			{
 				System.out.println("Found 0 strings");
-				return;
+				foundUsers = userDAO.findAllUsers();
 			}
-			if(splitNames.length == 1)
+			else if (splitNames.length == 1)
 			{
 				System.out.println("Found 1 string");
-				splitNames[0] = "%"+splitNames[0] +"%";
+				splitNames[0] = "%" + splitNames[0] + "%";
 				foundUsers = userDAO.findUsersByFullName(splitNames[0], "");
-				//splitNames[1] = "";
 			}
-			if(splitNames.length >= 2)
+			if (splitNames.length >= 2)
 			{
-				splitNames[1] = "%"+splitNames[1] +"%";
+				splitNames[1] = "%" + splitNames[1] + "%";
 				System.out.println("Found 2+ strings" + splitNames.length);
 				foundUsers = userDAO.findUsersByFullName(splitNames[0], splitNames[1]);
 			}
 
-			//foundUsers = userDAO.findUsersByFullName(splitNames[0], splitNames[1]);
-			
-			if(foundUsers != null)
-			{
-				//System.out.println("Users found and in UC with users "+foundUsers.size());
-				session = req.getSession();
-				session.setAttribute("foundUsers", foundUsers);
-				for (IRUser user : foundUsers)
-				{
-//					if(user instanceof Consultant)
-//						System.out.println((Consultant)user);
-//					else if (user instanceof Trainee)
-//						System.out.println((Trainee)user);
-						System.out.println(user.getUsername());
-						System.out.println(user.getFirstName());
-				}
-			}
-			
-			//return foundUsers;
 		}
+
+		if (foundUsers != null)
+		{
+			session = req.getSession();
+			session.setAttribute("foundUsers", foundUsers);
+			for (IRUser user : foundUsers)
+			{
+				System.out.println(user.getUsername());
+				System.out.println(user.getFirstName());
+				System.out.println(user.getLastName());
+				System.out.println(user.getGroup());
+			}
+		}
+
+		session.setAttribute("errorMsg", "Oops, no user found!");
+		
+		return "searchFile";
+		
+	}
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String changeContact(HttpServletRequest req, @RequestParam("userID") Long userID,

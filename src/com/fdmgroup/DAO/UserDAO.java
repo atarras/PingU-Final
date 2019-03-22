@@ -271,6 +271,23 @@ public class UserDAO implements IUserDAO {
 		em.close();
 		return null;
 	}
+	
+	@Override
+	public List<IRUser> findAllUsers() {
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<IRUser> query = em.createNamedQuery("user.findAllUsers", IRUser.class);
+		
+		List<IRUser> users = null;
+		users = query.getResultList();
+
+		if (users != null) 
+		{
+			System.out.println("Users in DAO " + users.size());
+		}
+		System.out.println("No Users in DAO");
+		em.close();
+		return users;
+	}
 
 	@Override
 	public IRUser updateToConsultant(Long traineeId, String jobTitle, String employer) {

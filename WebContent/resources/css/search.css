@@ -1,21 +1,17 @@
-.card-group{
-	text-align:center;
-	
-}
-
 .card{
 	min-height:40%;
 	min-width:25%;
 	max-width:25%;
-	margin:0;
+	margin:0 ;
 	padding:0;
 }
 
 .card-group{
+	text-align:center;
 	top:50px;
 	max-height:100vh;
 	overflow-y:auto;
-	padding-bottom:70px;
+	padding-bottom:70px!important;
 }
 
 .search-result{

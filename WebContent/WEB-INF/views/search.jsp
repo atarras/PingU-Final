@@ -9,8 +9,8 @@
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 		
-		<link rel="stylesheet" href="<c:url value="resources/css/search.css" />" />
 	    <link rel="stylesheet" href="<c:url value="resources/css/main.css"/>" />
+		<link rel="stylesheet" href="<c:url value="resources/css/search.css" />" />
 	
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

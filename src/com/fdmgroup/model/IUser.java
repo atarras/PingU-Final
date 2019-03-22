@@ -20,7 +20,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "PINGU_USERS")
 @DiscriminatorColumn(name = "userType", discriminatorType = DiscriminatorType.STRING)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @NamedQueries({ @NamedQuery(name = "iuser.findAllUser", query = "select u FROM IUser u"),
@@ -41,7 +41,7 @@ public class IUser {
 	@NotNull(message = "user name can not be null")
 	private String username;
 
-	@Column(name = "password", length = 30, nullable = false)
+	@Column(name = "password", nullable = false)
 	@NotNull(message = "password can not be null")
 	private String password;
 

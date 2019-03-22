@@ -8,7 +8,7 @@
 		
 		<link rel="stylesheet" href="<c:url value="resources/css/right.css"/>" />
 	</head>
-	<div class="container sidebar right-sidebar">
+		<div class="container sidebar right-sidebar">
 			<!-- template for making new users on the side -->
 			<div class="media border p-3">
 				<i class="fas fa-user-circle fa-4x"></i>
@@ -18,5 +18,5 @@
 					<i class="fas fa-users fa-2x"></i>
 				</div>
 			</div>	
-	</div>
+		</div>
 </html>

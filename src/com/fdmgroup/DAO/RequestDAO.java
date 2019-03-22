@@ -54,8 +54,28 @@ public class RequestDAO {
 		query.setParameter("rId", id);
 		
 		List<Request> requests = query.getResultList();
+		em.close();
 		if(requests != null && !requests.isEmpty()){
 			return requests.get(0);
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * findAllPendingRequests uses the named query to find the request with the specified id.
+	 * 
+	 * @param id: ID of the request you want to find.
+	 * @return Request with the corresponding id.
+	 */
+	public List<Request> findAllPendingRequests(){
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<Request> query = em.createNamedQuery("request.findAllPendingRequests", Request.class);
+		
+		List<Request> requests = query.getResultList();
+		em.close();
+		if(requests != null && !requests.isEmpty()){
+			return requests;
 		} else {
 			return null;
 		}
