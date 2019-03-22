@@ -41,7 +41,7 @@ public class IUser {
 	@NotNull(message = "user name can not be null")
 	private String username;
 
-	@Column(name = "password", length = 30, nullable = false)
+	@Column(name = "password", nullable = false)
 	@NotNull(message = "password can not be null")
 	private String password;
 
