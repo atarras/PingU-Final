@@ -1,8 +1,10 @@
 package com.fdmgroup.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -25,6 +27,7 @@ import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
 import com.fdmgroup.model.Request;
+import com.fdmgroup.model.Trainee;
 
 @Controller
 public class RequestController {
@@ -37,7 +40,7 @@ public class RequestController {
 	 * Data Access Object to interact with the User table.
 	 */
 	@Autowired
-	private UserDAO userDao;
+	private UserDAO userDAO;
 	/**
 	 * Data Access Object to interact with the Request table.
 	 */
@@ -72,10 +75,10 @@ public class RequestController {
 	 * @return the .jsp file to redirect to
 	 */
 	@RequestMapping(value="/joinGroupRequest")
-	public String createJoinGroupRequest(@RequestParam(value="userID")long userId, @RequestParam(value="groupID")long groupId){
+	public String createJoinGroupRequest(HttpServletRequest request,@RequestParam(value="userID")long userId, @RequestParam(value="groupID")long groupId){
 		Request joinGroupRequest = new Request(userId, groupId, RequestType.JOIN_GROUP, "Join the group");
 		requestDao.create(joinGroupRequest);
-		return null; // Return to the necessary jsp
+		return "test"; // Return to the necessary jsp
 	}
 	
 	/**
@@ -87,10 +90,10 @@ public class RequestController {
 	 * @return the .jsp file to redirect to
 	 */
 	@RequestMapping(value="/changeEmployerRequest")
-	public String createChangeEmployerRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
+	public String createChangeEmployerRequest(HttpServletRequest request, @RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
 		Request changeEmployerRequest = new Request(userId, RequestType.CHANGE_EMPLOYER, employerName);
 		requestDao.create(changeEmployerRequest);
-		return null; // Return to the necessary jsp
+		return "test"; // Return to the necessary jsp
 	}
 	
 	/**
@@ -102,66 +105,71 @@ public class RequestController {
 	 * @return the .jsp file to redirect to
 	 */
 	@RequestMapping(value="/changeJobTitleRequest")
-	public String createChangeJobTitleRequest(@RequestParam(value="userID")long userId, @RequestParam(value="newJobTitle")String jobTitle){
+	public String createChangeJobTitleRequest(HttpServletRequest request,@RequestParam(value="userID")long userId, @RequestParam(value="newJobTitle")String jobTitle){
 		Request changeJobTitleRequest = new Request(userId, RequestType.CHANGE_JOB_TITLE, jobTitle);
 		requestDao.create(changeJobTitleRequest);
-		return null; // Return to the necessary jsp
+		return "test"; // Return to the necessary jsp
 	}
 	
-	
-//	/**
-//	 * 
-//	 * If admin approves a request, make the necessary changes to the database to fulfil the request.
-//	 * Update the request status to approve and the necessary comment.
-//	 * 
-//	 * @param requestId
-//	 * @param approveComment
-//	 * @return
-//	 */
-//	public String approveRequest(@RequestParam(value="requestID") long requestId, @RequestParam(value="comment") String approveComment){
-//		Request currRequest = requestDao.findByRequestId(requestId);
-//		boolean failedRequest = false;
-//		switch(currRequest.getRequestType()){
-//			case CREATE_USER: 
-//				userDao.activateUser(currRequest.getUserId());
-//				break;
-//			case JOIN_GROUP:
-//				Group currGroup = groupDao.findByGroupId(currRequest.getGroupId());
-//				IUser user = userDao.findUserById(currRequest.getUserId());
-//				
-//				if(user instanceof Consultant){
-//					Consultant currConsultant = (Consultant) user;
-//					// If the consultant's employer matches the name of the group, it can join the group.
-//					if(currConsultant.getEmployer().equals(currGroup.getGroupName())){
-//						failedRequest = false;
-//					} else {
-//						failedRequest = true;
-//					}
-//				} else {
-//					// If the user is a trainee, they can only join FDM_GROUP
-//					if(currGroup.getGroupName().equals(Employer.FDM_GROUP)){
-//						failedRequest =  false;
-//					} else {
-//						failedRequest = true;
-//					}
-//				}
-//				
-//				break;
-//			case CHANGE_EMPLOYER:
-//				Employer newEmployer = Employer.valueOf(Employer.class, currRequest.getComment());
-//				//userDao.updateEmployer(currRequest.getUserId(), newEmployer);
-//				break;
-//			case CHANGE_JOB_TITLE:
-//				userDao.updateJobTitle(currRequest.getUserId(), currRequest.getComment());
-//				break;
-//		}
-//		if(!failedRequest){
-//			currRequest.setRequestStatus(RequestStatus.APPROVE);
-//			currRequest.setComment(approveComment);
-//			requestDao.update(currRequest);
-//		} 
-//		
-//		
-//		return null; // Return to the necessary jsp
-//	}
+	/**
+	 * 
+	 * If admin approves a request, make the necessary changes to the database to fulfil the request.
+	 * Update the request status to approve and the necessary comment.
+	 * 
+	 * @param requestId
+	 * @return
+	 */
+	@RequestMapping(value="approveRequest")
+	public String approveRequest(HttpServletRequest request,@RequestParam(value="requestID") long requestId){
+		String approvedComment = "Approved";
+		Request currRequest = requestDao.findByRequestId(requestId);
+		boolean failedRequest = false;
+		switch(currRequest.getRequestType()){
+			case CREATE_USER: 
+				userDAO.activateUser(currRequest.getUserId());
+				break;
+			case JOIN_GROUP:
+				Group currGroup = groupDao.findByGroupId(currRequest.getGroupId());
+				IUser user = userDAO.findUserById(currRequest.getUserId());
+			
+				if(user instanceof Consultant){
+					Employer consultantEmployer = Employer.valueOf(Employer.class, ((Consultant) user).getEmployer());
+					// If the consultant's employer matches the name of the group, it can join the group.
+					if(consultantEmployer.equals(currGroup.getGroupName())){
+						userDAO.updateGroup(user.getUserId(), currGroup);
+						groupDao.addGroupMember(currGroup, user);
+						break;
+					} else {
+						failedRequest = true;
+						break;
+					}
+				} else {
+					// If the user is a trainee, they can only join FDM_GROUP
+					if(currGroup.getGroupName().equals(Employer.FDM_GROUP)){
+						userDAO.updateGroup(user.getUserId(), currGroup);
+						groupDao.addGroupMember(currGroup, user);
+						failedRequest = false;
+						System.out.println(failedRequest);
+						break;
+					} else {
+						failedRequest = true;
+						break;
+					}
+				}
+				
+			case CHANGE_EMPLOYER:
+				userDAO.updateEmployer(currRequest.getUserId(), currRequest.getComment());
+				break;
+			case CHANGE_JOB_TITLE:
+				userDAO.updateJobTitle(currRequest.getUserId(), currRequest.getComment());
+				break;
+		}
+		if(!failedRequest){
+			currRequest.setRequestStatus(RequestStatus.APPROVE);
+			currRequest.setComment(approvedComment);
+			requestDao.update(currRequest);
+		} 
+		
+		return null; // Return to the necessary jsp
+	}
 }

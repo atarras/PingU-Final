@@ -54,6 +54,7 @@ public class GroupDAO {
 		query.setParameter("gId", id);
 		
 		List<Group> groups = query.getResultList();
+		em.close();
 		if(groups != null && !groups.isEmpty()){
 			return groups.get(0);
 		} else {
@@ -73,6 +74,7 @@ public class GroupDAO {
 		query.setParameter("gName", name);
 		
 		List<Group> groups = query.getResultList();
+		em.close();
 		if(groups != null && !groups.isEmpty()){
 			return groups.get(0);
 		} else {
@@ -107,12 +109,32 @@ public class GroupDAO {
 	 * 
 	 * @param group: The group we want to update the list of group members
 	 */
-	public void updateGroupMembers(Group group){
+	public void addGroupMember(Group currGroup, IUser currUser){
 		EntityManager em = connection.getEntityManager();
-		Group foundGroup = em.find(Group.class, group.getGroupId());
-		List<IUser> newMembers = group.getGroupMembers();
+		Group foundGroup = em.find(Group.class, currGroup.getGroupId());
 		
 		em.getTransaction().begin();
+		List<IUser> newMembers = foundGroup.getGroupMembers();
+		newMembers.add(currUser);
+		foundGroup.setGroupMembers(newMembers);
+		em.getTransaction().commit();
+		
+		em.close();
+	}
+	
+	/**
+	 * 
+	 * Removes the user from the group.
+	 * 
+	 * @param group: The group we want to update the list of group members
+	 */
+	public void removeGroupMember(Group currGroup, IUser currUser){
+		EntityManager em = connection.getEntityManager();
+		Group foundGroup = em.find(Group.class, currGroup.getGroupId());
+		
+		em.getTransaction().begin();
+		List<IUser> newMembers = foundGroup.getGroupMembers();
+		newMembers.remove(currUser);
 		foundGroup.setGroupMembers(newMembers);
 		em.getTransaction().commit();
 		
