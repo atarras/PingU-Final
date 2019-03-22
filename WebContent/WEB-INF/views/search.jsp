@@ -22,83 +22,21 @@
 			<jsp:include page="left.jsp" />
 			<div class="container-fluid content">
 				<div class="search-result">
-				5 search results
+				${foundUsers.size()} search results
 				</div>
 				<div class="card-group">
 				<!-- search result template -->
-					<div class="card">
-						<i class="fas fa-user-circle fa-4x"></i>
-						<div class="card-body">
-							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					<c:forEach items="${foundUsers}" var="found" varStatus="status">
+						<div class="card">
+							<i class="fas fa-user-circle fa-4x"></i>
+							<div class="card-body">
+								<div class="card-block">
+									<h5 class="card-title">${found.getFirstName() } ${found.getLastName() } </h5>
+									<p class="card-text">${found.getDescription() }</p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="card">
-						<i class="fas fa-user-circle fa-4x"></i>
-						<div class="card-body">
-							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<i class="fas fa-user-circle fa-4x"></i>
-						<div class="card-body">
-							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<i class="fas fa-user-circle fa-4x"></i>
-						<div class="card-body">
-							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<i class="fas fa-user-circle fa-4x"></i>
-						<div class="card-body">
-							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<i class="fas fa-user-circle fa-4x"></i>
-						<div class="card-body">
-							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<i class="fas fa-user-circle fa-4x"></i>
-						<div class="card-body">
-							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					<div class="card">
-						<i class="fas fa-user-circle fa-4x"></i>
-						<div class="card-body">
-							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							</div>
-						</div>
-					</div>
-					
+		    		</c:forEach>
 				</div>
 			</div>
 			<jsp:include page="right.jsp" />
