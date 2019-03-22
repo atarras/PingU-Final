@@ -1,0 +1,63 @@
+.left-form{
+	position:relative;
+	width:50%;
+	height:calc(100% - 50px);
+	float:left;
+	overflow:hidden;
+}
+
+.right-form{
+	position:relative;
+	width:50%;
+	height:95vh;
+	float:left;
+	overflow-x:hidden;
+}
+
+.personal-info{
+	height:auto;
+}
+
+.fas.fa-edit.fa-2x{
+	position:relative;
+	float:right;
+	z-index:1000;
+}
+
+.user-edit{
+	float:right;
+	position:relative;
+	bottom:0;
+}
+
+.card{
+	margin:0 auto;
+	top:5vh;
+	text-align: center;
+	border:none;
+}
+
+.card-text{
+	text-align:left;
+}
+
+.card-body a{
+	float:left;
+}
+
+.personal-info{
+	position:relative;
+	top:5vh;
+	padding-right:10vh;
+}
+
+.security{
+	position:relative;
+	padding-right:10vh;
+}
+
+.accordion{
+	position:relative;
+	top:5vh;
+}
+
