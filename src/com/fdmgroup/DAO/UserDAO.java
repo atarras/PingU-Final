@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.Group;
@@ -18,12 +19,13 @@ public class UserDAO implements IUserDAO {
 	@Autowired
 	private DBConnection connection;
 
-	
-	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
+
 	@Override
 	public IUser create(IUser user) {
 		EntityManager em = connection.getEntityManager();
-
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		em.getTransaction().begin();
 		em.persist(user);
 		em.getTransaction().commit();
@@ -130,9 +132,12 @@ public class UserDAO implements IUserDAO {
 		query.setParameter("username", username);
 		List<IUser> resultList = query.getResultList();
 		em.close();
-		if (resultList != null && resultList.size() >= 1)
-			if (resultList.get(0).isStatus())
-				return resultList.get(0);
+		if (resultList != null && resultList.size() >= 1) {
+			if (passwordEncoder.matches(password, resultList.get(0).getPassword())) {
+				if (resultList.get(0).isStatus())
+					return resultList.get(0);
+			}
+		}
 		return null;
 
 	}
@@ -222,7 +227,7 @@ public class UserDAO implements IUserDAO {
 		em.getTransaction().commit();
 		em.close();
 		return foundUser;
-		
+
 	}
 
 	@Override
@@ -248,20 +253,18 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public List<IRUser> findUsersByFullName(String fname, String lname)
-	{
+	public List<IRUser> findUsersByFullName(String fname, String lname) {
 		EntityManager em = connection.getEntityManager();
 		TypedQuery<IRUser> query = em.createNamedQuery("user.findByFullName", IRUser.class);
 		query.setParameter("fname", fname);
 		query.setParameter("lname", lname);
-		
+
 		List<IRUser> users = query.getResultList();
-		
-		if(users != null)
-		{
+
+		if (users != null) {
 			System.out.println("Users in DAO " + users.size());
 			return users;
-			
+
 		}
 		System.out.println("No Users in DAO");
 		em.close();
@@ -272,24 +275,20 @@ public class UserDAO implements IUserDAO {
 	public IRUser updateToConsultant(Long traineeId, String jobTitle, String employer) {
 		EntityManager em = connection.getEntityManager();
 		IRUser foundUser = em.find(IRUser.class, traineeId);
-		
-		if(foundUser==null){
+
+		if (foundUser == null) {
 			return null;
 		}
-		
-		Consultant newConsultant = (Consultant)foundUser;
+
+		Consultant newConsultant = (Consultant) foundUser;
 		newConsultant.setCurrentTitle(jobTitle);
 		newConsultant.setEmployer(jobTitle);
 		newConsultant.setStatus(true);
 		IUser createdConsultant = create(newConsultant);
-		if(createdConsultant == null)
+		if (createdConsultant == null)
 			return null;
-		return (IRUser)createdConsultant;
-		
+		return (IRUser) createdConsultant;
+
 	}
 
-	
-
 }
-
-

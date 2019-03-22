@@ -1,0 +1,25 @@
+.card-group{
+	text-align:center;
+	
+}
+
+.card{
+	min-height:40%;
+	min-width:25%;
+	max-width:25%;
+	margin:0;
+	padding:0;
+}
+
+.card-group{
+	top:50px;
+	max-height:100vh;
+	overflow-y:auto;
+	padding-bottom:70px;
+}
+
+.search-result{
+	min-height:20px;
+	text-align:right;
+	padding-right:2vw;
+}
