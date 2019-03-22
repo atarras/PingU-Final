@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.DAO.UserDAO;
+import com.fdmgroup.helpers.StringHelpers;
 import com.fdmgroup.model.Admin;
 import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.IRUser;
@@ -131,13 +132,12 @@ public class TempUserController {
 			
 			/* TODO: update email */
 			
-			/* TODO: update phone */
+			if (StringHelpers.isData(phone)) userDAO.updatePhoneNumber(id, phone);
+			if (StringHelpers.isData(city)) userDAO.changeCity(id, city);
+			if (StringHelpers.isData(country)) userDAO.changeCountry(id, country);
+			if (StringHelpers.isData(description)) userDAO.updateDescription(id, description);
 			
-			userDAO.changeCity(id, city);
-			userDAO.changeCountry(id, country);
-			//userDAO.updateDescription(id, description);
-			
-			if (statusString != null && statusString.length() > 0) {
+			if (StringHelpers.isData(statusString)) {
 				boolean status = Boolean.parseBoolean(statusString);
 				if (status) {
 					userDAO.activateUser(id);
@@ -146,14 +146,14 @@ public class TempUserController {
 				}
 			}
 			
-			
-			if (visibility != null && visibility.length() > 0) {
+			if (StringHelpers.isData(visibility)) {
 				userDAO.changeVissibility(id, Boolean.parseBoolean(visibility));
 			}
 		}
 		
 		if (foundUser instanceof Trainee) {
 			/* update stream */
+			
 		}
 		
 		if (foundUser instanceof Consultant) {
