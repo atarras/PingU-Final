@@ -84,8 +84,7 @@ public class GroupController {
 		Group currGroup = groupDao.findByGroupId(groupID);
 		IUser user = userDao.findUserById(userID); 
 		userDao.updateGroup(user.getUserId(), currGroup);
-		currGroup.addUserToGroup(user);
-		groupDao.updateGroupMembers(currGroup);		
+		groupDao.addGroupMember(currGroup, user);		
 		//TODO Return proper jsp file
 		return null;
 	}
