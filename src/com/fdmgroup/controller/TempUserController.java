@@ -135,7 +135,7 @@ public class TempUserController {
 			if (StringHelpers.isData(phone)) userDAO.updatePhoneNumber(id, phone);
 			if (StringHelpers.isData(city)) userDAO.changeCity(id, city);
 			if (StringHelpers.isData(country)) userDAO.changeCountry(id, country);
-			if (StringHelpers.isData(description)) userDAO.updateDescription(id, description);
+			//if (StringHelpers.isData(description)) userDAO.updateDescription(id, description);
 			
 			if (StringHelpers.isData(statusString)) {
 				boolean status = Boolean.parseBoolean(statusString);
