@@ -48,7 +48,7 @@ public class LoginController {
 	public String login(
 			@RequestParam("username") String username,
 			@RequestParam("password") String password,
-			HttpServletRequest req) {
+			HttpServletRequest req, Model model) {
 		
 		System.out.println("/login/POST?username=" + username +
 			"&password=" + password);
@@ -68,6 +68,7 @@ public class LoginController {
 		
 		if (loginUser==null) {
 			session.setAttribute("passwordIncorrect", true);
+			model.addAttribute("newUser", new IRUser());
 			return "login";
 		} 
 		session.setAttribute("newUser", loginUser);
