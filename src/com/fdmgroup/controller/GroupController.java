@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -149,5 +148,62 @@ public class GroupController {
 		}
 	}
 
+	/** Group Controller
+	 * 
+	 * Retrieve the list of groups based on search criteria
+	 * @RequestParam name: Name of the group you would like to find by full/partial string search.
+	 * @return Group(s) with the corresponding name.
+	 */
+	@RequestMapping("/findGroups")
+	public void findGroupByPartialName(HttpServletRequest request, @RequestParam String gSearchName)
+	{
+		HttpSession session = request.getSession();
+		
+		List<Group> foundGroups = null;
+		
+		String searchNameLower = gSearchName.toLowerCase();
+		System.out.println("String name entered: " + searchNameLower);
+		String NamesWithoutComma = searchNameLower.replace(",", " ");
+		String NamesWithoutUnderscore = NamesWithoutComma.replace("_", " ");
+		String NamesWithoutSpaces = NamesWithoutUnderscore.replace("\\s+", " ");
+		String[] splitNames = NamesWithoutSpaces.split(" ");
+		
+		System.out.println("String name after filters: " + NamesWithoutSpaces);
+		
+		String gName = "";
+		
+		if(splitNames.length <= 0)
+		{
+			System.out.println("Found 0 strings");
+			//return;
+		}
+		else if(splitNames.length >= 1)
+		{
+			System.out.println("Found 1+ string");
+			
+			for(int i=0; i < splitNames.length -1; i++)
+			{
+				gName = "%" + splitNames[i];
+			}
+			gName = gName + "%";
+			
+			foundGroups = groupDao.findByPartialName(gName);
+			
+			if(foundGroups != null)
+			{
+				session.setAttribute("foundGroups", foundGroups);
+			}
+			else
+			{
+				session.setAttribute("errorMsg", "No Groups found based on search parameters!");
+			}
+		}
+		else
+		{
+			session.setAttribute("errorMsg", "Invalid search parameters!");
+		}
+		
+		
+	}
 	
 }

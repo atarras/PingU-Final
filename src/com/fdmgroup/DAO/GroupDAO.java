@@ -141,6 +141,27 @@ public class GroupDAO {
 		em.close();
 	}
 	
+	/**
+	 * 
+	 * findByPartialName uses the named query to find the group with partial group name and wild characters.
+	 * 
+	 * @param name: Name of the group you would like to find.
+	 * @return Group(s) with the corresponding name.
+	 */
+	public List<Group> findByPartialName(String name){
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<Group> query = em.createNamedQuery("group.findByPartialName", Group.class);
+		query.setParameter("gName", name);
+		
+		List<Group> groups = query.getResultList();
+		if(groups != null && !groups.isEmpty()){
+			return groups;
+		} 
+		else 
+		{
+			return null;
+		}
+	}
 	
 	
 }
