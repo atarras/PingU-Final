@@ -50,8 +50,12 @@ $(document).ready(function() {
 		/* Get the text of each td in the row and use it as default value of our edit form */
 		$(this).closest("tr").find("td").each(function() {
 			var columnClass = $(this).attr("class");
-			$("#edit-" + columnClass).val($(this).text().trim());
-			$("#edit-" + columnClass).text($(this).text().trim());
+			var value = $(this).text().trim()
+			$("#edit-" + columnClass).val(value);
+			$("#edit-" + columnClass).text(value);
+			
+			$("#edit-" + columnClass).attr("data-original-value", value);
+			
 		});
 		
 		/* Set the starting version of trainee status toggle */
@@ -165,16 +169,33 @@ $(document).ready(function() {
 		$($(this).siblings("input")[0]).val("true");
 	});
 	
+	
+	/**
+	 * Toggling a icon button should mark its group as editted
+	 */
 	$("button.edittable").on("click", function() {
 		$(this).parent().find("button").addClass("editted");
 	});
 	
+	/**
+	 * Changing the value of an edittable input should mark it as editted
+	 */
+	$("input.edittable").on("blur", function() {
+		/* Mark input as editted if its value has changed from original */
+		if ($(this).val() != $(this).attr("data-original-value")) {
+			$(this).addClass("editted");
+		} else {
+			console.log("false");
+			$(this).removeClass("editted");
+		}
+		
+	});
 	
 	/**
 	 * Closing the edit modal should remove all color-coded editted fields
 	 */
 	$("#edit-trainee-modal").on("hidden.bs.modal", function () {
-		$(this).find("button").removeClass("editted");
+		$(this).find("button, input").removeClass("editted");
 	});
 	
 	

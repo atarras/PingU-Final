@@ -23,7 +23,7 @@
     cursor: pointer;
 }
 
-.editted, .editted:hover {
+input.editted, button.editted {
     color: green;
 }
 

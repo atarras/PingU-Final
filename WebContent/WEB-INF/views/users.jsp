@@ -342,43 +342,43 @@
               <div class="form-group">
                 <div class="row">
                   <div class="col col-md-6">
-                    <input type="text" id="edit-trainee-firstname" class="form-control" name="firstName" placeholder="First Name" />
+                    <input type="text" id="edit-trainee-firstname" class="form-control edittable" name="firstName" placeholder="First Name" />
                   </div>
                   <div class="col col-md-6">
-                    <input type="text" id="edit-trainee-lastname" class="form-control" name="lastName" placeholder="Last Name" />
+                    <input type="text" id="edit-trainee-lastname" class="form-control edittable" name="lastName" placeholder="Last Name" />
                   </div>
                 </div>
               </div>
               
               <div class="form-group">
-                <input type="text" id="edit-trainee-username" class="form-control" name="username" placeholder="Username" />
+                <input type="text" id="edit-trainee-username" class="form-control edittable" name="username" placeholder="Username" />
               </div>
               <div class="form-group">
-                <input type="password" id="edit-trainee-password" class="form-control" name="password" placeholder="Password" />
+                <input type="password" id="edit-trainee-password" class="form-control edittable" name="password" placeholder="Password" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-email" class="form-control" name="email" placeholder="Email" />
+                <input type="text" id="edit-trainee-email" class="form-control edittable" name="email" placeholder="Email" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-phone" class="form-control" name="phone" placeholder="Phone Number" />
+                <input type="text" id="edit-trainee-phone" class="form-control edittable" name="phone" placeholder="Phone Number" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-city" class="form-control" name="city" placeholder="City" />
+                <input type="text" id="edit-trainee-city" class="form-control edittable" name="city" placeholder="City" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-country" class="form-control" name="country" placeholder="Country" />
+                <input type="text" id="edit-trainee-country" class="form-control edittable" name="country" placeholder="Country" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-description" class="form-control" name="description" placeholder="Description" />
+                <input type="text" id="edit-trainee-description" class="form-control edittable" name="description" placeholder="Description" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-stream" class="form-control" name="stream" placeholder="Stream" />
+                <input type="text" id="edit-trainee-stream" class="form-control edittable" name="stream" placeholder="Stream" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-linkedin" class="form-control" name="linkedin" placeholder="LinkedIn" />
+                <input type="text" id="edit-trainee-linkedin" class="form-control edittable" name="linkedin" placeholder="LinkedIn" />
               </div>
               <div class="form-group">
-                <input type="text" id="edit-trainee-security-answer" class="form-control" name="security-answer" placeholder="Security Answer" />
+                <input type="text" id="edit-trainee-security-answer" class="form-control edittable" name="security-answer" placeholder="Security Answer" />
               </div>
               
               <!-- Place status and visibility toggles here -->
