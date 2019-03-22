@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -27,7 +26,6 @@ import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
 import com.fdmgroup.model.Request;
-import com.fdmgroup.model.Trainee;
 
 @Controller
 public class RequestController {
@@ -168,8 +166,33 @@ public class RequestController {
 			currRequest.setRequestStatus(RequestStatus.APPROVE);
 			currRequest.setComment(approvedComment);
 			requestDao.update(currRequest);
+			request.setAttribute("approvedRequestMsg", "Request has been approved");
 		} 
+		if(failedRequest){
+			request.setAttribute("deniedRequestMsg", "Request has been denied");
+		}
 		
-		return null; // Return to the necessary jsp
+		return "test"; // Return to the necessary jsp
 	}
+	
+	/**
+	 * 
+	 * If admin denies a request, the request status is denied and the comment given is stored in the database.
+	 * Anything requested by the user will not be changed in the database.
+	 * 
+	 * @param request
+	 * @param requestId: long representing the request being denied
+	 * @param comment: string representing the reason for request being denied
+	 * @return
+	 */
+	@RequestMapping("/denyRequest")
+	public String denyRequest(HttpServletRequest request,@RequestParam(value="requestID") long requestId, @RequestParam(value="denyComment") String comment){
+		Request currRequest = requestDao.findByRequestId(requestId);
+		String deniedComment = "DENIED: " + comment;
+		currRequest.setRequestStatus(RequestStatus.DENY);
+		currRequest.setComment(deniedComment);
+		requestDao.update(currRequest);
+		return "test"; // Return to the necessary jsp.
+	}
+	
 }
