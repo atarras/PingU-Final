@@ -23,6 +23,10 @@
     cursor: pointer;
 }
 
+.editted, .editted:hover {
+    color: green;
+}
+
 /* #delete-trainee {
     color:red;
 }

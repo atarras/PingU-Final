@@ -90,6 +90,8 @@ public class TempUserController {
 			@RequestParam("description") String description,
 			@RequestParam("stream") String stream,
 			@RequestParam("security-answer") String securityAnswer,
+			@RequestParam("visibility") String visibility,
+			@RequestParam("status") String statusString,
 			@RequestParam(value="title", required=false) String jobTitle
 			) {
 		System.out.println("/user/POST?id=" + stringID +
@@ -104,6 +106,8 @@ public class TempUserController {
 				"&description=" + description +
 				"&stream=" + stream +
 				"&security-answer=" + securityAnswer +
+				"&visibility=" + visibility +
+				"&status=" + statusString +
 				"&title=" + jobTitle
 				);
 		
@@ -112,9 +116,15 @@ public class TempUserController {
 		IUser foundUser = userDAO.findUserById(id);
 		if (foundUser != null) {
 			System.out.println("Found");
+			
+			
+			
+		} else {
+			// return error message or page
 		}
 		
 		if (foundUser instanceof IRUser) {
+			System.out.println("is IRUser");
 			/* TODO: update first name */
 			
 			/* TODO: update last name */
@@ -126,6 +136,20 @@ public class TempUserController {
 			userDAO.changeCity(id, city);
 			userDAO.changeCountry(id, country);
 			//userDAO.updateDescription(id, description);
+			
+			if (statusString != null && statusString.length() > 0) {
+				boolean status = Boolean.parseBoolean(statusString);
+				if (status) {
+					userDAO.activateUser(id);
+				} else {
+					userDAO.delete(id);
+				}
+			}
+			
+			
+			if (visibility != null && visibility.length() > 0) {
+				userDAO.changeVissibility(id, Boolean.parseBoolean(visibility));
+			}
 		}
 		
 		if (foundUser instanceof Trainee) {

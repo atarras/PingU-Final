@@ -86,16 +86,10 @@
                 <td class="trainee-linkedin">${user.getLinkedInUrl()}</td>
                 <td class="trainee-security-answer">${user.getSecurityAnswer()}</td>
                 <td class="trainee-status">
-                ${user.isStatus()}
-                    <!-- <button type="button" class="btn btn-primary">r</button>
-                    <button type="button" class="btn btn-danger">y</button> -->
-                  
+                  <p style="display:none;">${user.isStatus()}</p>
                 </td>
                 <td class="trainee-visibility">
-                ${user.isVisibility()}
-                <!-- <button type="button" class="btn btn-primary"><i class="fas fa-eye"></i></button> -->
-                
-                <!-- <i class="fas fa-eye-slash"></i> -->
+                  <p style="display:none;">${user.isVisibility()}</p>
                 </td>
                 <td class="trainee-actions" align="center">
                   <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-trainee-modal"></i>
@@ -388,7 +382,22 @@
               </div>
               
               <!-- Place status and visibility toggles here -->
-              
+              <div class="form-group">
+                <div class="row">
+                  <div class="col col-md-6">
+                    <label>Status</label>
+                    <button type="button" id="trainee-status-open" class="btn edittable"><i class="fas fa-lock-open"></i></button>
+                    <button type="button" id="trainee-status-close" class="btn edittable"><i class="fas fa-lock"></i></button>
+                    <input type="text" id="edit-trainee-status" class="form-control" name="status" style="display:none" />
+                  </div>
+                  <div class="col col-md-6">
+                    <label>Visibility</label>
+                    <button type="button" id="trainee-set-visible" class="btn edittable"><i class="fas fa-eye"></i></button>
+                    <button type="button" id="trainee-set-invisible" class="btn edittable"><i class="fas fa-eye-slash"></i></button>
+                    <input type="text" id="edit-trainee-visibility" class="form-control" name="visibility" style="display:none" />
+                  </div>
+                </div>
+              </div>
               
               <div class="form-group">
                 <button type="submit" id="confirm-edit-trainee" class="btn btn-primary">Confirm Edit</button>
