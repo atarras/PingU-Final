@@ -22,7 +22,7 @@
 	  	<jsp:include page="left.jsp" />
 		<div class="container content">
 			<h1 class="welcome-header">
-			Welcome
+			Welcome ${newUser.getFirstName() } ${newUser.getLastName() }
 			</h1>
 			<div class="message-content">
 				<ul class="nav nav-tabs">
