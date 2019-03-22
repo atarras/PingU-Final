@@ -134,7 +134,7 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div id="edit-trainee-body" class="modal-body">
+          <div class="modal-body">
           
             <div class="form-check">
               <input class="form-check-input column-toggle" type="checkbox" id="show-trainee-id" checked>
@@ -278,11 +278,36 @@
               </div>
               
               <div class="form-group">
-                <sf:input type="password" id="s" class="form-control" path="securityAnswer" placeholder="Security Answer" required="required" />  
+                <sf:input type="text" class="form-control" path="securityAnswer" placeholder="Security Answer" required="required" />  
+              </div>
+              <div class="form-group">
+                <sf:input type="text" class="form-control" path="email" placeholder="Email" required="required" />  
+              </div>
+              <div class="form-group">
+                <sf:input type="text" class="form-control" path="phoneNumber" placeholder="Phone Number" required="required" />  
               </div>
               
               <div class="form-group">
-                <button type="submit" id="sign-up-button" class="btn btn-primary btn-lg btn-block login-btn">Create Trainee</button>
+                <div class="row">
+                  <div class="col col-md-6">
+                    <sf:input type="text" class="form-control" path="city" placeholder="City" required="required" />  
+                  </div>
+                  <div class="col col-md-6">
+                    <sf:input type="text" class="form-control" path="country" placeholder="Country" required="required" />  
+                  </div>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <sf:input type="text" class="form-control" path="linkedInUrl" placeholder="LinkedIn" />  
+              </div>
+              
+              <div class="form-group">
+                <sf:input type="text" class="form-control" path="stream" placeholder="Stream" required="required" />  
+              </div>
+              
+              <div class="form-group">
+                <button type="submit" id="confirm-create-trainee" class="btn btn-primary btn-lg btn-block login-btn">Create Trainee</button>
               </div>
             
             </sf:form>
@@ -302,8 +327,9 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div id="edit-trainee-body" class="modal-body">
+          <div class="modal-body">
           
+            <div id="edit-trainee-body">
             <form action="user" method="post">
             
               <div class="form-group">
@@ -352,19 +378,25 @@
               
               
               <div class="form-group">
-                <button type="submit" id="sign-up-button" class="btn btn-primary btn-lg btn-block login-btn">Confirm</button>
+                <button type="submit" id="confirm-edit-trainee" class="btn btn-primary">Confirm Edit</button>
+                <a class="delete-user">Delete Trainee</a>
+                
               </div>
             
             </form>
+            </div>
             
+            <div id="delete-trainee-body" style="display:none">
+                Delete user?
+            
+            </div>
             
             
           </div>
         </div>
       </div>
     </div>
-    
-    </div>
+
     <jsp:include page="footer.jsp" />
   </div>
 

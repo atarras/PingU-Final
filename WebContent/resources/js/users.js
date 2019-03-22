@@ -52,4 +52,14 @@ $(document).ready(function() {
 		}
 	});
 	
+	/**
+	 * Prompts whether you want to delete a user
+	 */
+	$(".delete-user").on("click", function() {
+		console.log("prompt user deletion");
+		$("#edit-trainee-body").css("display", "none");
+		$("#delete-trainee-body").css("display", "");
+	});
+	
+	
 });

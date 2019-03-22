@@ -67,12 +67,9 @@ public class LoginController {
 //		}
 		
 		if (loginUser==null) {
-			session.setAttribute("usernameIncorrect", true);
-			return "login";
-		} else if (!password.equals(loginUser.getPassword())) {
 			session.setAttribute("passwordIncorrect", true);
 			return "login";
-		}
+		} 
 		session.setAttribute("newUser", loginUser);
 		return "home";
 	}
