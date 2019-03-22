@@ -2,9 +2,12 @@ package com.fdmgroup.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
@@ -26,8 +29,18 @@ import com.fdmgroup.enums.RequestType;
 	@NamedQuery(name="request.findAllPendingRequests", 
 		query="SELECT r "
 			+ "FROM Request r "
-			+ "WHERE r.requestStatus = com.fdmgroup.enums.RequestStatus.PENDING")
+			+ "WHERE r.requestStatus = com.fdmgroup.enums.RequestStatus.PENDING"),
+	@NamedQuery(name="request.findAllRequests", query="SELECT r FROM Request r "),
+	@NamedQuery(name="request.findAllApprovedRequests", 
+	query="SELECT r "
+			+ "FROM Request r "
+			+ "WHERE r.requestStatus = com.fdmgroup.enums.RequestStatus.APPROVE"),
+	@NamedQuery(name="request.findAllDeniedRequests", 
+	query="SELECT r "
+			+ "FROM Request r "
+			+ "WHERE r.requestStatus = com.fdmgroup.enums.RequestStatus.DENY")
 })
+
 public class Request {
 	
 	/**
@@ -42,8 +55,9 @@ public class Request {
 	/**
 	 * The id of the user that created the request.
 	 */
-	@Column(name="REQUEST_USER_ID")
-	private long userId;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="REQUEST_USER")
+	private IRUser requestUser;
 	
 	/**
 	 * The id of the group that the user may request access to.
@@ -78,13 +92,13 @@ public class Request {
 	
 	/**
 	 *  Constructor used for all RequestType except for JOIN_GROUP
-	 * @param userId
+	 * @param user
 	 * @param requestType
 	 * @param comment
 	 */
-	public Request(long userId, RequestType requestType, String comment) {
+	public Request(IRUser user, RequestType requestType, String comment) {
 		super();
-		this.userId = userId;
+		this.requestUser = user;
 		this.requestType = requestType;
 		this.comment = comment;
 		this.requestStatus = RequestStatus.PENDING;
@@ -92,15 +106,15 @@ public class Request {
 
 	/**
 	 * Constructor used for RequestType JOIN_GROUP
-	 * @param userId
+	 * @param user
 	 * @param groupId
 	 * @param requestType
 	 * @param comment
 	 */
 
-	public Request(long userId, long groupId, RequestType requestType, String comment) {
+	public Request(IRUser user, long groupId, RequestType requestType, String comment) {
 		super();
-		this.userId = userId;
+		this.requestUser = user;
 		this.groupId = groupId;
 		this.requestType = requestType;
 		this.comment = comment;
@@ -115,12 +129,12 @@ public class Request {
 		this.requestId = requestId;
 	}
 
-	public long getUserId() {
-		return userId;
+	public IRUser getRequestUser() {
+		return requestUser;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setRequestUser(IRUser requestUser) {
+		this.requestUser = requestUser;
 	}
 
 	public long getGroupId() {
@@ -157,10 +171,7 @@ public class Request {
 
 	@Override
 	public String toString() {
-		return "Request [requestId=" + requestId + ", userId=" + userId + ", groupId=" + groupId + ", requestType="
-				+ requestType + ", comment=" + comment + ", requestStatus=" + requestStatus + "]";
-	}
-	
-	
-	
+		return "Request [requestId=" + requestId + ", requestUser=" + requestUser + ", groupId=" + groupId
+				+ ", requestType=" + requestType + ", comment=" + comment + ", requestStatus=" + requestStatus + "]";
+	}	
 }
