@@ -32,7 +32,7 @@
 						<a class="nav-link" href="#"><i class="far fa-envelope"></i></a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href=logouttest><i class="fas fa-sign-out-alt"></i></a>
+						<a class="nav-link" href="logOut"><i class="fas fa-sign-out-alt"></i></a>
 					</li>
 				</ul>
 				<form class="form-inline my-2 my-lg-0" action="search" method="GET">

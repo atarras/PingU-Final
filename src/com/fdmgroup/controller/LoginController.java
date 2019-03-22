@@ -155,14 +155,15 @@ public class LoginController {
 		return "redirect:/signUpRequest";
 	}
 	
-	@RequestMapping(value="/logOut", method=RequestMethod.POST)
-	public String logOut(HttpServletRequest req){
+	@RequestMapping(value="/logOut", method=RequestMethod.GET)
+	public String logOut(HttpServletRequest req, Model model){
 		HttpSession session = req.getSession();
 		session.removeAttribute("newUser");
+		System.out.println("logged out");
 		session.invalidate();
 		req.setAttribute("infoMsg", "logged out");
 		/* TODO: add the correct view string*/
-		return null;
+		return "redirect:/login";
 
 	}
 	
