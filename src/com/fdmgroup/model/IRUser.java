@@ -15,7 +15,8 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
 	@NamedQuery(name="user.findByFullName", query="SELECT u FROM IRUser u WHERE u.status = TRUE AND "
 					+ "LOWER(u.firstName) LIKE :fname OR LOWER(u.lastName) LIKE :lname "
-					+ "OR LOWER(u.firstName) LIKE :lname OR LOWER(u.lastName) LIKE :fname ")
+					+ "OR LOWER(u.firstName) LIKE :lname OR LOWER(u.lastName) LIKE :fname "),
+	@NamedQuery(name = "user.findAllUsers", query = "SELECT u FROM IRUser u WHERE u.status = TRUE")
 })
 public class IRUser extends IUser {
 	@Column(name = "description")

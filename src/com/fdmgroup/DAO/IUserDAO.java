@@ -32,6 +32,6 @@ public interface IUserDAO {
 	IRUser changeCountry(Long userId, String newCountry);
 	List<IRUser> findUsersByFullName(String fname, String lname);
 	IRUser updateToConsultant(Long traineeId, String jobTitle, String employer);
-
+	List<IRUser> findAllUsers();
 }
 
