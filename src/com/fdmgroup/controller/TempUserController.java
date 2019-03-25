@@ -41,31 +41,83 @@ public class TempUserController {
 		//getAllUsers(req);
 		/*System.out.println(req.getSession().getAttribute("users"));*/
 		
+		List<IUser> users = null;
 		
 		/* Set session attribute for all Trainees */
-		//getUserByType(req, Trainee.class);
-		
 		List<Trainee> trainees = new ArrayList<>();
-		for (IUser user : userDAO.getUserByType(Trainee.class)) {
-			if (user instanceof Trainee) trainees.add((Trainee) user);
+		users = userDAO.getUserByType(Trainee.class);
+		if (users != null) {
+			for (IUser user : users) {
+				if (user instanceof Trainee) trainees.add((Trainee) user);
+			}
 		}
-		
 		req.getSession().setAttribute("trainees", trainees);
 		
 		/* Set session attribute for all Consultants */
-		req.getSession().setAttribute("consultants", userDAO.getUserByType(Consultant.class));
+		List<Consultant> consultants = new ArrayList<>();
+		users = userDAO.getUserByType(Consultant.class);
+		if (users != null) {
+			for (IUser user : users) {
+				if (user instanceof Consultant) consultants.add((Consultant) user);
+			}
+		}
+		req.getSession().setAttribute("consultants", consultants);
 		
 		/* Set session attribute for all Admins */
-		req.getSession().setAttribute("admins", userDAO.getUserByType(Admin.class));
+		List<Admin> admins = new ArrayList<>();
+		users = userDAO.getUserByType(Admin.class);
+			if (users != null) {
+			for (IUser user : users) {
+				if (user instanceof Admin) admins.add((Admin) user);
+			}
+		}
+		req.getSession().setAttribute("admins", admins);
 		
+		/* Prepare model with a Trainee so we can create one if needed */
 		model.addAttribute("newTrainee", new Trainee());
+		
+		/* Prepare model with a Consultant so we can create one if needed */
+		model.addAttribute("newConsultant", new Consultant());
+		
+		/* Prepare model with an Admin so we can create one if needed */
+		model.addAttribute("newAdmin", new Admin());
 		
 		return "users";
 	}
 	
+	/**
+	 * Create new Trainee
+	 * @param res
+	 * @param model
+	 * @param user
+	 * @param br
+	 * @return
+	 */
 	@RequestMapping(value="/trainee", method=RequestMethod.POST)
 	public ModelAndView createTrainee(HttpServletResponse res, Model model, @ModelAttribute(value="newTrainee") Trainee user, BindingResult br) {
 		System.out.println("/trainee");
+		
+		if (!br.hasErrors()) {
+			/*System.out.println(user);*/
+			
+			/* Write Trainee to DB */
+			userDAO.create(user);
+		}
+		
+		return new ModelAndView("redirect:/users");
+	}
+	
+	/**
+	 * Create new Consultant
+	 * @param res
+	 * @param model
+	 * @param user
+	 * @param br
+	 * @return
+	 */
+	@RequestMapping(value="/consultant", method=RequestMethod.POST)
+	public ModelAndView createConsultant(HttpServletResponse res, Model model, @ModelAttribute(value="newConsultant") Consultant user, BindingResult br) {
+		System.out.println("/consultant");
 		
 		if (!br.hasErrors()) {
 			/*System.out.println(user);*/

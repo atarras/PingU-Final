@@ -175,20 +175,49 @@
         <!-- Admins Table Section -->
         <div id="admin" class="tab-pane fade">
           
-          <table>
-          <thead>
+          <!-- Admins Control Buttons -->
+          <button type="button" id="add-admin-button" class="btn btn-success" data-toggle="modal" data-target="#add-admin-modal">
+            <i class="fas fa-plus"></i>
+            Add Admin
+          </button>
+          <button type="button" id="admin-options" class="btn btn-secondary" data-toggle="modal" data-target="#admin-options-modal">
+            <i class="fas fa-cog"></i>
+          </button>
           
-          </thead>
-          <tbody>
-          
-          </tbody>
+          <!-- Admins Table -->
+          <table class="table table-responsive">
+            <thead>
+              <tr>
+                <th class="admin-id">ID</th>
+                <th class="admin-username">Username</th>
+                <th class="admin-password">Password</th>
+                <th class="admin-security-answer">Security Answer</th>
+                <th class="admin-status">Status</th>
+                <th class="admin-actions">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <c:forEach items="${sessionScope.admins}" var="user">
+                <tr id="${user.getUserId()}">
+                  <td class="admin-id">${user.getUserId()}</td>
+                  <td class="admin-username">${user.getUsername()}</td>
+                  <td class="admin-password">${user.getPassword()}</td>
+                  <td class="admin-security-answer">${user.getSecurityAnswer()}</td>
+                  <td class="admin-status">
+                    <p style="display:none;">${user.isStatus()}</p>
+                  </td>
+                  <td class="admin-actions" align="center">
+                    <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-admin-modal"></i>
+                  </td>
+                </tr>
+              </c:forEach>
+            </tbody>
           </table>
           
         </div>
         
       </div>
       <!-- /END of Tab Contents -->
-    
     
       <!-- Trainee Options Modal -->
       <div class="modal fade" id="trainee-options-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -224,55 +253,55 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col col-md-6">
-                      <sf:input type="text" id="signup-firstname-field" class="form-control" path="firstName" placeholder="First Name" required="required" />
+                      <sf:input type="text" id="add-trainee-firstname" class="form-control" path="firstName" placeholder="First Name" required="required" />
                     </div>
                     <div class="col col-md-6">
-                      <sf:input type="text" id="signup-lastname-field" class="form-control" path="lastName" placeholder="Last Name" required="required" />
+                      <sf:input type="text" id="add-trainee-lastname" class="form-control" path="lastName" placeholder="Last Name" required="required" />
                     </div>
                   </div>
                 </div>
                 
                 <div class="form-group">
-                  <sf:input type="text" id="signup-username-field" class="form-control" path="username" placeholder="Username" required="required" />
-                  <div id="username-exists-section" class="error-message"></div>
+                  <sf:input type="text" id="add-trainee-username" class="form-control" path="username" placeholder="Username" required="required" />
+                  <div class="error-message"></div>
                 </div>
                 
                 <div class="form-group">
-                  <sf:input type="password" id="signup-password-field" class="form-control" path="password" placeholder="Password" required="required" />  
+                  <sf:input type="password" id="add-trainee-password" class="form-control" path="password" placeholder="Password" required="required" />  
                 </div>
                 
                 <div class="form-group">
-                  <input type="password" id="signup-confirm-password-field" class="form-control" name="confirm-password" placeholder="Confirm Password" required="required" />  
-                  <div id="password-does-not-match-section" class="error-message"></div>
+                  <input type="password" id="add-trainee-confirm-password" class="form-control" name="confirm-password" placeholder="Confirm Password" required="required" />  
+                  <div class="error-message"></div>
                 </div>
                 
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="securityAnswer" placeholder="Security Answer" required="required" />  
+                  <sf:input type="text" id="add-trainee-security-answer" class="form-control" path="securityAnswer" placeholder="Security Answer" required="required" />  
                 </div>
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="email" placeholder="Email" required="required" />  
+                  <sf:input type="text" id="add-trainee-email" class="form-control" path="email" placeholder="Email" required="required" />  
                 </div>
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="phoneNumber" placeholder="Phone Number" required="required" />  
+                  <sf:input type="text" id="add-trainee-phone" class="form-control" path="phoneNumber" placeholder="Phone Number" required="required" />  
                 </div>
                 
                 <div class="form-group">
                   <div class="row">
                     <div class="col col-md-6">
-                      <sf:input type="text" class="form-control" path="city" placeholder="City" required="required" />  
+                      <sf:input type="text" id="add-trainee-city" class="form-control" path="city" placeholder="City" required="required" />  
                     </div>
                     <div class="col col-md-6">
-                      <sf:input type="text" class="form-control" path="country" placeholder="Country" required="required" />  
+                      <sf:input type="text" id="add-trainee-country" class="form-control" path="country" placeholder="Country" required="required" />  
                     </div>
                   </div>
                 </div>
                 
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="linkedInUrl" placeholder="LinkedIn" />  
+                  <sf:input type="text" id="add-trainee-linkedin" class="form-control" path="linkedInUrl" placeholder="LinkedIn" />  
                 </div>
                 
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="stream" placeholder="Stream" required="required" />  
+                  <sf:input type="text" id="add-trainee-stream" class="form-control" path="stream" placeholder="Stream" required="required" />  
                 </div>
                 
                 <div class="form-group">
@@ -285,6 +314,7 @@
           </div>
         </div>
       </div>
+      <!-- /END Add Trainee Modal -->
     
       <!-- Edit Trainee Modal -->
       <div class="modal fade" id="edit-trainee-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -372,19 +402,133 @@
               </form>
               </div>
               
-              <!-- <div id="delete-trainee-body" style="display:none">
-                <h5>Delete trainee?</h5>
-                <div class="form-group">
-                  <button type="button" id="confirm-delete-trainee" class="btn btn-danger">Delete Trainee</button>
-                  <button type="button" id="cancel-delete-trainee" class="btn btn-secondary">Undo</button>
-                </div>
-              </div> -->
-              
             </div>
           </div>
         </div>
       </div>
       <!-- /END Trainee Edit Modal -->
+      
+      
+      <!-- Consultant Options Modal -->
+      <div class="modal fade" id="consultant-options-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Display Consultant Fields</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="consultant-column-toggles" class="modal-body">
+              <!-- Body added via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Add Consultant Modal -->
+      <div class="modal fade" id="add-consultant-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add Consultant</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            
+              <sf:form action="consultant" method="post" modelAttribute="newConsultant">
+              
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col col-md-6">
+                      <sf:input type="text" class="form-control" path="firstName" placeholder="First Name" required="required" />
+                    </div>
+                    <div class="col col-md-6">
+                      <sf:input type="text" class="form-control" path="lastName" placeholder="Last Name" required="required" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <sf:input type="text" class="form-control" path="username" placeholder="Username" required="required" />
+                  <div id="username-exists-section" class="error-message"></div>
+                </div>
+                
+                <div class="form-group">
+                  <sf:input type="password" class="form-control" path="password" placeholder="Password" required="required" />  
+                </div>
+                
+                <div class="form-group">
+                  <input type="password" class="form-control" name="confirm-password" placeholder="Confirm Password" required="required" />  
+                  <div id="password-does-not-match-section" class="error-message"></div>
+                </div>
+                
+                <div class="form-group">
+                  <sf:input type="text" class="form-control" path="securityAnswer" placeholder="Security Answer" required="required" />  
+                </div>
+                <div class="form-group">
+                  <sf:input type="text" class="form-control" path="email" placeholder="Email" required="required" />  
+                </div>
+                <div class="form-group">
+                  <sf:input type="text" class="form-control" path="phoneNumber" placeholder="Phone Number" required="required" />  
+                </div>
+                
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col col-md-6">
+                      <sf:input type="text" class="form-control" path="city" placeholder="City" required="required" />  
+                    </div>
+                    <div class="col col-md-6">
+                      <sf:input type="text" class="form-control" path="country" placeholder="Country" required="required" />  
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <sf:input type="text" class="form-control" path="linkedInUrl" placeholder="LinkedIn" />  
+                </div>
+                
+                <div class="form-group">
+                  <sf:input type="text" class="form-control" path="currentTitle" placeholder="Current Title" required="required" />  
+                </div>
+                <div class="form-group">
+                  <sf:input type="text" class="form-control" path="employer" placeholder="Employer" required="required" />  
+                </div>
+                <div class="form-group">
+                  <sf:input type="date" class="form-control" path="pDate" placeholder="Placement Date" required="required" />  
+                </div>
+                
+                <div class="form-group">
+                  <button type="submit" id="confirm-create-consultant" class="btn btn-primary btn-lg btn-block login-btn">Create Consultant</button>
+                </div>
+              
+              </sf:form>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /END Add Consultant Modal -->
+      
+      
+      <!-- Admin Options Modal -->
+      <div class="modal fade" id="admin-options-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Display Admin Fields</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="admin-column-toggles" class="modal-body">
+              <!-- Body added via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
     
     </div>
 

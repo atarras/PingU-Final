@@ -1,37 +1,82 @@
 $(document).ready(function() {
 	
 	/**
-	 * When document loads, add each column in trainee to options
+	 * Dynamically generate column toggles for all types of users
 	 */
-	$("#trainee thead > tr > th").each(function() {
-		console.log();
+	var userTypes = ["trainee", "consultant", "admin"];
+	for (var i = 0; i < userTypes.length; i++) {
+		console.log(userTypes[i]);
 		
-		var id = "show-" + $(this).attr("class");
-		var label = $(this).text();
+		/**
+		 * When document loads, add each column in userType to options
+		 */
+		$("#" + userTypes[i] + " thead > tr > th").each(function() {
+			
+			var id = "show-" + $(this).attr("class");
+			var label = $(this).text();
+			
+			$("#" + userTypes[i] + "-column-toggles").append(
+					'<div class="form-check">' +
+			          '<input class="form-check-input column-toggle" type="checkbox" id="' + id + '">' +
+			          '<label class="form-check-label" for="' + id + '">' +
+			          	label +
+			          '</label>' +
+	            	'</div>');
+			
+		});
 		
-		$("#trainee-column-toggles").append(
-				'<div class="form-check">' +
-		          '<input class="form-check-input column-toggle" type="checkbox" id="' + id + '">' +
-		          '<label class="form-check-label" for="' + id + '">' +
-		          	label +
-		          '</label>' +
-            	'</div>');
+		/**
+		 * Check specific userType columns to be shown by default
+		 */
+		$("#show-" + userTypes[i] + "-id").prop("checked", true);
+		$("#show-" + userTypes[i] + "-username").prop("checked", true);
+		$("#show-" + userTypes[i] + "-status").prop("checked", true);
+		$("#show-" + userTypes[i] + "-actions").prop("checked", true);
 		
-	});
+		if (userTypes[i] != "admin") {
+			$("#show-trainee-firstname").prop("checked", true);
+			$("#show-trainee-lastname").prop("checked", true);
+			$("#show-trainee-city").prop("checked", true);
+			$("#show-trainee-country").prop("checked", true);
+			$("#show-trainee-visibility").prop("checked", true);
+			
+			if (userTypes[i] == "trainee") {
+				$("#show-" + userTypes[i] + "-stream").prop("checked", true);
+			} else {
+				$("#show-" + userTypes[i] + "-title").prop("checked", true);
+				$("#show-" + userTypes[i] + "-employer").prop("checked", true);
+			}
+		}
+		
+		/**
+		 * When document loads, display the appropriate icons for status
+		 * based on whether they are true/false
+		 */
+		$("tbody ." + userTypes[i] + "-status").each(function() {
+			var isActive = $($(this).find("p")[0]).text().trim();
+			
+			if (isActive == "true") {
+				$(this).append('<i class="fas fa-lock-open"></i>');
+			} else {
+				$(this).append('<i class="fas fa-lock"></i>');
+			}
+		});
+		
+		/**
+		 * When document loads, display the appropriate icons for visibility
+		 * based on whether they are true/false
+		 */
+		$("tbody ." + userTypes[i] + "-visibility").each(function() {
+			var isVisible = $($(this).find("p")[0]).text().trim();
+			
+			if (isVisible == "true") {
+				$(this).append('<i class="fas fa-eye"></i>');
+			} else {
+				$(this).append('<i class="fas fa-eye-slash"></i>');
+			}
+		});
 	
-	/**
-	 * Check specific trainee columns to be shown by default
-	 */
-	$("#show-trainee-id").prop("checked", true);
-	$("#show-trainee-username").prop("checked", true);
-	$("#show-trainee-firstname").prop("checked", true);
-	$("#show-trainee-lastname").prop("checked", true);
-	$("#show-trainee-city").prop("checked", true);
-	$("#show-trainee-country").prop("checked", true);
-	$("#show-trainee-stream").prop("checked", true);
-	$("#show-trainee-status").prop("checked", true);
-	$("#show-trainee-visibility").prop("checked", true);
-	$("#show-trainee-actions").prop("checked", true);
+	}
 	
 	/**
 	 * When document loads, make sure to hide any unchecked option by default 
@@ -40,34 +85,6 @@ $(document).ready(function() {
 		if (!$(this).is(":checked")) {
 			var columnClass = $(this).attr("id").replace("show-", "");
 			$("." + columnClass).css("display", "none");
-		}
-	});
-	
-	/**
-	 * When document loads, display the appropriate icons for status
-	 * based on whether they are true/false
-	 */
-	$("tbody .trainee-status").each(function() {
-		var isActive = $($(this).find("p")[0]).text().trim();
-		
-		if (isActive == "true") {
-			$(this).append('<i class="fas fa-lock-open"></i>');
-		} else {
-			$(this).append('<i class="fas fa-lock"></i>');
-		}
-	});
-	
-	/**
-	 * When document loads, display the appropriate icons for visibility
-	 * based on whether they are true/false
-	 */
-	$("tbody .trainee-visibility").each(function() {
-		var isVisible = $($(this).find("p")[0]).text().trim();
-		
-		if (isVisible == "true") {
-			$(this).append('<i class="fas fa-eye"></i>');
-		} else {
-			$(this).append('<i class="fas fa-eye-slash"></i>');
 		}
 	});
 	
