@@ -1,5 +1,4 @@
 
-
 package com.fdmgroup.DAO;
 
 import java.util.List;
@@ -15,6 +14,7 @@ import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
 import com.fdmgroup.model.Request;
+import com.fdmgroup.model.Trainee;
 
 public class UserDAO implements IUserDAO {
 
@@ -272,17 +272,16 @@ public class UserDAO implements IUserDAO {
 		em.close();
 		return null;
 	}
-	
+
 	@Override
 	public List<IRUser> findAllUsers() {
 		EntityManager em = connection.getEntityManager();
 		TypedQuery<IRUser> query = em.createNamedQuery("user.findAllUsers", IRUser.class);
-		
+
 		List<IRUser> users = null;
 		users = query.getResultList();
 
-		if (users != null) 
-		{
+		if (users != null) {
 			System.out.println("Users in DAO " + users.size());
 		}
 		System.out.println("No Users in DAO");
@@ -309,28 +308,125 @@ public class UserDAO implements IUserDAO {
 		return (IRUser) createdConsultant;
 
 	}
-	
-	public IRUser addRequestToUser(long userId, Request request){
+
+	public IRUser addRequestToUser(long userId, Request request) {
 		EntityManager em = connection.getEntityManager();
 		IRUser foundUser = em.find(IRUser.class, userId);
-		
+
 		em.getTransaction().begin();
 		foundUser.addRequestToUser(request);
 		em.getTransaction().commit();
-		
+
 		return foundUser;
 	}
-	
-	public IRUser removeRequestFromUser(long userId, Request request){
+
+	public IRUser removeRequestFromUser(long userId, Request request) {
 		EntityManager em = connection.getEntityManager();
 		IRUser foundUser = em.find(IRUser.class, userId);
-		
+
 		em.getTransaction().begin();
 		foundUser.removeRequestFromUser(request);
 		em.getTransaction().commit();
-		
+
 		return foundUser;
 	}
 
-}
+	@Override
+	public IRUser changeSecurityAnswer(Long userId, String newAnswer) {
+		EntityManager em = connection.getEntityManager();
+		IRUser foundUser = em.find(IRUser.class, userId);
+		em.getTransaction().begin();
+		foundUser.setSecurityAnswer(newAnswer);
+		em.getTransaction().commit();
+		em.close();
+		return foundUser;
+	}
 
+	@Override
+	public IRUser changeUserName(Long userId, String newUsername) {
+		EntityManager em = connection.getEntityManager();
+		
+		IRUser foundUser = em.find(IRUser.class, userId);
+		em.getTransaction().begin();
+		foundUser.setUsername(newUsername);
+		em.getTransaction().commit();
+		em.close();
+		return foundUser;
+	}
+
+	@Override
+	public IRUser changeEmail(Long userId, String newEmail) {
+		EntityManager em = connection.getEntityManager();
+		IRUser foundUser = em.find(IRUser.class, userId);
+		em.getTransaction().begin();
+		foundUser.setEmail(newEmail);
+		em.getTransaction().commit();
+		em.close();
+		return foundUser;
+	}
+
+	@Override
+	public IRUser changeFirstName(Long userId, String newFirstName) {
+		EntityManager em = connection.getEntityManager();
+		IRUser foundUser = em.find(IRUser.class, userId);
+		em.getTransaction().begin();
+		foundUser.setFirstName(newFirstName);
+		em.getTransaction().commit();
+		em.close();
+		return foundUser;
+	}
+
+	@Override
+	public IRUser changeLastName(Long userId, String newLastName) {
+		EntityManager em = connection.getEntityManager();
+		IRUser foundUser = em.find(IRUser.class, userId);
+		em.getTransaction().begin();
+		foundUser.setLastName(newLastName);
+		em.getTransaction().commit();
+		em.close();
+		return foundUser;
+	}
+
+	@Override
+	public IRUser changeLinkedIn(Long userId, String newLinkedIn) {
+		EntityManager em = connection.getEntityManager();
+		IRUser foundUser = em.find(IRUser.class, userId);
+		em.getTransaction().begin();
+		foundUser.setLinkedInUrl(newLinkedIn);
+		em.getTransaction().commit();
+		em.close();
+		return foundUser;
+	}
+
+	@Override
+	public Trainee changeStream(Long userId, String newStream) {
+		EntityManager em = connection.getEntityManager();
+		Trainee foundUser = em.find(Trainee.class, userId);
+		em.getTransaction().begin();
+		foundUser.setStream(newStream);
+		em.getTransaction().commit();
+		em.close();
+		return foundUser;
+	}
+
+	@Override
+	public List<IUser> findByUserName(String username) {
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<IUser> query = em.createNamedQuery("iuser.findByUsername", IUser.class);
+		query.setParameter("username", username);
+		List<IUser> resultList = query.getResultList();
+		return resultList;
+	}
+
+	@Override
+	public List<IRUser> findByEmail(String email) {
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<IRUser> query = em.createNamedQuery("user.findByEmail", IRUser.class);
+		query.setParameter("email", email);
+		List<IRUser> resultList = query.getResultList();
+		return resultList;
+	}
+	
+	
+
+}

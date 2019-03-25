@@ -8,6 +8,7 @@ import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
+import com.fdmgroup.model.Trainee;
 
 public interface IUserDAO {
 	
@@ -15,6 +16,8 @@ public interface IUserDAO {
 	IRUser delete(Long userId);
 	IUser activateUser(Long userId);
 	IUser findUserById(Long userId);
+	List<IUser> findByUserName(String username);
+	List<IRUser> findByEmail(String email);
 	List<IUser> getAllUsers();
 	List<IUser> getAllRegularUsers();
 	List<IUser> getUserByType(Class type);
@@ -33,5 +36,12 @@ public interface IUserDAO {
 	List<IRUser> findUsersByFullName(String fname, String lname);
 	IRUser updateToConsultant(Long traineeId, String jobTitle, String employer);
 	List<IRUser> findAllUsers();
+	IRUser changeSecurityAnswer(Long userId, String newAnswer);
+	IRUser changeUserName(Long userId, String newUsername);
+	IRUser changeEmail(Long userId, String newEmail);
+	IRUser changeFirstName(Long userId, String newFirstName);
+	IRUser changeLastName(Long userId, String newLastName);
+	IRUser changeLinkedIn(Long userId, String newLinkedIn);
+	Trainee changeStream(Long userId, String newStream);
 }
 
