@@ -343,10 +343,10 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public IRUser changeUserName(Long userId, String newUsername) {
+	public IUser changeUserName(Long userId, String newUsername) {
 		EntityManager em = connection.getEntityManager();
 		
-		IRUser foundUser = em.find(IRUser.class, userId);
+		IUser foundUser = em.find(IUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setUsername(newUsername);
 		em.getTransaction().commit();

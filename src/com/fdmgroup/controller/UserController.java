@@ -137,7 +137,7 @@ public class UserController {
 			return null; // add the correct view string
 		}
 
-		IRUser user = userDAO.changeUserName(userID, newUsername);
+		IUser user = userDAO.changeUserName(userID, newUsername);
 		if (!user.getUsername().equals(newUsername)) {
 			/* TODO: add error message USER NAME NOT CHANGED */
 			return null; // add the correct view string

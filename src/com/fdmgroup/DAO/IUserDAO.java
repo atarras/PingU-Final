@@ -37,7 +37,7 @@ public interface IUserDAO {
 	IRUser updateToConsultant(Long traineeId, String jobTitle, String employer);
 	List<IRUser> findAllUsers();
 	IRUser changeSecurityAnswer(Long userId, String newAnswer);
-	IRUser changeUserName(Long userId, String newUsername);
+	IUser changeUserName(Long userId, String newUsername);
 	IRUser changeEmail(Long userId, String newEmail);
 	IRUser changeFirstName(Long userId, String newFirstName);
 	IRUser changeLastName(Long userId, String newLastName);
