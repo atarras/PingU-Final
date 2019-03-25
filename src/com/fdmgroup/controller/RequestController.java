@@ -146,6 +146,7 @@ public class RequestController {
 						groupDao.addGroupMember(currGroup, user);
 						break;
 					} else {
+						request.setAttribute("deniedRequestMsg", "Request cannot be approved. Consultant does not work at this company.");
 						failedRequest = true;
 						break;
 					}
@@ -158,6 +159,7 @@ public class RequestController {
 						System.out.println(failedRequest);
 						break;
 					} else {
+						request.setAttribute("deniedRequestMsg", "Request cannot be approved. Trainee can only join FDM Group's group page.");
 						failedRequest = true;
 						break;
 					}
@@ -177,7 +179,6 @@ public class RequestController {
 			request.setAttribute("approvedRequestMsg", "Request has been approved");
 		} 
 		if(failedRequest){
-			request.setAttribute("deniedRequestMsg", "Request has been denied");
 		}
 		
 		return "test"; // Return to the necessary jsp
@@ -200,6 +201,15 @@ public class RequestController {
 		currRequest.setRequestStatus(RequestStatus.DENY);
 		currRequest.setComment(deniedComment);
 		requestDao.update(currRequest);
+		request.setAttribute("deniedRequestMsg", "Request has been denied");
 		return "test"; // Return to the necessary jsp.
 	}
+	
+	// TODO REMOVE BEFORE FINAL PRODUCT
+//	@RequestMapping("/goToTestForm")
+//	public String goToTestForm(HttpServletRequest request){
+//		List<Request> pendingRequests = requestDao.findAllPendingRequests();
+//		request.setAttribute("pendingRequests", pendingRequests);
+//		return "testForm";
+//	}
 }

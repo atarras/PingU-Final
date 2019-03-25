@@ -21,23 +21,33 @@ import com.fdmgroup.enums.RequestType;
  * Request is the model class that holds the information about requests users make that need to be reviewed by Admin
  *
  */
-
+// TODO FIGURE OUT REQUEST THING
 @Entity
 @Table(name="PINGU_USER_REQUESTS")
 @NamedQueries({
-	@NamedQuery(name="request.findByRequestId", query="SELECT r FROM Request r WHERE r.requestId = :rId"),
+	@NamedQuery(name="request.findByRequestId", 
+		query="SELECT r "
+			+ "FROM Request r "
+			+ "JOIN fetch r.requestUser "
+			+ "WHERE r.requestId = :rId"),
 	@NamedQuery(name="request.findAllPendingRequests", 
 		query="SELECT r "
 			+ "FROM Request r "
+			+ "JOIN fetch r.requestUser "
 			+ "WHERE r.requestStatus = com.fdmgroup.enums.RequestStatus.PENDING"),
-	@NamedQuery(name="request.findAllRequests", query="SELECT r FROM Request r "),
-	@NamedQuery(name="request.findAllApprovedRequests", 
-	query="SELECT r "
+	@NamedQuery(name="request.findAllRequests", 
+		query="SELECT r "
 			+ "FROM Request r "
+			+ "JOIN fetch r.requestUser"),
+	@NamedQuery(name="request.findAllApprovedRequests", 
+		query="SELECT r "
+			+ "FROM Request r "
+			+ "JOIN fetch r.requestUser "
 			+ "WHERE r.requestStatus = com.fdmgroup.enums.RequestStatus.APPROVE"),
 	@NamedQuery(name="request.findAllDeniedRequests", 
-	query="SELECT r "
+		query="SELECT r "
 			+ "FROM Request r "
+			+ "JOIN fetch r.requestUser "
 			+ "WHERE r.requestStatus = com.fdmgroup.enums.RequestStatus.DENY")
 })
 
