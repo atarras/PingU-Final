@@ -92,7 +92,7 @@
               </div>
                   
               <div class="form-group">
-                <sf:input type="text" id="signup-email-field" class="form-control signup-form-field" path="email" placeholder="Email" required="required" />  
+                <sf:input type="email" id="signup-email-field" class="form-control signup-form-field" pattern="^[a-zA-Z0-9]+\\.[a-zA-Z0-9]+@fdmgroup.com$" path="email" placeholder="Email" required="required" />  
                 <div id="malformed-email" class="error-message"></div>
               </div>
               
