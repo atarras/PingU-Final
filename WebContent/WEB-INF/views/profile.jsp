@@ -6,15 +6,14 @@
 	  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	
-	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"/>
 		
-	    <link rel="stylesheet" href="<c:url value="resources/css/main.css"/>"/>
-	    <link rel="stylesheet" href="<c:url value="resources/css/profile.css"/>"/>
-	
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	    <link rel="stylesheet" href="<c:url value='/resources/css/main.css'/>"/>
+	    <link rel="stylesheet" href="<c:url value='/resources/css/profile.css'/>"/>
+	    
+		
+	</head>
 	<jsp:include page="nav.jsp" />
 	<body>
 	  	<div class="container main-body">
@@ -23,21 +22,20 @@
 				<div class="container left-form">
 					<div class="card" style="width: 80%;">
 						<div class="card-body">
-							<h5 class="card-title">John Doe</h5>
+							<h5 class="card-title">${profileUser.getFirstName()} ${profileUser.getLastName()}</h5>
 						</div>
 						<i class="fas fa-user-circle fa-10x"></i>
 						<div class="card-body">
-							<h5 class="card-title">Developer: FDM GROUP <i class="far fa-edit user-edit"></i></h5>
+							<h5 class="card-title">Developer: ${profileUser.getGroup().getGroupName().getName() } <i class="far fa-edit user-edit"></i></h5>
 							<i class="far fa-edit user-edit"></i>
 							<p class="card-text">
-							John Doe is the standard name for a person that is
-							unidentified.
+							${profileUser.getDescription() }
 						
 							</p>
 							<p class="card-text">
-							Trainee Group
+							${profileUser.getGroup().getGroupName().getName() }
 							</p>
-							<a href="#">Link to a linkedin</a><i class="far fa-edit user-edit"></i>
+							<a href="#">${profileUser.getLinkedInUrl() }</a><i class="far fa-edit user-edit"></i>
 						</div>
 					</div>
 				</div>
@@ -48,7 +46,7 @@
 								<div class="col-xs-4">
 									<label for="country"><h4>Country</h4></label>
 									<!--<p id="country">Default Country</p>-->
-									<input type="text" class="form-control" name="country" id="country" placeholder="Country" title="Your current country.">
+									<input type="text" class="form-control" name="country" id="country" placeholder="${profileUser.getCountry() }" title="Your current country.">
 								</div>
 							</div>
 						</div>
@@ -56,21 +54,21 @@
 							<div class="col-xs-4">
 								<label for="city"><h4>City</h4></label>
 								<!--<p id="city">Default City</p>-->
-								<input type="city" class="form-control" id="city" placeholder="City" title="Your currrent city.">
+								<input type="city" class="form-control" id="city" placeholder="${profileUser.getCity() }" title="Your currrent city.">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-xs-4">
 								<label for="phone"><h4>Phone</h4></label>
 								<!--<p id="phone">Default Phone	</p>-->
-								<input type="phone" class="form-control" name="phone" id="phone" placeholder="Phone Number" title="Your phone number.">
+								<input type="phone" class="form-control" name="phone" id="phone" placeholder="${profileUser.getPhoneNumber()}" title="Your phone number.">
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<i id="edit-button" class="fas fa-edit fa-2x" title="Edit fields."></i>
 							<div class="col-xs-8">
-								<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Sumbit</button>
+								<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Submit</button>
 								<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
 							</div>
 						</div>
@@ -129,5 +127,9 @@
 			</div>
 			<jsp:include page="right.jsp" />
 		</div>
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	</body>
 </html>

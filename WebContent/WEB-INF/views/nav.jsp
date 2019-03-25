@@ -6,7 +6,7 @@
 	    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	    
-	    <link rel="stylesheet" href="<c:url value="resources/css/nav.css"/>" />
+	    <link rel="stylesheet" href="<c:url value="/resources/css/nav.css"/>" />
 	</head>
 		<!-- Navigation bar static throughout all our pages, the search bar will probably be made bigger,
 		need to add potentially bigger buttons, a hover effect, dynamic pill icon for notifications -->
@@ -23,7 +23,7 @@
 						<a class="nav-link" href="home"><i class="fas fa-home"></i></a>
 					</li>
 					<li class="nav-item pr-2 active">
-						<a class="nav-link" href="profile"><i class="fas fa-user"></i></a>
+						<a class="nav-link" href="${sessionScope.newUser.getUserId() }"><i class="fas fa-user"></i></a>
 					</li>
 					<li class="nav-item active">
 						<a class="nav-link" href="group"><i class="fas fa-users"></i></a>

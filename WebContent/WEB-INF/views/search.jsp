@@ -26,13 +26,13 @@
 				</div>
 				<div class="card-group">
 				<!-- search result template -->
-					<c:forEach items="${foundUsers}" var="found" varStatus="status">
+					<c:forEach items="${foundUsers}" var="user" varStatus="status">
 						<div class="card">
-							<i class="fas fa-user-circle fa-4x"></i>
+							<a href="${user.getUserId()}" ><i class="fas fa-user-circle fa-4x"></i></a>
 							<div class="card-body">
 								<div class="card-block">
-									<h5 class="card-title">${found.getFirstName() } ${found.getLastName() } </h5>
-									<p class="card-text">${found.getDescription() }</p>
+									<h5 class="card-title">${user.getFirstName() } ${user.getLastName() } </h5>
+									<p class="card-text">${user.getDescription() }</p>
 								</div>
 							</div>
 						</div>
