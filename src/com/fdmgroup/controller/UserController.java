@@ -360,7 +360,7 @@ public class UserController {
 	public String updateSecurityAnswer(HttpServletRequest req, @RequestParam("userID") Long userID,
 			@RequestParam("newAnswer") String newAnswer) {
 		session = req.getSession();
-		IRUser user = userDAO.changeSecurityAnswer(userID, newAnswer);
+		IUser user = userDAO.changeSecurityAnswer(userID, newAnswer);
 		if (!user.getSecurityAnswer().equals(newAnswer)) {
 			/* TODO: add error message SECURITY ANSWER NOT CHANGED */
 			return null; // add the correct view string

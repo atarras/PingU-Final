@@ -36,9 +36,9 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public IRUser delete(Long userId) {
+	public IUser delete(Long userId) {
 		EntityManager em = connection.getEntityManager();
-		IRUser foundUser = em.find(IRUser.class, userId);
+		IUser foundUser = em.find(IUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setStatus(false);
 		em.getTransaction().commit();
@@ -332,9 +332,9 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public IRUser changeSecurityAnswer(Long userId, String newAnswer) {
+	public IUser changeSecurityAnswer(Long userId, String newAnswer) {
 		EntityManager em = connection.getEntityManager();
-		IRUser foundUser = em.find(IRUser.class, userId);
+		IUser foundUser = em.find(IUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setSecurityAnswer(newAnswer);
 		em.getTransaction().commit();
