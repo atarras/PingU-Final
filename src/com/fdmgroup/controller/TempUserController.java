@@ -82,6 +82,7 @@ public class TempUserController {
 		/* Prepare model with an Admin so we can create one if needed */
 		model.addAttribute("newAdmin", new Admin());
 		
+		if (req.getSession().getAttribute("pageContext") == null) req.getSession().setAttribute("pageContext", "trainee");
 		return "users";
 	}
 	
@@ -94,16 +95,14 @@ public class TempUserController {
 	 * @return
 	 */
 	@RequestMapping(value="/trainee", method=RequestMethod.POST)
-	public ModelAndView createTrainee(HttpServletResponse res, Model model, @ModelAttribute(value="newTrainee") Trainee user, BindingResult br) {
+	public ModelAndView createTrainee(HttpServletRequest req, HttpServletResponse res, Model model, @ModelAttribute(value="newTrainee") Trainee user, BindingResult br) {
 		System.out.println("/trainee");
 		
 		if (!br.hasErrors()) {
-			/*System.out.println(user);*/
-			
 			/* Write Trainee to DB */
 			userDAO.create(user);
 		}
-		
+		req.getSession().setAttribute("pageContext", "trainee");
 		return new ModelAndView("redirect:/users");
 	}
 	
@@ -116,34 +115,52 @@ public class TempUserController {
 	 * @return
 	 */
 	@RequestMapping(value="/consultant", method=RequestMethod.POST)
-	public ModelAndView createConsultant(HttpServletResponse res, Model model, @ModelAttribute(value="newConsultant") Consultant user, BindingResult br) {
+	public ModelAndView createConsultant(HttpServletRequest req, HttpServletResponse res, Model model, @ModelAttribute(value="newConsultant") Consultant user, BindingResult br) {
 		System.out.println("/consultant");
 		
 		if (!br.hasErrors()) {
-			/*System.out.println(user);*/
-			
-			/* Write Trainee to DB */
+			/* Write Consultant to DB */
 			userDAO.create(user);
 		}
+		req.getSession().setAttribute("pageContext", "consultant");
+		return new ModelAndView("redirect:/users");
+	}
+	
+	/**
+	 * Create new Admin
+	 * @param res
+	 * @param model
+	 * @param user
+	 * @param br
+	 * @return
+	 */
+	@RequestMapping(value="/admin", method=RequestMethod.POST)
+	public ModelAndView createAdmin(HttpServletRequest req, HttpServletResponse res, Model model, @ModelAttribute(value="newAdmin") Admin user, BindingResult br) {
+		System.out.println("/admin");
 		
+		if (!br.hasErrors()) {
+			/* Write Admin to DB */
+			userDAO.create(user);
+		}
+		req.getSession().setAttribute("pageContext", "admin");
 		return new ModelAndView("redirect:/users");
 	}
 	
 	@RequestMapping(value="/user", method=RequestMethod.POST)
-	public void postUser(HttpServletResponse res,
+	public void postUser(HttpServletRequest req, HttpServletResponse res,
 			@RequestParam("id") String stringID,
-			@RequestParam("firstName") String firstName,
-			@RequestParam("lastName") String lastName,
+			@RequestParam(value="firstName", required=false) String firstName,
+			@RequestParam(value="lastName", required=false) String lastName,
 			@RequestParam("username") String username,
 			@RequestParam("password") String password,
-			@RequestParam("email") String email,
-			@RequestParam("phone") String phone,
-			@RequestParam("city") String city,
-			@RequestParam("country") String country,
-			@RequestParam("description") String description,
+			@RequestParam(value="email", required=false) String email,
+			@RequestParam(value="phone", required=false) String phone,
+			@RequestParam(value="city", required=false) String city,
+			@RequestParam(value="country", required=false) String country,
+			@RequestParam(value="description", required=false) String description,
 			@RequestParam(value="stream", required=false) String stream,
 			@RequestParam("security-answer") String securityAnswer,
-			@RequestParam("visibility") String visibility,
+			@RequestParam(value="visibility", required=false) String visibility,
 			@RequestParam("status") String statusString,
 			@RequestParam(value="title", required=false) String jobTitle,
 			@RequestParam(value="employer", required=false) String employer,
@@ -180,6 +197,10 @@ public class TempUserController {
 			// return error message or page
 		}
 		
+		/* Fields for any type of users */
+		if (StringHelpers.isData(username)) userDAO.changeUserName(id, username);
+		if (StringHelpers.isData(password)) userDAO.updatePassword(id, password);
+		if (StringHelpers.isData(securityAnswer)) userDAO.changeSecurityAnswer(id, securityAnswer);
 		if (StringHelpers.isData(statusString)) {
 			boolean status = Boolean.parseBoolean(statusString);
 			if (status) {
@@ -189,32 +210,31 @@ public class TempUserController {
 			}
 		}
 		
+		/* Fields for Regular users */
 		if (foundUser instanceof IRUser) {
 			System.out.println("is IRUser");
-			/* TODO: update first name */
-			
-			/* TODO: update last name */
-			
-			/* TODO: update email */
-			
+			if (StringHelpers.isData(firstName)) userDAO.changeFirstName(id, firstName);
+			if (StringHelpers.isData(lastName)) userDAO.changeLastName(id, lastName);
+			if (StringHelpers.isData(email)) userDAO.changeEmail(id, email);
 			if (StringHelpers.isData(phone)) userDAO.updatePhoneNumber(id, phone);
 			if (StringHelpers.isData(city)) userDAO.changeCity(id, city);
 			if (StringHelpers.isData(country)) userDAO.changeCountry(id, country);
 			
 			/* TODO: update description */
-			//if (StringHelpers.isData(description)) userDAO.updateDescription(id, description);
-			
+			if (StringHelpers.isData(description)) userDAO.updateDescription(id, description);
 			
 			if (StringHelpers.isData(visibility)) {
 				userDAO.changeVissibility(id, Boolean.parseBoolean(visibility));
 			}
 		}
 		
+		/* Fields for Trainees */
 		if (foundUser instanceof Trainee) {
-			/* TODO: update stream */
-			
+			if (StringHelpers.isData(stream)) userDAO.changeStream(id, stream);
+			req.getSession().setAttribute("pageContext", "trainee");
 		}
 		
+		/* Fields for Consultants */
 		if (foundUser instanceof Consultant) {
 			if (StringHelpers.isData(jobTitle)) userDAO.updateJobTitle(id, jobTitle);
 			if (StringHelpers.isData(employer)) userDAO.updateEmployer(id, employer);
@@ -223,7 +243,11 @@ public class TempUserController {
 			if (StringHelpers.isData(pDate)) {
 				
 			}
-			
+			req.getSession().setAttribute("pageContext", "consultant");
+		}
+		
+		if (foundUser instanceof Admin) {
+			req.getSession().setAttribute("pageContext", "admin");
 		}
 		
 		/* If we are passed in an id, update that user */

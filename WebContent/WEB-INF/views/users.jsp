@@ -28,18 +28,16 @@
     <div id="main-body" class="container">
     
       <ul class="nav nav-tabs justify-content-end">
-        <li class="pull-right">
-          <a data-toggle="tab" class="nav-link active" href="#trainee">Trainees</a>
-        </li>
-        <li class="pull-right"><a data-toggle="tab" class="nav-link" href="#consultant">Consultants</a></li>
-        <li class="pull-right"><a data-toggle="tab" class="nav-link" href="#admin">Admins</a></li>
+        <li class="pull-right"><a data-toggle="tab" id="trainee-tab" class="nav-link" href="#trainee">Trainees</a></li>
+        <li class="pull-right"><a data-toggle="tab" id="consultant-tab" class="nav-link" href="#consultant">Consultants</a></li>
+        <li class="pull-right"><a data-toggle="tab" id="admin-tab"  class="nav-link" href="#admin">Admins</a></li>
       </ul>
     
       <!-- Tab Contents -->
       <div class="tab-content">
       
         <!-- Trainees Table Section -->
-        <div id="trainee" class="tab-pane fade active show">
+        <div id="trainee" class="tab-pane fade">
         
           <!-- Trainees Control Buttons -->
           <button type="button" id="add-trainee-button" class="btn btn-success" data-toggle="modal" data-target="#add-trainee-modal">
@@ -623,11 +621,110 @@
           </div>
         </div>
       </div>
+      
+      <!-- Add Admin Modal -->
+      <div class="modal fade" id="add-admin-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Add Admin</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            
+              <sf:form action="admin" method="post" modelAttribute="newAdmin">
+                
+                <div class="form-group">
+                  <sf:input type="text" id="add-admin-username" class="form-control" path="username" placeholder="Username" required="required" />
+                </div>
+                <div class="form-group">
+                  <sf:input type="password" id="add-admin-password" class="form-control" path="password" placeholder="Password" required="required" />  
+                </div>
+                <div class="form-group">
+                  <input type="password" id="add-admin-confirm-password" class="form-control" name="confirm-password" placeholder="Confirm Password" required="required" />  
+                </div>
+                <div class="form-group">
+                  <sf:input type="text" id="add-admin-security-answer" class="form-control" path="securityAnswer" placeholder="Security Answer" required="required" />  
+                </div>
+                <div class="form-group">
+                  <button type="submit" id="confirm-create-admin" class="btn btn-primary btn-lg btn-block login-btn">Create Admin</button>
+                </div>
+              
+              </sf:form>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /END Add Admin Modal -->
+      
+      <!-- Edit Admin Modal -->
+      <div class="modal fade edit-modal" id="edit-admin-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+              Edit Admin
+              <span id="edit-admin-id"></span>
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            
+              <div id="edit-admin-body">
+              <form id="edit-admin" action="user" method="post">
+              
+                
+                <div class="form-group">
+                  <input type="text" id="edit-admin-username" class="form-control edittable" name="username" placeholder="Username" />
+                </div>
+                <div class="form-group">
+                  <input type="password" id="edit-admin-password" class="form-control edittable" name="password" placeholder="Password" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="edit-admin-security-answer" class="form-control edittable" name="security-answer" placeholder="Security Answer" />
+                </div>
+                
+                <!-- Place status and visibility toggles here -->
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col col-md-6">
+                      <label>Status</label>
+                      <button type="button" class="btn status-open edittable"><i class="fas fa-lock-open"></i></button>
+                      <button type="button" class="btn status-close edittable"><i class="fas fa-lock"></i></button>
+                      <input type="text" id="edit-admin-status" class="form-control" name="status" style="display:none" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <button type="submit" id="confirm-edit-admin" class="btn btn-primary">Confirm Edit</button>
+                </div>
+              
+              </form>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /END Admin Edit Modal -->
     
     </div>
 
     <jsp:include page="footer.jsp" />
   </div>
-
+  <script>
+  <!-- Set default tab to show in based on last tab user was in -->
+  $(document).ready(function() {
+	  $("#${sessionScope.pageContext}-tab").addClass("active");
+	  $("#${sessionScope.pageContext}").addClass("active show");
+  });
+  
+  </script>
 </body>
 </html>

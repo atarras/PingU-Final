@@ -5,7 +5,6 @@ $(document).ready(function() {
 	 */
 	var userTypes = ["trainee", "consultant", "admin"];
 	for (var i = 0; i < userTypes.length; i++) {
-		console.log(userTypes[i]);
 		
 		/**
 		 * When document loads, add each column in userType to options
@@ -113,12 +112,10 @@ $(document).ready(function() {
 		
 		/* Set the starting version of status toggle */
 		if ($("#edit-" + userType + "-status").val() == "true") {
-			console.log("status true");
 			$(".status-open").css("display", "");
 			$(".status-close").css("display", "none");
 			
 		} else {
-			console.log("status false");
 			$(".status-open").css("display", "none");
 			$(".status-close").css("display", "");
 
@@ -126,12 +123,10 @@ $(document).ready(function() {
 		
 		/* Set starting version of visibility toggle */
 		if ($("#edit-" + userType + "-visibility").val() == "true") {
-			console.log("visibility true");
 			$(".set-visible").css("display", "");
 			$(".set-invisible").css("display", "none");
 			
 		} else {
-			console.log("visibility false");
 			$(".set-visible").css("display", "none");
 			$(".set-invisible").css("display", "");
 		}
@@ -159,8 +154,6 @@ $(document).ready(function() {
 		e.preventDefault();
 		
 		var id = $("#edit-trainee-id").text();
-		console.log($("#edit-trainee").serialize());
-		
 		$.ajax({
 			type: "POST",
 			url: "user?id=" + id + "&" + $("#edit-trainee").serialize(),
@@ -176,10 +169,24 @@ $(document).ready(function() {
 		e.preventDefault();
 		
 		var id = $("#edit-consultant-id").text();
-		
 		$.ajax({
 			type: "POST",
 			url: "user?id=" + id + "&" + $("#edit-consultant").serialize(),
+			success: function(data) {
+				/* Redirect page since ajax calls seems to prevent our server from redirecting */
+				window.location.replace(data);
+			}
+		});
+		
+	});
+	
+	$("#confirm-edit-admin").on("click", function(e) {
+		e.preventDefault();
+		
+		var id = $("#edit-admin-id").text();
+		$.ajax({
+			type: "POST",
+			url: "user?id=" + id + "&" + $("#edit-admin").serialize(),
 			success: function(data) {
 				/* Redirect page since ajax calls seems to prevent our server from redirecting */
 				window.location.replace(data);
