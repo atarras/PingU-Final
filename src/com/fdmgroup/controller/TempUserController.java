@@ -212,20 +212,14 @@ public class TempUserController {
 		
 		/* Fields for Regular users */
 		if (foundUser instanceof IRUser) {
-			System.out.println("is IRUser");
 			if (StringHelpers.isData(firstName)) userDAO.changeFirstName(id, firstName);
 			if (StringHelpers.isData(lastName)) userDAO.changeLastName(id, lastName);
 			if (StringHelpers.isData(email)) userDAO.changeEmail(id, email);
 			if (StringHelpers.isData(phone)) userDAO.updatePhoneNumber(id, phone);
 			if (StringHelpers.isData(city)) userDAO.changeCity(id, city);
 			if (StringHelpers.isData(country)) userDAO.changeCountry(id, country);
-			
-			/* TODO: update description */
 			if (StringHelpers.isData(description)) userDAO.updateDescription(id, description);
-			
-			if (StringHelpers.isData(visibility)) {
-				userDAO.changeVissibility(id, Boolean.parseBoolean(visibility));
-			}
+			if (StringHelpers.isData(visibility)) userDAO.changeVissibility(id, Boolean.parseBoolean(visibility));
 		}
 		
 		/* Fields for Trainees */
@@ -238,22 +232,14 @@ public class TempUserController {
 		if (foundUser instanceof Consultant) {
 			if (StringHelpers.isData(jobTitle)) userDAO.updateJobTitle(id, jobTitle);
 			if (StringHelpers.isData(employer)) userDAO.updateEmployer(id, employer);
-			
 			/* TODO: update placement date */
-			if (StringHelpers.isData(pDate)) {
-				
-			}
+			if (StringHelpers.isData(pDate)) { }
 			req.getSession().setAttribute("pageContext", "consultant");
 		}
 		
 		if (foundUser instanceof Admin) {
 			req.getSession().setAttribute("pageContext", "admin");
 		}
-		
-		/* If we are passed in an id, update that user */
-		
-		
-		/* Otherwise create a new user with the given parameters */
 		
 		/* We can determine the type of user to create passed on whether certain parameters are empty */
 		res.setContentType("text/html;charset=UTF-8");
@@ -271,11 +257,7 @@ public class TempUserController {
 	/*@RequestMapping(value="/user", method=RequestMethod.DELETE)
 	public ModelAndView deleteUser(@RequestParam("id") String id) {
 		System.out.println("/user/DELETE?id=" + id);
-		
-		
-		
 		return new ModelAndView("redirect:/users");
 	}*/
 	
-
 }
