@@ -13,7 +13,7 @@ import com.fdmgroup.model.Trainee;
 public interface IUserDAO {
 	
 	IUser create(IUser user);
-	IRUser delete(Long userId);
+	IUser delete(Long userId);
 	IUser activateUser(Long userId);
 	IUser findUserById(Long userId);
 	List<IUser> findByUserName(String username);
@@ -28,7 +28,7 @@ public interface IUserDAO {
 	IRUser updateGroup(Long userId, Group group);
 	Consultant updateEmployer(Long userId, String newEmployer);
 	Consultant updateJobTitle(Long userId, String newTitle);
-	Consultant updateDescription(Long userId, String newDesc);
+	IRUser updateDescription(Long userId, String newDesc);
 	String recoverPassword(String username, String answer);
 	IRUser removeFromGroup(Long userId);
 	IRUser changeCity(Long userId, String newCity);
@@ -36,8 +36,8 @@ public interface IUserDAO {
 	List<IRUser> findUsersByFullName(String fname, String lname);
 	IRUser updateToConsultant(Long traineeId, String jobTitle, String employer);
 	List<IRUser> findAllUsers();
-	IRUser changeSecurityAnswer(Long userId, String newAnswer);
-	IRUser changeUserName(Long userId, String newUsername);
+	IUser changeSecurityAnswer(Long userId, String newAnswer);
+	IUser changeUserName(Long userId, String newUsername);
 	IRUser changeEmail(Long userId, String newEmail);
 	IRUser changeFirstName(Long userId, String newFirstName);
 	IRUser changeLastName(Long userId, String newLastName);

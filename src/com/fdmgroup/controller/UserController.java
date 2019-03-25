@@ -137,7 +137,7 @@ public class UserController {
 			return null; // add the correct view string
 		}
 
-		IRUser user = userDAO.changeUserName(userID, newUsername);
+		IUser user = userDAO.changeUserName(userID, newUsername);
 		if (!user.getUsername().equals(newUsername)) {
 			/* TODO: add error message USER NAME NOT CHANGED */
 			return null; // add the correct view string
@@ -259,7 +259,7 @@ public class UserController {
 	public String updateDescription(HttpServletRequest req, @RequestParam("userID") Long userID,
 			@RequestParam("newDesc") String newDesc) {
 		session = req.getSession();
-		Consultant user = userDAO.updateDescription(userID, newDesc);
+		IRUser user = userDAO.updateDescription(userID, newDesc);
 		if (!user.getDescription().equals(newDesc)) {
 			/* TODO: add error message Description NOT CHANGED */
 			return null; // add the correct view string
@@ -360,7 +360,7 @@ public class UserController {
 	public String updateSecurityAnswer(HttpServletRequest req, @RequestParam("userID") Long userID,
 			@RequestParam("newAnswer") String newAnswer) {
 		session = req.getSession();
-		IRUser user = userDAO.changeSecurityAnswer(userID, newAnswer);
+		IUser user = userDAO.changeSecurityAnswer(userID, newAnswer);
 		if (!user.getSecurityAnswer().equals(newAnswer)) {
 			/* TODO: add error message SECURITY ANSWER NOT CHANGED */
 			return null; // add the correct view string

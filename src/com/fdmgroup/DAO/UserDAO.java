@@ -36,9 +36,9 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public IRUser delete(Long userId) {
+	public IUser delete(Long userId) {
 		EntityManager em = connection.getEntityManager();
-		IRUser foundUser = em.find(IRUser.class, userId);
+		IUser foundUser = em.find(IUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setStatus(false);
 		em.getTransaction().commit();
@@ -195,9 +195,9 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public Consultant updateDescription(Long userId, String newDesc) {
+	public IRUser updateDescription(Long userId, String newDesc) {
 		EntityManager em = connection.getEntityManager();
-		Consultant foundUser = em.find(Consultant.class, userId);
+		IRUser foundUser = em.find(IRUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setDescription(newDesc);
 		em.getTransaction().commit();
@@ -332,9 +332,9 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public IRUser changeSecurityAnswer(Long userId, String newAnswer) {
+	public IUser changeSecurityAnswer(Long userId, String newAnswer) {
 		EntityManager em = connection.getEntityManager();
-		IRUser foundUser = em.find(IRUser.class, userId);
+		IUser foundUser = em.find(IUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setSecurityAnswer(newAnswer);
 		em.getTransaction().commit();
@@ -343,10 +343,10 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public IRUser changeUserName(Long userId, String newUsername) {
+	public IUser changeUserName(Long userId, String newUsername) {
 		EntityManager em = connection.getEntityManager();
 		
-		IRUser foundUser = em.find(IRUser.class, userId);
+		IUser foundUser = em.find(IUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setUsername(newUsername);
 		em.getTransaction().commit();
