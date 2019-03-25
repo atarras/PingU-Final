@@ -22,54 +22,54 @@
 				<div class="container left-form">
 					<div class="card" style="width: 80%;">
 						<div class="card-body">
-							<h5 class="card-title">${profileUser.getFirstName()} ${profileUser.getLastName()}</h5>
+							<h5 class="card-title">${sessionScope.newUser.getFirstName()} ${sessionScope.newUser.getLastName()}</h5>
 						</div>
 						<i class="fas fa-user-circle fa-10x"></i>
 						<div class="card-body">
-							<h5 class="card-title">Developer: ${profileUser.getGroup().getGroupName().getName() } <i class="far fa-edit user-edit"></i></h5>
+							<h5 class="card-title">Developer: ${sessionScope.newUser.getGroup().getGroupName().getName() } <i class="far fa-edit user-edit"></i></h5>
 							<i class="far fa-edit user-edit"></i>
 							<p class="card-text">
-							${profileUser.getDescription() }
+							${sessionScope.newUser.getDescription() }
 						
 							</p>
 							<p class="card-text">
-							${profileUser.getGroup().getGroupName().getName() }
+							${sessionScope.newUser.getGroup().getGroupName().getName() }
 							</p>
-							<a href="#">${profileUser.getLinkedInUrl() }</a><i class="far fa-edit user-edit"></i>
+							<a href="#">${sessionScope.newUser.getLinkedInUrl() }</a><i class="far fa-edit user-edit"></i>
 						</div>
 					</div>
 				</div>
 				<div class="container right-form">
-					<form class="form personal-info" action="#" method="post" id="registrationForm">
+					<form class="form personal-info" action="${sessionScope.newUser.getUserId() }" method="POST" id="registrationForm">
 						<div class="form-group">
 							<div class="form-group">
 								<div class="col-xs-4">
 									<label for="country"><h4>Country</h4></label>
-									<!--<p id="country">Default Country</p>-->
-									<input type="text" class="form-control" name="country" id="country" placeholder="${profileUser.getCountry() }" title="Your current country.">
+									<p id="country">${sessionScope.newUser.getCountry() }</p>
+									<!--  <input type="text" class="form-control" name="country" id="countryInput" placeholder="${profileUser.getCountry() }" title="Your current country.">-->
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-xs-4">
 								<label for="city"><h4>City</h4></label>
-								<!--<p id="city">Default City</p>-->
-								<input type="city" class="form-control" id="city" placeholder="${profileUser.getCity() }" title="Your currrent city.">
+								<p id="city">${sessionScope.newUser.getCity() }</p>
+								<!-- <input type="city" class="form-control" name="city" id="cityInput" placeholder="${profileUser.getCity() }" title="Your currrent city.">-->
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-xs-4">
 								<label for="phone"><h4>Phone</h4></label>
-								<!--<p id="phone">Default Phone	</p>-->
-								<input type="phone" class="form-control" name="phone" id="phone" placeholder="${profileUser.getPhoneNumber()}" title="Your phone number.">
+								<p id="phone">${sessionScope.newUser.getPhoneNumber() }</p>
+								<!--  <input type="phone" class="form-control" name="phone" id="phoneInput" placeholder="${profileUser.getPhoneNumber()}" title="Your phone number.">-->
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<i id="edit-button" class="fas fa-edit fa-2x" title="Edit fields."></i>
+							<a id="edit-button" href="#"><i class="fas fa-edit fa-2x" title="Edit fields."></i></a>
 							<div class="col-xs-8">
-								<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Submit</button>
-								<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+								<button id="form-submit" class="btn btn-lg btn-success personal-button" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Submit</button>
+								<button id="form-reset" class="btn btn-lg personal-button" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
 							</div>
 						</div>
 	              	</form>
@@ -80,13 +80,13 @@
 							</div>
 							<div id="collapseOne" class="accordion-body collapse in">
 								<div class="accordion-inner">
-									<form class="form security" action="#" method="post" id="securityForm">
+									<form class="form security" action="password" method="POST" id="securityForm">
 										<div class="form-group">
 											<div class="form-group">
 												<div class="col-xs-4">
-													<label for="old-password"><h4>Current Password</h4></label>
+													<label for="current-password"><h4>Current Password</h4></label>
 													<!--<p id="country">Default Country</p>-->
-													<input type="password" class="form-control" name="old-password" id="old-password" placeholder="Old Password" title="Your old password.">
+													<input type="password" class="form-control" name="current-password" id="current-password" placeholder="Old Password" title="Your old password.">
 												</div>
 											</div>
 										</div>
@@ -94,14 +94,14 @@
 											<div class="col-xs-4">
 												<label for="new-password"><h4>New Password</h4></label>
 												<!--<p id="city">Default City</p>-->
-												<input type="password" class="form-control" id="new-password" placeholder="New Password" title="Your new password.">
+												<input type="password" class="form-control" id="new-password" name="new-password" placeholder="New Password" title="Your new password.">
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-xs-4">
-												<label for="new-password"><h4>Confirm New Password</h4></label>
+												<label for="confirm-password"><h4>Confirm New Password</h4></label>
 												<!--<p id="phone">Default Phone	</p>-->
-												<input type="password" class="form-control" name="new-password" id="new-password" placeholder="Confirm New Password" title="Your new password confirmation.">
+												<input type="password" class="form-control" name="confirm-password" id="confirm-password" placeholder="Confirm New Password" title="Your new password confirmation.">
 											</div>
 										</div>
 										<div class="form-group">
@@ -131,5 +131,6 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="<c:url value="/resources/js/profile.js" />"></script>
 	</body>
 </html>
