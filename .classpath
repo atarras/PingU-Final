@@ -19,7 +19,7 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="H:/jar-java/ojdbc7-12.1.0.2.jar">
+	<classpathentry kind="lib" path="C:/MavenRepository/com/oracle/ojdbc6/11.2.0.3/ojdbc6-11.2.0.3.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
