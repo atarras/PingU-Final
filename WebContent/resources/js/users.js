@@ -11,13 +11,27 @@ $(document).ready(function() {
 		
 		$("#trainee-column-toggles").append(
 				'<div class="form-check">' +
-		          '<input class="form-check-input column-toggle" type="checkbox" id="' + id + '" checked>' +
+		          '<input class="form-check-input column-toggle" type="checkbox" id="' + id + '">' +
 		          '<label class="form-check-label" for="' + id + '">' +
 		          	label +
 		          '</label>' +
             	'</div>');
 		
 	});
+	
+	/**
+	 * Check specific trainee columns to be shown by default
+	 */
+	$("#show-trainee-id").prop("checked", true);
+	$("#show-trainee-username").prop("checked", true);
+	$("#show-trainee-firstname").prop("checked", true);
+	$("#show-trainee-lastname").prop("checked", true);
+	$("#show-trainee-city").prop("checked", true);
+	$("#show-trainee-country").prop("checked", true);
+	$("#show-trainee-stream").prop("checked", true);
+	$("#show-trainee-status").prop("checked", true);
+	$("#show-trainee-visibility").prop("checked", true);
+	$("#show-trainee-actions").prop("checked", true);
 	
 	/**
 	 * When document loads, make sure to hide any unchecked option by default 
