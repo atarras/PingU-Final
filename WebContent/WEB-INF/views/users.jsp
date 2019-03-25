@@ -317,7 +317,7 @@
       <!-- /END Add Trainee Modal -->
     
       <!-- Edit Trainee Modal -->
-      <div class="modal fade" id="edit-trainee-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal fade edit-modal" id="edit-trainee-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -381,14 +381,14 @@
                   <div class="row">
                     <div class="col col-md-6">
                       <label>Status</label>
-                      <button type="button" id="trainee-status-open" class="btn edittable"><i class="fas fa-lock-open"></i></button>
-                      <button type="button" id="trainee-status-close" class="btn edittable"><i class="fas fa-lock"></i></button>
+                      <button type="button" class="btn status-open edittable"><i class="fas fa-lock-open"></i></button>
+                      <button type="button" class="btn status-close edittable"><i class="fas fa-lock"></i></button>
                       <input type="text" id="edit-trainee-status" class="form-control" name="status" style="display:none" />
                     </div>
                     <div class="col col-md-6">
                       <label>Visibility</label>
-                      <button type="button" id="trainee-set-visible" class="btn edittable"><i class="fas fa-eye"></i></button>
-                      <button type="button" id="trainee-set-invisible" class="btn edittable"><i class="fas fa-eye-slash"></i></button>
+                      <button type="button" class="btn set-visible edittable"><i class="fas fa-eye"></i></button>
+                      <button type="button" class="btn set-invisible edittable"><i class="fas fa-eye-slash"></i></button>
                       <input type="text" id="edit-trainee-visibility" class="form-control" name="visibility" style="display:none" />
                     </div>
                   </div>
@@ -443,61 +443,59 @@
                 <div class="form-group">
                   <div class="row">
                     <div class="col col-md-6">
-                      <sf:input type="text" class="form-control" path="firstName" placeholder="First Name" required="required" />
+                      <sf:input type="text" id="add-consultant-firstname" class="form-control" path="firstName" placeholder="First Name" required="required" />
                     </div>
                     <div class="col col-md-6">
-                      <sf:input type="text" class="form-control" path="lastName" placeholder="Last Name" required="required" />
+                      <sf:input type="text" id="add-consultant-lastname" class="form-control" path="lastName" placeholder="Last Name" required="required" />
                     </div>
                   </div>
                 </div>
                 
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="username" placeholder="Username" required="required" />
-                  <div id="username-exists-section" class="error-message"></div>
+                  <sf:input type="text" id="add-consultant-username" class="form-control" path="username" placeholder="Username" required="required" />
                 </div>
                 
                 <div class="form-group">
-                  <sf:input type="password" class="form-control" path="password" placeholder="Password" required="required" />  
+                  <sf:input type="password" id="add-consultant-password" class="form-control" path="password" placeholder="Password" required="required" />  
                 </div>
                 
                 <div class="form-group">
-                  <input type="password" class="form-control" name="confirm-password" placeholder="Confirm Password" required="required" />  
-                  <div id="password-does-not-match-section" class="error-message"></div>
+                  <input type="password" id="add-consultant-confirm-password" class="form-control" name="confirm-password" placeholder="Confirm Password" required="required" />  
                 </div>
                 
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="securityAnswer" placeholder="Security Answer" required="required" />  
+                  <sf:input type="text" id="add-consultant-security-answer" class="form-control" path="securityAnswer" placeholder="Security Answer" required="required" />  
                 </div>
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="email" placeholder="Email" required="required" />  
+                  <sf:input type="text" id="add-consultant-email" class="form-control" path="email" placeholder="Email" required="required" />  
                 </div>
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="phoneNumber" placeholder="Phone Number" required="required" />  
+                  <sf:input type="text" id="add-consultant-phone" class="form-control" path="phoneNumber" placeholder="Phone Number" required="required" />  
                 </div>
                 
                 <div class="form-group">
                   <div class="row">
                     <div class="col col-md-6">
-                      <sf:input type="text" class="form-control" path="city" placeholder="City" required="required" />  
+                      <sf:input type="text" id="add-consultant-city" class="form-control" path="city" placeholder="City" required="required" />  
                     </div>
                     <div class="col col-md-6">
-                      <sf:input type="text" class="form-control" path="country" placeholder="Country" required="required" />  
+                      <sf:input type="text" id="add-consultant-country" class="form-control" path="country" placeholder="Country" required="required" />  
                     </div>
                   </div>
                 </div>
                 
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="linkedInUrl" placeholder="LinkedIn" />  
+                  <sf:input type="text" id="add-consultant-linkedin" class="form-control" path="linkedInUrl" placeholder="LinkedIn" />  
                 </div>
                 
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="currentTitle" placeholder="Current Title" required="required" />  
+                  <sf:input type="text" id="add-consultant-title" class="form-control" path="currentTitle" placeholder="Current Title" required="required" />  
                 </div>
                 <div class="form-group">
-                  <sf:input type="text" class="form-control" path="employer" placeholder="Employer" required="required" />  
+                  <sf:input type="text" id="add-consultant-employer" class="form-control" path="employer" placeholder="Employer" required="required" />  
                 </div>
                 <div class="form-group">
-                  <sf:input type="date" class="form-control" path="pDate" placeholder="Placement Date" required="required" />  
+                  <sf:input type="date" id="add-consultant-pdate" class="form-control" path="pDate" placeholder="Placement Date" required="required" />  
                 </div>
                 
                 <div class="form-group">
@@ -512,6 +510,102 @@
       </div>
       <!-- /END Add Consultant Modal -->
       
+      <!-- Edit Consultant Modal -->
+      <div class="modal fade edit-modal" id="edit-consultant-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+              Edit Consultant
+              <span id="edit-consultant-id"></span>
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            
+              <div id="edit-consultant-body">
+              <form id="edit-consultant" action="user" method="post">
+              
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col col-md-6">
+                      <input type="text" id="edit-consultant-firstname" class="form-control edittable" name="firstName" placeholder="First Name" />
+                    </div>
+                    <div class="col col-md-6">
+                      <input type="text" id="edit-consultant-lastname" class="form-control edittable" name="lastName" placeholder="Last Name" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <input type="text" id="edit-consultant-username" class="form-control edittable" name="username" placeholder="Username" />
+                </div>
+                <div class="form-group">
+                  <input type="password" id="edit-consultant-password" class="form-control edittable" name="password" placeholder="Password" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="edit-consultant-email" class="form-control edittable" name="email" placeholder="Email" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="edit-consultant-phone" class="form-control edittable" name="phone" placeholder="Phone Number" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="edit-consultant-city" class="form-control edittable" name="city" placeholder="City" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="edit-consultant-country" class="form-control edittable" name="country" placeholder="Country" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="edit-consultant-description" class="form-control edittable" name="description" placeholder="Description" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="edit-consultant-title" class="form-control edittable" name="title" placeholder="Title" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="edit-consultant-employer" class="form-control edittable" name="employer" placeholder="Employer" />
+                </div>
+                <div class="form-group">
+                  <input type="date" id="edit-consultant-pdate" class="form-control edittable" name="pdate" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="edit-consultant-linkedin" class="form-control edittable" name="linkedin" placeholder="LinkedIn" />
+                </div>
+                <div class="form-group">
+                  <input type="text" id="edit-consultant-security-answer" class="form-control edittable" name="security-answer" placeholder="Security Answer" />
+                </div>
+                
+                <!-- Place status and visibility toggles here -->
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col col-md-6">
+                      <label>Status</label>
+                      <button type="button" class="btn status-open edittable"><i class="fas fa-lock-open"></i></button>
+                      <button type="button" class="btn status-close edittable"><i class="fas fa-lock"></i></button>
+                      <input type="text" id="edit-consultant-status" class="form-control" name="status" style="display:none" />
+                    </div>
+                    <div class="col col-md-6">
+                      <label>Visibility</label>
+                      <button type="button" class="btn set-visible edittable"><i class="fas fa-eye"></i></button>
+                      <button type="button" class="btn set-invisible edittable"><i class="fas fa-eye-slash"></i></button>
+                      <input type="text" id="edit-consultant-visibility" class="form-control" name="visibility" style="display:none" />
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <button type="submit" id="confirm-edit-consultant" class="btn btn-primary">Confirm Edit</button>
+                </div>
+              
+              </form>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /END Consultant Edit Modal -->
       
       <!-- Admin Options Modal -->
       <div class="modal fade" id="admin-options-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

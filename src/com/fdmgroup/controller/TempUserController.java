@@ -141,11 +141,13 @@ public class TempUserController {
 			@RequestParam("city") String city,
 			@RequestParam("country") String country,
 			@RequestParam("description") String description,
-			@RequestParam("stream") String stream,
+			@RequestParam(value="stream", required=false) String stream,
 			@RequestParam("security-answer") String securityAnswer,
 			@RequestParam("visibility") String visibility,
 			@RequestParam("status") String statusString,
-			@RequestParam(value="title", required=false) String jobTitle
+			@RequestParam(value="title", required=false) String jobTitle,
+			@RequestParam(value="employer", required=false) String employer,
+			@RequestParam(value="pdate", required=false) String pDate
 			) {
 		System.out.println("/user/POST?id=" + stringID +
 				"&firstName=" + firstName +
@@ -161,7 +163,9 @@ public class TempUserController {
 				"&security-answer=" + securityAnswer +
 				"&visibility=" + visibility +
 				"&status=" + statusString +
-				"&title=" + jobTitle
+				"&title=" + jobTitle + 
+				"&employer=" + employer + 
+				"&pdate=" + pDate
 				);
 		
 		long id = Long.parseLong(stringID);
@@ -176,6 +180,15 @@ public class TempUserController {
 			// return error message or page
 		}
 		
+		if (StringHelpers.isData(statusString)) {
+			boolean status = Boolean.parseBoolean(statusString);
+			if (status) {
+				userDAO.activateUser(id);
+			} else {
+				userDAO.delete(id);
+			}
+		}
+		
 		if (foundUser instanceof IRUser) {
 			System.out.println("is IRUser");
 			/* TODO: update first name */
@@ -187,16 +200,10 @@ public class TempUserController {
 			if (StringHelpers.isData(phone)) userDAO.updatePhoneNumber(id, phone);
 			if (StringHelpers.isData(city)) userDAO.changeCity(id, city);
 			if (StringHelpers.isData(country)) userDAO.changeCountry(id, country);
+			
+			/* TODO: update description */
 			//if (StringHelpers.isData(description)) userDAO.updateDescription(id, description);
 			
-			if (StringHelpers.isData(statusString)) {
-				boolean status = Boolean.parseBoolean(statusString);
-				if (status) {
-					userDAO.activateUser(id);
-				} else {
-					userDAO.delete(id);
-				}
-			}
 			
 			if (StringHelpers.isData(visibility)) {
 				userDAO.changeVissibility(id, Boolean.parseBoolean(visibility));
@@ -204,12 +211,19 @@ public class TempUserController {
 		}
 		
 		if (foundUser instanceof Trainee) {
-			/* update stream */
+			/* TODO: update stream */
 			
 		}
 		
 		if (foundUser instanceof Consultant) {
-			//userDAO.updateJobTitle(id, jobTitle);
+			if (StringHelpers.isData(jobTitle)) userDAO.updateJobTitle(id, jobTitle);
+			if (StringHelpers.isData(employer)) userDAO.updateEmployer(id, employer);
+			
+			/* TODO: update placement date */
+			if (StringHelpers.isData(pDate)) {
+				
+			}
+			
 		}
 		
 		/* If we are passed in an id, update that user */

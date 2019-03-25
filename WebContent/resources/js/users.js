@@ -34,11 +34,11 @@ $(document).ready(function() {
 		$("#show-" + userTypes[i] + "-actions").prop("checked", true);
 		
 		if (userTypes[i] != "admin") {
-			$("#show-trainee-firstname").prop("checked", true);
-			$("#show-trainee-lastname").prop("checked", true);
-			$("#show-trainee-city").prop("checked", true);
-			$("#show-trainee-country").prop("checked", true);
-			$("#show-trainee-visibility").prop("checked", true);
+			$("#show-" + userTypes[i] + "-firstname").prop("checked", true);
+			$("#show-" + userTypes[i] + "-lastname").prop("checked", true);
+			$("#show-" + userTypes[i] + "-city").prop("checked", true);
+			$("#show-" + userTypes[i] + "-country").prop("checked", true);
+			$("#show-" + userTypes[i] + "-visibility").prop("checked", true);
 			
 			if (userTypes[i] == "trainee") {
 				$("#show-" + userTypes[i] + "-stream").prop("checked", true);
@@ -114,28 +114,26 @@ $(document).ready(function() {
 		/* Set the starting version of status toggle */
 		if ($("#edit-" + userType + "-status").val() == "true") {
 			console.log("status true");
-			
-			$("#" +userType + "-status-open").css("display", "");
-			$("#" +userType + "-status-close").css("display", "none");
+			$(".status-open").css("display", "");
+			$(".status-close").css("display", "none");
 			
 		} else {
 			console.log("status false");
-			
-			$("#" +userType + "-status-open").css("display", "none");
-			$("#" +userType + "-status-close").css("display", "");
+			$(".status-open").css("display", "none");
+			$(".status-close").css("display", "");
 
 		}
 		
 		/* Set starting version of visibility toggle */
 		if ($("#edit-" + userType + "-visibility").val() == "true") {
 			console.log("visibility true");
-			$("#" +userType + "-set-visible").css("display", "");
-			$("#" +userType + "-set-invisible").css("display", "none");
+			$(".set-visible").css("display", "");
+			$(".set-invisible").css("display", "none");
 			
 		} else {
 			console.log("visibility false");
-			$("#" +userType + "-set-visible").css("display", "none");
-			$("#" +userType + "-set-invisible").css("display", "");
+			$(".set-visible").css("display", "none");
+			$(".set-invisible").css("display", "");
 		}
 		
 	});
@@ -174,10 +172,26 @@ $(document).ready(function() {
 		
 	});
 	
+	$("#confirm-edit-consultant").on("click", function(e) {
+		e.preventDefault();
+		
+		var id = $("#edit-consultant-id").text();
+		
+		$.ajax({
+			type: "POST",
+			url: "user?id=" + id + "&" + $("#edit-consultant").serialize(),
+			success: function(data) {
+				/* Redirect page since ajax calls seems to prevent our server from redirecting */
+				window.location.replace(data);
+			}
+		});
+		
+	});
+	
 	/**
 	 * Clicking on status open
 	 */
-	$("#trainee-status-open").on("click", function() {
+	$(".status-open").on("click", function() {
 		var statusCloseButton = $(this).next();
 		$(this).css("display", "none");
 		statusCloseButton.css("display", "");
@@ -188,7 +202,7 @@ $(document).ready(function() {
 	/**
 	 * Clicking on status close
 	 */
-	$("#trainee-status-close").on("click", function() {
+	$(".status-close").on("click", function() {
 		var statusOpenButton = $(this).prev();
 		$(this).css("display", "none");
 		statusOpenButton.css("display", "");
@@ -199,7 +213,7 @@ $(document).ready(function() {
 	/**
 	 * Clicking on set visible
 	 */
-	$("#trainee-set-visible").on("click", function() {
+	$(".set-visible").on("click", function() {
 		var setInvisibleButton = $(this).next();
 		$(this).css("display", "none");
 		setInvisibleButton.css("display", "");
@@ -210,7 +224,7 @@ $(document).ready(function() {
 	/**
 	 * Clicking on set invisible
 	 */
-	$("#trainee-set-invisible").on("click", function() {
+	$(".set-invisible").on("click", function() {
 		var setVisibleButton = $(this).prev();
 		$(this).css("display", "none");
 		setVisibleButton.css("display", "");
@@ -243,7 +257,7 @@ $(document).ready(function() {
 	/**
 	 * Closing the edit modal should remove all color-coded editted fields
 	 */
-	$("#edit-trainee-modal").on("hidden.bs.modal", function () {
+	$(".edit-modal").on("hidden.bs.modal", function () {
 		$(this).find("button, input").removeClass("editted");
 	});
 	
