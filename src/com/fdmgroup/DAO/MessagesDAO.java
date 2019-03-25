@@ -58,4 +58,22 @@ public class MessagesDAO implements IMessageDAO {
 		return message;
 	}
 
+	@Override
+	public List<Messages> getAllMessagesForUser(Long userId) {
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<Messages> query = em.createNamedQuery("messages.findByUserId", Messages.class);
+		query.setParameter("userId", userId);
+		List<Messages> resultList = query.getResultList();
+		return resultList;
+	}
+
+	@Override
+	public List<Messages> getAllMessagesForGroup(Long groupId) {
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<Messages> query = em.createNamedQuery("messages.findByGroupId", Messages.class);
+		query.setParameter("groupId", groupId);
+		List<Messages> resultList = query.getResultList();
+		return resultList;
+	}
+
 }

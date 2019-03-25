@@ -14,9 +14,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PINGU_MESSAGES")
-@NamedQueries({ @NamedQuery(name = "messages.findBySenderId", query = "select m FROM Messages m where m.senderId = :senderId"),
-	@NamedQuery(name = "messages.findByReceiverId", query = "select m FROM Messages m where m.receiverId = :receiverId"),
-	@NamedQuery(name = "messages.findAllMessages", query = "select m FROM Messages m")})
+@NamedQueries({
+		@NamedQuery(name = "messages.findBySenderId", query = "select m FROM Messages m where m.senderId = :senderId"),
+		@NamedQuery(name = "messages.findByReceiverId", query = "select m FROM Messages m where m.receiverId = :receiverId"),
+		@NamedQuery(name = "messages.findAllMessages", query = "select m FROM Messages m"),
+		@NamedQuery(name = "messages.findByUserId", query = "select m FROM Messages m where m.receiverId = :userId OR m.senderId = :userId"),
+		@NamedQuery(name = "messages.findByGroupId", query = "select m FROM Messages m where m.groupId = :groupId") })
 public class Messages {
 
 	@Id
@@ -31,12 +34,12 @@ public class Messages {
 	@Column(name = "receiverId")
 	private long receiverId;
 
-	// @Column(name = "groupId")
-	// private long groupId;
+	@Column(name = "groupId")
+	private long groupId;
 
 	@Column(name = "Message")
 	private String msgBody;
-	
+
 	@Column(name = "sentTime")
 	private Date sentTime;
 
@@ -51,8 +54,6 @@ public class Messages {
 		this.receiverId = receiverId;
 		this.msgBody = msgBody;
 	}
-	
-	
 
 	public Messages(long senderId, long receiverId, String msgBody, Date sentTime) {
 		super();
@@ -61,8 +62,13 @@ public class Messages {
 		this.msgBody = msgBody;
 		this.sentTime = sentTime;
 	}
-	
-	
+
+	public Messages(long senderId, String msgBody, long groupId) {
+		super();
+		this.senderId = senderId;
+		this.groupId = groupId;
+		this.msgBody = msgBody;
+	}
 
 	public Date getSentTime() {
 		return sentTime;
@@ -104,10 +110,18 @@ public class Messages {
 		this.msgBody = msgBody;
 	}
 
+	public long getGroupId() {
+		return groupId;
+	}
+
+	public void setGroupId(long groupId) {
+		this.groupId = groupId;
+	}
+
 	@Override
 	public String toString() {
-		return "Messages [msgId=" + msgId + ", senderId=" + senderId + ", receiverId=" + receiverId + ", msgBody="
-				+ msgBody + ", sentTime=" + sentTime + "]";
+		return "Messages [msgId=" + msgId + ", senderId=" + senderId + ", receiverId=" + receiverId + ", groupId="
+				+ groupId + ", msgBody=" + msgBody + ", sentTime=" + sentTime + "]";
 	}
 
 }

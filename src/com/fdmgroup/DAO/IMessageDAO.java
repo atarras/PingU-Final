@@ -11,5 +11,7 @@ public interface IMessageDAO {
 	List<Messages> getAllMessages();
 	Messages findById(long msgId);
 	Messages sendMessage(Messages message);
+	List<Messages> getAllMessagesForUser(Long userId);
+	List<Messages> getAllMessagesForGroup(Long groupId);
 	
 }

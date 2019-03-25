@@ -39,6 +39,7 @@ public class MessagesController {
 		return null; // add the correct view string
 	}
 
+	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String getMessageById(HttpServletRequest req, @RequestParam("msgId") Long msgId) {
 		session = req.getSession();
 		Messages foundMsg = messagesDao.findById(msgId);
@@ -51,6 +52,7 @@ public class MessagesController {
 		return null; // add the correct view string
 	}
 
+	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String getSentMessages(HttpServletRequest req, @RequestParam("userId") Long senderId) {
 		session = req.getSession();
 		List<Messages> sentMsg = messagesDao.getSentMessagesForUser(senderId);
@@ -65,6 +67,7 @@ public class MessagesController {
 		return null; // add the correct view string
 	}
 
+	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String getRecievedMessages(HttpServletRequest req, @RequestParam("userId") Long receiverId) {
 		session = req.getSession();
 		List<Messages> receivedMsg = messagesDao.getReceiverMessagesForUser(receiverId);
@@ -79,6 +82,7 @@ public class MessagesController {
 		return null; // add the correct view string
 	}
 	
+	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String sendMessageToUser(HttpServletRequest req, @ModelAttribute(value="message") Messages message, BindingResult br) {
 		session = req.getSession();
 		if (!br.hasErrors()){
@@ -90,4 +94,34 @@ public class MessagesController {
 		 */
 		return null; // add the correct view string
 	}
+	
+	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
+	public String getAllMessagesForUser(HttpServletRequest req,  @RequestParam("userId") Long userId) {
+		session = req.getSession();
+		List<Messages> allMsg = messagesDao.getAllMessagesForUser(userId);
+		if (allMsg == null || allMsg.size() < 1) {
+			/* TODO: add nothing found message NO MESSAGE FOUND */
+			return null; // add the correct view string
+		}
+		session.setAttribute("allUserMsg", allMsg);
+		/*
+		 * TODO: add success message and add the messages to request attribute
+		 */
+		return null; // add the correct view string
+	}
+	
+	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
+		public String getAllMessagesForGroup(HttpServletRequest req,  @RequestParam("groupId") Long groupId) {
+			session = req.getSession();
+			List<Messages> allMsg = messagesDao.getAllMessagesForGroup(groupId);
+			if (allMsg == null || allMsg.size() < 1) {
+				/* TODO: add nothing found message NO MESSAGE FOUND */
+				return null; // add the correct view string
+			}
+			session.setAttribute("allGroupMsg", allMsg);
+			/*
+			 * TODO: add success message and add the messages to request attribute
+			 */
+			return null; // add the correct view string
+		}
 }
