@@ -8,6 +8,11 @@
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" href="resources/css/request.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script
@@ -15,11 +20,6 @@
 <title>PINGU Admin Page</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="resources/css/request.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
 <script src="<c:url value="resources/js/request.js" />"></script>
 </head>
 <%-- <jsp:include page="nav.jsp"> --%>
@@ -41,7 +41,8 @@
 					</div>
 				</c:if>
 				<c:if test="${not empty approvedRequestMsg}">
-					<div id="approvedRequestMsg" class="alert alert-success text-center">
+					<div id="approvedRequestMsg"
+						class="alert alert-success text-center">
 						<h4>${approvedRequestMsg }</h4>
 					</div>
 				</c:if>
@@ -64,63 +65,58 @@
 								<th scope="row">${count}</th>
 								<td>${currRequest.getRequestUser().getFirstName()}</td>
 								<td>${currRequest.getRequestUser().getLastName()}</td>
-								
+
 								<c:choose>
-									<c:when test="${currRequest.getRequestUserType() == 'Trainee' }">
+									<c:when
+										test="${currRequest.getRequestUserType() == 'Trainee' }">
 										<td>Trainee</td>
 									</c:when>
 									<c:otherwise>
 										<td>Consultant</td>
 									</c:otherwise>
 								</c:choose>
-								
+
 								<c:choose>
-									<c:when test="${currRequest.getRequestType() == 'CHANGE_EMPLOYER'}">
+									<c:when
+										test="${currRequest.getRequestType() == 'CHANGE_EMPLOYER'}">
 										<td>Change Employer: ${currRequest.getComment() }</td>
 									</c:when>
-									<c:when test="${currRequest.getRequestType() == 'CHANGE_JOB_TITLE'}">
+									<c:when
+										test="${currRequest.getRequestType() == 'CHANGE_JOB_TITLE'}">
 										<td>Change Job Title: ${currRequest.getComment() }</td>
 									</c:when>
-									<c:when test="${currRequest.getRequestType() == 'CREATE_USER' }">
+									<c:when
+										test="${currRequest.getRequestType() == 'CREATE_USER' }">
 										<td>Create User</td>
 									</c:when>
 									<c:otherwise>
-										<td>Join Group</td>
+										<td>Join Group: ${currRequest.getComment() }</td>
 									</c:otherwise>
 								</c:choose>
-								
-								<td class="text-right row no-padding"><c:url
-										value="approveRequest" var="approveRequestURL">
+
+								<td class="text-right row"><c:url value="approveRequest"
+										var="approveRequestURL">
 										<c:param name="requestID"
 											value="${currRequest.getRequestId()}" />
 									</c:url>
-									<div class="btn-group" role="group">
-										<div class="col-md-6">
-											<button type="button"
-												onclick="location.href='${approveRequestURL}' "
-												class="btn btn-sm btn-success">APPROVE</button>
-										</div>
-										<div class="col-md-6">
-											<button onclick="div_show()" class="btn btn-sm btn-danger">DENY</button>
-										</div>
-									</div></td>
+									<div class="col-md-6">
+										<button type="button"
+											onclick="location.href='${approveRequestURL}' "
+											class="btn btn-sm btn-success">APPROVE</button>
+									</div>
+									<div class="col-md-6">
+										<form action="denyRequest" method="post">
+											<input type="hidden" name="requestID"
+												value="${currRequest.getRequestId()}"> 
+											<input type="text" name="denyComment"
+												placeholder="Reason for Denial" required>
+											<button type="submit" class="btn btn-sm btn-danger">DENY</button>
+										</form>
+									</div>
+								</td>
 							</tr>
-							<div id="popUpArea">
-								<div id="popUpDelete">
-									<img src="" alt="CLOSE" onclick="div_hide()">
-									<form action="denyRequest" method="post">
-										<input type="hidden" name="requestID"
-											value="${currRequest.getRequestId() }"> <input
-											id="comment" name="denyComment"
-											placeholder="Reason For Denial of Request" type=text
-											autofocus>
-										<button class="btn btn-primary" type="submit">CONFIRM</button>
-									</form>
-								</div>
-							</div>
 						</c:forEach>
 					</tbody>
-
 				</table>
 			</c:otherwise>
 		</c:choose>
