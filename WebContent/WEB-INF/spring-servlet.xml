@@ -33,6 +33,7 @@
 	<bean id="userDAO" class="com.fdmgroup.DAO.UserDAO" />
 	<bean id="requestDao" class="com.fdmgroup.DAO.RequestDAO" />
 	<bean id="groupDao" class="com.fdmgroup.DAO.GroupDAO" />
+	<bean id="messagesDao" class="com.fdmgroup.DAO.MessagesDAO" />
 
 
 	<bean id="connection" class="com.fdmgroup.DAO.DBConnection">
