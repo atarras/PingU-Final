@@ -28,7 +28,7 @@ public interface IUserDAO {
 	IRUser updateGroup(Long userId, Group group);
 	Consultant updateEmployer(Long userId, String newEmployer);
 	Consultant updateJobTitle(Long userId, String newTitle);
-	Consultant updateDescription(Long userId, String newDesc);
+	IRUser updateDescription(Long userId, String newDesc);
 	String recoverPassword(String username, String answer);
 	IRUser removeFromGroup(Long userId);
 	IRUser changeCity(Long userId, String newCity);

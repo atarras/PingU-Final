@@ -195,9 +195,9 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public Consultant updateDescription(Long userId, String newDesc) {
+	public IRUser updateDescription(Long userId, String newDesc) {
 		EntityManager em = connection.getEntityManager();
-		Consultant foundUser = em.find(Consultant.class, userId);
+		IRUser foundUser = em.find(IRUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setDescription(newDesc);
 		em.getTransaction().commit();
