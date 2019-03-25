@@ -176,12 +176,12 @@ public class RequestController {
 			currRequest.setRequestStatus(RequestStatus.APPROVE);
 			currRequest.setComment(approvedComment);
 			requestDao.update(currRequest);
-			request.setAttribute("approvedRequestMsg", "Request has been approved");
+			request.setAttribute("approvedRequestMsg", "Request has been approved.");
 		} 
 		
 		List<Request> pendingRequests = requestDao.findAllPendingRequests();
 		request.setAttribute("pendingRequests", pendingRequests);
-		return "requestManagement"; // Return to the necessary jsp
+		return "request"; // Return to the necessary jsp
 	}
 	
 	/**
@@ -201,17 +201,17 @@ public class RequestController {
 		currRequest.setRequestStatus(RequestStatus.DENY);
 		currRequest.setComment(deniedComment);
 		requestDao.update(currRequest);
-		request.setAttribute("deniedRequestMsg", "Request has been denied");
+		request.setAttribute("deniedRequestMsg", "Request has been denied.");
 		List<Request> pendingRequests = requestDao.findAllPendingRequests();
 		request.setAttribute("pendingRequests", pendingRequests);
-		return "requestManagement"; // Return to the necessary jsp.
+		return "request"; // Return to the necessary jsp.
 	}
 	
 	@RequestMapping("/requestAdmin")
 	public String gotoRequest(HttpServletRequest request){
 		List<Request> pendingRequests = requestDao.findAllPendingRequests();
 		request.setAttribute("pendingRequests", pendingRequests);
-		return "requestManagement";
+		return "request";
 	}
 	// TODO REMOVE BEFORE FINAL PRODUCT
 //	@RequestMapping("/goToTestForm")

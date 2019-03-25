@@ -179,6 +179,14 @@ public class Request {
 		this.requestStatus = requestStatus;
 	}
 
+	public String getRequestUserType(){
+		if(requestUser instanceof Trainee){
+			return "Trainee";
+		} else {
+			return "Consultant";
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "Request [requestId=" + requestId + ", requestUser=" + requestUser + ", groupId=" + groupId

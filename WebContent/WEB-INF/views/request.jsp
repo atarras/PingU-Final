@@ -15,12 +15,12 @@
 <title>PINGU Admin Page</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="resources/css/RequestWebpageStyle.css">
+<link rel="stylesheet" href="resources/css/request.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<script src="<c:url value="resources/js/RequestWebpage.js" />"></script>
+<script src="<c:url value="resources/js/request.js" />"></script>
 </head>
 <%-- <jsp:include page="nav.jsp"> --%>
 <body>
@@ -29,12 +29,22 @@
 		<c:choose>
 			<c:when test="${empty pendingRequests}">
 				<div id="noRequests" class="alert alert-info text-center">
-					<h1>
+					<h4>
 						<strong>No Pending Requests</strong>
-					</h1>
+					</h4>
 				</div>
 			</c:when>
 			<c:otherwise>
+				<c:if test="${not empty deniedRequestMsg}">
+					<div id="deniedRequestMsg" class="alert alert-danger text-center">
+						<h4>${deniedRequestMsg }</h4>
+					</div>
+				</c:if>
+				<c:if test="${not empty approvedRequestMsg}">
+					<div id="approvedRequestMsg" class="alert alert-success text-center">
+						<h4>${approvedRequestMsg }</h4>
+					</div>
+				</c:if>
 				<table id="requestTable" class="table table-hover">
 					<thead>
 						<tr>
@@ -54,8 +64,31 @@
 								<th scope="row">${count}</th>
 								<td>${currRequest.getRequestUser().getFirstName()}</td>
 								<td>${currRequest.getRequestUser().getLastName()}</td>
-								<td>${currRequest.getRequestType() }</td>
-								<td>${currRequest.getComment() }</td>
+								
+								<c:choose>
+									<c:when test="${currRequest.getRequestUserType() == 'Trainee' }">
+										<td>Trainee</td>
+									</c:when>
+									<c:otherwise>
+										<td>Consultant</td>
+									</c:otherwise>
+								</c:choose>
+								
+								<c:choose>
+									<c:when test="${currRequest.getRequestType() == 'CHANGE_EMPLOYER'}">
+										<td>Change Employer: ${currRequest.getComment() }</td>
+									</c:when>
+									<c:when test="${currRequest.getRequestType() == 'CHANGE_JOB_TITLE'}">
+										<td>Change Job Title: ${currRequest.getComment() }</td>
+									</c:when>
+									<c:when test="${currRequest.getRequestType() == 'CREATE_USER' }">
+										<td>Create User</td>
+									</c:when>
+									<c:otherwise>
+										<td>Join Group</td>
+									</c:otherwise>
+								</c:choose>
+								
 								<td class="text-right row no-padding"><c:url
 										value="approveRequest" var="approveRequestURL">
 										<c:param name="requestID"
