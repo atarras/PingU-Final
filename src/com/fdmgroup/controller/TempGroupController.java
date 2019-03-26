@@ -85,13 +85,13 @@ public class TempGroupController {
 	}
 	
 	
-	@RequestMapping(value="/editGroupA", method=RequestMethod.POST)
+	@RequestMapping(value="/editGroup", method=RequestMethod.POST)
 	public void postGroup(HttpServletResponse res,
 			@RequestParam("id") String stringID,
 			@RequestParam("description") String description,
 			@RequestParam("status") String status) {
 		
-		System.out.println("/editGroupA/POST/?id=" + stringID + 
+		System.out.println("/editGroup/POST/?id=" + stringID + 
 				"&description=" + description +
 				"&status=" + status);
 		
