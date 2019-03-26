@@ -52,16 +52,19 @@ public class GroupDAO {
 	 */
 	public Group findByGroupId(long id){
 		EntityManager em = connection.getEntityManager();
-		TypedQuery<Group> query = em.createNamedQuery("group.findByGroupId", Group.class);
+		/*TypedQuery<Group> query = em.createNamedQuery("group.findByGroupId", Group.class);
 		query.setParameter("gId", id);
 		
-		List<Group> groups = query.getResultList();
+		List<Group> groups = query.getResultList();*/
+		Group foundGroup = em.find(Group.class, id);
 		em.close();
-		if(groups != null && !groups.isEmpty()){
+		if (foundGroup != null) return foundGroup;
+		return null;
+		/*if(groups != null && !groups.isEmpty()){
 			return groups.get(0);
 		} else {
 			return null;
-		}
+		}*/
 	}
 	/**
 	 * 

@@ -46,7 +46,7 @@
             </tr>
           </thead>
           <tbody>
-            <c:forEach items="${groups}" var="group">
+            <c:forEach items="${sessionScope.groups}" var="group">
               <tr id="${group.getGroupId()}">
                 <td class="group-id">${group.getGroupId()}</td>
                 <td class="group-name">${group.getGroupName()}</td>
@@ -106,7 +106,7 @@
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">
               Edit Group
-              <span id="edit-group-id"></span>
+              <!-- <span id="edit-group-id"></span> -->
               </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -115,8 +115,11 @@
             <div class="modal-body">
             
               <div id="edit-group-body">
-              <form id="edit-group" action="edit-group" method="post">
+              <form id="edit-group" action="editGroupA" method="post">
               
+                <div class="form-group" style="display:none">
+                  <input type="text" id="edit-group-id" class="form-control edittable" name="id" />
+                </div>
                 
                 <div class="form-group">
                   <input type="text" id="edit-group-description" class="form-control edittable" name="description" placeholder="Group Description" />

@@ -14,19 +14,20 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("#confirm-edit-group").on("click", function(e) {
+	/*$("#confirm-edit-group").on("click", function(e) {
 		e.preventDefault();
-		
 		var id = $("#edit-group-id").text();
+		console.log("editGroup?id=" + id + "&" + $("#edit-group").serialize());
 		$.ajax({
 			type: "POST",
-			url: "group-edit?id=" + id + "&" + $("#edit-group").serialize(),
+			url: "editGroup?id=" + id + "&" + $("#edit-group").serialize(),
 			success: function(data) {
-				/* Redirect page since ajax calls seems to prevent our server from redirecting */
-				window.location.replace(data);
+				console.log("success");
+				 Redirect page since ajax calls seems to prevent our server from redirecting 
+				//window.location.replace(data);
 			}
 		});
 		
-	});
+	});*/
 	
 });
