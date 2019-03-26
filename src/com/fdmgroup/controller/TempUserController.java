@@ -159,6 +159,7 @@ public class TempUserController {
 			@RequestParam(value="country", required=false) String country,
 			@RequestParam(value="description", required=false) String description,
 			@RequestParam(value="stream", required=false) String stream,
+			@RequestParam(value="linkedin", required=false) String linkedIn,
 			@RequestParam("security-answer") String securityAnswer,
 			@RequestParam(value="visibility", required=false) String visibility,
 			@RequestParam("status") String statusString,
@@ -177,6 +178,7 @@ public class TempUserController {
 				"&country=" + country +
 				"&description=" + description +
 				"&stream=" + stream +
+				"&linkedin=" + linkedIn +
 				"&security-answer=" + securityAnswer +
 				"&visibility=" + visibility +
 				"&status=" + statusString +
@@ -218,6 +220,7 @@ public class TempUserController {
 			if (StringHelpers.isData(phone)) userDAO.updatePhoneNumber(id, phone);
 			if (StringHelpers.isData(city)) userDAO.changeCity(id, city);
 			if (StringHelpers.isData(country)) userDAO.changeCountry(id, country);
+			if (StringHelpers.isData(linkedIn)) userDAO.changeLinkedIn(id, linkedIn);
 			if (StringHelpers.isData(description)) userDAO.updateDescription(id, description);
 			if (StringHelpers.isData(visibility)) userDAO.changeVissibility(id, Boolean.parseBoolean(visibility));
 		}

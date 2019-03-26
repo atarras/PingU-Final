@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.DAO.GroupDAO;
 import com.fdmgroup.DAO.UserDAO;
+import com.fdmgroup.enums.Employer;
 import com.fdmgroup.model.Group;
 
 @Controller
@@ -41,6 +42,8 @@ public class TempGroupController {
 		
 		/* Prepare model with a Group so we can create one if needed */
 		model.addAttribute("newGroup", new Group());
+		
+		model.addAttribute("employers", Employer.values());
 		
 		return "groups";
 	}

@@ -78,12 +78,17 @@
             <div class="modal-body">
             
               <sf:form action="group" method="post" modelAttribute="newGroup">
-                <div class="form-group">
+                <%-- <div class="form-group">
                   <sf:input type="text" id="add-group-name" class="form-control" path="groupName" placeholder="Group Name" required="required" />
-                </div>
-                <div class="form-group">
-                  <sf:input type="password" id="add-group-category" class="form-control" path="groupCategory" placeholder="Group Category" required="required" />  
-                </div>
+                </div> --%>
+                <sf:select path="groupName">
+                    <sf:option value="" label="*** Select Option ***" required="required" />
+                    <sf:options items="${employers}" />
+                </sf:select>
+                <sf:select path="groupCategory" required="required" >
+                    <sf:option value="" label="*** Select Option ***" />
+                    <sf:options items="${categories}" />
+                </sf:select>
                 <div class="form-group">
                   <sf:input type="text" id="add-group-description" class="form-control" path="groupDescription" placeholder="Group Description" />  
                 </div>
