@@ -1,5 +1,7 @@
 package com.fdmgroup.controller;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -10,11 +12,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.DAO.GroupDAO;
 import com.fdmgroup.DAO.UserDAO;
 import com.fdmgroup.enums.Employer;
+import com.fdmgroup.helpers.StringHelpers;
 import com.fdmgroup.model.Group;
 
 @Controller
@@ -76,6 +80,38 @@ public class TempGroupController {
 		}
 		
 		return new ModelAndView("redirect:/groups");
+	}
+	
+	@RequestMapping(value="/group-edit", method=RequestMethod.POST)
+	public void postUser(HttpServletRequest req, HttpServletResponse res,
+			@RequestParam("id") String stringID,
+			@RequestParam("description") String description,
+			@RequestParam("status") String status) {
+		
+		System.out.println("/group-edit?id=" + stringID + 
+				"&description=" + description +
+				"&status=" + status);
+		
+		long id = Long.parseLong(stringID);
+		
+		Group foundGroup = groupDao.findByGroupId(id);
+		if (foundGroup != null) {
+			
+			if (StringHelpers.isData(description)) foundGroup.setGroupDescription(description);
+			if (StringHelpers.isData(status)) foundGroup.setActive(Boolean.parseBoolean(status));
+			
+			groupDao.update(foundGroup);
+		} else {
+			// TODO: return error
+		}
+		
+		res.setContentType("text/html;charset=UTF-8");
+        try {
+			res.getWriter().write("/PingU/groups");  // TODO: make this not hardcoded
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -26,44 +26,44 @@
   <div class="flex-wrapper">
   
     <div id="main-body" class="container">
-    
-      <!-- Groups Control Buttons -->
-      <button type="button" id="add-group-button" class="btn btn-success" data-toggle="modal" data-target="#add-group-modal">
-        <i class="fas fa-plus"></i>
-        Add Group
-      </button>
-      <!-- Groups Table -->
-      <table class="table table-responsive">
-        <thead>
-          <tr>
-            <th class="group-id">ID</th>
-            <th class="group-name">Name</th>
-            <th class="group-category">Category</th>
-            <th class="group-description">Description</th>
-            <th class="group-num-members"># Members</th>
-            <th class="group-status">Status</th>
-            <th class="group-actions">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <c:forEach items="${groups}" var="group">
-            <tr id="${group.getGroupId()}">
-              <td class="group-id">${group.getGroupId()}</td>
-              <td class="group-name">${group.getGroupName()}</td>
-              <td class="group-category">${group.getGroupCategory()}</td>
-              <td class="group-description">${group.getGroupDescription()}</td>
-              <td class="group-num-members">${group.getGroupMembers().size()}</td>
-              <td class="group-status">
-                <p style="display:none;">${group.isActive()}</p>
-              </td>
-              <td class="group-actions">
-                <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-group-modal"></i>
-              </td>
+      <div id="group">
+        <!-- Groups Control Buttons -->
+        <button type="button" id="add-group-button" class="btn btn-success" data-toggle="modal" data-target="#add-group-modal">
+          <i class="fas fa-plus"></i>
+          Add Group
+        </button>
+        <!-- Groups Table -->
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th class="group-id">ID</th>
+              <th class="group-name">Name</th>
+              <th class="group-category">Category</th>
+              <th class="group-description">Description</th>
+              <th class="group-num-members"># Members</th>
+              <th class="group-status">Status</th>
+              <th class="group-actions">Actions</th>
             </tr>
-          </c:forEach>
-        </tbody>
-      </table>
-    
+          </thead>
+          <tbody>
+            <c:forEach items="${groups}" var="group">
+              <tr id="${group.getGroupId()}">
+                <td class="group-id">${group.getGroupId()}</td>
+                <td class="group-name">${group.getGroupName()}</td>
+                <td class="group-category">${group.getGroupCategory()}</td>
+                <td class="group-description">${group.getGroupDescription()}</td>
+                <td class="group-num-members">${group.getGroupMembers().size()}</td>
+                <td class="group-status">
+                  <p style="display:none;">${group.isActive()}</p>
+                </td>
+                <td class="group-actions">
+                  <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-group-modal"></i>
+                </td>
+              </tr>
+            </c:forEach>
+          </tbody>
+        </table>
+      </div>
       <!-- Add Group Modal -->
       <div class="modal fade" id="add-group-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -77,9 +77,6 @@
             <div class="modal-body">
             
               <sf:form action="group" method="post" modelAttribute="newGroup">
-                <%-- <div class="form-group">
-                  <sf:input type="text" id="add-group-name" class="form-control" path="groupName" placeholder="Group Name" required="required" />
-                </div> --%>
                 <sf:select path="groupName" required="required">
                     <sf:option value="" label="*** Select Option ***" />
                     <sf:options items="${employers}" />
@@ -118,27 +115,21 @@
             <div class="modal-body">
             
               <div id="edit-group-body">
-              <form id="edit-group" action="user" method="post">
+              <form id="edit-group" action="edit-group" method="post">
               
                 
                 <div class="form-group">
-                  <input type="text" id="edit-admin-username" class="form-control edittable" name="username" placeholder="Username" />
-                </div>
-                <div class="form-group">
-                  <input type="password" id="edit-admin-password" class="form-control edittable" name="password" placeholder="Password" />
-                </div>
-                <div class="form-group">
-                  <input type="text" id="edit-admin-security-answer" class="form-control edittable" name="security-answer" placeholder="Security Answer" />
+                  <input type="text" id="edit-group-description" class="form-control edittable" name="description" placeholder="Group Description" />
                 </div>
                 
-                <!-- Place status and visibility toggles here -->
+                <!-- Place status toggle here -->
                 <div class="form-group">
                   <div class="row">
                     <div class="col col-md-6">
                       <label>Status</label>
                       <button type="button" class="btn status-open edittable"><i class="fas fa-lock-open"></i></button>
                       <button type="button" class="btn status-close edittable"><i class="fas fa-lock"></i></button>
-                      <input type="text" id="edit-admin-status" class="form-control" name="status" style="display:none" />
+                      <input type="text" id="edit-group-status" class="form-control" name="status" style="display:none" />
                     </div>
                   </div>
                 </div>
