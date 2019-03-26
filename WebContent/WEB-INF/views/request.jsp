@@ -5,24 +5,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<link rel="stylesheet" href="resources/css/request.css">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<link rel="stylesheet" href="<c:url value="resources/css/main.css"/>"/>
+<link rel="stylesheet" href="resources/css/request.css">
 <title>PINGU Admin Page</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<script src="<c:url value="resources/js/request.js" />"></script>
 </head>
-<%-- <jsp:include page="nav.jsp"> --%>
+<jsp:include page="navAdmin.jsp" />
 <body>
 	<div id="requestContent"
 		class="container-fluid table-responsive text-nowrap">
@@ -46,7 +40,8 @@
 						<h4>${approvedRequestMsg }</h4>
 					</div>
 				</c:if>
-				<table id="requestTable" class="table table-hover">
+				<div class=tableDiv>
+				<table border=0 id="requestTable" class="table table-hover">
 					<thead>
 						<tr>
 							<th scope="col">Request #</th>
@@ -54,6 +49,7 @@
 							<th scope="col">Last Name</th>
 							<th scope="col">Type Of User</th>
 							<th scope="col">Type Of Request</th>
+							<th scope="col">Approve/Deny</th>
 						</tr>
 					</thead>
 
@@ -90,27 +86,27 @@
 										<td>Create User</td>
 									</c:when>
 									<c:otherwise>
-										<td>Join Group: ${currRequest.getComment() }</td>
+										<td>Join Group: ${currRequest.getGroupId()}</td>
 									</c:otherwise>
 								</c:choose>
 
-								<td class="text-right row"><c:url value="approveRequest"
-										var="approveRequestURL">
+								<td class="text-left requestButtons">
+									<c:url value="approveRequest" var="approveRequestURL">
 										<c:param name="requestID"
 											value="${currRequest.getRequestId()}" />
 									</c:url>
-									<div class="col-md-6">
+									<div>
 										<button type="button"
 											onclick="location.href='${approveRequestURL}' "
 											class="btn btn-sm btn-success">APPROVE</button>
 									</div>
-									<div class="col-md-6">
+									<div class="text-left">
 										<form action="denyRequest" method="post">
+											<button type="submit" class="btn btn-sm btn-danger">DENY</button>
 											<input type="hidden" name="requestID"
 												value="${currRequest.getRequestId()}"> 
 											<input type="text" name="denyComment"
 												placeholder="Reason for Denial" required>
-											<button type="submit" class="btn btn-sm btn-danger">DENY</button>
 										</form>
 									</div>
 								</td>
@@ -118,8 +114,13 @@
 						</c:forEach>
 					</tbody>
 				</table>
+				</div>
 			</c:otherwise>
 		</c:choose>
 	</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="<c:url value="resources/js/request.js"/>"></script>
 </body>
 </html>

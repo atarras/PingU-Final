@@ -1,8 +1,8 @@
 
-.btn-group .col-md-6 {
-   padding-left: 0;
-   padding-right: 0;
-}
+/* .btn-group .col-md-6 { */
+/*    padding-left: 0; */
+/*    padding-right: 0; */
+/* } */
 
 html{
 	text-align: center;
@@ -28,6 +28,15 @@ margin-left:-202px;
 font-family:'Raleway',sans-serif
 }
 
+#requestContent{
+	margin-top:60px;
+
+}
+.tableDiv{
+	height: 80vh;
+	overflow: auto;
+}
+
 .centered {
   position: fixed;
   top: 50%;
@@ -35,3 +44,25 @@ font-family:'Raleway',sans-serif
   margin-top: -50px;
   margin-left: -100px;
 }
+.col-md-6 {
+   padding-left: 0;
+   padding-right: 0;
+}
+
+.requestButtons{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.requestButtons div button{
+	vertical-align: top;
+}
+
+.requestButtons div form{
+	vertical-align: top;
+}
+
+.requestButtons div form button{
+	vertical-align: top;
+}
+

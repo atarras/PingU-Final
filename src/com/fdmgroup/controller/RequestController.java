@@ -207,6 +207,13 @@ public class RequestController {
 		return "request"; // Return to the necessary jsp.
 	}
 	
+	/**
+	 * 
+	 * Go to request handler page.
+	 * 
+	 * @param request
+	 * @return Sring representing the jsp page
+	 */
 	@RequestMapping("/requestAdmin")
 	public String gotoRequest(HttpServletRequest request){
 		List<Request> pendingRequests = requestDao.findAllPendingRequests();
