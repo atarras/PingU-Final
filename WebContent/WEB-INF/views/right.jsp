@@ -21,11 +21,11 @@
 			
 			<c:forEach items="${loggedInUsers}" var="user" varStatus="status">
 				<div class="media border p-3">
-					<a href="${user.getUserId()}"><i class="fas fa-user-circle fa-4x"></i></a>
+					<a href="${user.value.getUserId()}"><i class="fas fa-user-circle fa-4x"></i></a>
 					<div class="media-body">
-						<p>${user.getFirstName()}  ${user.getLastName()}</p>
+						<p>${user.value.getFirstName()}  ${user.value.getLastName()}</p>
 						<a href="#" data-toggle="modal" data-target="#exampleModal"><i class="far fa-envelope fa-2x"></i></a>
-						<a href="${user.getUserId()}"><i class="fas fa-users fa-2x"></i></a>
+						<a href="${user.value.getUserId()}"><i class="fas fa-users fa-2x"></i></a>
 					</div>
 				</div>
     		</c:forEach>
