@@ -82,8 +82,9 @@ public class TempGroupController {
 		return new ModelAndView("redirect:/groups");
 	}
 	
+	
 	@RequestMapping(value="/group-edit", method=RequestMethod.POST)
-	public void postUser(HttpServletRequest req, HttpServletResponse res,
+	public void postGroup(HttpServletRequest req, HttpServletResponse res,
 			@RequestParam("id") String stringID,
 			@RequestParam("description") String description,
 			@RequestParam("status") String status) {
@@ -96,13 +97,14 @@ public class TempGroupController {
 		
 		Group foundGroup = groupDao.findByGroupId(id);
 		if (foundGroup != null) {
-			
-			if (StringHelpers.isData(description)) foundGroup.setGroupDescription(description);
+			System.out.println("Found");
+			/*if (StringHelpers.isData(description)) foundGroup.setGroupDescription(description);
 			if (StringHelpers.isData(status)) foundGroup.setActive(Boolean.parseBoolean(status));
 			
-			groupDao.update(foundGroup);
+			groupDao.update(foundGroup);*/
 		} else {
 			// TODO: return error
+			System.out.println("Nope");
 		}
 		
 		res.setContentType("text/html;charset=UTF-8");

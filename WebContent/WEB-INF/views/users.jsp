@@ -54,7 +54,6 @@
               <tr>
                 <th class="trainee-id">ID</th>
                 <th class="trainee-username">Username</th>
-                <th class="trainee-password">Password</th>
                 <th class="trainee-firstname">First Name</th>
                 <th class="trainee-lastname">Last Name</th>
                 <th class="trainee-email">Email</th>
@@ -75,7 +74,6 @@
                 <tr id="${user.getUserId()}">
                   <td class="trainee-id">${user.getUserId()}</td>
                   <td class="trainee-username">${user.getUsername()}</td>
-                  <td class="trainee-password">${user.getPassword()}</td>
                   <td class="trainee-firstname">${user.getFirstName()}</td>
                   <td class="trainee-lastname">${user.getLastName()}</td>
                   <td class="trainee-email">${user.getEmail()}</td>
@@ -119,7 +117,6 @@
               <tr>
                 <th class="consultant-id">ID</th>
                 <th class="consultant-username">Username</th>
-                <th class="consultant-password">Password</th>
                 <th class="consultant-firstname">First Name</th>
                 <th class="consultant-lastname">Last Name</th>
                 <th class="consultant-email">Email</th>
@@ -142,7 +139,6 @@
                 <tr id="${user.getUserId()}">
                   <td class="consultant-id">${user.getUserId()}</td>
                   <td class="consultant-username">${user.getUsername()}</td>
-                  <td class="consultant-password">${user.getPassword()}</td>
                   <td class="consultant-firstname">${user.getFirstName()}</td>
                   <td class="consultant-lastname">${user.getLastName()}</td>
                   <td class="consultant-email">${user.getEmail()}</td>
@@ -188,7 +184,6 @@
               <tr>
                 <th class="admin-id">ID</th>
                 <th class="admin-username">Username</th>
-                <th class="admin-password">Password</th>
                 <th class="admin-security-answer">Security Answer</th>
                 <th class="admin-status">Status</th>
                 <th class="admin-actions">Actions</th>
@@ -199,7 +194,6 @@
                 <tr id="${user.getUserId()}">
                   <td class="admin-id">${user.getUserId()}</td>
                   <td class="admin-username">${user.getUsername()}</td>
-                  <td class="admin-password">${user.getPassword()}</td>
                   <td class="admin-security-answer">${user.getSecurityAnswer()}</td>
                   <td class="admin-status">
                     <p style="display:none;">${user.isStatus()}</p>
@@ -345,9 +339,6 @@
                 
                 <div class="form-group">
                   <input type="text" id="edit-trainee-username" class="form-control edittable" name="username" placeholder="Username" />
-                </div>
-                <div class="form-group">
-                  <input type="password" id="edit-trainee-password" class="form-control edittable" name="password" placeholder="Password" />
                 </div>
                 <div class="form-group">
                   <input type="text" id="edit-trainee-email" class="form-control edittable" name="email" placeholder="Email" />
@@ -541,9 +532,6 @@
                   <input type="text" id="edit-consultant-username" class="form-control edittable" name="username" placeholder="Username" />
                 </div>
                 <div class="form-group">
-                  <input type="password" id="edit-consultant-password" class="form-control edittable" name="password" placeholder="Password" />
-                </div>
-                <div class="form-group">
                   <input type="text" id="edit-consultant-email" class="form-control edittable" name="email" placeholder="Email" />
                 </div>
                 <div class="form-group">
@@ -681,9 +669,6 @@
                 
                 <div class="form-group">
                   <input type="text" id="edit-admin-username" class="form-control edittable" name="username" placeholder="Username" />
-                </div>
-                <div class="form-group">
-                  <input type="password" id="edit-admin-password" class="form-control edittable" name="password" placeholder="Password" />
                 </div>
                 <div class="form-group">
                   <input type="text" id="edit-admin-security-answer" class="form-control edittable" name="security-answer" placeholder="Security Answer" />

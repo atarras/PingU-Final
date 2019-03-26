@@ -152,7 +152,7 @@ public class TempUserController {
 			@RequestParam(value="firstName", required=false) String firstName,
 			@RequestParam(value="lastName", required=false) String lastName,
 			@RequestParam("username") String username,
-			@RequestParam("password") String password,
+			//@RequestParam("password") String password,
 			@RequestParam(value="email", required=false) String email,
 			@RequestParam(value="phone", required=false) String phone,
 			@RequestParam(value="city", required=false) String city,
@@ -171,7 +171,7 @@ public class TempUserController {
 				"&firstName=" + firstName +
 				"&lastName=" + lastName +
 				"&username=" + username +
-				"&password=" + password +
+				//"&password=" + password +
 				"&email=" + email +
 				"&phone=" + phone +
 				"&city=" + city +
@@ -201,7 +201,7 @@ public class TempUserController {
 		
 		/* Fields for any type of users */
 		if (StringHelpers.isData(username)) userDAO.changeUserName(id, username);
-		if (StringHelpers.isData(password)) userDAO.updatePassword(id, password);
+		//if (StringHelpers.isData(password)) userDAO.updatePassword(id, password);
 		if (StringHelpers.isData(securityAnswer)) userDAO.changeSecurityAnswer(id, securityAnswer);
 		if (StringHelpers.isData(statusString)) {
 			boolean status = Boolean.parseBoolean(statusString);
