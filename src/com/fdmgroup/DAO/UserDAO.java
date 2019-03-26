@@ -136,7 +136,7 @@ public class UserDAO implements IUserDAO {
 		em.close();
 		if (resultList != null && resultList.size() >= 1) {
 			if (passwordEncoder.matches(password, resultList.get(0).getPassword())) {
-				if (resultList.get(0).isStatus())
+				
 					return resultList.get(0);
 			}
 		}

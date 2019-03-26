@@ -45,8 +45,11 @@
               
               <div class="form-group">
                 <input type="password" class="form-control login-form-field" title="Enter your password" name="password" placeholder="Password" required="required">  
-                <c:if test="${sessionScope.passwordIncorrect}">
+                <c:if test="${sessionScope.incorrectCredential}">
                     <div class="error-message">Incorrect Username or Password! Please try again.</div>
+                </c:if>
+                 <c:if test="${sessionScope.inactiveUser}">
+                    <div class="error-message">Your profile is blocked. Please contact the admin office.</div>
                 </c:if>
               </div>
               

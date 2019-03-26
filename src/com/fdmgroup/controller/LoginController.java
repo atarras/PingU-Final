@@ -75,10 +75,16 @@ public class LoginController {
 //		}
 		
 		if (loginUser==null) {
-			session.setAttribute("passwordIncorrect", true);
+			session.setAttribute("incorrectCredential", true);
 			model.addAttribute("newUser", new IRUser());
 			return "login";
 		} 
+		
+		if (!loginUser.isStatus()){
+			session.setAttribute("inactiveUser", true);
+			model.addAttribute("newUser", new IRUser());
+			return "login";
+		}
 		
 		session.setAttribute("newUser", loginUser);
 		
@@ -92,8 +98,8 @@ public class LoginController {
 	}
 	
 	private void removeErrorAttributes(HttpSession session) {
-		session.removeAttribute("passwordIncorrect");
-		session.removeAttribute("usernameIncorrect");
+		session.removeAttribute("incorrectCredential");
+		session.removeAttribute("inactiveUser");
 	}
 	
 	/**
