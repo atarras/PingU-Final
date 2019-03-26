@@ -26,18 +26,26 @@
 						</div>
 						<i class="fas fa-user-circle fa-10x"></i>
 						<div class="card-body">
-							<h5 class="card-title">Developer: ${profileUser.getGroup().getGroupName().getName() } 
-								<a href="#" id="title-and-employer"><i class="far fa-edit user-edit"></i></a>
-							</h5>
-							<a href="#" id="description-button"><i class="far fa-edit user-edit"></i></a>
-							<p id="description-text" class="card-text">
-								${profileUser.getDescription() }
-							</p>
-							<p id="group-text" class="card-text">
-								${profileUser.getGroup().getGroupName().getName() }
-							</p>
-							<a href="#" id="linked-in">${profileUser.getLinkedInUrl() }
-							<i class="far fa-edit user-edit"></i></a>
+							<div id="edit-box">
+								<h5 class="card-title">Developer: ${profileUser.getGroup().getGroupName().getName() } 
+								<button class="btn btn-primary" id="role-title-submit" name="Submit-Description">Submit</button>
+								<a href="#" id="role-title-button"><i class="far fa-edit user-edit"></i></a>
+								</h5>
+							</div>
+							<div>
+								<a href="#" id="description-button"><i class="far fa-edit user-edit"></i></a>
+								<p id="description-text" class="card-text">
+									${profileUser.getDescription() }
+								</p>
+								<button class="btn btn-primary" id="description-submit" name="Submit-Description" >Submit</button>
+							</div>
+							<div>	
+								<p id="group-text" class="card-text">
+									${profileUser.getGroup().getGroupName().getName() }
+								</p>
+								<a href="#" id="linkedin-link">${profileUser.getLinkedInUrl() }</a><a href="#" id="linkedin-button"><i class="far fa-edit user-edit"></i></a>
+								<button class="btn btn-primary" id="linkedin-submit" name="Submit-Description">Submit</button>
+							</div>
 						</div>
 					</div>
 				</div>

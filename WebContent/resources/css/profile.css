@@ -69,3 +69,26 @@ p{
 #edit-button{
 			
 }
+
+#description-submit{
+	visibility:hidden;
+	white-space: nowrap;
+	
+}
+
+#linkedin-submit{
+	visibility:hidden;
+}
+
+#role-title-submit{
+	visibility:hidden;
+}
+
+#descriiption-submit #linkedin-submit #role-title-submit{
+	float:right;
+}
+
+.edit-box{
+	display:block;
+	white-space: nowrap;
+}

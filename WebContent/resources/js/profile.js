@@ -37,13 +37,63 @@ $(document).ready(function() {
 		//$("#phone").empty().append("<input type='phone' class='form-control' name='phoneInput' id='phone' placeholder='" + phone + "' title='Your phone number.'>");
 	})
 	
+	/*This function will toggle the description field to an input field with a placeholder equalling to what is in the the field in the first place
+	 * It will also toggle the visibility of the submit button pressing this icon
+	 * */
 	$("#description-button").click(function(){
-		//$(".personal-button").css("visibility", "visible");
-		
 		var userDescription = $("#description-text").text();
+		if($("#description-submit").css("visibility") == "hidden")
+		{
+			$("#description-submit").css("visibility", "visible");
+		}
+		else
+		{
+			var userDescritionPlaceholder = $("#description-input").attr('placeholder');
+			$("#description-submit").css("visibility", "hidden");
+			$("#description-input").replaceWith("<p id='description-text' class='card-text'>"+userDescritionPlaceholder.trim()+"</p>");
+			return;
+		}
 		
-		$(this).css("visibility", "hidden");
-		$("#description-text").replaceWith("<input id='description-input' placeholder='" + userDescription + "' title='User description.'>");
+		if (((userDescription == "" || userDescription == "undefined")) && ($("#description-submit").css("visibility") == "visible"))
+		{
+			console.log("hello");
+			$("#description-text").replaceWith("<input type='text' id='description-input' placeholder='Add a user description' title='User description.'>");
+		}
+		else
+		{
+			$("#description-text").replaceWith("<input type='text' id='description-input' placeholder='"+userDescription.trim()+"' title='User description.'>");
+		}
+		
+	})
+	
+	/*This function will toggle the linkedin link field to an input field with a placeholder equalling to what is in the the field in the first place
+	 * It will also toggle the visibility of the submit button pressing this icon
+	 * */
+	$("#linkedin-button").click(function(){
+		
+		if($("#linkedin-submit").css("visibility") == "hidden")
+		{
+			var userLinkedIn = $("#linkedin-link").text();
+			$("#linkedin-submit").css("visibility", "visible");
+		}
+		else
+		{
+			var userLinkedInPlaceholder = $("#linkedin-input").attr('placeholder');
+			$("#linkedin-submit").css("visibility", "hidden");
+			$("#linkedin-input").replaceWith("<a href='#' id='linkedin-link'>"+userLinkedInPlaceholder.trim()+"</a>");
+			return;
+		}
+		
+		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#linkedin-submit").css("visibility") == "visible"))
+		{
+			console.log("goodbye");
+			$("#linkedin-link").replaceWith("<input type='text' id='linkedin-input' placeholder='Your linkedin link' title='Your linkedin.'>");
+		}
+		else
+		{
+			$("#linkedin-link").replaceWith("<input type='text' id='linkedin-input' placeholder='"+userLinkedIn.trim()+"' title='Your linkedin.'>");
+		}
+		
 	})
 	
 	$("#form-reset").click(function() {
