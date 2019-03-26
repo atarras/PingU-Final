@@ -38,7 +38,9 @@
 					<div id="groupmsg" class="tab-pane fade container messages group">
 						<!--  Message template -->	
 						<div class="media border pt-4 p-3">
-							<a href="${found.getUserByID()}" ><i class="fas fa-user-circle fa-4x pr-3"></i></a>
+							<a href="${found.getUserByID().getUserId()}" >
+								<i class="fas fa-user-circle fa-4x pr-3"></i>
+							</a>
 							<div class="media-body">
 								<h5 class="mt-0">Message</h5>
 								<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>

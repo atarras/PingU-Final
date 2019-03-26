@@ -120,7 +120,7 @@ public class UserDAO implements IUserDAO {
 		EntityManager em = connection.getEntityManager();
 		IUser foundUser = em.find(IUser.class, userId);
 		em.getTransaction().begin();
-		foundUser.setPassword(newPassword);
+		foundUser.setPassword(passwordEncoder.encode(newPassword));
 		em.getTransaction().commit();
 		em.close();
 		return foundUser;
@@ -332,9 +332,9 @@ public class UserDAO implements IUserDAO {
 	}
 
 	@Override
-	public IUser changeSecurityAnswer(Long userId, String newAnswer) {
+	public IRUser changeSecurityAnswer(Long userId, String newAnswer) {
 		EntityManager em = connection.getEntityManager();
-		IUser foundUser = em.find(IUser.class, userId);
+		IRUser foundUser = em.find(IRUser.class, userId);
 		em.getTransaction().begin();
 		foundUser.setSecurityAnswer(newAnswer);
 		em.getTransaction().commit();

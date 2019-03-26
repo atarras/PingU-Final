@@ -219,43 +219,6 @@ public class UserController {
 	}
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String changeContact(HttpServletRequest req, @RequestParam("userID") Long userID,
-			@RequestParam("newContact") String contact) {
-		session = req.getSession();
-		IRUser user = userDAO.updatePhoneNumber(userID, contact);
-
-		if (!user.getPhoneNumber().equals(contact)) {
-			/* TODO: add error message PHONE NUMBER NOT CHANGED */
-			return null; // add the correct view string
-		}
-		session.setAttribute("newUser", user);
-		/* TODO: add success message PHONE NUMBER CHANGED */
-		return null; // add the correct view string
-
-	}
-
-	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String changePassword(HttpServletRequest req, @RequestParam("userID") Long userID,
-			@RequestParam("currentPassword") String currentPassword, @RequestParam("newPassword") String newPassword) {
-		session = req.getSession();
-		IUser user = (IUser) session.getAttribute("newUser");
-		if (!user.getPassword().equals(currentPassword)) {
-			/* TODO: add error message Inorrect curret password */
-			return null; // add the correct view string
-		}
-
-		IUser founduser = userDAO.updatePassword(userID, newPassword);
-		if (!founduser.getPassword().equals(newPassword)) {
-			/* TODO: add error message PASSWORD NOT CHANGED */
-			return null; // add the correct view string
-		}
-		session.setAttribute("newUser", founduser);
-		/* TODO: add success message PASSWORD CHANGED */
-		return null; // add the correct view string
-
-	}
-
-	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String updateDescription(HttpServletRequest req, @RequestParam("userID") Long userID,
 			@RequestParam("newDesc") String newDesc) {
 		session = req.getSession();
@@ -266,34 +229,6 @@ public class UserController {
 		}
 		session.setAttribute("newUser", user);
 		/* TODO: add success message Description CHANGED */
-		return null; // add the correct view string
-	}
-
-	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String updateCity(HttpServletRequest req, @RequestParam("userID") Long userID,
-			@RequestParam("newCity") String newCity) {
-		session = req.getSession();
-		IRUser user = userDAO.changeCity(userID, newCity);
-		if (!user.getCity().equals(newCity)) {
-			/* TODO: add error message CITY NOT CHANGED */
-			return null; // add the correct view string
-		}
-		session.setAttribute("newUser", user);
-		/* TODO: add success message CITY CHANGED */
-		return null; // add the correct view string
-	}
-
-	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String updateCountry(HttpServletRequest req, @RequestParam("userID") Long userID,
-			@RequestParam("newCountry") String newCountry) {
-		session = req.getSession();
-		IRUser user = userDAO.changeCountry(userID, newCountry);
-		if (!user.getCountry().equals(newCountry)) {
-			/* TODO: add error message COUNTRY NOT CHANGED */
-			return null; // add the correct view string
-		}
-		session.setAttribute("newUser", user);
-		/* TODO: add success message COUNTRY CHANGED */
 		return null; // add the correct view string
 	}
 
@@ -356,19 +291,6 @@ public class UserController {
 		return null; // add the correct view string
 	}
 
-	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String updateSecurityAnswer(HttpServletRequest req, @RequestParam("userID") Long userID,
-			@RequestParam("newAnswer") String newAnswer) {
-		session = req.getSession();
-		IUser user = userDAO.changeSecurityAnswer(userID, newAnswer);
-		if (!user.getSecurityAnswer().equals(newAnswer)) {
-			/* TODO: add error message SECURITY ANSWER NOT CHANGED */
-			return null; // add the correct view string
-		}
-		session.setAttribute("newUser", user);
-		/* TODO: add success message SECURITY CHANGED */
-		return null; // add the correct view string
-	}
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
 	public String updateEmail(HttpServletRequest req, @RequestParam("userID") Long userID,

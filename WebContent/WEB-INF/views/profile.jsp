@@ -26,16 +26,18 @@
 						</div>
 						<i class="fas fa-user-circle fa-10x"></i>
 						<div class="card-body">
-							<h5 class="card-title">Developer: ${sessionScope.newUser.getGroup().getGroupName().getName() } <i class="far fa-edit user-edit"></i></h5>
-							<i class="far fa-edit user-edit"></i>
+							<h5 class="card-title">Developer: ${sessionScope.newUser.getGroup().getGroupName().getName() } 
+								<a href="#" id="title-and-employer"><i class="far fa-edit user-edit"></i></a>
+							</h5>
+							<a href="#" id="description"><i class="far fa-edit user-edit"></i></a>
 							<p class="card-text">
-							${sessionScope.newUser.getDescription() }
-						
+								${sessionScope.newUser.getDescription() }
 							</p>
 							<p class="card-text">
-							${sessionScope.newUser.getGroup().getGroupName().getName() }
+								${sessionScope.newUser.getGroup().getGroupName().getName() }
 							</p>
-							<a href="#">${sessionScope.newUser.getLinkedInUrl() }</a><i class="far fa-edit user-edit"></i>
+							<a href="#" id="linked-in">${sessionScope.newUser.getLinkedInUrl() }
+							<i class="far fa-edit user-edit"></i></a>
 						</div>
 					</div>
 				</div>
