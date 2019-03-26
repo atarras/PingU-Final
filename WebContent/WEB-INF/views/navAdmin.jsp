@@ -32,6 +32,11 @@
 						<a class="nav-link" href="logOut" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
 					</li>
 				</ul>
+				<ul class="navbar-nav mr-auto navbar-right">
+					<li class="nav-item active">
+						<a class="nav-link" href="requestAdmin" title="${newUser.getUsername() }"><i class="fas fa-user-circle"></i>${newUser.getUsername()}</a>
+					</li>
+				</ul>
 			</div>
 		</nav>
 	</header>
