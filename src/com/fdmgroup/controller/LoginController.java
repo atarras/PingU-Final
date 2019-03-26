@@ -100,6 +100,7 @@ public class LoginController {
 	private void removeErrorAttributes(HttpSession session) {
 		session.removeAttribute("incorrectCredential");
 		session.removeAttribute("inactiveUser");
+		session.removeAttribute("userSignUp");
 	}
 	
 	/**
@@ -116,6 +117,7 @@ public class LoginController {
 			RedirectAttributes redirectAttributes,
 			@RequestParam("title") String jobTitle,
 			@RequestParam("employer") String employer) {
+		HttpSession session = req.getSession();
 		
 		System.out.println("POST Consultant");
 		
@@ -135,6 +137,7 @@ public class LoginController {
 			req.setAttribute("userId", newUser.getUserId());
 			model.addAttribute("newUser", user);
 			redirectAttributes.addFlashAttribute("userId", newUser.getUserId());
+			session.setAttribute("userSignUp", true);
 			/* TODO: write Consultant to DB */
 			
 		}
@@ -154,7 +157,7 @@ public class LoginController {
 	public String signup(HttpServletRequest req,Model model, @ModelAttribute(value="newUser") Trainee user, BindingResult br,
 			RedirectAttributes redirectAttributes,
 			@RequestParam("stream") String stream) {
-		
+		HttpSession session = req.getSession();
 		System.out.println("POST Trainee");
 		
 		String email = user.getEmail().toLowerCase();
@@ -172,6 +175,7 @@ public class LoginController {
 			IUser newUser = userDAO.create(user);
 			model.addAttribute("newUser", user);
 			redirectAttributes.addFlashAttribute("userId", newUser.getUserId());
+			session.setAttribute("userSignUp", true);
 		}
 		
 		return "redirect:/signUpRequest";

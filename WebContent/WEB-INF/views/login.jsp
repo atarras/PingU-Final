@@ -51,6 +51,10 @@
                  <c:if test="${sessionScope.inactiveUser}">
                     <div class="error-message">Your profile is blocked. Please contact the admin office.</div>
                 </c:if>
+                 <c:if test="${sessionScope.userSignUp}">
+                 <p/>
+                    <div class="error-message">Thank you for registering. Your request is currently being processed by our admin team. We will contact you once the profile is active.</div>
+                </c:if>
               </div>
               
               <div class="form-group">
