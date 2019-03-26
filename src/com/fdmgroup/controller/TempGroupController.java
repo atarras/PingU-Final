@@ -28,11 +28,12 @@ public class TempGroupController {
 	 */
 	@Autowired
 	private GroupDAO groupDao ;
+	
 	/**
 	 * Data Access Object to interact with the User table.
 	 */
-	@Autowired
-	private UserDAO userDAO;
+	/*@Autowired
+	private UserDAO userDAO;*/
 	
 	/**
 	 * Sends us to a page that lists all groups (Admin view).
@@ -45,7 +46,8 @@ public class TempGroupController {
 		System.out.println("/groups/GET");
 		
 		/* Retrieve all groups in our db to be displayed in a table */
-		model.addAttribute("groups", groupDao.getAllGroupsAdmin());
+		//model.addAttribute("groups", groupDao.getAllGroupsAdmin());
+		req.getSession().setAttribute("groups", groupDao.getAllGroupsAdmin());
 		
 		/* Prepare model with a Group so we can create one if needed */
 		model.addAttribute("newGroup", new Group());
@@ -79,41 +81,44 @@ public class TempGroupController {
 			
 		}
 		
-		return new ModelAndView("redirect:/groups");
+		return new ModelAndView("redirect:/groupz");
 	}
 	
 	
-	@RequestMapping(value="/group-edit", method=RequestMethod.POST)
-	public void postGroup(HttpServletRequest req, HttpServletResponse res,
+	@RequestMapping(value="/editGroupA", method=RequestMethod.POST)
+	public ModelAndView postGroup(
 			@RequestParam("id") String stringID,
 			@RequestParam("description") String description,
 			@RequestParam("status") String status) {
 		
-		System.out.println("/group-edit?id=" + stringID + 
+		System.out.println("/editGroupA/POST/?id=" + stringID + 
 				"&description=" + description +
 				"&status=" + status);
 		
 		long id = Long.parseLong(stringID);
 		
+		System.out.println(id);
+		
 		Group foundGroup = groupDao.findByGroupId(id);
 		if (foundGroup != null) {
 			System.out.println("Found");
-			/*if (StringHelpers.isData(description)) foundGroup.setGroupDescription(description);
+			if (StringHelpers.isData(description)) foundGroup.setGroupDescription(description);
 			if (StringHelpers.isData(status)) foundGroup.setActive(Boolean.parseBoolean(status));
 			
-			groupDao.update(foundGroup);*/
+			groupDao.update(foundGroup);
 		} else {
 			// TODO: return error
 			System.out.println("Nope");
 		}
 		
-		res.setContentType("text/html;charset=UTF-8");
+		/*res.setContentType("text/html;charset=UTF-8");
         try {
 			res.getWriter().write("/PingU/groups");  // TODO: make this not hardcoded
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		return new ModelAndView("redirect:/groups");
 	}
 
 }
