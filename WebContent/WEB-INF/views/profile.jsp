@@ -88,6 +88,18 @@
 							<div class="accordion-heading">
 								<a class="accordion-toggle" data-toggle="collapse" data-parent="#searchAccordion" href="#collapseOne">Password and Security  <i class="far fa-edit"></i></a>
 							</div>
+							<c:if test="${sessionScope.successPassword}">
+                   				<div class="error-message">Password updated successfully.</div>
+                			</c:if>
+                			<c:if test="${sessionScope.samePassword}">
+                   				<div class="error-message">Please enter a new password.</div>
+                			</c:if>
+                			<c:if test="${sessionScope.errorPassword}">
+                   				<div class="error-message">Invalid current password.</div>
+                			</c:if>
+                			<c:if test="${sessionScope.newAnswer}">
+                   				<div class="error-message">Security Answer is updated successfully.</div>
+                			</c:if>
 							<div id="collapseOne" class="accordion-body collapse in">
 								<div class="accordion-inner">
 									<form class="form security" action="password" method="POST" id="securityForm">
