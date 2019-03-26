@@ -16,6 +16,11 @@ public class Admin extends IUser {
 		super(username, password, status);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Admin(String username, String password, boolean status, String answer){
+		super(username, password,status);
+		setSecurityAnswer(answer);
+	}
 
 	@Override
 	public String toString() {

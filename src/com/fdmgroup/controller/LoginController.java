@@ -1,5 +1,6 @@
 package com.fdmgroup.controller;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fdmgroup.DAO.RequestDAO;
 import com.fdmgroup.DAO.UserDAO;
+import com.fdmgroup.model.Admin;
 import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
+import com.fdmgroup.model.Request;
 import com.fdmgroup.model.Trainee;
 
 @Controller
@@ -27,6 +31,9 @@ public class LoginController {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private RequestDAO requestDao;
 	
 	Pattern pattern = Pattern.compile("^[a-zA-Z0-9]+\\.[a-zA-Z0-9]+@fdmgroup.com$");
 	
@@ -72,8 +79,16 @@ public class LoginController {
 			model.addAttribute("newUser", new IRUser());
 			return "login";
 		} 
+		
 		session.setAttribute("newUser", loginUser);
-		return "home";
+		
+		if(loginUser instanceof Admin){
+			List<Request> pendingRequests = requestDao.findAllPendingRequests();
+			req.setAttribute("pendingRequests", pendingRequests);
+			return "request";
+		} else {
+			return "home";
+		}
 	}
 	
 	private void removeErrorAttributes(HttpSession session) {
