@@ -27,7 +27,7 @@ public class TempGroupController {
 	 * Data Access Object to interact with the Group table.
 	 */
 	@Autowired
-	private GroupDAO groupDao ;
+	private GroupDAO groupDao;
 	
 	/**
 	 * Data Access Object to interact with the User table.
@@ -81,12 +81,12 @@ public class TempGroupController {
 			
 		}
 		
-		return new ModelAndView("redirect:/groupz");
+		return new ModelAndView("redirect:/groups");
 	}
 	
 	
 	@RequestMapping(value="/editGroupA", method=RequestMethod.POST)
-	public ModelAndView postGroup(
+	public void postGroup(HttpServletResponse res,
 			@RequestParam("id") String stringID,
 			@RequestParam("description") String description,
 			@RequestParam("status") String status) {
@@ -111,14 +111,14 @@ public class TempGroupController {
 			System.out.println("Nope");
 		}
 		
-		/*res.setContentType("text/html;charset=UTF-8");
+		res.setContentType("text/html;charset=UTF-8");
         try {
 			res.getWriter().write("/PingU/groups");  // TODO: make this not hardcoded
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
-		return new ModelAndView("redirect:/groups");
+		}
+		//return new ModelAndView("redirect:/groups");
 	}
 
 }

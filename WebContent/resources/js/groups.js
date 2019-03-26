@@ -14,7 +14,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	/*$("#confirm-edit-group").on("click", function(e) {
+	$("#confirm-edit-group").on("click", function(e) {
 		e.preventDefault();
 		var id = $("#edit-group-id").text();
 		console.log("editGroup?id=" + id + "&" + $("#edit-group").serialize());
@@ -23,11 +23,11 @@ $(document).ready(function() {
 			url: "editGroup?id=" + id + "&" + $("#edit-group").serialize(),
 			success: function(data) {
 				console.log("success");
-				 Redirect page since ajax calls seems to prevent our server from redirecting 
-				//window.location.replace(data);
+				/* Redirect page since ajax calls seems to prevent our server from redirecting*/ 
+				window.location.replace(data);
 			}
 		});
 		
-	});*/
+	});
 	
 });

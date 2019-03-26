@@ -77,11 +77,11 @@
             <div class="modal-body">
             
               <sf:form action="group" method="post" modelAttribute="newGroup">
-                <sf:select path="groupName" required="required">
+                <sf:select id="add-group-name" path="groupName" required="required">
                     <sf:option value="" label="*** Select Option ***" />
                     <sf:options items="${employers}" />
                 </sf:select>
-                <sf:select path="groupCategory" required="required" >
+                <sf:select id="add-group-category" path="groupCategory" required="required" >
                     <sf:option value="" label="*** Select Option ***" />
                     <sf:options items="${categories}" />
                 </sf:select>
@@ -106,7 +106,7 @@
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">
               Edit Group
-              <!-- <span id="edit-group-id"></span> -->
+              <span id="edit-group-id"></span>
               </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -117,9 +117,9 @@
               <div id="edit-group-body">
               <form id="edit-group" action="editGroupA" method="post">
               
-                <div class="form-group" style="display:none">
+                <!-- <div class="form-group" style="display:none">
                   <input type="text" id="edit-group-id" class="form-control edittable" name="id" />
-                </div>
+                </div> -->
                 
                 <div class="form-group">
                   <input type="text" id="edit-group-description" class="form-control edittable" name="description" placeholder="Group Description" />
