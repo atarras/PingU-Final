@@ -41,7 +41,7 @@
 					</div>
 				</c:if>
 				<div class=tableDiv>
-				<table border=0 id="requestTable" class="table table-hover">
+				<table id="requestTable" class="table table-hover">
 					<thead>
 						<tr>
 							<th scope="col">Request #</th>
