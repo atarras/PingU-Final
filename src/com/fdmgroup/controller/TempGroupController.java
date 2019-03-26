@@ -40,10 +40,12 @@ public class TempGroupController {
 	public String getGroupsPage(HttpServletRequest req, Model model) {
 		System.out.println("/groups/GET");
 		
+		/* Retrieve all groups in our db to be displayed in a table */
+		model.addAttribute("groups", groupDao.getAllGroupsAdmin());
+		
 		/* Prepare model with a Group so we can create one if needed */
 		model.addAttribute("newGroup", new Group());
 		
-		model.addAttribute("employers", Employer.values());
 		
 		return "groups";
 	}
@@ -58,13 +60,22 @@ public class TempGroupController {
 	 * @return
 	 */
 	@RequestMapping(value="/group", method=RequestMethod.POST)
-	public void createGroup(HttpServletRequest req, HttpServletResponse res, Model model, @ModelAttribute(value="newGroup") Group group, BindingResult br) {
+	public ModelAndView createGroup(HttpServletRequest req, HttpServletResponse res, Model model, @ModelAttribute(value="newGroup") Group group, BindingResult br) {
 		System.out.println("/group/POST");
 		
 		System.out.println(group);
-		if (!br.hasErrors()) groupDao.create(group);
+		if (!br.hasErrors()) {
+			
+			/* Check that groupName and groupCategory are set and their combo does not exist in db */
+			if (groupDao.getGroupsWithNameAndCategory(group.getGroupName(), group.getGroupCategory()) == null) {
+				groupDao.create(group);
+			} else {
+				System.out.println("Group already exists.");
+			}
+			
+		}
 		
-		//return new ModelAndView("redirect:/groups");
+		return new ModelAndView("redirect:/groups");
 	}
 
 }

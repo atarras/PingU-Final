@@ -7,6 +7,8 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.fdmgroup.enums.Category;
+import com.fdmgroup.enums.Employer;
 import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IUser;
 
@@ -180,6 +182,48 @@ public class GroupDAO {
 		} 
 		else 
 		{
+			return null;
+		}
+	}
+	
+	/**
+	 * Gets all groups, even inactive ones. Used in Admin view.
+	 * @return
+	 */
+	public List<Group> getAllGroupsAdmin()
+	{
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<Group> query = em.createNamedQuery("group.getAllGroupsAdmin", Group.class);
+		
+		List<Group> groups = null;
+		groups = query.getResultList();
+		if(groups != null && !groups.isEmpty()){
+			return groups;
+		} 
+		else 
+		{
+			return null;
+		}
+	}
+	
+	/**
+	 * Returns a group with a specific name and category.
+	 * There should only be one such group.
+	 * @param name
+	 * @param category
+	 * @return
+	 */
+	public Group getGroupsWithNameAndCategory(Employer name, Category category){
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<Group> query = em.createNamedQuery("group.getGroupsWithNameAndCategory", Group.class);
+		query.setParameter("gName", name);
+		query.setParameter("gCat", category);
+		
+		List<Group> groups = query.getResultList();
+		em.close();
+		if(groups != null && !groups.isEmpty()){
+			return groups.get(0);
+		} else {
 			return null;
 		}
 	}
