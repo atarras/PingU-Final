@@ -22,32 +22,32 @@
 				<div class="container left-form">
 					<div class="card" style="width: 80%;">
 						<div class="card-body">
-							<h5 class="card-title">${sessionScope.newUser.getFirstName()} ${sessionScope.newUser.getLastName()}</h5>
+							<h5 class="card-title">${profileUser.getFirstName()} ${profileUser.getLastName()}</h5>
 						</div>
 						<i class="fas fa-user-circle fa-10x"></i>
 						<div class="card-body">
-							<h5 class="card-title">Developer: ${sessionScope.newUser.getGroup().getGroupName().getName() } 
+							<h5 class="card-title">Developer: ${profileUser.getGroup().getGroupName().getName() } 
 								<a href="#" id="title-and-employer"><i class="far fa-edit user-edit"></i></a>
 							</h5>
-							<a href="#" id="description"><i class="far fa-edit user-edit"></i></a>
-							<p class="card-text">
-								${sessionScope.newUser.getDescription() }
+							<a href="#" id="description-button"><i class="far fa-edit user-edit"></i></a>
+							<p id="description-text" class="card-text">
+								${profileUser.getDescription() }
 							</p>
-							<p class="card-text">
-								${sessionScope.newUser.getGroup().getGroupName().getName() }
+							<p id="group-text" class="card-text">
+								${profileUser.getGroup().getGroupName().getName() }
 							</p>
-							<a href="#" id="linked-in">${sessionScope.newUser.getLinkedInUrl() }
+							<a href="#" id="linked-in">${profileUser.getLinkedInUrl() }
 							<i class="far fa-edit user-edit"></i></a>
 						</div>
 					</div>
 				</div>
 				<div class="container right-form">
-					<form class="form personal-info" action="${sessionScope.newUser.getUserId() }" method="POST" id="registrationForm">
+					<form class="form personal-info" action="${profileUser.getUserId() }" method="POST" id="registrationForm">
 						<div class="form-group">
 							<div class="form-group">
 								<div class="col-xs-4">
 									<label for="country"><h4>Country</h4></label>
-									<p id="country">${sessionScope.newUser.getCountry() }</p>
+									<p id="country">${profileUser.getCountry() }</p>
 									<!--  <input type="text" class="form-control" name="country" id="countryInput" placeholder="${profileUser.getCountry() }" title="Your current country.">-->
 								</div>
 							</div>
@@ -55,14 +55,14 @@
 						<div class="form-group">
 							<div class="col-xs-4">
 								<label for="city"><h4>City</h4></label>
-								<p id="city">${sessionScope.newUser.getCity() }</p>
+								<p id="city">${profileUser.getCity() }</p>
 								<!-- <input type="city" class="form-control" name="city" id="cityInput" placeholder="${profileUser.getCity() }" title="Your currrent city.">-->
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="col-xs-4">
 								<label for="phone"><h4>Phone</h4></label>
-								<p id="phone">${sessionScope.newUser.getPhoneNumber() }</p>
+								<p id="phone">${profileUser.getPhoneNumber() }</p>
 								<!--  <input type="phone" class="form-control" name="phone" id="phoneInput" placeholder="${profileUser.getPhoneNumber()}" title="Your phone number.">-->
 							</div>
 						</div>

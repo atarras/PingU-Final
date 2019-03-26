@@ -26,8 +26,10 @@ public class ProfileController
 	private UserDAO userDAO;
 	
 	@RequestMapping(value="/{userID}", method=RequestMethod.GET)
-	public String getUserProfile(Model model, @PathVariable("userID") long id)
+	public String getUserProfile(HttpServletRequest req, Model model, @PathVariable("userID") long id)
 	{
+		IRUser profileUser = (IRUser)userDAO.findUserById(id);
+		req.setAttribute("profileUser", profileUser);
 		return "profile";
 	}
 	
@@ -52,7 +54,6 @@ public class ProfileController
 			profileUser.setPhoneNumber(newPhone);
 			userDAO.updatePhoneNumber(profileUser.getUserId(), newPhone);
 		}
-		
 		req.getSession().setAttribute("newUser", profileUser);
 		
 		return "profile";
