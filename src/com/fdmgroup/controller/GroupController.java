@@ -155,7 +155,7 @@ public class GroupController {
 	 * @return Group(s) with the corresponding name.
 	 */
 	@RequestMapping("/findGroups")
-	public void findGroupByPartialName(HttpServletRequest request, @RequestParam String gSearchName)
+	public String findGroupByPartialName(HttpServletRequest request, @RequestParam String gSearchName)
 	{
 		HttpSession session = request.getSession();
 		
@@ -201,10 +201,12 @@ public class GroupController {
 		if(foundGroups != null)
 		{
 			session.setAttribute("foundGroups", foundGroups);
+			return "searchGroup";
 		}
 		else
 		{
 			session.setAttribute("errorMsg", "No Groups found based on search parameters!");
+			return "home"; // TODO Return more relevant jsp.
 		}
 		
 		

@@ -7,6 +7,8 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	    
 	    <link rel="stylesheet" href="<c:url value="/resources/css/nav.css"/>" />
+	    
+	    <script src="<c:url value="/resources/js/nav.js" />"></script>
 	</head>
 		<!-- Navigation bar static throughout all our pages, the search bar will probably be made bigger,
 		need to add potentially bigger buttons, a hover effect, dynamic pill icon for notifications -->
@@ -35,14 +37,14 @@
 						<a class="nav-link" href="logOut"><i class="fas fa-sign-out-alt"></i></a>
 					</li>
 				</ul>
-				<form class="form-inline my-2 my-lg-0" action="searchUsers" method="POST">
+				<form id="searchForm" class="form-inline my-2 my-lg-0" action="searchUsers" method="POST">
 				<div class="input-group mr-2">
 					<c:choose>
 						<c:when test="${not empty previousSearch}">
-							<input class="form-control" type="search" placeholder="${previousSearch}" aria-label="Search" name="searchName">
+							<input class="form-control searchField" type="search" placeholder="${previousSearch}" aria-label="Search" name="searchName">
 						</c:when>
 						<c:otherwise>
-							<input class="form-control" type="search" placeholder="Search" aria-label="Search" name="searchName">
+							<input class="form-control searchField" type="search" placeholder="Search" aria-label="Search" name="searchName">
 						</c:otherwise>
 					</c:choose>
 					<div class="input-group-append">
@@ -50,8 +52,8 @@
 						<button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
 						
 						<div class="dropdown-menu dropdown-menu-right">
-							<a class="dropdown-item" href="#">User Search</a>
-							<a class="dropdown-item" href="#">Group Search</a>
+							<a id="userSearch" class="dropdown-item" href="#">User Search</a>
+							<a id="groupSearch" class="dropdown-item" href="#">Group Search</a>
 						</div>
 					</div>
 				</div>
