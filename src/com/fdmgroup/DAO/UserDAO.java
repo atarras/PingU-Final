@@ -427,6 +427,16 @@ public class UserDAO implements IUserDAO {
 		return resultList;
 	}
 	
-	
+	public List<IUser> findAllUsersWithSameGroupId(long groupId){
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<IUser> query = em.createNamedQuery("iuser.findAllUsersWithSameGroupId", IUser.class);
+		query.setParameter("gId", groupId);
+		List<IUser> resultList = query.getResultList();
+		if(resultList != null && !resultList.isEmpty()){
+			return resultList;
+		} else {
+			return null;
+		}
+	}
 
 }
