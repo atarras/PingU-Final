@@ -26,6 +26,14 @@ height: -moz-calc(95vh - 42px);
   width: 50%;
 }
 
+.panel.panel-default {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.panel-footer {
+    background: rgba(245, 245, 245, 0.8);
+}
+
 #login-signup {
     /*position: relative;
     top: 50%;
@@ -36,7 +44,6 @@ height: -moz-calc(95vh - 42px);
 
 #login, #signup {
     border-top: none;
-    border-radius: 0px;
     margin-bottom: 0px;
 }
 
