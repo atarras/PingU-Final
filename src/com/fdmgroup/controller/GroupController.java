@@ -221,8 +221,10 @@ public class GroupController {
 	public String getGroupPage(HttpServletRequest req, Model model, @RequestParam(value="groupId") long id) {
 		HttpSession session = req.getSession();
 		Group groupPage = (Group) groupDao.findByGroupId(id);
+		List<IUser> listOfUsers = userDao.findAllUsersWithSameGroupId(id);
 		
 		session.setAttribute("groupPage", groupPage);
+		session.setAttribute("listOfMembers", listOfUsers);
 		req.setAttribute("foundFromGroupMsg", "From Search");
 		return "group";
 	}
