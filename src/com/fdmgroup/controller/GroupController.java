@@ -167,7 +167,7 @@ public class GroupController {
 		}
 		else
 		{
-			String searchNameLower = gSearchName.toLowerCase();
+			String searchNameLower = gSearchName.toUpperCase();
 			System.out.println("String name entered: " + searchNameLower);
 			String NamesWithoutComma = searchNameLower.replace(",", " ");
 			String NamesWithoutUnderscore = NamesWithoutComma.replace("_", " ");
@@ -187,9 +187,11 @@ public class GroupController {
 			{
 				System.out.println("Found 1+ string");
 				
-				for(int i=0; i < splitNames.length -1; i++)
+				for(int i=0; i < splitNames.length; i++)
 				{
+					
 					gName = "%" + splitNames[i];
+					System.out.println("i: " + i + " and gName " + gName);
 				}
 				gName = gName + "%";
 				System.out.println("Group String for search: " + gName);
