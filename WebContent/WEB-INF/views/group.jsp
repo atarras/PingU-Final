@@ -21,35 +21,47 @@
 	  	 	<jsp:include page="left.jsp" />
 			<div class="container-fluid content">
 				<c:choose>
-					<c:when test="${not empty foundFromGroupMsg }">
+				<c:when test="${not empty foundFromGroupMsg }">
 					<form action="joinGroupRequest">
 						<h1 class="welcome-header">
 							<i class="fas fa-university fa-3x"></i>
 							${groupPage.getGroupNameWithoutUnderscore()} <input type="hidden"
 								name="userID" value="${newUser.getUserId()}"> <input
 								type="hidden" name="groupID" value="${groupPage.getGroupId()}">
-							<button class="btn btn-primary header-button" type="submit">JOIN</button>
+							<c:if test="${groupPage.getGroupId() != newUser.getGroup().getGroupId() }">							
+								<button class="btn btn-primary header-button" type="submit">JOIN</button>
+							</c:if>
 						</h1>
 					</form>
 
 					<div class="group-description">
-						${groupPage.getGroupDescription()}
-					</div>
-					<div class="search-result">${listOfMembers.size()} Members</div>
+						${groupPage.getGroupDescription()}</div>
+					<div class="search-result">${listOfMembers.size()}Members</div>
 
-				</c:when>	
+				</c:when>
+				<c:when test="${empty newUser.getGroup()}">
+				
+					<div class="container-fluid">
+						<h5 class="alert alert-info text-center">You are currently not in a group</h5>
+						<c:url value="findGroups" var="findGroupsURL">
+							<c:param name="gSearchName" value=""></c:param>
+						</c:url>
+						<a class="text-center" href="${findGroupsURL}">Click here to find a group to join</a>
+					
+					
+					</div>
+				
+				</c:when>
 				<c:otherwise>
 				<h1 class="welcome-header">
 					<i class="fas fa-university fa-3x"></i>
-					Bank
-					<button class="header-button">JOIN</button>
+					${groupPage.getGroupNameWithoutUnderscore()} 
 				</h1>
 				<div class="group-description">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+					${groupPage.getGroupDescription()}
 				</div>
 				<div class="search-result">
-				5 Members
+					${listOfMembers.size()} Members
 				</div>
 				<div class="card-group">
 					<div class="card">
