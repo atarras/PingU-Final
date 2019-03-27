@@ -29,7 +29,11 @@
 						<a class="nav-link" href="group"><i class="fas fa-users"></i></a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link" href="#"><i class="far fa-envelope"></i></a>
+				<%-- 	<c:url value="SingleUserChat" var="allChatUserName">
+										<c:param name="userNameForChat"
+											value="${user.value.getUsername()}" />
+						</c:url> --%>
+						<a class="nav-link" href="chat"><i class="far fa-envelope"></i></a>
 					</li>
 					<li class="nav-item active">
 						<a class="nav-link" href="logOut"><i class="fas fa-sign-out-alt"></i></a>

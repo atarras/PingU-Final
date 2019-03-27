@@ -331,7 +331,7 @@ button.accent {
             <form class="form-inline">
                 <div class="form-group">
                     <label for="connect">From:</label>
-                    <input id="login" type="text" value="${sessionScope.newUser.getUsername()}"  readonly />
+                    <input id="login" type="text" value="${sessionScope.newUser.getUsername()}"   />
                     <button id="connect" class="btn btn-default" type="submit">Connect</button>
                     <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
                     </button>
@@ -342,7 +342,7 @@ button.accent {
             <form class="form-inline">
                 <div class="form-group">
                     <label for="name">To:</label>
-                    <input type="text" id="name"  value="${userName}" readonly>
+                    <input type="text" id="name"  value="${userName}" >
                 </div>
                 <div class="form-group">
                     <label for="name">Message</label>
@@ -434,11 +434,12 @@ $(function () {
         e.preventDefault();
     });
     
-    $( "#connect" ).click(function() { connect(); });
- 
-    $( "#disconnect" ).click(function() { disconnect(); });
+     $( "#connect" ).click(function() { connect(); }); 
+
+   
     $( "#send" ).click(function() { sendName(); });
 });
+
 
 
 </script>

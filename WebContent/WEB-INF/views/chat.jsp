@@ -3,7 +3,9 @@
   <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
       <title>PingU Chat</title>
-    
+      
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
      <style type="text/css">
       
       * {
@@ -15,7 +17,7 @@
 html,body {
     height: 100%;
     overflow: hidden;
-}
+} 
 
 body {
     margin: 0;
@@ -27,7 +29,7 @@ body {
     color: #333;
     background-color: #f4f4f4;
     height: 100%;
-}
+} 
 
 body:before {
     height: 50%;
@@ -38,7 +40,7 @@ body:before {
     background: #128ff2;
     content: "";
     z-index: 0;
-}
+} 
 
 .clearfix:after {
     display: block;
@@ -307,17 +309,20 @@ button.accent {
       
       </style> 
   </head>
+
   <body>
-    <noscript>
+
+   
+     <noscript>
       <h2>Sorry! Your browser doesn't support Javascript</h2>
     </noscript>
 
     <div id="username-page">
-        <div class="username-page-container">
-            <h1 class="title">Type your username</h1>
+        <div class="username-page-container" class="hidden">
+            <h1 class="title">Your username:</h1>
             <form id="usernameForm" name="usernameForm">
                 <div class="form-group">
-                    <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
+                    <input type="text" id="name" value="${sessionScope.newUser.getUsername()}" class="form-control" readonly />
                 </div>
                 <div class="form-group">
                     <button type="submit" class="accent username-submit">Start Chatting</button>
@@ -329,7 +334,7 @@ button.accent {
     <div id="chat-page" class="hidden">
         <div class="chat-container">
             <div class="chat-header">
-                <h2>Spring WebSocket Chat Demo</h2>
+                <h2>PingU Chat</h2>
             </div>
             <div class="connecting">
                 Connecting...
@@ -347,6 +352,8 @@ button.accent {
             </form>
         </div>
     </div>
+   <%--   <jsp:include page="right.jsp" /> --%>  
+ 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
@@ -375,7 +382,7 @@ button.accent {
         username = document.querySelector('#name').value.trim();
 
         if(username) {
-            usernamePage.classList.add('hidden');
+             usernamePage.classList.add('hidden'); 
             chatPage.classList.remove('hidden');
 
             var socket = new SockJS('/PingU/chat');
@@ -468,11 +475,16 @@ button.accent {
         var index = Math.abs(hash % colors.length);
         return colors[index];
     }
-
-    usernameForm.addEventListener('submit', connect, true)
-    messageForm.addEventListener('submit', sendMessage, true)
-
+  
+ $(document).ready(function() {
     
+	
+ 	connect();
+    usernameForm.addEventListener('submit', connect, true)
+   
+ });
+ 
+ messageForm.addEventListener('submit', sendMessage, true)
     
     </script> 
   </body>
