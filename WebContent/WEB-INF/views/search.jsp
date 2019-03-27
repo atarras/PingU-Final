@@ -32,8 +32,41 @@
 							<div class="card-body">
 								<div class="card-block">
 									<h5 class="card-title">${user.getFirstName() } ${user.getLastName() } </h5>
-									<a href="#" data-toggle="modal" data-target="#message-modal"><i class="far fa-envelope fa-2x"></i></a>
+									
 									<p class="card-text">${user.getDescription() }</p>
+									<a href="#" data-toggle="modal" data-target="#message-modal" onclick="getID('${user.getUserId()}')" class="${user.getUserId()}"><i class="far fa-envelope fa-2x" id="${user.getUserId()}"></i></a>
+									<div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="new-message" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="new-message">New Message</h5>
+						<button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+						  <span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form action="sendMessage" method="post">
+						<input type="text" hidden="true" name="receiverId" id="receiverId"></input>
+						<input type="text" value="${newUser.getUserId() }" hidden="true" name="senderId" id="senderId"></input>
+<!-- 							<div class="form-group"> -->
+<!-- 								<label for="reciever" class="col-form-label">To:</label> -->
+<%-- 								<input type="text" class="form-control" id="reciever" placeholder="jdoe" value="${user.getFirstName() }" disabled="true"> --%>
+<!-- 							</div> -->
+							<div class="form-group">
+								<label for="message-body">Message:</label>
+								<textarea type="text" class="form-control" id="messageBody" placeholder="Your message here" name="messageBody"></textarea>
+						</div>
+						
+						
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
+							<button type="submit" class="btn btn-primary">Send</button>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 								</div>
 							</div>
 						</div>
@@ -42,5 +75,6 @@
 			</div>
 			<jsp:include page="right.jsp" />
 		</div>
+		<script src="<c:url value="/resources/js/search.js" />"></script>
 	</body>
 </html>

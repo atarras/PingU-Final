@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdmgroup.DAO.MessagesDAO;
@@ -82,17 +84,21 @@ public class MessagesController {
 		return null; // add the correct view string
 	}
 	
-	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String sendMessageToUser(HttpServletRequest req, @ModelAttribute(value="message") Messages message, BindingResult br) {
+	 @RequestMapping(value="/sendMessage", method=RequestMethod.POST)
+	public String sendMessageToUser(HttpServletRequest req,@RequestParam("receiverId") String receiverId,@RequestParam("senderId") String senderId,@RequestParam("messageBody") String messageBody) {
 		session = req.getSession();
-		if (!br.hasErrors()){
+		
+			Messages message = new  Messages();
+			message.setSenderId(Long.parseLong(senderId));
+			message.setReceiverId(Long.parseLong(receiverId));
+			message.setMsgBody(messageBody);
 			message.setSentTime(new Date(System.currentTimeMillis()));
 			Messages sentMessage = messagesDao.sendMessage(message);
-		}
+		
 		/*
 		 * TODO: add success message and add the messages to request attribute
 		 */
-		return null; // add the correct view string
+		return "search"; // add the correct view string
 	}
 	
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
