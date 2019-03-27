@@ -49,11 +49,10 @@ $(document).ready(function() {
 		
 	});*/
 	
-	$("#forgot-password").click(function() {
-		console.log("clicked");
-		//$("forgot-password-modal").modal("show");
-	});
-	
+	/**
+	 * Typing into the recover password username field will check whether it's a valid username
+	 * then display the recover password fields
+	 */
 	$("#recover-password-username").keyup(function() {
 		
 		$.ajax({
@@ -63,17 +62,57 @@ $(document).ready(function() {
 				"username": $("#recover-password-username").val()
 			},
 			success: function(data) {
-				console.log(data);
 				if (data.length > 0) {
 					$("#recover-password-fields").css("display", "");
 					$("#rp-id").val(data);
-					
 				} else {
 					$("#recover-password-fields").css("display", "none");
 				}
 			}
 		});
 		
+	});
+	
+	/**
+	 * If password and confirm password do not match when unfocusing, then give them an error
+	 */
+	$(".password, .confirm-password").blur(function() {
+		
+		var thisPasswordElement = $(this);
+		var otherPasswordElement;
+		var thisPassword = thisPasswordElement.val();
+		var otherPassword;
+		var isConfirmPasswordElement = false;
+		
+		if ($(this).hasClass("password")) {
+			otherPasswordElement = $(this).closest("form").find(".confirm-password");
+			isConfirmPasswordElement = false;
+		} else {
+			otherPasswordElement = $(this).closest("form").find(".password");
+			isConfirmPasswordElement = true;
+		}
+		otherPassword = otherPasswordElement.val();
+		if (thisPassword != otherPassword && thisPassword != "" && otherPassword != "") {
+			console.log("hi");
+			if (isConfirmPasswordElement) {
+				thisPasswordElement.addClass("invalid-input");
+			} else {
+				otherPasswordElement.addClass("invalid-input");
+				
+			}
+		} else {
+			thisPasswordElement.removeClass("invalid-input");
+			otherPasswordElement.removeClass("invalid-input");
+		}
+		
+	});
+	
+	$("#sign-up-button, #recover-password-button").click(function(e) {
+		var invalidInputs = $(this).closest("form").find(".invalid-input");
+		console.log(invalidInputs);
+		if (invalidInputs.length != 0) {
+			e.preventDefault();
+		}
 	});
 	
 });

@@ -68,3 +68,7 @@ height: -moz-calc(95vh - 42px);
 #forgot-password:hover {
     cursor: pointer;
 }
+
+.invalid-input, .invalid-input:focus {
+    border: 1px solid red;
+}

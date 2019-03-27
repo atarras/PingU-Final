@@ -100,11 +100,11 @@
                 </div>
                 
                 <div class="form-group">
-                  <sf:input type="password" id="signup-password-field" class="form-control signup-form-field" path="password" placeholder="Password" required="required" />  
+                  <sf:input type="password" id="signup-password" class="form-control password" path="password" placeholder="Password" required="required" />  
                 </div>
                 
                 <div class="form-group">
-                  <input type="password" id="signup-confirm-password-field" class="form-control signup-form-field" name="confirm-password" placeholder="Confirm Password" required="required" />  
+                  <input type="password" id="signup-confirm-password" class="form-control confirm-password" name="confirm-password" placeholder="Confirm Password" required="required" />  
                   <div id="password-does-not-match-section" class="error-message"></div>
                 </div>
                     
@@ -211,16 +211,16 @@
                     <input type="text" id="rp-security-answer" class="form-control" name="securityAnswer" placeholder="Security Question Answer" required="required" />  
                   </div>
                   <div class="form-group">
-                    <input type="password" id="rp-new-password" class="form-control" name="newPassword" placeholder="New Password" required="required" />  
+                    <input type="password" id="rp-new-password" class="form-control password" name="newPassword" placeholder="New Password" required="required" />  
                   </div>
                   
                   <div class="form-group">
-                    <input type="password" id="rp-confirm-new-password" class="form-control" placeholder="Confirm New Password" required="required" />  
+                    <input type="password" id="rp-confirm-new-password" class="form-control confirm-password" placeholder="Confirm New Password" required="required" />  
                     <!-- <div id="password-does-not-match-section" class="error-message"></div> -->
                   </div>
                   
                   <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                    <button type="submit" id="recover-password-button" class="btn btn-primary btn-lg btn-block">Submit</button>
                   </div>
                 
                 </div>
