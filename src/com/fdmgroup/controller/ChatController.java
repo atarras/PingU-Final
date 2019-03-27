@@ -3,6 +3,7 @@ package com.fdmgroup.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.OneToOne;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -30,6 +31,8 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 
 
@@ -42,7 +45,12 @@ public class ChatController {
 	
 
 	@RequestMapping("/chat")
-	public String showChat(){
+	public String showChat(HttpServletRequest req){
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		/*
+		req.setAttribute("userNameForChat",auth );*/
+		
 		return "chat";
 	}
 	
@@ -76,7 +84,9 @@ public class ChatController {
 		
 /*		Greeting greeting = new Greeting();
 		greeting.setContent("hello");*/
-		 msg.setTime(new SimpleDateFormat("HH:mm").format(new Date())); 
+    	
+    	/*OneToOneMessage messages = new OneToOneMessage(msg.getContent(),  
+		 new SimpleDateFormat("HH:mm").format(new Date())); */
 
 		messagingTemplate.convertAndSendToUser(message.getToUser(), "/queue/reply", msg);
 	}
