@@ -35,7 +35,7 @@
 					<div class="group-description">
 						${groupPage.getGroupDescription()}
 					</div>
-<%-- 					<div class="search-result">${groupPage.getGroupMembers().size()} Members</div> --%>
+					<div class="search-result">${listOfMembers.size()} Members</div>
 
 				</c:when>	
 				<c:otherwise>
