@@ -29,6 +29,7 @@ import com.fdmgroup.enums.Employer;
 	@NamedQuery(name="group.findByGroupId", query="SELECT g FROM Group g WHERE g.groupId = :gId"),
 	@NamedQuery(name="group.findByGroupName", query="SELECT g FROM Group g WHERE g.groupName = :gName"),
 	@NamedQuery(name="group.findByPartialName", query="SELECT g FROM Group g WHERE g.isActive = TRUE AND g.groupName LIKE :gName"),
+	//@Query(name="group.findByPartialName", query="SELECT g FROM Group g WHERE g.isActive = TRUE AND g.groupName LIKE :gName"),
 	@NamedQuery(name="group.getAllgroups", query="SELECT g FROM Group g WHERE g.isActive = TRUE ORDER BY g.groupId"),
 	@NamedQuery(name="group.getAllGroupsAdmin", query="SELECT g FROM Group g ORDER BY g.groupId"),
 	@NamedQuery(name="group.getGroupsWithNameAndCategory", query="SELECT g FROM Group g WHERE g.groupName = :gName AND g.groupCategory = :gCat")

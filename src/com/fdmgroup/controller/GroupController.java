@@ -192,19 +192,20 @@ public class GroupController {
 					gName = "%" + splitNames[i];
 				}
 				gName = gName + "%";
-				
+				System.out.println("Group String for search: " + gName);
 				foundGroups = groupDao.findGroupByPartialName(gName);
-				
-				
+	
 			}
 		}
 		if(foundGroups != null)
 		{
+			System.out.println("groups found: " + foundGroups.size());
 			session.setAttribute("foundGroups", foundGroups);
 			return "searchGroup";
 		}
 		else
 		{
+			System.out.println("No groups found!");
 			session.setAttribute("errorMsg", "No Groups found based on search parameters!");
 			return "home"; // TODO Return more relevant jsp.
 		}

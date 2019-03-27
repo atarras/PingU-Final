@@ -3,6 +3,7 @@ package com.fdmgroup.DAO;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -155,9 +156,9 @@ public class GroupDAO {
 	 */
 	public List<Group> findGroupByPartialName(String name){
 		EntityManager em = connection.getEntityManager();
-		TypedQuery<Group> query = em.createNamedQuery("group.findByPartialName", Group.class);
-		query.setParameter("gName", name);
-		
+		//TypedQuery<Group> query = em.createNamedQuery("group.findByPartialName", Group.class);
+		//query.setParameter("gName", name);
+		Query query = em.createQuery("SELECT g FROM Group g WHERE g.isActive = TRUE AND g.groupName LIKE '" + name +"'");
 		List<Group> groups = query.getResultList();
 		if(groups != null && !groups.isEmpty()){
 			return groups;
