@@ -40,7 +40,7 @@
       
         <div class="tab-content">
         
-          <div id="login" class="panel panel-default tab-pane fade in active">
+          <div id="login" class="panel panel-default tab-pane in active">
             <div class="panel-body">
               <form action="login" method="post">
                 <!-- <h2 id="login-title">Login</h2> -->
@@ -78,7 +78,7 @@
             </div>
           </div>
           
-          <div id="signup" class="panel panel-default tab-pane fade">
+          <div id="signup" class="panel panel-default tab-pane">
             <div class="panel-body">
               <sf:form id="signup-form" action="signup-t" method="post" modelAttribute="newUser">
                 <h2 id="sign-up-title">Sign Up</h2>

@@ -19,6 +19,7 @@
         <div class="col-md-3 mb-md-0 mb-3">
           <div class="text-uppercase font-weight-bold">
           <!-- <span class="glyphicon glyphicon glyphicon-knight"></span> -->
+          <%-- <img src="<c:url value='${projectpath}/resources/images/FDM_Logo.JPG'/>" /> --%>
           FDMGroup
           </div>
         </div>
