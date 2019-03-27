@@ -37,20 +37,44 @@
 				</ul>
 				<div class="tab-content">
 					<div id="allmsg" class="tab-pane fade in active show container messages all">
-					</div>
-					<div id="usermsg" class="tab-pane fade container messages user">
-					</div>
-					<div id="groupmsg" class="tab-pane fade container messages group">
-						<!--  Message template -->	
+					<c:forEach items="${sessionScope.userMessages}" var="uMsg" varStatus="status">	
 						<div class="media border pt-4 p-3">
-							<a href="${found.getUserByID().getUserId()}" >
+							<a href="${uMsg.getSenderId()}" >${uMsg.getSenderName()}
 								<i class="fas fa-user-circle fa-4x pr-3"></i>
 							</a>
 							<div class="media-body">
 								<h5 class="mt-0">Message</h5>
-								<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+								<p>${uMsg.getMsgBody() }</p>
 							</div>
 						</div>
+						</c:forEach>
+					</div>
+					<div id="usermsg" class="tab-pane fade container messages user">
+					<c:forEach items="${sessionScope.userMessages}" var="uMsg" varStatus="status">	
+						<div class="media border pt-4 p-3">
+							<a href="${uMsg.getSenderId()}" >${uMsg.getSenderName()}
+								<i class="fas fa-user-circle fa-4x pr-3"></i>
+							</a>
+							<div class="media-body">
+								<h5 class="mt-0">Message</h5>
+								<p>${uMsg.getMsgBody() }</p>
+							</div>
+						</div>
+						</c:forEach>
+					</div>
+					<div id="groupmsg" class="tab-pane fade container messages group">
+						<!--  Message template -->	
+						<c:forEach items="${sessionScope.groupMessages}" var="gMsg" varStatus="status">	
+						<div class="media border pt-4 p-3">
+							<a href="${gMsg.getSenderId()}" >${gMsg.getSenderName()}
+								<i class="fas fa-user-circle fa-4x pr-3"></i>
+							</a>
+							<div class="media-body">
+								<h5 class="mt-0">Message</h5>
+								<p>${gMsg.getMsgBody() }</p>
+							</div>
+						</div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>

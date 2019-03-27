@@ -99,12 +99,15 @@ public class LoginController {
 			return "request";
 		} else {
 			
-//			List<Messages> allMessagesForGroup = messagesDao.getAllMessagesForGroup(loginUser.getGroup().getGroupId());
+			if(loginUser.getGroup()!=null){
+			List<Messages> allMessagesForGroup = messagesDao.getAllMessagesForGroup(loginUser.getGroup().getGroupId());
+			if(allMessagesForGroup!=null && allMessagesForGroup.size()>=1)
+				req.setAttribute("groupMessages", allMessagesForGroup);
+			}
 			List<Messages> allMessagesForUser = messagesDao.getAllMessagesForUser(loginUser.getUserId());
-//			if(allMessagesForGroup!=null && allMessagesForGroup.size()>=1)
-//			req.setAttribute("groupMessages", allMessagesForGroup);
 			if(allMessagesForUser!=null && allMessagesForUser.size()>=1)
 			session.setAttribute("userMessages", allMessagesForUser);
+			
 			return "home";
 		}
 	}
