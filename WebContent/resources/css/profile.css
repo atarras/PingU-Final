@@ -58,7 +58,7 @@
 }
 
 
-p{
+form{
 	min-height:24px;
 }
 
@@ -85,11 +85,11 @@ p{
 }
 
 
-#employee-submit{
+#employer-submit{
 	visibility:hidden;
 }
 
-#description-submit #linkedin-submit #role-submit #employee-submit{
+#description-submit #linkedin-submit #role-submit #employer-submit{
 	float:right;
 }
 

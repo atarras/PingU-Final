@@ -29,30 +29,32 @@
 						</div>
 						<i class="fas fa-user-circle fa-10x"></i>
 						<div class="card-body">
-							<div id="edit-box">
-								<p class="card-title employee-text">${profileUser.getGroup().getGroupName().getName() }:</p>
-								<button class="btn btn-primary" id="employee-submit" name="Submit-Description">Submit</button>
-								<a href="#" id="employee-button"><i class="far fa-edit user-edit"></i></a>
-							</div>
-							<div id="edit-box">
-								<p class="card-title role-text">Developer</p>
-								<button class="btn btn-primary" id="role-submit" name="Submit-Description">Submit</button>
+							<form id="edit-box employer-request" class="form security" action="changeEmployerRequest" method="GET">
+								<input type="hidden" name="userID" value="${profileUser.getUserId()}"/>
+								<a href="#" id="employer-button" type="submit"><i class="far fa-edit user-edit"></i></a>
+								<p class="card-title employer-text" id="employer-text">Group: ${profileUser.getGroup().getGroupName().name() }</p>
+								<button class="btn btn-primary" id="employer-submit" name="Submit-Description">Request</button>
+							</form>
+							<form id="edit-box developer-request" class="form security" action="changeJobTitleRequest" method="GET">
+								<input type="hidden" name="userID" value="${profileUser.getUserId()}"/>
 								<a href="#" id="role-button"><i class="far fa-edit user-edit"></i></a>
-							</div>
-							<div>
-								<a href="#" id="description-button"><i class="far fa-edit user-edit"></i></a>
+								<p class="card-title role-text" id="role-text">Title: ${profileUser.getCurrentTitle()}</p>
+								<button class="btn btn-primary" type="submit" id="role-submit" name="Submit-Description">Request</button>
+							</form>
+							<form id="edit-box decription-form" class="form security" action="password" method="POST">
+								<a href="#" id="description-button" ><i class="far fa-edit user-edit"></i></a>
 								<p id="description-text" class="card-text">
 									${profileUser.getDescription() }
 								</p>
-								<button class="btn btn-primary" id="description-submit" name="Submit-Description" >Submit</button>
-							</div>
-							<div>	
+								<button class="btn btn-primary" id="description-submit" type="submit" name="Submit-Description" >Submit</button>
+							</form>
+							<form id="edit-box linkedin-form" class="form security" action="password" method="POST">
 								<p id="group-text" class="card-text">
 									${profileUser.getGroup().getGroupName().getName() }
 								</p>
 								<a href="#" id="linkedin-link">${profileUser.getLinkedInUrl() }</a><a href="#" id="linkedin-button"><i class="far fa-edit user-edit"></i></a>
-								<button class="btn btn-primary" id="linkedin-submit" name="Submit-Description">Submit</button>
-							</div>
+								<button class="btn btn-primary" id="linkedin-submit" type="submit" name="Submit-Description">Submit</button>
+							</form>
 						</div>
 					</div>
 				</div>

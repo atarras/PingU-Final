@@ -114,36 +114,36 @@ $(document).ready(function() {
 		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#role-submit").css("visibility") == "visible"))
 		{
 			console.log("goodbye");
-			$("#role-text").replaceWith("<input type='text' id='role-input' placeholder='Your linkedin link' title='Your linkedin.'>");
+			$("#role-text").replaceWith("<input type='text' id='role-input' name='newJobTitle' placeholder='Your linkedin link' title='Your linkedin.'>");
 		}
 		else
 		{
-			$("#role-text").replaceWith("<input type='text' id='role-input' placeholder='"+userLinkedIn.trim()+"' title='Your linkedin.'>");
+			$("#role-text").replaceWith("<input type='text' id='role-input' name='newJobTitle' placeholder='"+userLinkedIn.trim()+"' title='Your linkedin.'>");
 		}
 	})
 	
-	$("#employee-button").click(function(){
+	$("#employer-button").click(function(){
 		
-		if($("#employee-submit").css("visibility") == "hidden")
+		if($("#employer-submit").css("visibility") == "hidden")
 		{
 			var userLinkedIn = $("#role-text").text();
-			$("#employee-submit").css("visibility", "visible");
+			$("#employer-submit").css("visibility", "visible");
 		}
 		else
 		{
-			var userRoleTitlePlaceholder = $("#employee-input").attr('placeholder');
-			$("#employee-submit").css("visibility", "hidden");
-			$("#employee-input").replaceWith("<a href='#' id='employee-text'>"+userRoleTitlePlaceholder.trim()+"</a>");
+			var userRoleTitlePlaceholder = $("#employer-input").attr('placeholder');
+			$("#employer-submit").css("visibility", "hidden");
+			$("#employer-input").replaceWith("<a href='#' id='employer-text'>"+userRoleTitlePlaceholder.trim()+"</a>");
 			return;
 		}
 		
-		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#employee-submit").css("visibility") == "visible"))
+		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#employer-submit").css("visibility") == "visible"))
 		{
-			$("#employee-text").replaceWith("<input type='text' id='employee-input' placeholder='Your linkedin link' title='Your linkedin.'>");
+			$("#employer-text").replaceWith("<input type='text' id='employer-input' name='newEmployer' placeholder='Your linkedin link' title='Your linkedin.'>");
 		}
 		else
 		{
-			$("#employee-text").replaceWith("<input type='text' id='employee-input' placeholder='"+userLinkedIn.trim()+"' title='Your linkedin.'>");
+			$("#employer-text").replaceWith("<input type='text' id='employer-input' name='newEmployer' placeholder='"+userLinkedIn.trim()+"' title='Your linkedin.'>");
 		}
 	})
 	

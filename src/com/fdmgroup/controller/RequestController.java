@@ -96,7 +96,7 @@ public class RequestController {
 		Request changeEmployerRequest = new Request(currUser, RequestType.CHANGE_EMPLOYER, employerName);
 		requestDao.create(changeEmployerRequest);
 		userDAO.addRequestToUser(userId, changeEmployerRequest);
-		return "test"; // Return to the necessary jsp
+		return "profile"; // Return to the necessary jsp
 	}
 	
 	/**
@@ -113,7 +113,7 @@ public class RequestController {
 		Request changeJobTitleRequest = new Request(currUser, RequestType.CHANGE_JOB_TITLE, jobTitle);
 		requestDao.create(changeJobTitleRequest);
 		userDAO.addRequestToUser(userId, changeJobTitleRequest);
-		return "test"; // Return to the necessary jsp
+		return "profile"; // Return to the necessary jsp
 	}
 	
 	/**
