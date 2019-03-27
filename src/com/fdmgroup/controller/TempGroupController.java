@@ -1,6 +1,7 @@
 package com.fdmgroup.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,7 +48,8 @@ public class TempGroupController {
 		
 		/* Retrieve all groups in our db to be displayed in a table */
 		//model.addAttribute("groups", groupDao.getAllGroupsAdmin());
-		req.getSession().setAttribute("groups", groupDao.getAllGroupsAdmin());
+		List<Group> groups = groupDao.getAllGroupsAdmin();
+		req.getSession().setAttribute("groups", groups);
 		
 		/* Prepare model with a Group so we can create one if needed */
 		model.addAttribute("newGroup", new Group());
@@ -111,13 +113,13 @@ public class TempGroupController {
 			System.out.println("Nope");
 		}
 		
-		res.setContentType("text/html;charset=UTF-8");
+		/*res.setContentType("text/html;charset=UTF-8");
         try {
 			res.getWriter().write("/PingU/groups");  // TODO: make this not hardcoded
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		//return new ModelAndView("redirect:/groups");
 	}
 
