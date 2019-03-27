@@ -22,13 +22,23 @@
 			<jsp:include page="left.jsp" />
 			<div class="container-fluid content">
 				<div class="search-result">
-				${foundGroups.size()} search results
+				<c:choose>
+					<c:when test="${not empty foundGroups}">
+						${foundGroups.size()} search results					
+					</c:when>				
+					<c:otherwise>
+						0 search results
+					</c:otherwise>
+				</c:choose>
 				</div>
 				<div class="card-group">
 				<!-- search result template -->
 					<c:forEach items="${foundGroups}" var="group" varStatus="status">
 						<div class="card">
-							<a href="${group.getGroupId()}" ><i class="fas fa-user-circle fa-4x"></i></a>
+							<c:url value="groupPage" var="groupPageURL">
+								<c:param name="groupId" value="${group.getGroupId()}" />
+							</c:url>
+							<a href="${groupPageURL}" ><i class="fas fa-user-circle fa-4x"></i></a>
 							<div class="card-body">
 								<div class="card-block">
 									<h5 class="card-title">${group.getGroupName()} : ${group.getGroupCategory() } </h5>

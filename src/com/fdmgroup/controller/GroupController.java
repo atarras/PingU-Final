@@ -9,14 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fdmgroup.DAO.GroupDAO;
 import com.fdmgroup.DAO.UserDAO;
+import com.fdmgroup.enums.Employer;
 import com.fdmgroup.model.Admin;
 import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.Group;
+import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
 import com.fdmgroup.model.Trainee;
 
@@ -209,10 +213,17 @@ public class GroupController {
 		{
 			System.out.println("No groups found!");
 			session.setAttribute("errorMsg", "No Groups found based on search parameters!");
-			return "home"; // TODO Return more relevant jsp.
-		}
-		
-		
+			return "searchGroup";
+		}	
+	}
+	
+	@RequestMapping(value = "/groupPage", method = RequestMethod.GET)
+	public String getUserProfile(HttpServletRequest req, Model model, @RequestParam(value="groupId") long id) {
+		HttpSession session = req.getSession();
+		Group groupPage = (Group) groupDao.findByGroupId(id);
+		session.setAttribute("groupPage", groupPage);
+		req.setAttribute("foundFromGroupMsg", "From Search");
+		return "group";
 	}
 	
 }
