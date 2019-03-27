@@ -79,7 +79,8 @@ public class RequestController {
 		Request joinGroupRequest = new Request(currUser, groupId, RequestType.JOIN_GROUP, "Join the group");
 		requestDao.create(joinGroupRequest);
 		userDAO.addRequestToUser(userId, joinGroupRequest);
-		return "test"; // Return to the necessary jsp
+		request.setAttribute("joinGroupPendingMsg", "Request to join the group has been sent. Waiting for approval from the administrators.");
+		return "home"; // Return to the necessary jsp
 	}
 	
 	/**

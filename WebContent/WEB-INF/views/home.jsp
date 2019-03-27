@@ -21,6 +21,11 @@
 	  <div class="container main-body">
 	  	<jsp:include page="left.jsp" />
 		<div class="container content">
+			<c:if test="${not empty joinGroupPendingMsg}">
+			<div>
+				<h5 class="alert alert-info">${joinGroupPendingMsg}</h5>
+			</div>
+			</c:if>
 			<h1 class="welcome-header">
 			Welcome ${newUser.getFirstName() } ${newUser.getLastName() }
 			</h1>
