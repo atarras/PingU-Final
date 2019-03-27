@@ -1,3 +1,20 @@
-#f {
-    color: green;
+.page-footer {
+    background: #3399ff;
+    padding: 2px;
+}
+
+.footer-copyright {
+    background: #0080ff;
+    color: #fff;
+}
+
+.footer-company-elements {
+    color: #fff;
+}
+
+.flex-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
 }
