@@ -32,6 +32,7 @@
 							<div class="card-body">
 								<div class="card-block">
 									<h5 class="card-title">${user.getFirstName() } ${user.getLastName() } </h5>
+									<a href="#" data-toggle="modal" data-target="#message-modal"><i class="far fa-envelope fa-2x"></i></a>
 									<p class="card-text">${user.getDescription() }</p>
 								</div>
 							</div>
