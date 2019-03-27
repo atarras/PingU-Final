@@ -83,26 +83,29 @@ public class MessagesController {
 		 */
 		return null; // add the correct view string
 	}
-	
-	 @RequestMapping(value="/sendMessage", method=RequestMethod.POST)
-	public String sendMessageToUser(HttpServletRequest req,@RequestParam("receiverId") String receiverId,@RequestParam("senderId") String senderId,@RequestParam("messageBody") String messageBody) {
+
+	@RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
+	public String sendMessageToUser(HttpServletRequest req, @RequestParam("receiverId") String receiverId,
+			@RequestParam("senderId") String senderId, @RequestParam("senderFirstName") String senderFName,@RequestParam("senderLastName") String senderLFName,
+			@RequestParam("messageBody") String messageBody) {
 		session = req.getSession();
-		
-			Messages message = new  Messages();
-			message.setSenderId(Long.parseLong(senderId));
-			message.setReceiverId(Long.parseLong(receiverId));
-			message.setMsgBody(messageBody);
-			message.setSentTime(new Date(System.currentTimeMillis()));
-			Messages sentMessage = messagesDao.sendMessage(message);
-		
+
+		Messages message = new Messages();
+		message.setSenderId(Long.parseLong(senderId));
+		message.setReceiverId(Long.parseLong(receiverId));
+		message.setSenderName(senderFName + " " + senderLFName);
+		message.setMsgBody(messageBody);
+		message.setSentTime(new Date(System.currentTimeMillis()));
+		Messages sentMessage = messagesDao.sendMessage(message);
+
 		/*
 		 * TODO: add success message and add the messages to request attribute
 		 */
 		return "search"; // add the correct view string
 	}
-	
+
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String getAllMessagesForUser(HttpServletRequest req,  @RequestParam("userId") Long userId) {
+	public String getAllMessagesForUser(HttpServletRequest req, @RequestParam("userId") Long userId) {
 		session = req.getSession();
 		List<Messages> allMsg = messagesDao.getAllMessagesForUser(userId);
 		if (allMsg == null || allMsg.size() < 1) {
@@ -115,19 +118,19 @@ public class MessagesController {
 		 */
 		return null; // add the correct view string
 	}
-	
+
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-		public String getAllMessagesForGroup(HttpServletRequest req,  @RequestParam("groupId") Long groupId) {
-			session = req.getSession();
-			List<Messages> allMsg = messagesDao.getAllMessagesForGroup(groupId);
-			if (allMsg == null || allMsg.size() < 1) {
-				/* TODO: add nothing found message NO MESSAGE FOUND */
-				return null; // add the correct view string
-			}
-			session.setAttribute("allGroupMsg", allMsg);
-			/*
-			 * TODO: add success message and add the messages to request attribute
-			 */
+	public String getAllMessagesForGroup(HttpServletRequest req, @RequestParam("groupId") Long groupId) {
+		session = req.getSession();
+		List<Messages> allMsg = messagesDao.getAllMessagesForGroup(groupId);
+		if (allMsg == null || allMsg.size() < 1) {
+			/* TODO: add nothing found message NO MESSAGE FOUND */
 			return null; // add the correct view string
 		}
+		session.setAttribute("allGroupMsg", allMsg);
+		/*
+		 * TODO: add success message and add the messages to request attribute
+		 */
+		return null; // add the correct view string
+	}
 }

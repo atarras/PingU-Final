@@ -42,6 +42,9 @@ public class Messages {
 
 	@Column(name = "sentTime")
 	private Date sentTime;
+	
+	@Column(name="senderName")
+	private String senderName;
 
 	public Messages() {
 		super();
@@ -68,6 +71,16 @@ public class Messages {
 		this.senderId = senderId;
 		this.groupId = groupId;
 		this.msgBody = msgBody;
+	}
+
+	
+	
+	public String getSenderName() {
+		return senderName;
+	}
+
+	public void setSenderName(String senderName) {
+		this.senderName = senderName;
 	}
 
 	public Date getSentTime() {
@@ -121,7 +134,7 @@ public class Messages {
 	@Override
 	public String toString() {
 		return "Messages [msgId=" + msgId + ", senderId=" + senderId + ", receiverId=" + receiverId + ", groupId="
-				+ groupId + ", msgBody=" + msgBody + ", sentTime=" + sentTime + "]";
+				+ groupId + ", msgBody=" + msgBody + ", sentTime=" + sentTime + ", senderName=" + senderName + "]";
 	}
 
 }

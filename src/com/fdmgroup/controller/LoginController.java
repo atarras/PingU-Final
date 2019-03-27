@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fdmgroup.DAO.MessagesDAO;
 import com.fdmgroup.DAO.RequestDAO;
 import com.fdmgroup.DAO.UserDAO;
 import com.fdmgroup.model.Admin;
 import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
+import com.fdmgroup.model.Messages;
 import com.fdmgroup.model.Request;
 import com.fdmgroup.model.Trainee;
 
@@ -34,6 +36,9 @@ public class LoginController {
 	
 	@Autowired
 	private RequestDAO requestDao;
+	
+	@Autowired
+	private MessagesDAO messagesDao;
 	
 	Pattern pattern = Pattern.compile("^[a-zA-Z0-9]+\\.[a-zA-Z0-9]+@fdmgroup.com$");
 	
@@ -93,6 +98,13 @@ public class LoginController {
 			req.setAttribute("pendingRequests", pendingRequests);
 			return "request";
 		} else {
+			
+//			List<Messages> allMessagesForGroup = messagesDao.getAllMessagesForGroup(loginUser.getGroup().getGroupId());
+			List<Messages> allMessagesForUser = messagesDao.getAllMessagesForUser(loginUser.getUserId());
+//			if(allMessagesForGroup!=null && allMessagesForGroup.size()>=1)
+//			req.setAttribute("groupMessages", allMessagesForGroup);
+			if(allMessagesForUser!=null && allMessagesForUser.size()>=1)
+			session.setAttribute("userMessages", allMessagesForUser);
 			return "home";
 		}
 	}

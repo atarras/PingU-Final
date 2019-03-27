@@ -47,6 +47,8 @@
 					<div class="modal-body">
 						<form action="sendMessage" method="post">
 						<input type="text" hidden="true" name="receiverId" id="receiverId"></input>
+						<input type="text" value="${newUser.getFirstName() }" hidden="true" name="senderFirstName" id="senderFirstName"></input>
+						<input type="text" value="${newUser.getLastName() }" hidden="true" name="senderLastName" id="senderLastName"></input>
 						<input type="text" value="${newUser.getUserId() }" hidden="true" name="senderId" id="senderId"></input>
 <!-- 							<div class="form-group"> -->
 <!-- 								<label for="reciever" class="col-form-label">To:</label> -->
