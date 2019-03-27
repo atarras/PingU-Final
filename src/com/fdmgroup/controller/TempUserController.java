@@ -256,6 +256,63 @@ public class TempUserController {
 		//return new ModelAndView("redirect:/users");
 	}
 	
+	/**
+	 * Used to validate a username exist before allowing user to recover their password.
+	 * Not very secure but very neat.
+	 * @param req
+	 * @param res
+	 * @param username
+	 */
+	@RequestMapping(value="/user", method=RequestMethod.GET)
+	public void getUser(HttpServletRequest req, HttpServletResponse res,
+			@RequestParam(value="username", required=false) String username) {
+		System.out.println("/user/GET?username=" + username);
+		
+		res.setContentType("text/plain; charset=ISO-8859-2");
+		
+		IUser foundUser = null;
+		if (StringHelpers.isData(username)) {
+			List<IUser> foundUsers = userDAO.findByUserName(username);
+			if (foundUsers != null && foundUsers.size() > 0) {
+				foundUser = foundUsers.get(0);
+				try {
+					res.getWriter().write(Long.toString(foundUser.getUserId()));
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
+	
+	@RequestMapping(value="/changePassword", method=RequestMethod.POST)
+	public ModelAndView changePassword(HttpServletRequest req, HttpServletResponse res,
+			@RequestParam("id") String stringID,
+			@RequestParam("securityAnswer") String securityAnswer,
+			@RequestParam("newPassword") String newPassword
+			) {
+		System.out.println("/changePassword/POST?id=" + stringID +
+				"&securityAnswer=" + securityAnswer +
+				"&newPassword=" + newPassword);
+		
+		/* if any of the params are empty or missing, return */
+		if ((StringHelpers.isData(stringID)) && 
+				(StringHelpers.isData(securityAnswer)) && 
+						(StringHelpers.isData(newPassword))) {
+			long id = Long.parseLong(stringID);
+			IUser foundUser = userDAO.findUserById(id);
+			if (foundUser != null) {
+			
+				/* Confirm security answer is correct */
+				if (foundUser.getSecurityAnswer().equals(securityAnswer)) {
+					userDAO.updatePassword(id, newPassword);
+				}
+			}
+		}
+		return new ModelAndView("redirect:/login");
+	}
+	
 	// We don't need to delete in our app
 	/*@RequestMapping(value="/user", method=RequestMethod.DELETE)
 	public ModelAndView deleteUser(@RequestParam("id") String id) {

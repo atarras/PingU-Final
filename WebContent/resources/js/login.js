@@ -54,4 +54,26 @@ $(document).ready(function() {
 		//$("forgot-password-modal").modal("show");
 	});
 	
+	$("#recover-password-username").keyup(function() {
+		
+		$.ajax({
+			type: "GET",
+			url: "user",
+			data: {
+				"username": $("#recover-password-username").val()
+			},
+			success: function(data) {
+				console.log(data);
+				if (data.length > 0) {
+					$("#recover-password-fields").css("display", "");
+					$("#rp-id").val(data);
+					
+				} else {
+					$("#recover-password-fields").css("display", "none");
+				}
+			}
+		});
+		
+	});
+	
 });

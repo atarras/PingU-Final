@@ -193,27 +193,36 @@
           </div>
           <div class="modal-body">
           
-            <form>
             
                 <div class="form-group">
-                  <input type="text" class="form-control" name="username" placeholder="Username" required="required" />
+                  <input type="text" id="recover-password-username" class="form-control" name="username" placeholder="Username" required="required" />
                 </div>
             
-                <div id="recover-password-security-question"></div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="securityAnswer" placeholder="Security Question Answer" required="required" />  
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control" name="new-password" placeholder="New Password" required="required" />  
-                </div>
+            <form id="recover-password-form" action="changePassword" method="post">
+            
+                <div id="recover-password-fields" style="display:none">
                 
-                <div class="form-group">
-                  <input type="password" class="form-control" name="confirm-new-password" placeholder="Confirm New Password" required="required" />  
-                  <!-- <div id="password-does-not-match-section" class="error-message"></div> -->
-                </div>
+                  <div class="form-group" style="display:none">
+                    <input type="text" id="rp-id" class="form-control" name="id" required="required" />
+                  </div>
+            
+                  <div id="recover-password-security-question"></div>
+                  <div class="form-group">
+                    <input type="text" id="rp-security-answer" class="form-control" name="securityAnswer" placeholder="Security Question Answer" required="required" />  
+                  </div>
+                  <div class="form-group">
+                    <input type="password" id="rp-new-password" class="form-control" name="newPassword" placeholder="New Password" required="required" />  
+                  </div>
+                  
+                  <div class="form-group">
+                    <input type="password" id="rp-confirm-new-password" class="form-control" placeholder="Confirm New Password" required="required" />  
+                    <!-- <div id="password-does-not-match-section" class="error-message"></div> -->
+                  </div>
+                  
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                  </div>
                 
-                <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
                 </div>
             
             </form>
