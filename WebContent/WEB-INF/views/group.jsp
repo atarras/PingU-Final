@@ -22,13 +22,22 @@
 			<div class="container-fluid content">
 				<c:choose>
 					<c:when test="${not empty foundFromGroupMsg }">
+					<form action="joinGroupRequest">
 						<h1 class="welcome-header">
 							<i class="fas fa-university fa-3x"></i>
-								${groupPage.getGroupNameWithoutUnderscore()}
-							<button class="header-button">JOIN</button>
+							${groupPage.getGroupNameWithoutUnderscore()} <input type="hidden"
+								name="userID" value="${newUser.getUserId()}"> <input
+								type="hidden" name="groupID" value="${groupPage.getGroupId()}">
+							<button class="btn btn-primary header-button" type="submit">JOIN</button>
 						</h1>
-						
-					</c:when>	
+					</form>
+
+					<div class="group-description">
+						${groupPage.getGroupDescription()}
+					</div>
+<%-- 					<div class="search-result">${groupPage.getGroupMembers().size()} Members</div> --%>
+
+				</c:when>	
 				<c:otherwise>
 				<h1 class="welcome-header">
 					<i class="fas fa-university fa-3x"></i>

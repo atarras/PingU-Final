@@ -218,7 +218,7 @@ public class GroupController {
 	}
 	
 	@RequestMapping(value = "/groupPage", method = RequestMethod.GET)
-	public String getUserProfile(HttpServletRequest req, Model model, @RequestParam(value="groupId") long id) {
+	public String getGroupPage(HttpServletRequest req, Model model, @RequestParam(value="groupId") long id) {
 		HttpSession session = req.getSession();
 		Group groupPage = (Group) groupDao.findByGroupId(id);
 		

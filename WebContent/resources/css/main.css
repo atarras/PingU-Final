@@ -23,6 +23,11 @@ body{
 	min-height:80vh;
 }
 
+/* Panels and Modals */
+.panel.panel-default, .modal-content {
+    border-radius: 0px;
+}
+
 /* Tables */
 .table > thead > tr > th {
     border: none;

@@ -41,7 +41,7 @@
 							<a href="${groupPageURL}" ><i class="fas fa-user-circle fa-4x"></i></a>
 							<div class="card-body">
 								<div class="card-block">
-									<h5 class="card-title">${group.getGroupName()} : ${group.getGroupCategory() } </h5>
+									<a href="${groupPageURL}" ><h5 class="card-title">${group.getGroupName()} : ${group.getGroupCategory() }</h5> </a>
 									<p class="card-text">${group.getGroupDescription() }</p>
 								</div>
 							</div>
