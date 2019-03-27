@@ -18,7 +18,7 @@
   
         <div class="col-md-3 mb-md-0 mb-3">
           <div class="text-uppercase font-weight-bold">
-          <span class="glyphicon glyphicon glyphicon-knight"></span>
+          <!-- <span class="glyphicon glyphicon glyphicon-knight"></span> -->
           FDMGroup
           </div>
         </div>

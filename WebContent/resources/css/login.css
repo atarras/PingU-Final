@@ -1,10 +1,43 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.bg {
+    background-image: url("../images/bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 95vh;
+    min-width: 100vw;
+}
+
+.tab-content{
+/* this is where you would scroll only the content */
+overflow:auto;  
+height: calc(95vh - 42px); /* Replace 42px with the needed height. 100vh means the whole height of the browser's viewport */
+height: -webkit-calc(95vh - 42px);
+height: -moz-calc(95vh - 42px);
+}
+
+.center {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+}
+
 #login-signup {
-    width: 50%;
+    /*position: relative;
+    top: 50%;
+    left: 50%;
+    width: 50%;*/
+
 }
 
 #login, #signup {
     border-top: none;
     border-radius: 0px;
+    margin-bottom: 0px;
 }
 
 .nav-tabs>li>a {
