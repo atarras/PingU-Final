@@ -330,8 +330,8 @@ button.accent {
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="connect">WebSocket connection:</label>
-                    <input id="login" type="text" />
+                    <label for="connect">From:</label>
+                    <input id="login" type="text" value="${sessionScope.newUser.getUsername()}"  readonly />
                     <button id="connect" class="btn btn-default" type="submit">Connect</button>
                     <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
                     </button>
@@ -341,8 +341,8 @@ button.accent {
         <div class="col-md-6">
             <form class="form-inline">
                 <div class="form-group">
-                    <label for="name">Receiver name ?</label>
-                    <input type="text" id="name" class="form-control" placeholder="Your name here...">
+                    <label for="name">To:</label>
+                    <input type="text" id="name"  value="${userName}" readonly>
                 </div>
                 <div class="form-group">
                     <label for="name">Message</label>

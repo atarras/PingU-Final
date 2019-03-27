@@ -24,7 +24,13 @@
 					<a href="${user.value.getUserId()}"><i class="fas fa-user-circle fa-4x"></i></a>
 					<div class="media-body">
 						<p>${user.value.getFirstName()}  ${user.value.getLastName()}</p>
-						<a href="#" data-toggle="modal" data-target="#exampleModal"><i class="far fa-envelope fa-2x"></i></a>
+						
+						<c:url value="SingleUserChat" var="toUserName">
+										<c:param name="userName"
+											value="${user.value.getUsername()}" />
+						</c:url>
+						<a href="${toUserName}"  ><i class="far fa-envelope fa-2x"></i></a>
+						
 						<a href="${user.value.getUserId()}"><i class="fas fa-users fa-2x"></i></a>
 					</div>
 				</div>

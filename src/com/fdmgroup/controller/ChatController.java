@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.support.HttpRequestHandlerServlet;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.model.ChatMessage;
@@ -46,7 +47,9 @@ public class ChatController {
 	}
 	
 	@RequestMapping("/SingleUserChat")
-	public String SingleUserChat(){
+	public String SingleUserChat(@RequestParam (value="userName")String userName ,HttpServletRequest req){
+		req.setAttribute("userName",userName );
+		
 		return "SingleUserChat";
 	}
 	
