@@ -20,6 +20,16 @@
 	  	<div class="container main-body">
 	  	 	<jsp:include page="left.jsp" />
 			<div class="container-fluid content">
+				<c:choose>
+					<c:when test="${not empty foundFromGroupMsg }">
+						<h1 class="welcome-header">
+							<i class="fas fa-university fa-3x"></i>
+								${groupPage.getGroupNameWithoutUnderscore()}
+							<button class="header-button">JOIN</button>
+						</h1>
+						
+					</c:when>	
+				<c:otherwise>
 				<h1 class="welcome-header">
 					<i class="fas fa-university fa-3x"></i>
 					Bank
@@ -43,6 +53,8 @@
 						</div>
 					</div>
 				</div>
+				</c:otherwise>
+				</c:choose>
 			</div>
 			<jsp:include page="right.jsp" />
 		</div>

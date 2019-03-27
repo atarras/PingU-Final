@@ -148,6 +148,13 @@ public class Group {
 	public void setGroupMembers(List<IUser> groupMembers) {
 		this.groupMembers = groupMembers;
 	}
+	
+	public String getGroupNameWithoutUnderscore(){
+		String employerName = groupName.toString();
+		String[] nameArr = employerName.split("_");
+		String name = String.join(" ", nameArr);
+		return name;
+	}
 
 	@Override
 	public String toString() {
