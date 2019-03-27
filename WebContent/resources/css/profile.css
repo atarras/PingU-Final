@@ -80,11 +80,16 @@ p{
 	visibility:hidden;
 }
 
-#role-title-submit{
+#role-submit{
 	visibility:hidden;
 }
 
-#descriiption-submit #linkedin-submit #role-title-submit{
+
+#employee-submit{
+	visibility:hidden;
+}
+
+#description-submit #linkedin-submit #role-submit #employee-submit{
 	float:right;
 }
 

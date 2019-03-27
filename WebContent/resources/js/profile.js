@@ -96,6 +96,57 @@ $(document).ready(function() {
 		
 	})
 	
+	$("#role-button").click(function(){
+		
+		if($("#role-submit").css("visibility") == "hidden")
+		{
+			var userLinkedIn = $("#role-text").text();
+			$("#role-submit").css("visibility", "visible");
+		}
+		else
+		{
+			var userRoleTitlePlaceholder = $("#role-input").attr('placeholder');
+			$("#role-submit").css("visibility", "hidden");
+			$("#role-input").replaceWith("<a href='#' id='role-text'>"+userRoleTitlePlaceholder.trim()+"</a>");
+			return;
+		}
+		
+		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#role-submit").css("visibility") == "visible"))
+		{
+			console.log("goodbye");
+			$("#role-text").replaceWith("<input type='text' id='role-input' placeholder='Your linkedin link' title='Your linkedin.'>");
+		}
+		else
+		{
+			$("#role-text").replaceWith("<input type='text' id='role-input' placeholder='"+userLinkedIn.trim()+"' title='Your linkedin.'>");
+		}
+	})
+	
+	$("#employee-button").click(function(){
+		
+		if($("#employee-submit").css("visibility") == "hidden")
+		{
+			var userLinkedIn = $("#role-text").text();
+			$("#employee-submit").css("visibility", "visible");
+		}
+		else
+		{
+			var userRoleTitlePlaceholder = $("#employee-input").attr('placeholder');
+			$("#employee-submit").css("visibility", "hidden");
+			$("#employee-input").replaceWith("<a href='#' id='employee-text'>"+userRoleTitlePlaceholder.trim()+"</a>");
+			return;
+		}
+		
+		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#employee-submit").css("visibility") == "visible"))
+		{
+			$("#employee-text").replaceWith("<input type='text' id='employee-input' placeholder='Your linkedin link' title='Your linkedin.'>");
+		}
+		else
+		{
+			$("#employee-text").replaceWith("<input type='text' id='employee-input' placeholder='"+userLinkedIn.trim()+"' title='Your linkedin.'>");
+		}
+	})
+	
 	$("#form-reset").click(function() {
 		$(".personal-button").css("visibility", "hidden");
 		$("#edit-button").css("visibility", "visible");

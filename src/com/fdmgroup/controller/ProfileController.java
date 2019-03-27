@@ -32,7 +32,7 @@ public class ProfileController {
 		session.removeAttribute("errorPassword");
 		session.removeAttribute("newAnswer");
 		IRUser profileUser = (IRUser) userDAO.findUserById(id);
-		req.setAttribute("profileUser", profileUser);
+		session.setAttribute("profileUser", profileUser);
 		return "profile";
 	}
 

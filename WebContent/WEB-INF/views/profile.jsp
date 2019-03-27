@@ -11,7 +11,10 @@
 		
 	    <link rel="stylesheet" href="<c:url value='/resources/css/main.css'/>"/>
 	    <link rel="stylesheet" href="<c:url value='/resources/css/profile.css'/>"/>
-	    
+	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		<script src="<c:url value="/resources/js/profile.js" />"></script>
 		
 	</head>
 	<jsp:include page="nav.jsp" />
@@ -27,10 +30,14 @@
 						<i class="fas fa-user-circle fa-10x"></i>
 						<div class="card-body">
 							<div id="edit-box">
-								<h5 class="card-title">Developer: ${profileUser.getGroup().getGroupName().getName() } 
-								<button class="btn btn-primary" id="role-title-submit" name="Submit-Description">Submit</button>
-								<a href="#" id="role-title-button"><i class="far fa-edit user-edit"></i></a>
-								</h5>
+								<p class="card-title employee-text">${profileUser.getGroup().getGroupName().getName() }:</p>
+								<button class="btn btn-primary" id="employee-submit" name="Submit-Description">Submit</button>
+								<a href="#" id="employee-button"><i class="far fa-edit user-edit"></i></a>
+							</div>
+							<div id="edit-box">
+								<p class="card-title role-text">Developer</p>
+								<button class="btn btn-primary" id="role-submit" name="Submit-Description">Submit</button>
+								<a href="#" id="role-button"><i class="far fa-edit user-edit"></i></a>
 							</div>
 							<div>
 								<a href="#" id="description-button"><i class="far fa-edit user-edit"></i></a>
@@ -149,10 +156,5 @@
 			</div>
 			<jsp:include page="right.jsp" />
 		</div>
-		
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-		<script src="<c:url value="/resources/js/profile.js" />"></script>
 	</body>
 </html>

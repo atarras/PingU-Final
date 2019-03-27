@@ -7,8 +7,6 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	    
 	    <link rel="stylesheet" href="<c:url value="/resources/css/nav.css"/>" />
-	    
-	    <script src="<c:url value="/resources/js/nav.js" />"></script>
 	</head>
 		<!-- Navigation bar static throughout all our pages, the search bar will probably be made bigger,
 		need to add potentially bigger buttons, a hover effect, dynamic pill icon for notifications -->
@@ -92,5 +90,6 @@
 				</div>
 			</div>
 		</div>
+		<script src="<c:url value="/resources/js/nav.js" />"></script>
 	</body>
 </html>
