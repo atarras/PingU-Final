@@ -1,3 +1,22 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.bg {
+    background-image: url("../images/bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 95vh;
+    min-width: 100vw;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+}
+
 .welcome-header{
 	position:relative;
 	display:inline;
@@ -40,5 +59,11 @@
 	height: 80vh;
 	padding-bottom:50px;
 	overflow-y: auto;
-	background-color: lightgray;
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+.nav-tabs .nav-link {
+    border: 0px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }

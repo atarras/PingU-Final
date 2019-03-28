@@ -8,16 +8,18 @@
 	
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
-		
-	    <link rel="stylesheet" href="<c:url value="resources/css/main.css"/>"/>
-		<link rel="stylesheet" href="<c:url value="resources/css/home.css"/>"/>
-	
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		
+	    <link rel="stylesheet" href="<c:url value="resources/css/main.css"/>"/>
+		<link rel="stylesheet" href="<c:url value="resources/css/home.css"/>"/>
 	</head>
 	<jsp:include page="nav.jsp" />
 	<body>
+  
+      <div class="flex-wrapper">
+      <div class="bg">
 	  <div class="container main-body">
 	  	<jsp:include page="left.jsp" />
 		<div class="container content">
@@ -31,12 +33,12 @@
 			</h1>
 			<div class="message-content">
 				<ul class="nav nav-tabs">
-				  <li class="active"><a class="nav-link active" data-toggle="tab" href="#allmsg">All</a></li>
+				  <li><a class="nav-link active" data-toggle="tab" href="#allmsg">All</a></li>
 				  <li><a class="nav-link" data-toggle="tab" href="#usermsg">User</a></li>
 				  <li><a class="nav-link" data-toggle="tab" href="#groupmsg">Group</a></li>
 				</ul>
 				<div class="tab-content">
-					<div id="allmsg" class="tab-pane fade in active show container messages all">
+					<div id="allmsg" class="tab-pane fade active show container messages all">
 					<c:forEach items="${sessionScope.userMessages}" var="uMsg" varStatus="status">	
 						<div class="media border pt-4 p-3">
 							<a href="${uMsg.getSenderId()}" >${uMsg.getSenderName()}
@@ -96,6 +98,9 @@
 		</div>
 	    <jsp:include page="right.jsp" />  
 	  </div>
+        <jsp:include page="footer.jsp" />
+      </div>
+      </div>
 	</body>
 		<script>
 	function openForm() {
