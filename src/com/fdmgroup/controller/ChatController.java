@@ -81,7 +81,7 @@ public class ChatController {
 		
 
     	
-    	String content = (message.getName()+": "+msg.getContent().toString()+"                                                 " +"("+new SimpleDateFormat("HH:mm").format(new Date()).toString()+")" );
+    	String content = (message.getName()+": "+msg.getContent().toString()+" " +"("+new SimpleDateFormat("HH:mm").format(new Date()).toString()+")" );
     	
     	OneToOneMessage messages = new OneToOneMessage(content);
     	

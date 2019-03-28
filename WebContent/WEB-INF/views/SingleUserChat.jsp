@@ -22,15 +22,15 @@
     
  <div class="container main-body">
 	  	<jsp:include page="left.jsp" />
-		<div class="container content">
+		<dliv class="container content">
 		
 		
         
         <div class="row">
         <div class="col-md-6">
-            <form class="form-inline">
+            <form>
                 <div class="form-group">
-                    <label for="connect">From:</label>
+                    <label for="connect">From: &nbsp;&nbsp; </label>
                     <input id="login" type="text" value="${sessionScope.newUser.getUsername()}"   />
                     <button id="connect" class="btn btn-default" type="submit">Connect</button>
                     <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
@@ -38,20 +38,26 @@
                 </div>
             </form>
         </div>
+        </div>
+         <div class="row">
         <div class="col-md-6">
-            <form class="form-inline">
+            <form>
                 <div class="form-group">
-                    <label for="name">To:</label>
+                    <label for="name">To: </label>
                     <input type="text" id="name"  value="${userName}" >
                 </div>
                 <div class="form-group">
-                    <label for="name">Message</label>
-                    <input type="text" id="msg" name="messageToUser" placeholder="Your Message here..." autocomplete="off" class="form-control" />
+                    <label for="name">Message: &nbsp;&nbsp;  </label>
+                    <input type="text" id="msg" name="messageToUser" placeholder="Your Message here..." autocomplete="off" class="form-control input-sm chat_input" />
+	                    <span class="input-group-btn">
+		               		 <button id="send" class="btn btn-primary btn-sm" type="submit">Send</button>
+		                </span>
                 </div>
-                <button id="send" class="btn btn-default" type="submit">Send</button>
+                
             </form>
         </div>
-    </div>
+       </div>
+    
     <div class="row">
         <div class="col-md-12">
             <table id="conversation" class="table table-striped">
@@ -134,7 +140,7 @@ function showYourMessage(){
 	  var messageInput = document.querySelector('#msg');
 	  
 	  
-	  $("#greetings").append("<tr><td>" + "you: "+ messageInput.value +" "+n+":" + m   +"</td></tr>");
+	  $("#greetings").append("<tr><td>" + "you: "+ messageInput.value +"("+n+":" + m +")"+"</td></tr>");
 	  document.getElementById('msg').value = "";
 }
 

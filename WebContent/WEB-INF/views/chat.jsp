@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -351,13 +353,14 @@ button.accent {
                 </div>
             </form>
         </div>
+        
     </div>
-   <%--   <jsp:include page="right.jsp" /> --%>  
+ 
  
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<!--  <script src="resources/js/main.js"></script> -->
+
  
    <script type="text/javascript">
     'use strict';
