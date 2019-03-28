@@ -79,3 +79,16 @@ input.editted, button.editted {
 .nav-tabs>li>a:hover, .nav-tabs>li>a:active {
     background: rgba(255, 255, 255, 0.8);
 }
+
+/* SVG colors */
+.white-svg {
+    fill: white;
+}
+
+.green-svg {
+    fill: green;
+}
+
+.red-svg {
+    fill: red;
+}
