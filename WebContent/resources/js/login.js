@@ -107,9 +107,11 @@ $(document).ready(function() {
 		
 	});
 	
+	/**
+	 * If there is invalid input within the form, prevent submission of the form
+	 */
 	$("#sign-up-button, #recover-password-button").click(function(e) {
 		var invalidInputs = $(this).closest("form").find(".invalid-input");
-		console.log(invalidInputs);
 		if (invalidInputs.length != 0) {
 			e.preventDefault();
 		}

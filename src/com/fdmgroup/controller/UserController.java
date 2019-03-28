@@ -208,7 +208,7 @@ public class UserController {
 				System.out.println(user.getUsername());
 				System.out.println(user.getFirstName());
 				System.out.println(user.getLastName());
-				System.out.println(user.getGroup());
+				/*System.out.println(user.getGroup());*/
 			}
 		}
 
