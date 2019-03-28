@@ -20,6 +20,8 @@
 			</div>-->
 			
 			<c:forEach items="${loggedInUsers}" var="user" varStatus="status">
+			 <c:if test="${user.value.getUserId() ne sessionScope.newUser.getUserId()}">
+ 			
 				<div class="media border p-3">
 					<a href="${user.value.getUserId()}">
 						<svg xmlns="http://www.w3.org/2000/svg" width="64" height="62" viewBox="0 0 12 16">
@@ -47,6 +49,7 @@
 						</a>
 					</div>
 				</div>
+				 </c:if>
     		</c:forEach>
 		</div>
 </html>
