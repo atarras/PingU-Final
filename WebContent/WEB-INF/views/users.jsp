@@ -481,7 +481,11 @@
                   <sf:input type="text" id="add-consultant-title" class="form-control" path="currentTitle" placeholder="Current Title" required="required" />  
                 </div>
                 <div class="form-group">
-                  <sf:input type="text" id="add-consultant-employer" class="form-control" path="employer" placeholder="Employer" required="required" />  
+                  <%-- <sf:input type="text" id="add-consultant-employer" class="form-control" path="employer" placeholder="Employer" required="required" /> --%>  
+                  <sf:select id="add-consultant-employer" class="form-control edittable" path="employer" required="required">
+                    <sf:option value="" label="*** Select Option ***" />
+                    <sf:options items="${employers}" />
+                  </sf:select>
                 </div>
                 <div class="form-group">
                   <sf:input type="date" id="add-consultant-pdate" class="form-control" path="pDate" placeholder="Placement Date" required="required" />  
@@ -550,7 +554,14 @@
                   <input type="text" id="edit-consultant-title" class="form-control edittable" name="title" placeholder="Title" />
                 </div>
                 <div class="form-group">
-                  <input type="text" id="edit-consultant-employer" class="form-control edittable" name="employer" placeholder="Employer" />
+                  <!-- <input type="text" id="edit-consultant-employer" class="form-control edittable" name="employer" placeholder="Employer" /> -->
+                  <select id="edit-consultant-employer" class="form-control edittable" name="employer">
+                    
+                    <option value="">*** Select Option ***</option>
+                    <c:forEach items="${employers}" var="employer">
+                      <option value="${employer}">${employer}</option>
+                    </c:forEach>
+                  </select>
                 </div>
                 <div class="form-group">
                   <input type="date" id="edit-consultant-pdate" class="form-control edittable" name="pdate" />

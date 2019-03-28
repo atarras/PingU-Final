@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.DAO.UserDAO;
+import com.fdmgroup.enums.Employer;
 import com.fdmgroup.helpers.StringHelpers;
 import com.fdmgroup.model.Admin;
 import com.fdmgroup.model.Consultant;
@@ -81,6 +82,9 @@ public class TempUserController {
 		
 		/* Prepare model with an Admin so we can create one if needed */
 		model.addAttribute("newAdmin", new Admin());
+		
+		/* Add all possible Employer enum values */
+		model.addAttribute("employers", Employer.values());
 		
 		if (req.getSession().getAttribute("pageContext") == null) req.getSession().setAttribute("pageContext", "trainee");
 		return "users";

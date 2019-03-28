@@ -13,8 +13,13 @@ $(document).ready(function() {
 			var columnClass = $(this).attr("class");
 			var value = $(this).text().trim();
 			
-			$("#edit-" + columnClass).val(value);
-			$("#edit-" + columnClass).text(value);
+			/* if it is a select element, select the corresponding option with our value */
+			if ($("#edit-" + columnClass).is("select")) {
+				$("#edit-" + columnClass + " option[value='" + value + "']").attr("selected", "selected");
+			} else {
+				$("#edit-" + columnClass).val(value);
+				$("#edit-" + columnClass).text(value);
+			}
 			
 			$("#edit-" + columnClass).attr("data-original-value", value);
 			
