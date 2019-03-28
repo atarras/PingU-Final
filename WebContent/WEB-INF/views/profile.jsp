@@ -38,31 +38,37 @@
 </div>
 						<div class="card-body">
 							<form id="edit-box employer-request" class="form security" action="changeEmployerRequest" method="GET">
+							<c:if test="${profileUser.getUserId() == newUser.getUserId() }">
 								<a href="#" id="employer-button">
 									<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
 										<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
 									</svg>
 								</a>
+							</c:if>
 								<p class="card-title employer-text" id="employer-text">Employer: ${profileUser.getGroup().getGroupNameWithoutUnderscore() }</p>
 								<button class="btn btn-primary" id="employer-submit" name="Submit-Description">Request</button>
 							</form>
 							<form id="edit-box developer-request" class="form security" action="changeJobTitleRequest" method="GET">
 								<input type="hidden" name="userID" value="${profileUser.getUserId()}"/>
+							<c:if test="${profileUser.getUserId() == newUser.getUserId() }">
 								<a href="#" id="role-button">
 									<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
 										<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
 									</svg>
 								</a>
+							</c:if>
 								<p class="card-title role-text" id="role-text">Title: ${profileUser.getCurrentTitle()}</p>
 								<button class="btn btn-primary" type="submit" id="role-submit" name="Submit-Description">Request</button>
 							</form>
 								<form id="edit-box decription-form" class="form security" action="description" method="POST">
 									<input type="hidden" name="userID" value="${profileUser.getUserId()}"/>
+								<c:if test="${profileUser.getUserId() == newUser.getUserId() }">
 									<a href="#" id="description-button" >
 										<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
 											<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
 										</svg>
 									</a>
+								</c:if>
 									<p id="description-text" class="card-text">
 										${profileUser.getDescription() }
 									</p>
@@ -73,11 +79,13 @@
 								<p id="group-text" class="card-text">
 									${profileUser.getGroup().getGroupNameWithoutUnderscore() }
 								</p>
+							<c:if test="${profileUser.getUserId() == newUser.getUserId() }">
 								<a href="#" id="linkedin-link">${profileUser.getLinkedInUrl() }</a><a href="#" id="linkedin-button">
 									<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
 										<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
 									</svg>
 								</a>
+							</c:if>
 								<button class="btn btn-primary" id="linkedin-submit" type="submit" name="Submit-Description">Submit</button>
 							</form>
 						</div>
@@ -88,11 +96,13 @@
 						<div class="form-group">
 							<div class="form-group">
 								<div class="col-xs-4">
+								<c:if test="${profileUser.getUserId() == newUser.getUserId() }">
 									<a id="edit-button" href="#">Edit Address
 										<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="28" height="32" viewBox="0 0 14 16">
 											<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
 										</svg>
 									</a>
+								</c:if>
 									<label id="country-label" for="country">
 										<h4>Country</h4>
 									</label>
@@ -123,6 +133,7 @@
 							</div>
 						</div>
 	              	</form>
+					<c:if test="${profileUser.getUserId() == newUser.getUserId() }">
 					<div class="accordion" id="searchAccordion">
 						<div class="accordion-group">
 							<div class="accordion-heading">
@@ -196,6 +207,7 @@
 								</div>
 							</div>
 						</div>
+					</c:if>
 					</div>
 				</div>
 			</div>
