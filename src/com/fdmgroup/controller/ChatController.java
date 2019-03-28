@@ -79,15 +79,12 @@ public class ChatController {
     @MessageMapping("/message")
 	public void greeting( ChatUser message ,@Payload  OneToOneMessage msg) throws  Exception {
 		
-/*		Greeting greeting = new Greeting();
-		greeting.setContent("hello");*/
+
     	
-    	String content = (message.getName()+": "+msg.getContent().toString()+" "+new SimpleDateFormat("HH:mm").format(new Date()).toString() );
+    	String content = (message.getName()+": "+msg.getContent().toString()+"                                                 " +"("+new SimpleDateFormat("HH:mm").format(new Date()).toString()+")" );
     	
     	OneToOneMessage messages = new OneToOneMessage(content);
-    	System.out.println();
-    	System.out.println("-------------------------------------------------"+message.getName() +"-------------------------------------------------");
-    	System.out.println();
+    	
     	
 		messagingTemplate.convertAndSendToUser(message.getToUser(), "/queue/reply", messages);
 	}
