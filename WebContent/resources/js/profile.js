@@ -57,11 +57,11 @@ $(document).ready(function() {
 		if (((userDescription == "" || userDescription == "undefined")) && ($("#description-submit").css("visibility") == "visible"))
 		{
 			console.log("hello");
-			$("#description-text").replaceWith("<input type='text' id='description-input' placeholder='Add a user description' title='User description.'>");
+			$("#description-text").replaceWith("<input type='text' id='description-input' name='newDesc' placeholder='Add a user description' title='User description.'>");
 		}
 		else
 		{
-			$("#description-text").replaceWith("<input type='text' id='description-input' placeholder='"+userDescription.trim()+"' title='User description.'>");
+			$("#description-text").replaceWith("<input type='text' id='description-input' name='newDesc' placeholder='"+userDescription.trim()+"' title='User description.'>");
 		}
 		
 	})
@@ -87,11 +87,11 @@ $(document).ready(function() {
 		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#linkedin-submit").css("visibility") == "visible"))
 		{
 			console.log("goodbye");
-			$("#linkedin-link").replaceWith("<input type='text' id='linkedin-input' placeholder='Your linkedin link' title='Your linkedin.'>");
+			$("#linkedin-link").replaceWith("<input type='text' id='linkedin-input' name='newLinkedIn' placeholder='Your linkedin link' title='Your linkedin.'>");
 		}
 		else
 		{
-			$("#linkedin-link").replaceWith("<input type='text' id='linkedin-input' placeholder='"+userLinkedIn.trim()+"' title='Your linkedin.'>");
+			$("#linkedin-link").replaceWith("<input type='text' id='linkedin-input' name='newLinkedIn' placeholder='"+userLinkedIn.trim()+"' title='Your linkedin.'>");
 		}
 		
 	})
@@ -107,7 +107,7 @@ $(document).ready(function() {
 		{
 			var userRoleTitlePlaceholder = $("#role-input").attr('placeholder');
 			$("#role-submit").css("visibility", "hidden");
-			$("#role-input").replaceWith("<a href='#' id='role-text'>"+userRoleTitlePlaceholder.trim()+"</a>");
+			$("#role-input").replaceWith("<p href='#' id='role-text'>"+userRoleTitlePlaceholder.trim()+"</p>");
 			return;
 		}
 		

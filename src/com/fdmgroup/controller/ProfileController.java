@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.DAO.UserDAO;
 import com.fdmgroup.model.IRUser;
@@ -37,7 +38,7 @@ public class ProfileController {
 	}
 
 	@RequestMapping(value = "/{userID}", method = RequestMethod.POST)
-	public String setUserProfile(HttpServletRequest req, Model model, @PathVariable("userID") long id,
+	public ModelAndView setUserProfile(HttpServletRequest req, Model model, @PathVariable("userID") long id,
 			@RequestParam("country") String newCountry, @RequestParam("city") String newCity,
 			@RequestParam("phone") String newPhone) {
 		IRUser profileUser = (IRUser) userDAO.findUserById(id);
@@ -56,7 +57,7 @@ public class ProfileController {
 		}
 		req.getSession().setAttribute("newUser", profileUser);
 
-		return "profile";
+		return new ModelAndView("redirect:/"+id);
 	}
 
 	@RequestMapping(value = "/password", method = RequestMethod.POST)

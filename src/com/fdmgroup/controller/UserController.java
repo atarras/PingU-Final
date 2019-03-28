@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.DAO.UserDAO;
 import com.fdmgroup.model.Consultant;
@@ -218,18 +219,20 @@ public class UserController {
 
 	}
 
-	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String updateDescription(HttpServletRequest req, @RequestParam("userID") Long userID,
+	@RequestMapping(value="/description", method=RequestMethod.POST)
+	public ModelAndView updateDescription(HttpServletRequest req, @RequestParam("userID") Long userID,
 			@RequestParam("newDesc") String newDesc) {
 		session = req.getSession();
 		IRUser user = userDAO.updateDescription(userID, newDesc);
 		if (!user.getDescription().equals(newDesc)) {
 			/* TODO: add error message Description NOT CHANGED */
-			return null; // add the correct view string
+			System.out.println("NOT UPDATED?");
+			return new ModelAndView("redirect:/"+userID); // add the correct view string
 		}
 		session.setAttribute("newUser", user);
 		/* TODO: add success message Description CHANGED */
-		return null; // add the correct view string
+		System.out.println("UPDATED?");
+		return new ModelAndView("redirect:/"+userID); // add the correct view string
 	}
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
@@ -339,18 +342,18 @@ public class UserController {
 		return null; // add the correct view string
 	}
 
-	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
-	public String updateLinkedIn(HttpServletRequest req, @RequestParam("userID") Long userID,
+	@RequestMapping(value="/linkedin", method=RequestMethod.POST)
+	public ModelAndView updateLinkedIn(HttpServletRequest req, @RequestParam("userID") Long userID,
 			@RequestParam("newLinkedIn") String newLinkedIn) {
 		session = req.getSession();
 		IRUser user = userDAO.changeLinkedIn(userID, newLinkedIn);
 		if (!user.getLinkedInUrl().equals(newLinkedIn)) {
 			/* TODO: add error message LINKEDIN NOT CHANGED */
-			return null; // add the correct view string
+			return new ModelAndView("redirect:/"+userID); // add the correct view string
 		}
 		session.setAttribute("newUser", user);
 		/* TODO: add success message LINKEDIN CHANGED */
-		return null; // add the correct view string
+		return new ModelAndView("redirect:/"+userID); // add the correct view string
 	}
 
 }

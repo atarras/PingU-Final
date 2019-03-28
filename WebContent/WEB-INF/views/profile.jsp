@@ -28,13 +28,14 @@
 					<div class="card" style="width: 80%;">
 						<div class="card-body">
 							<h5 class="card-title">${profileUser.getFirstName()} ${profileUser.getLastName()}</h5>
+							<h5 class="card-title">Group: ${profileUser.getGroup().getGroupName().name() }</h5>
 						</div>
 							<svg class="user-svg" xmlns="http://www.w3.org/2000/svg" width="155" height="160" viewBox="0 0 12 16" preserveAspectRatio="xMidYMid meet">
 								<path fill-rule="evenodd" d="M12 14.002a.998.998 0 0 1-.998.998H1.001A1 1 0 0 1 0 13.999V13c0-2.633 4-4 4-4s.229-.409 0-1c-.841-.62-.944-1.59-1-4 .173-2.413 1.867-3 3-3s2.827.586 3 3c-.056 2.41-.159 3.38-1 4-.229.59 0 1 0 1s4 1.367 4 4v1.002z"/>
 							</svg>
 						<div class="card-body">
 							<form id="edit-box employer-request" class="form security" action="changeEmployerRequest" method="GET">
-								<p class="card-title employer-text" id="employer-text">Group: ${profileUser.getGroup().getGroupName().name() }</p>
+								<p class="card-title employer-text" id="employer-text">Employer: ${profileUser.getGroup().getGroupName().name() }</p>
 								<button class="btn btn-primary" id="employer-submit" name="Submit-Description">Request</button>
 							</form>
 							<form id="edit-box developer-request" class="form security" action="changeJobTitleRequest" method="GET">
@@ -47,18 +48,21 @@
 								<p class="card-title role-text" id="role-text">Title: ${profileUser.getCurrentTitle()}</p>
 								<button class="btn btn-primary" type="submit" id="role-submit" name="Submit-Description">Request</button>
 							</form>
-							<form id="edit-box decription-form" class="form security" action="password" method="POST">
-								<a href="#" id="description-button" >
-									<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
-										<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
-									</svg>
-								</a>
-								<p id="description-text" class="card-text">
-									${profileUser.getDescription() }
-								</p>
-								<button class="btn btn-primary" id="description-submit" type="submit" name="Submit-Description" >Submit</button>
-							</form>
-							<form id="edit-box linkedin-form" class="form security" action="password" method="POST">
+								<form id="edit-box decription-form" class="form security" action="description" method="POST">
+									<input type="hidden" name="userID" value="${profileUser.getUserId()}"/>
+									<a href="#" id="description-button" >
+										<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
+											<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
+										</svg>
+									</a>
+									<p id="description-text" class="card-text">
+									Add a description text...
+										${profileUser.getDescription() }
+									</p>
+									<button class="btn btn-primary" id="description-submit" type="submit" name="Submit-Description" >Submit</button>
+								</form>
+							<form id="edit-box linkedin-form" class="form security" action="linkedin" method="POST">
+								<input type="hidden" name="userID" value="${profileUser.getUserId()}"/>
 								<p id="group-text" class="card-text">
 									${profileUser.getGroup().getGroupName().getName() }
 								</p>
@@ -77,7 +81,14 @@
 						<div class="form-group">
 							<div class="form-group">
 								<div class="col-xs-4">
-									<label for="country"><h4>Country</h4></label>
+									<a id="edit-button" href="#">Edit
+										<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="28" height="32" viewBox="0 0 14 16">
+											<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
+										</svg>
+									</a>
+									<label id="country-label" for="country">
+										<h4>Country</h4>
+									</label>
 									<p id="country">${profileUser.getCountry() }</p>
 									<!--  <input type="text" class="form-control" name="country" id="countryInput" placeholder="${profileUser.getCountry() }" title="Your current country.">-->
 								</div>
@@ -99,11 +110,6 @@
 						</div>
 						
 						<div class="form-group">
-							<a id="edit-button" href="#">
-								<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="28" height="32" viewBox="0 0 14 16">
-									<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
-								</svg>
-							</a>
 							<div class="col-xs-8">
 								<button id="form-submit" class="btn btn-lg btn-success personal-button" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Submit</button>
 								<button id="form-reset" class="btn btn-lg personal-button" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
@@ -120,7 +126,7 @@
 								</a>
 							</div>
 							<c:if test="${sessionScope.successPassword}">
-                   				<div >Password updated successfully.</div>
+                   				<div>Password updated successfully.</div>
                 			</c:if>
                 			<c:if test="${sessionScope.samePassword}">
                    				<div class="error-message">Please enter a new password.</div>

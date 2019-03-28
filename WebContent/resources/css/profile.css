@@ -67,7 +67,8 @@ form{
 }
 
 #edit-button{
-			
+	position:relative;
+	float:right;
 }
 
 #description-submit{
