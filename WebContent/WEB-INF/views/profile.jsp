@@ -120,7 +120,7 @@
 								</a>
 							</div>
 							<c:if test="${sessionScope.successPassword}">
-                   				<div class="error-message">Password updated successfully.</div>
+                   				<div >Password updated successfully.</div>
                 			</c:if>
                 			<c:if test="${sessionScope.samePassword}">
                    				<div class="error-message">Please enter a new password.</div>
@@ -129,7 +129,7 @@
                    				<div class="error-message">Invalid current password.</div>
                 			</c:if>
                 			<c:if test="${sessionScope.newAnswer}">
-                   				<div class="error-message">Security Answer is updated successfully.</div>
+                   				<div>Security Answer is updated successfully.</div>
                 			</c:if>
 							<div id="collapseOne" class="accordion-body collapse in">
 								<div class="accordion-inner">

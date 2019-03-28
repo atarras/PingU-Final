@@ -62,37 +62,68 @@ public class ProfileController {
 	@RequestMapping(value = "/password", method = RequestMethod.POST)
 	public String updateSecurity(HttpServletRequest req, @RequestParam("current-password") String currentPassword,
 			@RequestParam("new-password") String newPassword, @RequestParam("security-answer") String securityAnswer) {
-		IUser user = (IUser) req.getSession().getAttribute("newUser");
+//		IUser user = (IUser) req.getSession().getAttribute("newUser");
 		HttpSession session = req.getSession();
-
-		if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
-			session.setAttribute("errorPassword", true);
-			System.out.println("WRONG");
-			if (!securityAnswer.equals("")) {
+		IUser user = (IUser)session.getAttribute("newUser");
+		session.removeAttribute("errorPassword");
+		session.removeAttribute("samePassword");
+		session.removeAttribute("successPassword");
+		
+		if(passwordEncoder.matches(currentPassword, user.getPassword())){
+			if(!securityAnswer.equals("")){
 				userDAO.changeSecurityAnswer(user.getUserId(), securityAnswer);
-
-				if (newPassword.equals("")) {
-					session.setAttribute("newAnswer", true);
-					return "profile";
+				session.setAttribute("securityAnswerSuccess", true);
+			}
+			
+			if(!newPassword.equals("")){
+				if(passwordEncoder.matches(newPassword, user.getPassword())){
+					
+					session.setAttribute("samePassword", true);
+				}
+				else{
+					IUser updatedUser = userDAO.updatePassword(user.getUserId(), newPassword);
+					session.setAttribute("successPassword", true);
+					session.setAttribute("newUser", updatedUser);
 				}
 			}
-
-		} else {
-
-			if (passwordEncoder.matches(newPassword, user.getPassword())) {
-				session.setAttribute("samePassword", true);
-				System.out.println("SAME");
-				// return "profile"; // add the correct view string
-			} else {
-				// return "profile"; // add the correct view string
-
-				req.getSession().setAttribute("newUser", user);
-				userDAO.updatePassword(user.getUserId(), newPassword);
-				session.setAttribute("successPassword", true);
-				System.out.println("SUCCESS");
-				// return "profile"; // add the correct view string
-			}
+			
 		}
+		else{
+			session.setAttribute("errorPassword", true);
+			System.out.println("WRONG");
+		}
+		
+		
 		return "profile";
+
+//		if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
+//			session.setAttribute("errorPassword", true);
+//			System.out.println("WRONG");
+//			if (!securityAnswer.equals("")) {
+//				userDAO.changeSecurityAnswer(user.getUserId(), securityAnswer);
+//
+//				if (newPassword.equals("")) {
+//					session.setAttribute("newAnswer", true);
+//					return "profile";
+//				}
+//			}
+//
+//		} else {
+//
+//			if (passwordEncoder.matches(newPassword, user.getPassword())) {
+//				session.setAttribute("samePassword", true);
+//				System.out.println("SAME");
+//				// return "profile"; // add the correct view string
+//			} else {
+//				// return "profile"; // add the correct view string
+//
+//				req.getSession().setAttribute("newUser", user);
+//				userDAO.updatePassword(user.getUserId(), newPassword);
+//				session.setAttribute("successPassword", true);
+//				System.out.println("SUCCESS");
+//				// return "profile"; // add the correct view string
+//			}
+//		}
+//		return "profile";
 	}
 }
