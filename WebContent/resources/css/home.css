@@ -19,8 +19,8 @@
 }
 
 .media{
-	min-height: 20%;
-	max-height: 20%;
+	/* min-height: 20%;
+	max-height: 20%; */
 	overflow:hidden;
 }
 

@@ -9,15 +9,15 @@
 	}
 
 .right-sidebar{
-	position:relative;
+	position:fixed;
 	margin:0;
 	padding:0;
 	right:0;
 	padding-top:1px;
-	left: 15vw;
+	/*left: 15vw;*/
 	border-left: 2px solid rgba(0,0,0,.1);
 	overflow-y: auto;
-	height:90vh;
+	/*height:90vh;*/
 	padding-bottom:50px;
 }
 
