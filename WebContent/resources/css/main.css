@@ -54,6 +54,7 @@ body{
 
 input.editted, button.editted {
     color: green;
+    fill: green;
 }
 
 .error-message {
