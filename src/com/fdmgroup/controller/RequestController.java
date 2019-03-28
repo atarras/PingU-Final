@@ -160,7 +160,7 @@ public class RequestController {
 						System.out.println(failedRequest);
 						break;
 					} else {
-						request.setAttribute("deniedRequestMsg", "Request cannot be approved. Trainee can only join FDM Group's group page.");
+						request.setAttribute("deniedRequestMsg", "Request cannot be approved. Trainee can only join FDM Group's group.");
 						failedRequest = true;
 						break;
 					}
