@@ -438,5 +438,17 @@ public class UserDAO implements IUserDAO {
 			return null;
 		}
 	}
+	
+	public IUser findByUsernameWithGroup(String username){
+		EntityManager em = connection.getEntityManager();
+		TypedQuery<IUser> query = em.createNamedQuery("iuser.findByUsernameWithGroup", IUser.class);
+		query.setParameter("username", username);
+		List<IUser> resultList = query.getResultList();
+		if(resultList != null && !resultList.isEmpty()){
+			return resultList.get(0);
+		} else {
+			return null;
+		}
+	}
 
 }

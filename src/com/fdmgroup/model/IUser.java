@@ -27,6 +27,7 @@ import javax.validation.constraints.NotNull;
 		@NamedQuery(name = "iuser.findAllByType", query = "select u FROM IUser u where TYPE(u) = :type"),
 		@NamedQuery(name = "iuser.findAllRegularUsers", query = "select u FROM IUser u where TYPE(u) = :traineeType or Type(u) = :consultantType"),
 		@NamedQuery(name = "iuser.findByUsername", query = "select u FROM IUser u where u.username = :username"),
+		@NamedQuery(name = "iuser.findByUsernameWithGroup", query = "select u FROM IUser u JOIN fetch u.group where u.username = :username"),
 		@NamedQuery(name="iuser.findAllUsersWithSameGroupId", query="SELECT u FROM IUser u JOIN fetch u.group WHERE u.group.groupId = :gId")
 })
 public class IUser {

@@ -17,12 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.fdmgroup.DAO.GroupDAO;
 import com.fdmgroup.DAO.MessagesDAO;
 import com.fdmgroup.DAO.RequestDAO;
 import com.fdmgroup.DAO.UserDAO;
 import com.fdmgroup.enums.Employer;
 import com.fdmgroup.model.Admin;
 import com.fdmgroup.model.Consultant;
+import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
 import com.fdmgroup.model.Messages;
@@ -40,6 +42,9 @@ public class LoginController {
 	
 	@Autowired
 	private MessagesDAO messagesDao;
+	
+	@Autowired
+	private GroupDAO groupDao;
 	
 	Pattern pattern = Pattern.compile("^[a-zA-Z0-9]+\\.[a-zA-Z0-9]+@fdmgroup.com$");
 	
@@ -96,6 +101,10 @@ public class LoginController {
 			return "login";
 		}
 		
+		if(loginUser.getGroup() != null){
+			Group userGroup = groupDao.findByGroupId(loginUser.getGroup().getGroupId());
+			loginUser.setGroup(userGroup);
+		}
 		session.setAttribute("newUser", loginUser);
 		
 		if(loginUser instanceof Admin){
