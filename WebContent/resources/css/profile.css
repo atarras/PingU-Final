@@ -117,3 +117,14 @@ form{
 .user-svg{
 	margin:0 auto;
 }
+
+/* Profile image */
+.center {
+    text-align: center;
+}
+
+.profile-header-img > img.rounded-circle {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #0068ff;
+}
