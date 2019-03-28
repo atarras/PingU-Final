@@ -177,7 +177,7 @@
                 </div>
                     
                 <div class="form-group">
-                  <button type="submit" id="sign-up-button" class="btn btn-primary btn-lg btn-block login-btn">Sign Up</button>
+                  <button type="submit" id="sign-up-button" class="btn btn-primary btn-lg btn-block login-btn submit-button">Sign Up</button>
                 </div>
               </sf:form>
             </div>
@@ -227,7 +227,7 @@
                   </div>
                   
                   <div class="form-group">
-                    <button type="submit" id="recover-password-button" class="btn btn-primary btn-lg btn-block">Submit</button>
+                    <button type="submit" id="recover-password-button" class="btn btn-primary btn-lg btn-block submit-button">Submit</button>
                   </div>
                 
                 </div>

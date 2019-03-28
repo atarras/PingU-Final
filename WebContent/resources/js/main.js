@@ -120,4 +120,51 @@ $(document).ready(function() {
 	$(".edit-modal").on("hidden.bs.modal", function () {
 		$(this).find("button, input").removeClass("editted");
 	});
+	
+	/* ==== Password confirmation check ==== */
+	/**
+	 * If password and confirm password do not match when unfocusing, then give them an error
+	 */
+	$(".password, .confirm-password").blur(function() {
+		
+		var thisPasswordElement = $(this);
+		var otherPasswordElement;
+		var thisPassword = thisPasswordElement.val();
+		var otherPassword;
+		var isConfirmPasswordElement = false;
+		
+		if ($(this).hasClass("password")) {
+			otherPasswordElement = $(this).closest("form").find(".confirm-password");
+			isConfirmPasswordElement = false;
+		} else {
+			otherPasswordElement = $(this).closest("form").find(".password");
+			isConfirmPasswordElement = true;
+		}
+		otherPassword = otherPasswordElement.val();
+		if (thisPassword != otherPassword && thisPassword != "" && otherPassword != "") {
+			console.log("hi");
+			if (isConfirmPasswordElement) {
+				thisPasswordElement.addClass("invalid-input");
+			} else {
+				otherPasswordElement.addClass("invalid-input");
+				
+			}
+		} else {
+			thisPasswordElement.removeClass("invalid-input");
+			otherPasswordElement.removeClass("invalid-input");
+		}
+		
+	});
+	
+	/**
+	 * If there is invalid input within the form, prevent submission of the form
+	 */
+	$(".submit-button").click(function(e) {
+		var invalidInputs = $(this).closest("form").find(".invalid-input");
+		if (invalidInputs.length != 0) {
+			e.preventDefault();
+		}
+	});
+	
+	
 });
