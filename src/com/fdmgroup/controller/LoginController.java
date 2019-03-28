@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fdmgroup.DAO.MessagesDAO;
 import com.fdmgroup.DAO.RequestDAO;
 import com.fdmgroup.DAO.UserDAO;
+import com.fdmgroup.enums.Employer;
 import com.fdmgroup.model.Admin;
 import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.IRUser;
@@ -53,6 +54,10 @@ public class LoginController {
 		removeErrorAttributes(session);
 		
 		model.addAttribute("newUser", new IRUser());
+		
+		/* Add all possible Employer enum values */
+		model.addAttribute("employers", Employer.values());
+		
 		return "login";
 	}
 	

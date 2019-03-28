@@ -165,8 +165,15 @@
                     <input type="text" id="signup-title-field" class="form-control signup-form-field" name="title" placeholder="Job Title" />
                   </div>
                   <div class="form-group">
-                    <input type="text" id="signup-employer-field" class="form-control signup-form-field" name="employer" placeholder="Employer" />
+                    <!-- <input type="text" id="signup-employer-field" class="form-control signup-form-field" name="employer" placeholder="Employer" /> -->
+                    <select id="signup-employer-field" class="form-control edittable" name="employer">
+                      <option value="">*** Select Option ***</option>
+                      <c:forEach items="${employers}" var="employer">
+                        <option value="${employer}">${employer}</option>
+                      </c:forEach>
+                    </select>
                   </div>
+                  
                 </div>
                     
                 <div class="form-group">

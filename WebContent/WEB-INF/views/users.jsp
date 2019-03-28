@@ -556,7 +556,6 @@
                 <div class="form-group">
                   <!-- <input type="text" id="edit-consultant-employer" class="form-control edittable" name="employer" placeholder="Employer" /> -->
                   <select id="edit-consultant-employer" class="form-control edittable" name="employer">
-                    
                     <option value="">*** Select Option ***</option>
                     <c:forEach items="${employers}" var="employer">
                       <option value="${employer}">${employer}</option>
