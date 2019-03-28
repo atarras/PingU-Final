@@ -1,6 +1,7 @@
 .page-footer {
     background: #3399ff;
     padding: 2px;
+    min-height: 5vh;
 }
 
 .footer-copyright {
