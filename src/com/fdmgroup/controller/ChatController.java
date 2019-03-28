@@ -46,10 +46,7 @@ public class ChatController {
 
 	@RequestMapping("/chat")
 	public String showChat(HttpServletRequest req){
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
-		/*
-		req.setAttribute("userNameForChat",auth );*/
+	
 		
 		return "chat";
 	}
@@ -85,10 +82,14 @@ public class ChatController {
 /*		Greeting greeting = new Greeting();
 		greeting.setContent("hello");*/
     	
-    	/*OneToOneMessage messages = new OneToOneMessage(msg.getContent(),  
-		 new SimpleDateFormat("HH:mm").format(new Date())); */
-
-		messagingTemplate.convertAndSendToUser(message.getToUser(), "/queue/reply", msg);
+    	String content = (message.getName()+": "+msg.getContent().toString()+" "+new SimpleDateFormat("HH:mm").format(new Date()).toString() );
+    	
+    	OneToOneMessage messages = new OneToOneMessage(content);
+    	System.out.println();
+    	System.out.println("-------------------------------------------------"+message.getName() +"-------------------------------------------------");
+    	System.out.println();
+    	
+		messagingTemplate.convertAndSendToUser(message.getToUser(), "/queue/reply", messages);
 	}
 	
 	

@@ -325,6 +325,8 @@ button.accent {
 <noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websocket relies on Javascript being
     enabled. Please enable
     Javascript and reload this page!</h2></noscript>
+    
+    
 <div id="main-content" class="container">
     <div class="row">
         <div class="col-md-6">
@@ -346,7 +348,7 @@ button.accent {
                 </div>
                 <div class="form-group">
                     <label for="name">Message</label>
-                    <input type="text" id="msg" name="messageToUser" placeholder="Your Message here...">
+                    <input type="text" id="msg" name="messageToUser" placeholder="Your Message here..." autocomplete="off" class="form-control" />
                 </div>
                 <button id="send" class="btn btn-default" type="submit">Send</button>
             </form>
@@ -357,7 +359,7 @@ button.accent {
             <table id="conversation" class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Greetings</th>
+                    <th>Messages</th>
                 </tr>
                 </thead>
                 <tbody id="greetings">
@@ -368,12 +370,13 @@ button.accent {
     </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 
 var stompClient = null;
+
 
 function setConnected(connected) {
     $("#connect").prop("disabled", connected);
@@ -403,31 +406,41 @@ function connect() {
     });
 }
 
-function disconnect() {
-    if (stompClient != null) {
-        stompClient.disconnect();
-    }
-    setConnected(false);
-    console.log("Disconnected");
-}
+
 
 function sendName() {
-	
+		  
     stompClient.send("/app/message", {
     }, JSON.stringify({
-        'name': $("#name").val(),
+        'name': $("#login").val(),
         'toUser' : $("#name").val(),
         'content' : $("#msg").val()
         
     }));
+    showYourMessage();
+   
+  
 }
 
-
+function showYourMessage(){
+	
+	 var d = new Date();
+	  var n = d.getHours();
+	  var m = d.getMinutes();
+	  var messageInput = document.querySelector('#msg');
+	  
+	  
+	  $("#greetings").append("<tr><td>" + "you: "+ messageInput.value +"  "+n+":"+m+"</td></tr>");
+	  document.getElementById('msg').value = "";
+}
 
 
 function showGreeting(message) {
+	   
     $("#greetings").append("<tr><td>" + message + "</td></tr>");
+ 
 }
+
 
 $(function () {
     $("form").on('submit', function (e) {

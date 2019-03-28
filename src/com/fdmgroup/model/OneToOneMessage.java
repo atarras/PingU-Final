@@ -15,12 +15,12 @@ public class OneToOneMessage {
 	}
 
 
-	public String getFrom() {
+	public String getName() {
 		return From;
 	}
 
 
-	public void setFrom(String from) {
+	public void setName(String from) {
 		From = from;
 	}
 
