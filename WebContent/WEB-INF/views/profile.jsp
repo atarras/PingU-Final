@@ -56,7 +56,6 @@
 										</svg>
 									</a>
 									<p id="description-text" class="card-text">
-									Add a description text...
 										${profileUser.getDescription() }
 									</p>
 									<button class="btn btn-primary" id="description-submit" type="submit" name="Submit-Description" >Submit</button>
@@ -163,6 +162,14 @@
 												<input type="password" class="form-control confirm-password" name="confirm-password" id="confirm-password" placeholder="Confirm New Password" title="Your new password confirmation.">
 											</div>
 										</div>
+										<h4>Security Question</h4>
+						                  <select class="form-control" name="security-question">
+						                    <option>What high school did you attend?</option>
+						                    <option>What is your mother's maiden name?</option>
+						                    <option>What was the name of your first pet?</option>
+						                    <option>Who is your childhood superhero?</option>
+						                  </select>
+						                  <br/>
 										<div class="form-group">
 											<div class="col-xs-4">
 												<label for="security-answer"><h4>New Security Answer</h4></label>
