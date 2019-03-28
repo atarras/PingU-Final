@@ -41,11 +41,16 @@
         
           <!-- Trainees Control Buttons -->
           <button type="button" id="add-trainee-button" class="btn btn-success" data-toggle="modal" data-target="#add-trainee-modal">
-            <i class="fas fa-plus"></i>
+            	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 16">
+            		<path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"/>
+            	</svg>
+            </i>
             Add Trainee
           </button>
           <button type="button" id="trainee-options" class="btn btn-secondary" data-toggle="modal" data-target="#trainee-options-modal">
-            <i class="fas fa-cog"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 14 16">
+            	<path fill-rule="evenodd" d="M14 8.77v-1.6l-1.94-.64-.45-1.09.88-1.84-1.13-1.13-1.81.91-1.09-.45-.69-1.92h-1.6l-.63 1.94-1.11.45-1.84-.88-1.13 1.13.91 1.81-.45 1.09L0 7.23v1.59l1.94.64.45 1.09-.88 1.84 1.13 1.13 1.81-.91 1.09.45.69 1.92h1.59l.63-1.94 1.11-.45 1.84.88 1.13-1.13-.92-1.81.47-1.09L14 8.75v.02zM7 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+            </svg>
           </button>
           
           <!-- Trainees Table -->
@@ -91,7 +96,9 @@
                     <p style="display:none;">${user.isVisibility()}</p>
                   </td>
                   <td class="trainee-actions" align="center">
-                    <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-trainee-modal"></i>
+                    <svg class="action-button" data-toggle="modal" data-target="#edit-trainee-modal" xmlns="http://www.w3.org/2000/svg" width="6" height="16" viewBox="0 0 3 16">
+                    	<path fill-rule="evenodd" d="M0 2.5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zm0 5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zM1.5 14a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                    </svg>
                   </td>
                 </tr>
               </c:forEach>
@@ -104,11 +111,15 @@
         
           <!-- Consultants Control Buttons -->
           <button type="button" id="add-consultant-button" class="btn btn-success" data-toggle="modal" data-target="#add-consultant-modal">
-            <i class="fas fa-plus"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+            	<path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"/>
+            </svg>
             Add Consultant
           </button>
           <button type="button" id="consultant-options" class="btn btn-secondary" data-toggle="modal" data-target="#consultant-options-modal">
-            <i class="fas fa-cog"></i>
+             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 14 16">
+            	<path fill-rule="evenodd" d="M14 8.77v-1.6l-1.94-.64-.45-1.09.88-1.84-1.13-1.13-1.81.91-1.09-.45-.69-1.92h-1.6l-.63 1.94-1.11.45-1.84-.88-1.13 1.13.91 1.81-.45 1.09L0 7.23v1.59l1.94.64.45 1.09-.88 1.84 1.13 1.13 1.81-.91 1.09.45.69 1.92h1.59l.63-1.94 1.11-.45 1.84.88 1.13-1.13-.92-1.81.47-1.09L14 8.75v.02zM7 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+            </svg>
           </button>
           
           <!-- Consultants Table -->
@@ -158,7 +169,9 @@
                     <p style="display:none;">${user.isVisibility()}</p>
                   </td>
                   <td class="consultant-actions" align="center">
-                    <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-consultant-modal"></i>
+                    <svg class="action-button" data-toggle="modal" data-target="#edit-consultant-modal" xmlns="http://www.w3.org/2000/svg" width="6" height="16" viewBox="0 0 3 16">
+                    	<path fill-rule="evenodd" d="M0 2.5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zm0 5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zM1.5 14a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                    </svg>
                   </td>
                 </tr>
               </c:forEach>
@@ -171,11 +184,15 @@
           
           <!-- Admins Control Buttons -->
           <button type="button" id="add-admin-button" class="btn btn-success" data-toggle="modal" data-target="#add-admin-modal">
-            <i class="fas fa-plus"></i>
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+            	<path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"/>
+            </svg>
             Add Admin
           </button>
           <button type="button" id="admin-options" class="btn btn-secondary" data-toggle="modal" data-target="#admin-options-modal">
-            <i class="fas fa-cog"></i>
+             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 14 16">
+            	<path fill-rule="evenodd" d="M14 8.77v-1.6l-1.94-.64-.45-1.09.88-1.84-1.13-1.13-1.81.91-1.09-.45-.69-1.92h-1.6l-.63 1.94-1.11.45-1.84-.88-1.13 1.13.91 1.81-.45 1.09L0 7.23v1.59l1.94.64.45 1.09-.88 1.84 1.13 1.13 1.81-.91 1.09.45.69 1.92h1.59l.63-1.94 1.11-.45 1.84.88 1.13-1.13-.92-1.81.47-1.09L14 8.75v.02zM7 11c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+            </svg>
           </button>
           
           <!-- Admins Table -->
@@ -199,7 +216,9 @@
                     <p style="display:none;">${user.isStatus()}</p>
                   </td>
                   <td class="admin-actions" align="center">
-                    <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-admin-modal"></i>
+                    <svg class="action-button" data-toggle="modal" data-target="#edit-admin-modal" xmlns="http://www.w3.org/2000/svg" width="6" height="16" viewBox="0 0 3 16">
+                    	<path fill-rule="evenodd" d="M0 2.5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zm0 5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zM1.5 14a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                    </svg>
                   </td>
                 </tr>
               </c:forEach>
@@ -370,14 +389,30 @@
                   <div class="row">
                     <div class="col col-md-6">
                       <label>Status</label>
-                      <button type="button" class="btn status-open edittable"><i class="fas fa-lock-open"></i></button>
-                      <button type="button" class="btn status-close edittable"><i class="fas fa-lock"></i></button>
+                      <button type="button" class="btn status-open edittable">
+	                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 16">
+	                      	<path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"/>
+	                      </svg>
+                      </button>
+                      <button type="button" class="btn status-close edittable">
+                      	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 16">
+                      		<path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/>
+                      	</svg>
+                      </button>
                       <input type="text" id="edit-trainee-status" class="form-control" name="status" style="display:none" />
                     </div>
                     <div class="col col-md-6">
                       <label>Visibility</label>
-                      <button type="button" class="btn set-visible edittable"><i class="fas fa-eye"></i></button>
-                      <button type="button" class="btn set-invisible edittable"><i class="fas fa-eye-slash"></i></button>
+                      <button type="button" class="btn set-visible edittable">
+                      	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                      		<path fill-rule="evenodd" d="M8.06 2C3 2 0 8 0 8s3 6 8.06 6C13 14 16 8 16 8s-3-6-7.94-6zM8 12c-2.2 0-4-1.78-4-4 0-2.2 1.8-4 4-4 2.22 0 4 1.8 4 4 0 2.22-1.78 4-4 4zm2-4c0 1.11-.89 2-2 2-1.11 0-2-.89-2-2 0-1.11.89-2 2-2 1.11 0 2 .89 2 2z"/>
+                      	</svg>
+                      </button>
+                      <button type="button" class="btn set-invisible edittable">
+                      	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 14">
+                      		<path fill-rule="evenodd" d="M14.822.854a.5.5 0 1 0-.707-.708l-2.11 2.11C10.89 1.483 9.565.926 8.06.926c-5.06 0-8.06 6-8.06 6s1.162 2.323 3.258 4.078l-2.064 2.065a.5.5 0 1 0 .707.707L14.822.854zM4.86 9.403L6.292 7.97A1.999 1.999 0 0 1 6 6.925c0-1.11.89-2 2-2 .384 0 .741.106 1.045.292l1.433-1.433A3.98 3.98 0 0 0 8 2.925c-2.2 0-4 1.8-4 4 0 .938.321 1.798.859 2.478zm7.005-3.514l1.993-1.992A14.873 14.873 0 0 1 16 6.925s-3 6-7.94 6a6.609 6.609 0 0 1-2.661-.57l1.565-1.566c.33.089.678.136 1.036.136 2.22 0 4-1.78 4-4 0-.358-.047-.705-.136-1.036zM9.338 8.415l.152-.151a1.996 1.996 0 0 1-.152.151z"/>
+                      	</svg>
+                      </button>
                       <input type="text" id="edit-trainee-visibility" class="form-control" name="visibility" style="display:none" />
                     </div>
                   </div>
