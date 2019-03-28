@@ -8,8 +8,10 @@
 	
 	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		
 	    <link rel="stylesheet" href="<c:url value='/resources/css/main.css'/>"/>
+        <script src="<c:url value="resources/js/main.js" />"></script>
 	    <link rel="stylesheet" href="<c:url value='/resources/css/profile.css'/>"/>
 	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -145,14 +147,14 @@
 											<div class="col-xs-4">
 												<label for="new-password"><h4>New Password</h4></label>
 												<!--<p id="city">Default City</p>-->
-												<input type="password" class="form-control" id="new-password" name="new-password" placeholder="New Password" title="Your new password.">
+												<input type="password" class="form-control password" id="new-password" name="new-password" placeholder="New Password" title="Your new password.">
 											</div>
 										</div>
 										<div class="form-group">
 											<div class="col-xs-4">
 												<label for="confirm-password"><h4>Confirm New Password</h4></label>
 												<!--<p id="phone">Default Phone	</p>-->
-												<input type="password" class="form-control" name="confirm-password" id="confirm-password" placeholder="Confirm New Password" title="Your new password confirmation.">
+												<input type="password" class="form-control confirm-password" name="confirm-password" id="confirm-password" placeholder="Confirm New Password" title="Your new password confirmation.">
 											</div>
 										</div>
 										<div class="form-group">
@@ -165,7 +167,7 @@
 										<div class="form-group">
 											<div class="col-xs-8">
 											<br>
-												<button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Sumbit</button>
+												<button class="btn btn-lg btn-success submit-button" type="submit"><i class="glyphicon glyphicon-ok-sign"></i>Submit</button>
 												<button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
 											</div>
 										</div>

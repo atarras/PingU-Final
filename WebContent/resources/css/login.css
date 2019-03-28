@@ -74,6 +74,3 @@ height: -moz-calc(95vh - 42px);
     cursor: pointer;
 }
 
-.invalid-input, .invalid-input:focus {
-    border: 1px solid red;
-}

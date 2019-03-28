@@ -59,3 +59,7 @@ input.editted, button.editted {
 .error-message {
     color: red;
 }
+
+.invalid-input, .invalid-input:focus {
+    border: 1px solid red;
+}
