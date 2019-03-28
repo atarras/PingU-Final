@@ -122,6 +122,45 @@ $(document).ready(function() {
 		}
 	})
 	
+	$("#employer-button").click(function(){
+		
+		if($("#employer-submit").css("visibility") == "hidden")
+		{
+			var userLinkedIn = $("#employer-text").text();
+			$("#employer-submit").css("visibility", "visible");
+		}
+		else
+		{
+			//var userRoleTitlePlaceholder = $("#employer-input").attr('placeholder');
+			$("#employer-submit").css("visibility", "hidden");
+			//$("#employer-input").replaceWith("<p href='#' id='employer-text'>"+userRoleTitlePlaceholder.trim()+"</p>");
+			$("#employer-input").replaceWith("<p href='#' id='employer-text'></p>");
+			return;
+		}
+		
+		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#employer-submit").css("visibility") == "visible"))
+		{
+			console.log("goodbye");
+			//$("#employer-text").replaceWith("<input type='text' id='employer-input' name='newJobTitle' placeholder='Your linkedin link' title='Your linkedin.'>");
+			$("#employer-text").replaceWith('<select id="employer-input" class="form-control edittable" name="employer">'+
+												'<option value="">*** Select Option ***</option>'+
+													'<c:forEach items="${employers}" var="employer">'+
+														'<option value="${employer}">${employer}</option>'+
+													'</c:forEach>'+
+													'</select>');
+		}
+		else
+		{
+			//$("#employer-text").replaceWith("<input type='text' id='employer-input' name='newJobTitle' placeholder='"+userLinkedIn.trim()+"' title='Your linkedin.'>");
+			$("#employer-text").replaceWith('<select id="employer-input" class="form-control edittable" name="employer">'+
+					'<option value="">*** Select Option ***</option>'+
+						'<c:forEach items="${employers}" var="employer">'+
+							'<option value="${employer}">${employer}</option>'+
+						'</c:forEach>'+
+						'</select>');
+		}
+	})
+	
 	
 	$("#form-reset").click(function() {
 		$(".personal-button").css("visibility", "hidden");

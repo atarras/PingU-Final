@@ -33,6 +33,12 @@ public class ProfileController {
 		session.removeAttribute("errorPassword");
 		session.removeAttribute("newAnswer");
 		IRUser profileUser = (IRUser) userDAO.findUserById(id);
+		
+		if(profileUser.getGroup() != null){
+			String username = profileUser.getUsername();
+			profileUser = (IRUser) userDAO.findByUsernameWithGroup(username);			
+		}
+		
 		session.setAttribute("profileUser", profileUser);
 		return "profile";
 	}

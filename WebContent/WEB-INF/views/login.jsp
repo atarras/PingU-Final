@@ -167,7 +167,7 @@
                   <div class="form-group">
                     <!-- <input type="text" id="signup-employer-field" class="form-control signup-form-field" name="employer" placeholder="Employer" /> -->
                     <select id="signup-employer-field" class="form-control edittable" name="employer">
-                      <option value="">*** Select Option ***</option>
+                      <option value="">Select Option</option>
                       <c:forEach items="${employers}" var="employer">
                         <option value="${employer}">${employer}</option>
                       </c:forEach>
