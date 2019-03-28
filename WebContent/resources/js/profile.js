@@ -122,30 +122,6 @@ $(document).ready(function() {
 		}
 	})
 	
-	$("#employer-button").click(function(){
-		
-		if($("#employer-submit").css("visibility") == "hidden")
-		{
-			var userLinkedIn = $("#role-text").text();
-			$("#employer-submit").css("visibility", "visible");
-		}
-		else
-		{
-			var userRoleTitlePlaceholder = $("#employer-input").attr('placeholder');
-			$("#employer-submit").css("visibility", "hidden");
-			$("#employer-input").replaceWith("<a href='#' id='employer-text'>"+userRoleTitlePlaceholder.trim()+"</a>");
-			return;
-		}
-		
-		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#employer-submit").css("visibility") == "visible"))
-		{
-			$("#employer-text").replaceWith("<input type='text' id='employer-input' name='newEmployer' placeholder='Your linkedin link' title='Your linkedin.'>");
-		}
-		else
-		{
-			$("#employer-text").replaceWith("<input type='text' id='employer-input' name='newEmployer' placeholder='"+userLinkedIn.trim()+"' title='Your linkedin.'>");
-		}
-	})
 	
 	$("#form-reset").click(function() {
 		$(".personal-button").css("visibility", "hidden");

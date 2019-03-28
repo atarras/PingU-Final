@@ -14,5 +14,4 @@ $(document).ready(function() {
 		 $(".searchField").attr('name', 'gSearchName');
 		 $("#searchForm").attr('action', 'findGroups'); 
 	});
-	
 });

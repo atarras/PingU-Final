@@ -10,7 +10,9 @@
 </head>
 	<div class="sidebar left-sidebar">
 		<div class="container sidebar-header">
-			<a href="${newUser.getUserId()}"><i class="fas fa-user-circle fa-7x"></i></a>
+			<a href="${newUser.getUserId()}">
+				<img src="<c:url value="resources/images/person.svg" />" height="110" width="112" />
+			</a>
 			<h6>${newUser.getFirstName() } ${newUser.getLastName() }</h6>	
 			<h6>GROUP</h6>
 		</div>

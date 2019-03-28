@@ -97,3 +97,22 @@ form{
 	display:block;
 	white-space: nowrap;
 }
+
+.svg-pencil{
+	position:relative;
+	float:right;
+	z-index:1000;
+	fill:blue;
+}
+
+.svg-pencil:hover{
+	fill:pink;
+}
+
+.svg-pencil-add{
+	fill:blue;
+}
+
+.user-svg{
+	margin:0 auto;
+}

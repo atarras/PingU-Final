@@ -27,22 +27,30 @@
 						<div class="card-body">
 							<h5 class="card-title">${profileUser.getFirstName()} ${profileUser.getLastName()}</h5>
 						</div>
-						<i class="fas fa-user-circle fa-10x"></i>
+							<svg class="user-svg" xmlns="http://www.w3.org/2000/svg" width="155" height="160" viewBox="0 0 12 16" preserveAspectRatio="xMidYMid meet">
+								<path fill-rule="evenodd" d="M12 14.002a.998.998 0 0 1-.998.998H1.001A1 1 0 0 1 0 13.999V13c0-2.633 4-4 4-4s.229-.409 0-1c-.841-.62-.944-1.59-1-4 .173-2.413 1.867-3 3-3s2.827.586 3 3c-.056 2.41-.159 3.38-1 4-.229.59 0 1 0 1s4 1.367 4 4v1.002z"/>
+							</svg>
 						<div class="card-body">
 							<form id="edit-box employer-request" class="form security" action="changeEmployerRequest" method="GET">
-								<input type="hidden" name="userID" value="${profileUser.getUserId()}"/>
-								<a href="#" id="employer-button" type="submit"><i class="far fa-edit user-edit"></i></a>
 								<p class="card-title employer-text" id="employer-text">Group: ${profileUser.getGroup().getGroupName().name() }</p>
 								<button class="btn btn-primary" id="employer-submit" name="Submit-Description">Request</button>
 							</form>
 							<form id="edit-box developer-request" class="form security" action="changeJobTitleRequest" method="GET">
 								<input type="hidden" name="userID" value="${profileUser.getUserId()}"/>
-								<a href="#" id="role-button"><i class="far fa-edit user-edit"></i></a>
+								<a href="#" id="role-button">
+									<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
+										<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
+									</svg>
+								</a>
 								<p class="card-title role-text" id="role-text">Title: ${profileUser.getCurrentTitle()}</p>
 								<button class="btn btn-primary" type="submit" id="role-submit" name="Submit-Description">Request</button>
 							</form>
 							<form id="edit-box decription-form" class="form security" action="password" method="POST">
-								<a href="#" id="description-button" ><i class="far fa-edit user-edit"></i></a>
+								<a href="#" id="description-button" >
+									<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
+										<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
+									</svg>
+								</a>
 								<p id="description-text" class="card-text">
 									${profileUser.getDescription() }
 								</p>
@@ -52,7 +60,11 @@
 								<p id="group-text" class="card-text">
 									${profileUser.getGroup().getGroupName().getName() }
 								</p>
-								<a href="#" id="linkedin-link">${profileUser.getLinkedInUrl() }</a><a href="#" id="linkedin-button"><i class="far fa-edit user-edit"></i></a>
+								<a href="#" id="linkedin-link">${profileUser.getLinkedInUrl() }</a><a href="#" id="linkedin-button">
+									<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
+										<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
+									</svg>
+								</a>
 								<button class="btn btn-primary" id="linkedin-submit" type="submit" name="Submit-Description">Submit</button>
 							</form>
 						</div>
@@ -85,7 +97,11 @@
 						</div>
 						
 						<div class="form-group">
-							<a id="edit-button" href="#"><i class="fas fa-edit fa-2x" title="Edit fields."></i></a>
+							<a id="edit-button" href="#">
+								<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="28" height="32" viewBox="0 0 14 16">
+									<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
+								</svg>
+							</a>
 							<div class="col-xs-8">
 								<button id="form-submit" class="btn btn-lg btn-success personal-button" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Submit</button>
 								<button id="form-reset" class="btn btn-lg personal-button" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
@@ -95,7 +111,11 @@
 					<div class="accordion" id="searchAccordion">
 						<div class="accordion-group">
 							<div class="accordion-heading">
-								<a class="accordion-toggle" data-toggle="collapse" data-parent="#searchAccordion" href="#collapseOne">Password and Security  <i class="far fa-edit"></i></a>
+								<a class="accordion-toggle" data-toggle="collapse" data-parent="#searchAccordion" href="#collapseOne">Password and Security  
+									<svg class="svg-pencil-add" xmlns="http://www.w3.org/2000/svg" width="21" height="24" viewBox="0 0 14 18">
+										<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
+									</svg>
+								</a>
 							</div>
 							<c:if test="${sessionScope.successPassword}">
                    				<div class="error-message">Password updated successfully.</div>

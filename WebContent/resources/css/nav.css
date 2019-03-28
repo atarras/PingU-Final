@@ -26,3 +26,7 @@ header .container{
 .modal{
 	top:30vh;
 }
+
+.svgfill{
+	fill:white;
+}
