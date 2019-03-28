@@ -141,6 +141,9 @@ $(document).ready(function() {
 		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#employer-submit").css("visibility") == "visible"))
 		{
 			console.log("goodbye");
+			
+			var employers = $("#something").attr(n)
+			
 			//$("#employer-text").replaceWith("<input type='text' id='employer-input' name='newJobTitle' placeholder='Your linkedin link' title='Your linkedin.'>");
 			$("#employer-text").replaceWith('<select id="employer-input" class="form-control edittable" name="employer">'+
 												'<option value="">*** Select Option ***</option>'+

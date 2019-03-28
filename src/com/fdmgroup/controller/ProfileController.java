@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fdmgroup.DAO.UserDAO;
+import com.fdmgroup.enums.Employer;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
 
@@ -38,7 +39,7 @@ public class ProfileController {
 			String username = profileUser.getUsername();
 			profileUser = (IRUser) userDAO.findByUsernameWithGroup(username);			
 		}
-		
+		model.addAttribute("employers", Employer.values());
 		session.setAttribute("profileUser", profileUser);
 		return "profile";
 	}
@@ -61,6 +62,7 @@ public class ProfileController {
 			profileUser.setPhoneNumber(newPhone);
 			userDAO.updatePhoneNumber(profileUser.getUserId(), newPhone);
 		}
+		model.addAttribute("employers", Employer.values());
 		req.getSession().setAttribute("newUser", profileUser);
 
 		return new ModelAndView("redirect:/"+id);
