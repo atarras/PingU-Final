@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.fdmgroup.DAO.GroupDAO;
@@ -92,12 +93,12 @@ public class RequestController {
 	 * @return the .jsp file to redirect to
 	 */
 	@RequestMapping(value="/changeEmployerRequest")
-	public String createChangeEmployerRequest(HttpServletRequest request, @RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
+	public ModelAndView createChangeEmployerRequest(HttpServletRequest request, @RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
 		IRUser currUser = (IRUser) userDAO.findUserById(userId);
 		Request changeEmployerRequest = new Request(currUser, RequestType.CHANGE_EMPLOYER, employerName);
 		requestDao.create(changeEmployerRequest);
 		userDAO.addRequestToUser(userId, changeEmployerRequest);
-		return "profile"; // Return to the necessary jsp
+		return new ModelAndView("redirect:/" + userId); // Return to the necessary jsp
 	}
 	
 	/**

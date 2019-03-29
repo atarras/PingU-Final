@@ -124,7 +124,15 @@ $(document).ready(function() {
 	
 	$("#employer-button").click(function(){
 		
-		if($("#employer-submit").css("visibility") == "hidden")
+		console.log("changing employer" + $("#employer-text").text());
+		
+		var value = $("#employer-text").attr("data-group");
+		$("#edit-employer-text option[value='" + value + "'").prop("selected", "selected");
+		
+		$("#display-employer").css("display", "none");
+		$("#edit-employer").css("display", "");
+		
+		/*if($("#employer-submit").css("visibility") == "hidden")
 		{
 			var userLinkedIn = $("#employer-text").text();
 			$("#employer-submit").css("visibility", "visible");
@@ -161,8 +169,8 @@ $(document).ready(function() {
 							'<option value="${employer}">${employer}</option>'+
 						'</c:forEach>'+
 						'</select>');
-		}
-	})
+		}*/
+	});
 	
 	
 	$("#form-reset").click(function() {
