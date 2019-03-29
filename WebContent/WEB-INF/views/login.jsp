@@ -63,7 +63,7 @@
                   </c:if>
                    <c:if test="${sessionScope.userSignUp}">
                    <p/>
-                      <div class="error-message">Thank you for registering. Your request is currently being processed by our admin team. We will contact you once the profile is active.</div>
+                      <div class="success-message">Thank you for registering. Your request is currently being processed by our admin team.</div>
                   </c:if>
                 </div>
                 

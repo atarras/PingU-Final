@@ -82,7 +82,7 @@ public class ProfileController {
 		if(passwordEncoder.matches(currentPassword, user.getPassword())){
 			if(!securityAnswer.equals("")){
 				userDAO.changeSecurityAnswer(user.getUserId(), securityAnswer);
-				session.setAttribute("securityAnswerSuccess", true);
+				session.setAttribute("newAnswer", true);
 			}
 			
 			if(!newPassword.equals("")){
