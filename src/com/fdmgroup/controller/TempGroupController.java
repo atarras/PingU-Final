@@ -113,13 +113,13 @@ public class TempGroupController {
 			System.out.println("Nope");
 		}
 		
-		/*res.setContentType("text/html;charset=UTF-8");
+		res.setContentType("text/html;charset=UTF-8");
         try {
 			res.getWriter().write("/PingU/groups");  // TODO: make this not hardcoded
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		//return new ModelAndView("redirect:/groups");
 	}
 

@@ -25,10 +25,11 @@ $(document).ready(function() {
 		$.ajax({
 			type: "POST",
 			url: "editGroup?id=" + id + "&" + $("#edit-group").serialize(),
-			success: function() {
+			success: function(data) {
 				console.log("success");
 				/* Redirect page since ajax calls seems to prevent our server from redirecting*/ 
 				//location.reload();
+				window.location.replace(data);
 			}
 		});
 		

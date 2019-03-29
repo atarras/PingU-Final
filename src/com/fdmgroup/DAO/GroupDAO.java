@@ -181,6 +181,7 @@ public class GroupDAO {
 		
 		List<Group> groups = null;
 		groups = query.getResultList();
+		em.close();
 		if(groups != null && !groups.isEmpty()){
 			return groups;
 		} 
@@ -201,6 +202,7 @@ public class GroupDAO {
 		
 		List<Group> groups = null;
 		groups = query.getResultList();
+		em.close();
 		if(groups != null && !groups.isEmpty()){
 			return groups;
 		} 

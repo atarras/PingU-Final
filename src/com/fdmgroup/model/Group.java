@@ -78,6 +78,7 @@ public class Group {
 	
 	public Group() {
 		super();
+		this.groupMembers = new ArrayList<>();
 	}
 	
 	public Group(Employer groupName, Category groupCategory, String groupDescription) {

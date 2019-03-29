@@ -44,7 +44,7 @@
               <th class="group-name">Name</th>
               <th class="group-category">Category</th>
               <th class="group-description">Description</th>
-              <th class="group-num-members"># Members</th>
+              <!-- <th class="group-num-members"># Members</th> -->
               <th class="group-status">Status</th>
               <th class="group-actions">Actions</th>
             </tr>
@@ -56,7 +56,7 @@
                 <td class="group-name">${group.getGroupName()}</td>
                 <td class="group-category">${group.getGroupCategory()}</td>
                 <td class="group-description">${group.getGroupDescription()}</td>
-                <td class="group-num-members">${group.getGroupMembers().size()}</td>
+                <%-- <td class="group-num-members">group.getGroupMembers().size()</td> --%>
                 <td class="group-status">
                   <p style="display:none;">${group.isActive()}</p>
                 </td>
