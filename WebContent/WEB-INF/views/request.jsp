@@ -58,7 +58,7 @@
 						<c:forEach items="${pendingRequests}" var="currRequest">
 							<c:set var="count" value="${count + 1}" scope="page" />
 							<tr>
-								<th scope="row">${count}</th>
+								<td scope="row">${count}</td>
 								<td>${currRequest.getRequestUser().getFirstName()}</td>
 								<td>${currRequest.getRequestUser().getLastName()}</td>
 
