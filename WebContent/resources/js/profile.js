@@ -41,23 +41,29 @@ $(document).ready(function() {
 	 * It will also toggle the visibility of the submit button pressing this icon
 	 * */
 	$("#description-button").click(function(){
-		var userDescription = $("#description-text").text();
 		if($("#description-submit").css("visibility") == "hidden")
 		{
 			$("#description-submit").css("visibility", "visible");
 		}
 		else
 		{
-			var userDescritionPlaceholder = $("#description-input").attr('placeholder');
+			var userDescriptionPlaceholder = $("#description-input").attr('placeholder');
 			$("#description-submit").css("visibility", "hidden");
-			$("#description-input").replaceWith("<p id='description-text' class='card-text'>"+userDescritionPlaceholder.trim()+"</p>");
+			if(userDescriptionPlaceholder == "" || userDescriptionPlaceholder == undefined)
+			{
+				$("#description-input").replaceWith("<p id='description-text' class='card-text'></p>");
+			}
+			else
+			{
+				$("#description-input").replaceWith("<p id='description-text' class='card-text'>"+userDescriptionPlaceholder.trim()+"</p>");
+			}
 			return;
 		}
 		
-		if (((userDescription == "" || userDescription == "undefined")) && ($("#description-submit").css("visibility") == "visible"))
+		var userDescription = $("#description-text").text();
+		if (((userDescription == "" || userDescription == undefined)) && ($("#description-submit").css("visibility") == "visible"))
 		{
-			console.log("hello");
-			$("#description-text").replaceWith("<input type='text' id='description-input' name='newDesc' placeholder='Add a user description' title='User description.'>");
+			$("#description-text").replaceWith("<input type='text' id='description-input' name='newDesc' title='User description.'>");
 		}
 		else
 		{
@@ -80,14 +86,20 @@ $(document).ready(function() {
 		{
 			var userLinkedInPlaceholder = $("#linkedin-input").attr('placeholder');
 			$("#linkedin-submit").css("visibility", "hidden");
-			$("#linkedin-input").replaceWith("<a href='#' id='linkedin-link'>"+userLinkedInPlaceholder.trim()+"</a>");
+			if(userLinkedInPlaceholder == "" || userLinkedInPlaceholder == undefined)
+			{
+				$("#linkedin-input").replaceWith("<a href='#' id='linkedin-link'></a>");
+			}
+			else
+			{
+				$("#linkedin-input").replaceWith("<a href='#' id='linkedin-link'>"+userLinkedInPlaceholder.trim()+"</a>");
+			}
 			return;
 		}
 		
-		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#linkedin-submit").css("visibility") == "visible"))
+		if (((userLinkedIn == "") || (userLinkedIn == undefined)) && ($("#linkedin-submit").css("visibility") == "visible"))
 		{
-			console.log("goodbye");
-			$("#linkedin-link").replaceWith("<input type='text' id='linkedin-input' name='newLinkedIn' placeholder='Your linkedin link' title='Your linkedin.'>");
+			$("#linkedin-link").replaceWith("<input type='text' id='linkedin-input' name='newLinkedIn' title='Your linkedin.'>");
 		}
 		else
 		{
@@ -107,13 +119,19 @@ $(document).ready(function() {
 		{
 			var userRoleTitlePlaceholder = $("#role-input").attr('placeholder');
 			$("#role-submit").css("visibility", "hidden");
-			$("#role-input").replaceWith("<p href='#' id='role-text'>"+userRoleTitlePlaceholder.trim()+"</p>");
+			if(userRoleTitlePlaceholder == "" || userRoleTitlePlaceholder == undefined)
+			{
+				$("#role-input").replaceWith("<p href='#' id='role-text'></p>");
+			}
+			else
+			{
+				$("#role-input").replaceWith("<p href='#' id='role-text'>"+userRoleTitlePlaceholder.trim()+"</p>");
+			}
 			return;
 		}
 		
-		if (((userLinkedIn == "") || (userLinkedIn =="undefined")) && ($("#role-submit").css("visibility") == "visible"))
+		if (((userLinkedIn == "") || (userLinkedIn ==undefined)) && ($("#role-submit").css("visibility") == "visible"))
 		{
-			console.log("goodbye");
 			$("#role-text").replaceWith("<input type='text' id='role-input' name='newJobTitle' placeholder='Your linkedin link' title='Your linkedin.'>");
 		}
 		else
@@ -180,5 +198,5 @@ $(document).ready(function() {
 		$("#countryInput").replaceWith("<p id='country'>" + country + "</p>");
 		$("#cityInput").replaceWith("<p id='city'>" + city + "</p>");
 		$("#phoneInput").replaceWith("<p id='phone'>" + phone + "</p>");
-	})
+	});
 });

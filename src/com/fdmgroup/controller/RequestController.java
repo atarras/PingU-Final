@@ -22,6 +22,7 @@ import com.fdmgroup.DAO.UserDAO;
 import com.fdmgroup.enums.Employer;
 import com.fdmgroup.enums.RequestStatus;
 import com.fdmgroup.enums.RequestType;
+import com.fdmgroup.helpers.StringHelpers;
 import com.fdmgroup.model.Consultant;
 import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IRUser;
@@ -96,8 +97,17 @@ public class RequestController {
 	public ModelAndView createChangeEmployerRequest(HttpServletRequest request, @RequestParam(value="userID")long userId, @RequestParam(value="newEmployer") String employerName){
 		IRUser currUser = (IRUser) userDAO.findUserById(userId);
 		Request changeEmployerRequest = new Request(currUser, RequestType.CHANGE_EMPLOYER, employerName);
-		requestDao.create(changeEmployerRequest);
-		userDAO.addRequestToUser(userId, changeEmployerRequest);
+		
+		if (!StringHelpers.isData(employerName) || !StringHelpers.isData(String.valueOf(userId)) || currUser == null || changeEmployerRequest == null)
+		{
+			request.setAttribute("errorEmployerRequest", "There was an error in your submission, Admin assistance required.");
+		}	
+		else
+		{
+			request.setAttribute("errorEmployerSuccess", "Submission successful.");
+			requestDao.create(changeEmployerRequest);
+			userDAO.addRequestToUser(userId, changeEmployerRequest);
+		}
 		return new ModelAndView("redirect:/" + userId); // Return to the necessary jsp
 	}
 	
@@ -113,8 +123,17 @@ public class RequestController {
 	public String createChangeJobTitleRequest(HttpServletRequest request,@RequestParam(value="userID")long userId, @RequestParam(value="newJobTitle")String jobTitle){
 		IRUser currUser = (IRUser) userDAO.findUserById(userId);
 		Request changeJobTitleRequest = new Request(currUser, RequestType.CHANGE_JOB_TITLE, jobTitle);
-		requestDao.create(changeJobTitleRequest);
-		userDAO.addRequestToUser(userId, changeJobTitleRequest);
+		
+		if (!StringHelpers.isData(jobTitle) || !StringHelpers.isData(String.valueOf(userId)) || currUser == null || changeJobTitleRequest == null)
+		{
+			request.setAttribute("errorRoleRequest", "There was an error in your submission, Admin assistance required.");
+		}	
+		else
+		{
+			request.setAttribute("successRoleRequest", "Submission successful.");
+			requestDao.create(changeJobTitleRequest);
+			userDAO.addRequestToUser(userId, changeJobTitleRequest);
+		}
 		return "profile"; // Return to the necessary jsp
 	}
 	

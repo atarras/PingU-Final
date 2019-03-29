@@ -93,6 +93,13 @@ public class Consultant extends IRUser {
 	public void setpDate(Date pDate) {
 		this.pDate = pDate;
 	}
+	
+	public String getEmployerWithoutUnderscore(){
+		String employerName = employer.toString();
+		String[] nameArr = employerName.split("_");
+		String name = String.join(" ", nameArr);
+		return name;
+	}
 
 	@Override
 	public String toString() {

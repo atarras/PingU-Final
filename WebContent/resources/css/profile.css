@@ -1,9 +1,10 @@
 .left-form{
 	position:relative;
 	width:50%;
-	height:calc(100% - 50px);
+	direction:rtl;
+	height:95vh;
 	float:left;
-	overflow:hidden;
+	overflow-x:hidden;
 }
 
 .right-form{
@@ -18,12 +19,6 @@
 	height:auto;
 }
 
-.fas.fa-edit.fa-2x{
-	position:relative;
-	float:right;
-	z-index:1000;
-}
-
 .user-edit{
 	float:right;
 	position:relative;
@@ -34,6 +29,8 @@
 	margin:0 auto;
 	top:5vh;
 	border:none;
+	overflow-x:hidden;
+	direction:ltr;
 }
 
 .custom-title{

@@ -65,17 +65,17 @@
                                       </svg>
                                     </a>
                                     </c:if>
-                                    <div class="card-title">Employer: <p id="employer-text">${profileUser.getEmployer()}</p></div>
+                                    <div class="card-title">Employer: <p id="employer-text">${profileUser.getEmployerWithoutUnderscore()}</p></div>
                                   </div>
                                 </c:if>
                                 <c:if test="${profileUser.getDiscriminatorValue() == 'Trainee'}">
                                   <div class="card-title">Employer: FDM Group</p></div>
                                 </c:if>
                               
-  							<c:if test="${sessionScope.successRequest}">
+  							<c:if test="${successTitleEmployerRequest}">
             					<div class="success-message">Your request has been submitted.</div>
                   			</c:if>
-              				<c:if test="${sessionScope.errorRequest}">
+              				<c:if test="${errorEmployerRequest}">
               					<div class="error-message">Your request had an issue, please consult an admin.</div>
            					</c:if>
 						</form>
@@ -90,12 +90,17 @@
   									</a>
   								</c:if>
   							</c:if>
-							<p class="card-title role-text" id="role-text">Title: ${profileUser.getCurrentTitle()}</p>
+  							<c:if test="${profileUser.getDiscriminatorValue() == 'Consultant'}">
+								Title: <p class="card-title role-text" id="role-text">${profileUser.getCurrentTitle()}</p>
+							</c:if>
+								<c:if test="${profileUser.getDiscriminatorValue() == 'Trainee'}">
+							Title: <p class="card-title role-text" id="role-text">${profileUser.getStream()} Trainee</p>
+							</c:if>
 							<button class="btn btn-primary" type="submit" id="role-submit" name="Submit-Description">Request</button>
-							<c:if test="${sessionScope.successRoleRequest}">
+							<c:if test="${successRoleRequest}">
                  					<div class="success-message">Your request has been submitted.</div>
               				</c:if>
-              				<c:if test="${sessionScope.errorRoleRequest}">
+              				<c:if test="${errorRoleRequest}">
                  					<div class="error-message">Your request had an issue, please consult an admin.</div>
               				</c:if>
 						</form>
@@ -108,7 +113,7 @@
 								</svg>
 							</a>
 						</c:if>
-							<p id="description-text" class="card-text">
+							Description: <p id="description-text" class="card-text">
 								${profileUser.getDescription() }
 							</p>
 							<button class="btn btn-primary" id="description-submit" type="submit" name="Submit-Description" >Submit</button>
@@ -119,11 +124,12 @@
 								${profileUser.getGroup().getGroupNameWithoutUnderscore() }
 							</p>
   							<c:if test="${profileUser.getUserId() == newUser.getUserId() }">
-  								<a href="#" id="linkedin-link">${profileUser.getLinkedInUrl() }</a><a href="#" id="linkedin-button">
+  								<a href="#" id="linkedin-button">
   									<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
   										<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
   									</svg>
   								</a>
+  								LinkedIn: <a href="#" id="linkedin-link">${profileUser.getLinkedInUrl() }</a>
   							</c:if>
 							<button class="btn btn-primary" id="linkedin-submit" type="submit" name="Submit-Description">Submit</button>
 						</form>
