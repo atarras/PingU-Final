@@ -56,26 +56,26 @@
                                 </div>
                               </div>
                               
-                                <c:if test="${profileUser.getDiscriminatorValue() == 'Consultant'}">
-                                  <div id="display-employer">
-                                    <c:if test="${profileUser.getUserId() == newUser.getUserId() }">
-                                    <a href="#" id="employer-button">
-                                      <svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
-                                        <path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
-                                      </svg>
-                                    </a>
-                                    </c:if>
-                                    <div class="card-title">Employer: <p id="employer-text">${profileUser.getEmployerWithoutUnderscore()}</p></div>
-                                  </div>
-                                </c:if>
+                              <c:if test="${profileUser.getDiscriminatorValue() == 'Consultant'}">
+                                <div id="display-employer">
+                                  <c:if test="${profileUser.getUserId() == newUser.getUserId() }">
+                                  <a href="#" id="employer-button">
+                                    <svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
+                                      <path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
+                                    </svg>
+                                  </a>
+                                  </c:if>
+                                  <div class="card-title">Employer: <p id="employer-text">${profileUser.getEmployerWithoutUnderscore()}</p></div>
+                                </div>
+                              </c:if>
                                 <c:if test="${profileUser.getDiscriminatorValue() == 'Trainee'}">
-                                  <div class="card-title">Employer: FDM Group</p></div>
+                                  <div class="card-title"><p>Employer: FDM Group</p></div>
                                 </c:if>
                               
-  							<c:if test="${successTitleEmployerRequest}">
+  							<c:if test="${sessionScope.successEmployerRequest}">
             					<div class="success-message">Your request has been submitted.</div>
                   			</c:if>
-              				<c:if test="${errorEmployerRequest}">
+              				<c:if test="${sessionScope.errorEmployerRequest}">
               					<div class="error-message">Your request had an issue, please consult an admin.</div>
            					</c:if>
 						</form>
@@ -97,10 +97,10 @@
 							Title: <p class="card-title role-text" id="role-text">${profileUser.getStream()} Trainee</p>
 							</c:if>
 							<button class="btn btn-primary" type="submit" id="role-submit" name="Submit-Description">Request</button>
-							<c:if test="${successRoleRequest}">
+							<c:if test="${sessionScope.successRoleRequest}">
                  					<div class="success-message">Your request has been submitted.</div>
               				</c:if>
-              				<c:if test="${errorRoleRequest}">
+              				<c:if test="${sessionScope.errorRoleRequest}">
                  					<div class="error-message">Your request had an issue, please consult an admin.</div>
               				</c:if>
 						</form>

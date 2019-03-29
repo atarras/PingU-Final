@@ -4,6 +4,14 @@ header .container{
 	margin:0;
 }
 
+.error-message{
+	color:red;
+}
+
+.success-message{
+	color:green;
+}
+
 .navbar{
 	padding: 0.5% 15% 0.5% 15%;
 	position:fixed;
@@ -29,4 +37,11 @@ header .container{
 
 .svgfill{
 	fill:white;
+}
+
+@media screen and (max-width: 960px) {
+.navbar {
+	padding: .5rem 1rem;
+	height: auto;
+  }
 }

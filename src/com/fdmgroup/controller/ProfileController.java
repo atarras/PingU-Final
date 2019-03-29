@@ -33,6 +33,10 @@ public class ProfileController {
 		session.removeAttribute("samePassword");
 		session.removeAttribute("errorPassword");
 		session.removeAttribute("newAnswer");
+		session.removeAttribute("successEmployerRequest");
+		session.removeAttribute("successRoleRequest");
+		session.removeAttribute("errorRoleRequest");
+		session.removeAttribute("errorEmployerRequest");
 		IRUser profileUser = (IRUser) userDAO.findUserById(id);
 		
 		
@@ -78,6 +82,10 @@ public class ProfileController {
 		session.removeAttribute("errorPassword");
 		session.removeAttribute("samePassword");
 		session.removeAttribute("successPassword");
+		session.removeAttribute("successEmployerRequest");
+		session.removeAttribute("successRoleRequest");
+		session.removeAttribute("errorRoleRequest");
+		session.removeAttribute("errorEmployerRequest");
 		
 		if(passwordEncoder.matches(currentPassword, user.getPassword())){
 			if(!securityAnswer.equals("")){
