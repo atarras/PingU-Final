@@ -19,8 +19,10 @@
   <link rel="stylesheet" href="<c:url value="resources/css/groups.css" />" />
   <script src="<c:url value="resources/js/groups.js" />"></script>
 </head>
+<jsp:include page="navAdmin.jsp" />
 <body>
-
+	<div class="container main-body">
+		<div class="container content">
   <%-- <jsp:include page="nav.jsp" /> --%>
 
   <div class="flex-wrapper">
@@ -29,7 +31,9 @@
       <div id="group">
         <!-- Groups Control Buttons -->
         <button type="button" id="add-group-button" class="btn btn-success" data-toggle="modal" data-target="#add-group-modal">
-          <i class="fas fa-plus"></i>
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16">
+            	<path fill-rule="evenodd" d="M12 9H7v5H5V9H0V7h5V2h2v5h5v2z"/>
+            </svg>
           Add Group
         </button>
         <!-- Groups Table -->
@@ -57,7 +61,9 @@
                   <p style="display:none;">${group.isActive()}</p>
                 </td>
                 <td class="group-actions">
-                  <i class="fas fa-ellipsis-v action-button" data-toggle="modal" data-target="#edit-group-modal"></i>
+                  <svg class="action-button" data-toggle="modal" data-target="#edit-group-modal" xmlns="http://www.w3.org/2000/svg" width="6" height="16" viewBox="0 0 3 16">
+                    	<path fill-rule="evenodd" d="M0 2.5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zm0 5a1.5 1.5 0 1 0 3 0 1.5 1.5 0 0 0-3 0zM1.5 14a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+                    </svg>
                 </td>
               </tr>
             </c:forEach>
@@ -130,8 +136,16 @@
                   <div class="row">
                     <div class="col col-md-6">
                       <label>Status</label>
-                      <button type="button" class="btn status-open edittable"><i class="fas fa-lock-open"></i></button>
-                      <button type="button" class="btn status-close edittable"><i class="fas fa-lock"></i></button>
+                      <button type="button" class="btn status-open edittable">
+                      	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 16">
+	                      	<path fill-rule="evenodd" d="M12 5l-8 8-4-4 1.5-1.5L4 10l6.5-6.5L12 5z"/>
+	                      </svg>
+                      </button>
+                      <button type="button" class="btn status-close edittable">
+                      	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 12 16">
+                      		<path fill-rule="evenodd" d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48 8z"/>
+                      	</svg>
+                      </button>
                       <input type="text" id="edit-group-status" class="form-control" name="status" style="display:none" />
                     </div>
                   </div>
@@ -151,9 +165,8 @@
       <!-- /END Edit Group Modal -->
     
     </div>
-    <jsp:include page="footer.jsp" />
   </div>
-  
-
+  </div>
+</div>
 </body>
 </html>

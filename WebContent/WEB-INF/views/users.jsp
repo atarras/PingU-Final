@@ -19,8 +19,10 @@
   <link rel="stylesheet" href="<c:url value="resources/css/users.css" />" />
   <script src="<c:url value="resources/js/users.js" />"></script>
 </head>
+	<jsp:include page="navAdmin.jsp" />
 <body>
-
+	<div class="container main-body">
+		<div class="container content">
   <%-- <jsp:include page="nav.jsp" /> --%>
 
   <div class="flex-wrapper">
@@ -776,7 +778,6 @@
     
     </div>
 
-    <jsp:include page="footer.jsp" />
   </div>
   <script>
   <!-- Set default tab to show in based on last tab user was in -->
@@ -786,5 +787,9 @@
   });
   
   </script>
+  </div>
+  
+  </div>
+  
 </body>
 </html>
