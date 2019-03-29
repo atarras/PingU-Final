@@ -101,7 +101,7 @@ public class MessagesController {
 		/*
 		 * TODO: add success message and add the messages to request attribute
 		 */
-		return "search"; // add the correct view string
+		return "home"; // add the correct view string
 	}
 
 	// @RequestMapping(value="/activateUser", method=RequestMethod.POST)
