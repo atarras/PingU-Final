@@ -10,6 +10,14 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 		
 	    <link rel="stylesheet" href="<c:url value="resources/css/main.css"/>"/>
+	    
+	     <style type="text/css">
+	    .mainContent{
+	    
+	    }
+	    
+	    
+	    </style>
 </head>
 <jsp:include page="nav.jsp" />
 
@@ -22,10 +30,10 @@
     
  <div class="container main-body">
 	  	<jsp:include page="left.jsp" />
-		<dliv class="container content">
+		<div class="container content">
 		
 		
-        
+       <div id="mainContent">
         <div class="row">
         <div class="col-md-6">
             <form>
@@ -71,6 +79,7 @@
             </table>
         </div>
     </div>
+   </div>
 
   
 </div>
