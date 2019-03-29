@@ -59,7 +59,7 @@
                       <div class="error-message">Incorrect Username or Password! Please try again.</div>
                   </c:if>
                    <c:if test="${sessionScope.inactiveUser}">
-                      <div class="error-message">Your profile is blocked. Please contact the admin office.</div>
+                      <div class="error-message">Your profile is blocked.</div>
                   </c:if>
                    <c:if test="${sessionScope.userSignUp}">
                    <p/>
