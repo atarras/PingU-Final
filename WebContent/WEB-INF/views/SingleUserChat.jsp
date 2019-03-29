@@ -22,22 +22,15 @@
 </noscript>
     
     
- <div class="container main-body">
-	  	<jsp:include page="left.jsp" />
-		<div class="container content">
-		
-		
-       <div id="mainContent">
-        <div class="row">
+ <div class="container main-body" >
+	<jsp:include page="left.jsp" />
+	<div class="container content">
+	 <div id="mainContent">
+	 
+      <div class="row">
         <div class="col-md-6">
             <form>
                 <div class="form-group">
-                
-                    <%-- <label for="connect">From: &nbsp;&nbsp; </label>
-                    <input id="login" type="text" value="${sessionScope.newUser.getUsername()}"   />
-                                
-                </div> --%>
-                
                 
                    <div class="input-group mb-3">
 					  <div class="input-group-prepend">
@@ -48,76 +41,52 @@
 				</div>
             </form>
         </div>
-        </div>
-         <div class="row">
+       
         <div class="col-md-6">
-            <form>
-             <%--     <div class="form-group">
-                    <!-- <label for="name">To: </label> -->
-                      <div class="input-group-prepend">
-					    <span class="input-group-text" id="basic-addon1" >To:</span>
-					  </div>
-                   
-                </div>  --%>
-              <div class="input-group mb-3">
+           <div class="input-group mb-3">
 					  <div class="input-group-prepend">
 					    <span class="input-group-text" id="basic-addon1" >To:</span>
 					  </div>
 					   <input type="text" id="name" class="form-control" value="${userName}" >
-					</div> 
-					
-					
-               <!--  <div class="form-group">
-                    <label for="name">Message:   </label>
-                    <input type="text" id="msg" name="messageToUser" placeholder="Your Message here..." autocomplete="off" class="form-control input-sm chat_input" />
-	                    <span class="input-group-btn">
-		               		 <button id="send" class="btn btn-primary btn-sm" type="submit">Send</button>
-		                </span>
-                </div> -->
-                
+			</div> 
+		</div>
+       
+       </div>
+       
+        <div id="conversation">
+				     <ul id="greetings" style="overflow: auto;" >
+				
+				     </ul>
+		</div>
+       
+        <div class="row">
+        <div class="col-md-6">
+            <form>
+            
+          	
                 
                 
                 <div class="input-group">
-					  <div class="input-group-prepend">
-					    <span class="input-group-text">Message:</span>
-					  </div>
-					  <textarea id="msg" name="messageToUser" placeholder="Your Message here..." class="form-control input-sm chat_input"></textarea>
-					
-					</div>
+					<div class="input-group mb-8">
+						   <input  id="msg" name="messageToUser" placeholder="Your Message here..." autocomplete="off" class="form-control input-sm chat_input">
+						   <div class="input-group-append">
+						   	 <button id="send" class="btn btn-primary btn-default" type="submit">Send</button>
+						  </div>
+						</div>
+				</div>
 				
-				<div id="sendBtn">
-                  <span class="input-group-btn" >
-		               		 <button id="send" class="btn btn-primary btn-lg" type="submit">Send</button>
-		                </span>
-		            </div>
+				
             </form>
         </div>
-       </div>
+      </div>
     
-   <!--  <div class="row " id="tables" >
-        <div class="col-md-12">
-            <table id="conversation" class="table">
-                <thead>
-                <tr >
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody id="greetings">
-                </tbody>
-            </table>
-        </div>
-    </div> -->
+   
     
-    <div id="conversation">
-	     <ul id="greetings" style="width: 50vw; height: 50vh; overflow: auto">
-	
-	     </ul>
-    </div>
+  
+    
     
    </div>
    
-
-  
 </div>
 
 <jsp:include page="right.jsp" />  
@@ -198,6 +167,7 @@ function showGreeting(message) {
    /*  $("#greetings").append("<tr bgcolor='#b3d9ff'><td>" + message + "</td></tr>"); */
    
 	 $("#greetings").append("<li class='him'>" + message + "</li>");
+	 document.getElementById('greetings').lastChild.scrollIntoView(false)
 }
 
 

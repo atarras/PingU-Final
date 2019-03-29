@@ -61,6 +61,10 @@ input.editted, button.editted {
     color: red;
 }
 
+.success-message{
+	color: green;
+}
+
 .invalid-input, .invalid-input:focus {
     border: 1px solid red;
 }
