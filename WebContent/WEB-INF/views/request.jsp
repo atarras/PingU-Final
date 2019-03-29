@@ -22,6 +22,17 @@
 		class="container-fluid table-responsive text-nowrap">
 		<c:choose>
 			<c:when test="${empty pendingRequests}">
+				<c:if test="${not empty deniedRequestMsg}">
+					<div id="deniedRequestMsg" class="alert alert-danger text-center">
+						<h4>${deniedRequestMsg }</h4>
+					</div>
+				</c:if>
+				<c:if test="${not empty approvedRequestMsg}">
+					<div id="approvedRequestMsg"
+						class="alert alert-success text-center">
+						<h4>${approvedRequestMsg }</h4>
+					</div>
+				</c:if>
 				<div id="noRequests" class="alert alert-info text-center">
 					<h4>
 						<strong>No Pending Requests</strong>
