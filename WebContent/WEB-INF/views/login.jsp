@@ -68,7 +68,7 @@
                 </div>
                 
                 <div class="form-group">
-                  <button type="submit" id="login-button" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+                  <button type="submit" id="login-button" class="btn btn-primary btn-lg btn-block login-btn" onclick="connect()">Login</button>
                 </div>
                 
               </form>

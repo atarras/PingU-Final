@@ -10,14 +10,8 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
 		
 	    <link rel="stylesheet" href="<c:url value="resources/css/main.css"/>"/>
+	    <link rel="stylesheet" href="<c:url value="resources/css/singleUserChat.css"/>"/>
 	    
-	     <style type="text/css">
-	    .mainContent{
-	    
-	    }
-	    
-	    
-	    </style>
 </head>
 <jsp:include page="nav.jsp" />
 
@@ -38,48 +32,90 @@
         <div class="col-md-6">
             <form>
                 <div class="form-group">
-                    <label for="connect">From: &nbsp;&nbsp; </label>
+                
+                    <%-- <label for="connect">From: &nbsp;&nbsp; </label>
                     <input id="login" type="text" value="${sessionScope.newUser.getUsername()}"   />
-                    <button id="connect" class="btn btn-default" type="submit">Connect</button>
-                    <button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect
-                    </button>
-                </div>
+                                
+                </div> --%>
+                
+                
+                   <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon1" >From:</span>
+					  </div>
+					    <input id="login" type="text" class="form-control"  value="${sessionScope.newUser.getUsername()}"   />
+					 </div> 
+				</div>
             </form>
         </div>
         </div>
          <div class="row">
         <div class="col-md-6">
             <form>
-                <div class="form-group">
-                    <label for="name">To: </label>
-                    <input type="text" id="name"  value="${userName}" >
-                </div>
-                <div class="form-group">
-                    <label for="name">Message: &nbsp;&nbsp;  </label>
+             <%--     <div class="form-group">
+                    <!-- <label for="name">To: </label> -->
+                      <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon1" >To:</span>
+					  </div>
+                   
+                </div>  --%>
+              <div class="input-group mb-3">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text" id="basic-addon1" >To:</span>
+					  </div>
+					   <input type="text" id="name" class="form-control" value="${userName}" >
+					</div> 
+					
+					
+               <!--  <div class="form-group">
+                    <label for="name">Message:   </label>
                     <input type="text" id="msg" name="messageToUser" placeholder="Your Message here..." autocomplete="off" class="form-control input-sm chat_input" />
 	                    <span class="input-group-btn">
 		               		 <button id="send" class="btn btn-primary btn-sm" type="submit">Send</button>
 		                </span>
-                </div>
+                </div> -->
                 
+                
+                
+                <div class="input-group">
+					  <div class="input-group-prepend">
+					    <span class="input-group-text">Message:</span>
+					  </div>
+					  <textarea id="msg" name="messageToUser" placeholder="Your Message here..." class="form-control input-sm chat_input"></textarea>
+					
+					</div>
+				
+				<div id="sendBtn">
+                  <span class="input-group-btn" >
+		               		 <button id="send" class="btn btn-primary btn-lg" type="submit">Send</button>
+		                </span>
+		            </div>
             </form>
         </div>
        </div>
     
-    <div class="row">
+   <!--  <div class="row " id="tables" >
         <div class="col-md-12">
-            <table id="conversation" class="table table-striped">
+            <table id="conversation" class="table">
                 <thead>
-                <tr>
-                    <th>Messages</th>
+                <tr >
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody id="greetings">
                 </tbody>
             </table>
         </div>
+    </div> -->
+    
+    <div id="conversation">
+	     <ul id="greetings" style="width: 50vw; height: 50vh; overflow: auto">
+	
+	     </ul>
     </div>
+    
    </div>
+   
 
   
 </div>
@@ -109,7 +145,7 @@ function setConnected(connected) {
     $("#greetings").html("");
 }
 
-function connect() {
+ function connect() {
     var socket = new SockJS('/PingU/SingleUserChat');
     stompClient = Stomp.over(socket);
     stompClient.connect({
@@ -123,7 +159,7 @@ function connect() {
                                                             showGreeting(JSON.parse(greeting.body).content);
                                                         });
     });
-}
+} 
 
 
 
@@ -149,15 +185,19 @@ function showYourMessage(){
 	  var messageInput = document.querySelector('#msg');
 	  
 	  
-	  $("#greetings").append("<tr><td>" + "you: "+ messageInput.value +"("+n+":" + m +")"+"</td></tr>");
+/* 	  $("#greetings").append("<tr bgcolor='#e6f2ff'><td style='text-align:right'>" + "you: "+ messageInput.value +"("+n+":" + m +")"+"</td></tr>"); */
+ 
+ 
+ 	 $("#greetings").append("<li class='me' >" + "You: "+ messageInput.value +"("+n+":" + m +")"+"</li>");
 	  document.getElementById('msg').value = "";
 }
 
 
 function showGreeting(message) {
 	   
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
- 
+   /*  $("#greetings").append("<tr bgcolor='#b3d9ff'><td>" + message + "</td></tr>"); */
+   
+	 $("#greetings").append("<li class='him'>" + message + "</li>");
 }
 
 
@@ -172,6 +212,14 @@ $(function () {
     $( "#send" ).click(function() { sendName(); });
 });
 
+
+
+$(document).ready(function() {
+   
+	
+	connect();
+    
+});
 
 
 </script>
