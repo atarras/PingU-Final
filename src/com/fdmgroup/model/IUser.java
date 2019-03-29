@@ -3,6 +3,7 @@ package com.fdmgroup.model;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -154,6 +155,12 @@ public class IUser {
 
 	public void setSecurityAnswer(String securityAnswer) {
 		this.securityAnswer = securityAnswer;
+	}
+	
+	public String getDiscriminatorValue()
+	{
+		DiscriminatorValue discriminator = this.getClass().getAnnotation( DiscriminatorValue.class );
+		return discriminator == null ? null : discriminator.value();
 	}
 
 	@Override
