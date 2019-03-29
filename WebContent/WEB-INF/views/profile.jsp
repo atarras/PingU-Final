@@ -94,7 +94,7 @@
 								Title: <p class="card-title role-text" id="role-text">${profileUser.getCurrentTitle()}</p>
 							</c:if>
 								<c:if test="${profileUser.getDiscriminatorValue() == 'Trainee'}">
-							Title: <p class="card-title role-text" id="role-text">${profileUser.getStream()} Trainee</p>
+								Title: <p class="card-title role-text" id="role-text">${profileUser.getStream()} Trainee</p>
 							</c:if>
 							<button class="btn btn-primary" type="submit" id="role-submit" name="Submit-Description">Request</button>
 							<c:if test="${sessionScope.successRoleRequest}">

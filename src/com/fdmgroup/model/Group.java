@@ -156,6 +156,13 @@ public class Group {
 		String name = String.join(" ", nameArr);
 		return name;
 	}
+	
+	public String getCategoryWithoutUnderscore(){
+		String employerName = groupCategory.toString();
+		String[] nameArr = employerName.split("_");
+		String name = String.join(" ", nameArr);
+		return name;
+	}
 
 	@Override
 	public String toString() {
