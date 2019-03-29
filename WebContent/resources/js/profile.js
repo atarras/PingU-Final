@@ -126,7 +126,7 @@ $(document).ready(function() {
 		
 		console.log("changing employer" + $("#employer-text").text());
 		
-		var value = $("#employer-text").attr("data-group");
+		var value = $("#employer-text").text();
 		$("#edit-employer-text option[value='" + value + "'").prop("selected", "selected");
 		
 		$("#display-employer").css("display", "none");

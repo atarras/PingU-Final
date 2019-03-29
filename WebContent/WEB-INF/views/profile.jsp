@@ -63,7 +63,7 @@
                                         </a>
                                       </c:if>
                                     </c:if>
-        							<div class="card-title">Employer: <p id="employer-text" data-group="${profileUser.getEmployer()}">${profileUser.getEmployer()}</p></div>
+        							<div class="card-title">Employer: <span id="employer-text"">${profileUser.getEmployer()}</span></div>
                                   </div>
                                 </div>
                   
