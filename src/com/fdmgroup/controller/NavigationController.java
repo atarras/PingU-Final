@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fdmgroup.DAO.GroupDAO;
+import com.fdmgroup.DAO.MessagesDAO;
 import com.fdmgroup.DAO.UserDAO;
 import com.fdmgroup.model.Group;
 import com.fdmgroup.model.IRUser;
 import com.fdmgroup.model.IUser;
+import com.fdmgroup.model.Messages;
 
 @Controller
 public class NavigationController
@@ -27,6 +29,9 @@ public class NavigationController
 	
 	@Autowired
 	GroupDAO groupDao;
+	
+	@Autowired
+	private MessagesDAO messagesDao;
 	
 	@RequestMapping(value="/search", method=RequestMethod.GET)
 	public String showSearch() {
@@ -54,7 +59,21 @@ public class NavigationController
 	}	
 	
 	@RequestMapping(value="/home", method=RequestMethod.GET)
-	public String showHome() {
+	public String showHome(HttpServletRequest req) {
+		
+		HttpSession session = req.getSession();
+		IUser loginUser = (IUser) session.getAttribute("newUser");
+		
+		if(loginUser.getGroup()!=null){
+			List<Messages> allMessagesForGroup = messagesDao.getAllMessagesForGroup(loginUser.getGroup().getGroupId());
+			if(allMessagesForGroup!=null && allMessagesForGroup.size()>=1)
+				req.setAttribute("groupMessages", allMessagesForGroup);
+			}
+			List<Messages> allMessagesForUser = messagesDao.getAllMessagesForUser(loginUser.getUserId());
+			if(allMessagesForUser!=null && allMessagesForUser.size()>=1)
+			session.setAttribute("userMessages", allMessagesForUser);
+			
+		
 		return "home";
 	}	
 	
