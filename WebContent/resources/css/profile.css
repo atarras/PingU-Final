@@ -88,9 +88,9 @@ form{
 }
 
 
-#employer-submit{
+/* #employer-submit{
 	visibility:hidden;
-}
+} */
 
 #description-submit #linkedin-submit #role-submit #employer-submit{
 	float:right;

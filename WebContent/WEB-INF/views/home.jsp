@@ -41,9 +41,12 @@
 					<div id="allmsg" class="tab-pane fade active show container messages all">
 					<c:forEach items="${sessionScope.userMessages}" var="uMsg" varStatus="status">	
 						<div class="media border pt-4 p-3">
+                            <div class="profile-header-img">
 							<a href="${uMsg.getSenderId()}" >${uMsg.getSenderName()}
-								<i class="fas fa-user-circle fa-4x pr-3"></i>
+								<!-- <i class="fas fa-user-circle fa-4x pr-3"></i> -->
+                                <img class="rounded-circle" src="https://thispersondoesnotexist.com/image#${uMsg.getSenderId()}">
 							</a>
+                            </div>
 							<div class="media-body">
 								<h5 class="mt-0">Message</h5>
 								<p>${uMsg.getMsgBody() }</p>

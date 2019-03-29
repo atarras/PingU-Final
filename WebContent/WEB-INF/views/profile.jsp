@@ -34,31 +34,65 @@
 								<path fill-rule="evenodd" d="M12 14.002a.998.998 0 0 1-.998.998H1.001A1 1 0 0 1 0 13.999V13c0-2.633 4-4 4-4s.229-.409 0-1c-.841-.62-.944-1.59-1-4 .173-2.413 1.867-3 3-3s2.827.586 3 3c-.056 2.41-.159 3.38-1 4-.229.59 0 1 0 1s4 1.367 4 4v1.002z"/>
 							</svg> -->
                             <div class="profile-header-img center">
-  <img id="profile-pic" class="rounded-circle" src="https://thispersondoesnotexist.com/image">
-</div>
+                              <img id="profile-pic" class="rounded-circle" src="https://thispersondoesnotexist.com/image">
+                            </div>
 						<div class="card-body">
-							<form id="edit-box employer-request" class="form security" action="changeEmployerRequest" method="GET">
-							<c:if test="${profileUser.getUserId() == newUser.getUserId() }">
-								<a href="#" id="employer-button">
-									<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
-										<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
-									</svg>
-								</a>
-							</c:if>
-								<p class="card-title employer-text" id="employer-text">Employer: ${profileUser.getGroup().getGroupNameWithoutUnderscore() }</p>
-								<button class="btn btn-primary" id="employer-submit" name="Submit-Description">Request</button>
+							<form id="employer-request" class="form security" action="changeEmployerRequest" method="GET">
+    							<input type="hidden" name="userID" value="${profileUser.getUserId()}"/>
+                  
+                                <div class="form-group">
+                                  <!-- <input type="text" id="edit-consultant-employer" class="form-control edittable" name="employer" placeholder="Employer" /> -->
+                                  
+                                  <div class="row" id="edit-employer" style="display:none">
+                                    <select id="edit-employer-text" class="form-control" name="newEmployer">
+                                      <option value="">*** Select Option ***</option>
+                                      <c:forEach items="${employers}" var="employer">
+                                        <option value="${employer}">${employer}</option>
+                                      </c:forEach>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary" id="employer-submit">Request</button>
+                                  </div>
+                                  
+                                  <div id="display-employer">
+                                    <c:if test="${profileUser.getUserId() == newUser.getUserId() }">
+                                      <c:if test="${newUser.getDiscriminatorValue() != 'Trainee'}">
+                                        <a href="#" id="employer-button">
+                                            <svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
+                                                <path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
+                                            </svg>
+                                        </a>
+                                      </c:if>
+                                    </c:if>
+        							<div class="card-title">Employer: <span id="employer-text"">${profileUser.getEmployer()}</span></div>
+                                  </div>
+                                </div>
+                  
+    							<c:if test="${sessionScope.successRequest}">
+                  					<div class="success-message">Your request has been submitted.</div>
+                    			</c:if>
+                  				<c:if test="${sessionScope.errorRequest}">
+                  					<div class="error-message">Your request had an issue, please consult an admin.</div>
+               					</c:if>
 							</form>
-							<form id="edit-box developer-request" class="form security" action="changeJobTitleRequest" method="GET">
+							<form id="edit-box role-request" class="form security" action="changeJobTitleRequest" method="GET">
 								<input type="hidden" name="userID" value="${profileUser.getUserId()}"/>
 							<c:if test="${profileUser.getUserId() == newUser.getUserId() }">
-								<a href="#" id="role-button">
-									<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
-										<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
-									</svg>
-								</a>
+								<c:if test="${newUser.getDiscriminatorValue() != 'Trainee'}">
+									<a href="#" id="role-button">
+										<svg class="svg-pencil" xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16">
+											<path fill-rule="evenodd" d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39 1.02 0 1.41z"/>
+										</svg>
+									</a>
+								</c:if>
 							</c:if>
 								<p class="card-title role-text" id="role-text">Title: ${profileUser.getCurrentTitle()}</p>
 								<button class="btn btn-primary" type="submit" id="role-submit" name="Submit-Description">Request</button>
+								<c:if test="${sessionScope.successRoleRequest}">
+                   					<div class="success-message">Your request has been submitted.</div>
+                				</c:if>
+                				<c:if test="${sessionScope.errorRoleRequest}">
+                   					<div class="error-message">Your request had an issue, please consult an admin.</div>
+                				</c:if>
 							</form>
 								<form id="edit-box decription-form" class="form security" action="description" method="POST">
 									<input type="hidden" name="userID" value="${profileUser.getUserId()}"/>
